@@ -21,6 +21,7 @@ public class ThiefCaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     // Start is called before the first frame update
@@ -28,14 +29,14 @@ public class ThiefCaveManager : MonoBehaviour
     {
         m_hidePosition = new Vector3[stage * 2 + 1];
         //랜덤한 위치에 도둑이 숨을 공간 생성
-        for (int i = 0; i < stage * 2  + 1; i++)
+        for (int i = 0; i < stage * 2 + 1; i++)
         {
-            m_hidePosition[i] = new Vector3(Random.Range(-8, 8), 0, Random.Range(-2, 8));
-            Instantiate(Cave);
+            m_hidePosition[i] = new Vector3((int)Random.Range(-5, 5) * 2, 0, (int)Random.Range(-2, 5) * 2);
             Cave.transform.position = m_hidePosition[i];
+            Thief.transform.position = m_hidePosition[i];
+            Instantiate(Cave);
+            Instantiate(Thief);
         }
-
-        Instantiate(Thief);
 
 
     }

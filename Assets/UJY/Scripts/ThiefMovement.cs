@@ -5,42 +5,34 @@ using UnityEngine;
 
 public class ThiefMovement : MonoBehaviour
 {
-    private float m_delaytime;
     private Vector3[] m_hidePosition;
     private Vector3 m_targetPositon;
-    private bool m_hide;
-
-    private void Awake()
-    {
-        m_delaytime = 0.1f;
-    }
+    private int m_length;
 
     private void Start()
     {
-        int length = ThiefCaveManager.Instance.m_hidePosition.Length;
-        m_hidePosition = new Vector3[length];
+        m_length = ThiefCaveManager.Instance.m_hidePosition.Length;
+        m_hidePosition = new Vector3[m_length];
 
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < m_length; i++)
         {
             m_hidePosition[i] = ThiefCaveManager.Instance.m_hidePosition[i];
         }
 
-        this.transform.position = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
-
+        m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
     }
 
     private void FixedUpdate()
     {
-        ThiefMoving();
+        if (gameObject.transform.position != m_targetPositon)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_targetPositon, 0.1f);
+        }
+        else
+        {
+            m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
+        }
+
     }
-
-    private void ThiefMoving()
-    {
-        m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, m_targetPositon, 0.05f);
-
-
-    }
-
 
 }
