@@ -21,6 +21,7 @@ public class ThiefCaveManager : MonoBehaviour
 
     private void Awake()
     {
+        //싱글톤화
         if(Instance == null)
         {
             Instance = this;
@@ -39,12 +40,14 @@ public class ThiefCaveManager : MonoBehaviour
         IsGaiming = false;
         IsChanging = true;
         m_hidePosition = new Vector3[stage * 2 + 1];
+
         //랜덤한 위치에 도둑이 숨을 공간 생성
         for (int i = 0; i <= stage * 2 ; i++)
         {
             m_hidePosition[i] = new Vector3((int)Random.Range(-2, 3) * 2, 0, (int)Random.Range(-2, 5) * 2);
             if(i == 0)
             {
+                //첫 번째 생성할 때 타겟도 생성
                 Target.transform.position = m_hidePosition[i];
                 Instantiate(Target);
             }
@@ -62,6 +65,7 @@ public class ThiefCaveManager : MonoBehaviour
 
     private void Update()
     {
+        //시간 흐름에 따라 게임 진행 
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && Mission.activeSelf == false)
         {
@@ -85,6 +89,7 @@ public class ThiefCaveManager : MonoBehaviour
 
             if(Input.GetMouseButtonDown(0))
             {
+                // 마우스 클릭시 RAY를 활용하여 타겟 찾기
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if(Physics.Raycast(ray, out hit))
