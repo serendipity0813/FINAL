@@ -10,14 +10,14 @@ public class FlyFood : MonoBehaviour
 
     void Awake()
     {
-        trn = transform.parent.transform.parent;
-        xValue = transform.position.x; // 처음 생성된 위치 x 값 받아오기
         rb = GetComponent<Rigidbody>(); // AddForce, AddTorque 함수를 위한 rb
+        trn = transform.parent.transform.parent; // 인스턴스로 생성된 부모(FoodContainer) 의 부모 (MiniGame - FoodShoot)
+        xValue = transform.position.x; // 처음 생성된 위치 x 값 받아오기
     }
     void Start()
     {
         FlyForce(); // 한번만 실행
-        Invoke("DestroyFood", 2.5f);
+        Invoke(nameof(DestroyFood), 2.5f);
     }
     void FlyForce()
     {
@@ -26,14 +26,14 @@ public class FlyFood : MonoBehaviour
 
         // jumpPowerRnd = jumpPower의 -2 ~ +2 값으로 변경
         int jumpPowerRnd = Random.Range(jumpPower - 2, jumpPower + 2);
-
-        if (xValue > trn.position.x) // xValue 값이 0보다 클 경우 오른쪽에서 왼쪽으로 발사
+        // xValue 값이 MiniGame - FoodShoot 포지션 값보다 클 경우 오른쪽에서 왼쪽으로 발사
+        if (xValue > trn.position.x)
         {
             rb.AddForce(-powerRnd, jumpPowerRnd, 0, ForceMode.Impulse);
             rb.AddTorque(RotationPowerRnd(), RotationPowerRnd(), RotationPowerRnd());
         }
-        
-        else if (xValue < trn.position.x) // xValue 값이 0보다 작을 경우 왼쪽에서 오른쪽으로 발사
+        // xValue 값이 MiniGame - FoodShoot 포지션 값보다 작을 경우 왼쪽에서 오른쪽으로 발사
+        else if (xValue < trn.position.x) 
         {
             rb.AddForce(powerRnd, jumpPowerRnd, 0, ForceMode.Impulse);
             rb.AddTorque(RotationPowerRnd(), RotationPowerRnd(), RotationPowerRnd());
