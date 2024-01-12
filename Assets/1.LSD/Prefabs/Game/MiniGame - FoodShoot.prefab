@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84945f265a106d84ba231dc6c7e06fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletCount: 0
-  winningCount: 0
+  m_bulletCount: 0
+  m_winCount: 0
+  m_win: 0
 --- !u!1 &1982528507523778103
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ Transform:
   - {fileID: 3675370145160484727}
   - {fileID: 8644654704170565730}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7133669876473292790
 PrefabInstance:
@@ -233,7 +234,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9052309284029702233, guid: 5f495559523f1404d810fd8785a51464,
         type: 3}
+      propertyPath: m_banana
+      value: 
+      objectReference: {fileID: 8048323767823067556, guid: 8558aaa89c96c9845951abfc9da67d07,
+        type: 3}
+    - target: {fileID: 9052309284029702233, guid: 5f495559523f1404d810fd8785a51464,
+        type: 3}
+      propertyPath: m_cheese
+      value: 
+      objectReference: {fileID: 7831969452567917462, guid: 76e8cefa172c1674fa2b08614e4857e6,
+        type: 3}
+    - target: {fileID: 9052309284029702233, guid: 5f495559523f1404d810fd8785a51464,
+        type: 3}
+      propertyPath: m_cherry
+      value: 
+      objectReference: {fileID: 1593361852537594749, guid: 66a1df0f295844a408020cb7e1c71887,
+        type: 3}
+    - target: {fileID: 9052309284029702233, guid: 5f495559523f1404d810fd8785a51464,
+        type: 3}
       propertyPath: repetition
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052309284029702233, guid: 5f495559523f1404d810fd8785a51464,
+        type: 3}
+      propertyPath: m_repetition
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
