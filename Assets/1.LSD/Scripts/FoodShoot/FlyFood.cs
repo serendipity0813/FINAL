@@ -10,29 +10,29 @@ public class FlyFood : MonoBehaviour
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>(); // AddForce, AddTorque ÇÔ¼ö¸¦ À§ÇÑ rb
-        trn = transform.parent.transform.parent; // ÀÎ½ºÅÏ½º·Î »ı¼ºµÈ ºÎ¸ğ(FoodContainer) ÀÇ ºÎ¸ğ (MiniGame - FoodShoot)
-        xValue = transform.position.x; // Ã³À½ »ı¼ºµÈ À§Ä¡ x °ª ¹Ş¾Æ¿À±â
+        rb = GetComponent<Rigidbody>(); // AddForce, AddTorque í•¨ìˆ˜ë¥¼ ìœ„í•œ rb
+        trn = transform.parent.transform.parent; // ì¸ìŠ¤í„´ìŠ¤ë¡œ ìƒì„±ëœ ë¶€ëª¨(FoodContainer) ì˜ ë¶€ëª¨ (MiniGame - FoodShoot)
+        xValue = transform.position.x; // ì²˜ìŒ ìƒì„±ëœ ìœ„ì¹˜ x ê°’ ë°›ì•„ì˜¤ê¸°
     }
     void Start()
     {
-        FlyForce(); // ÇÑ¹ø¸¸ ½ÇÇà
+        FlyForce(); // í•œë²ˆë§Œ ì‹¤í–‰
         Invoke(nameof(DestroyFood), 2.5f);
     }
     void FlyForce()
     {
-        // powerRnd = powerÀÇ -2 ~ +2 °ªÀ¸·Î º¯°æ
+        // powerRnd = powerì˜ -2 ~ +2 ê°’ìœ¼ë¡œ ë³€ê²½
         int powerRnd = Random.Range(power - 2, power + 2);
 
-        // jumpPowerRnd = jumpPowerÀÇ -2 ~ +2 °ªÀ¸·Î º¯°æ
+        // jumpPowerRnd = jumpPowerì˜ -2 ~ +2 ê°’ìœ¼ë¡œ ë³€ê²½
         int jumpPowerRnd = Random.Range(jumpPower - 2, jumpPower + 2);
-        // xValue °ªÀÌ MiniGame - FoodShoot Æ÷Áö¼Ç °ªº¸´Ù Å¬ °æ¿ì ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î ¹ß»ç
+        // xValue ê°’ì´ MiniGame - FoodShoot í¬ì§€ì…˜ ê°’ë³´ë‹¤ í´ ê²½ìš° ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ë°œì‚¬
         if (xValue > trn.position.x)
         {
             rb.AddForce(-powerRnd, jumpPowerRnd, 0, ForceMode.Impulse);
             rb.AddTorque(RotationPowerRnd(), RotationPowerRnd(), RotationPowerRnd());
         }
-        // xValue °ªÀÌ MiniGame - FoodShoot Æ÷Áö¼Ç °ªº¸´Ù ÀÛÀ» °æ¿ì ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ¹ß»ç
+        // xValue ê°’ì´ MiniGame - FoodShoot í¬ì§€ì…˜ ê°’ë³´ë‹¤ ì‘ì„ ê²½ìš° ì™¼ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë°œì‚¬
         else if (xValue < trn.position.x) 
         {
             rb.AddForce(powerRnd, jumpPowerRnd, 0, ForceMode.Impulse);
@@ -40,13 +40,13 @@ public class FlyFood : MonoBehaviour
         }
     }
 
-    int RotationPowerRnd() // Food -1000ºÎÅÍ 1000±îÁö È¸Àü°ª ·£´ı
+    int RotationPowerRnd() // Food -1000ë¶€í„° 1000ê¹Œì§€ íšŒì „ê°’ ëœë¤
     {
         int rotationPowerRnd = Random.Range(-1000, 1001);
         return rotationPowerRnd;
     }
 
-    // Invoke("DestroyFood", 2.5f); ÇÔ¼ö¿¡ ÇÊ¿äÇÑ ÇÔ¼ö, 2.5ÃÊ ÀÌÈÄ ¿ÀºêÁ§Æ® »èÁ¦
+    // Invoke("DestroyFood", 2.5f); í•¨ìˆ˜ì— í•„ìš”í•œ í•¨ìˆ˜, 2.5ì´ˆ ì´í›„ ì˜¤ë¸Œì íŠ¸ ì‚­ì œ
     void DestroyFood()
     {
         Destroy(gameObject);
