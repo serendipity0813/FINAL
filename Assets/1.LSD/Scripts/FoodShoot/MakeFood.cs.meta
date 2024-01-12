@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4003f224a81af644cbed011d2bd68fd3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Banana: {fileID: 8048323767823067556, guid: 8558aaa89c96c9845951abfc9da67d07,
+      type: 3}
+  - Cheese: {fileID: 7831969452567917462, guid: 76e8cefa172c1674fa2b08614e4857e6,
+      type: 3}
+  - Cherry: {fileID: 1593361852537594749, guid: 66a1df0f295844a408020cb7e1c71887,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
