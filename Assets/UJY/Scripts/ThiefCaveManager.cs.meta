@@ -3,7 +3,14 @@ guid: b6ab26fe1cabdc6458900bef22049d7a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Target: {fileID: 1096704211734615353, guid: 5e8415ff9272cb549bf3d4fd9ff3048b,
+      type: 3}
+  - Thief: {instanceID: 0}
+  - Cave: {instanceID: 0}
+  - Mission: {instanceID: 0}
+  - Clear: {instanceID: 0}
+  - Fail: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

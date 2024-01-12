@@ -7,12 +7,14 @@ public class ThiefMovement : MonoBehaviour
 {
     private Vector3[] m_hidePosition;
     private Vector3 m_targetPositon;
+    private float m_thiefSpeed;
     private int m_length;
-    private bool m_isGaming;
+    private bool m_isGaming; 
+    private bool m_isChanging;
 
     private void Start()
     {
-        m_isGaming = ThiefCaveManager.Instance.IsGaiming;
+        m_thiefSpeed = 0.1f;
         m_length = ThiefCaveManager.Instance.m_hidePosition.Length;
         m_hidePosition = new Vector3[m_length];
 
@@ -26,18 +28,21 @@ public class ThiefMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        if (gameObject.transform.position != m_targetPositon)
+        m_isGaming = ThiefCaveManager.Instance.IsGaiming;
+        m_isChanging = ThiefCaveManager.Instance.IsChanging;
+        if (m_isGaming == true)
         {
-
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_targetPositon, 0.1f);
+            if (gameObject.transform.position != m_targetPositon)
+            {
+                gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_targetPositon, m_thiefSpeed);
+            }
+            else
+            {
+                if(m_isChanging)
+                m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
+            }
         }
-        else
-        {
-            //if(m_isGaming == true)
-            m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
-        }
-
+          
     }
 
 }
