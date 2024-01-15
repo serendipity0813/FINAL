@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    private LobbySceneHandler lobbySceneHandler;
+    private SceneHandler sceneHandler;
 
     private void Awake()
     {
@@ -18,12 +18,12 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        lobbySceneHandler = GetComponent<LobbySceneHandler>();
+        sceneHandler = GetComponent<SceneHandler>();
     }
 
     public void SceneSelect(SCENES scene)
     {
-        lobbySceneHandler.ChangeScene(scene);
+        sceneHandler.ChangeScene(scene);
     }
 
 }

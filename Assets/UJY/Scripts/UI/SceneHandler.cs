@@ -8,10 +8,13 @@ public enum SCENES
     LobbyScene,
     SelectScene,
     GatchaScene,
-    GameChangeScene
+    GameChangeScene,
+    OptionScene,
+    RankScene,
+    ShopScene
 }
 
-public class LobbySceneHandler : MonoBehaviour
+public class SceneHandler : MonoBehaviour
 {
     public GameObject[] Scenes;
     public GameObject LobbyObject;
@@ -56,5 +59,9 @@ public class LobbySceneHandler : MonoBehaviour
         }
     }
 
+    private void CameraChange(int SceneNumber)
+    {
+
+    }
 
 }

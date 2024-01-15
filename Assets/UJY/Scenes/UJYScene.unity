@@ -416,7 +416,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865703287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56f36e294fda2814b83df2e3531c02ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 54e720cab879ff44a8f6b9602884db27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Scenes:
@@ -425,6 +425,9 @@ MonoBehaviour:
   - {fileID: 1693476144972829453, guid: 7f7fe75c43938f741bc369b6109753bb, type: 3}
   - {fileID: 6407907156411075201, guid: e9ce26e0b6dc30b4c868495a156e64ec, type: 3}
   - {fileID: 2037393615647778304, guid: ac3c622b8cae7f1408c96edd1fcd6638, type: 3}
+  - {fileID: 216351856020000423, guid: 77385d2cf0afb444eb513a7ff1d29e67, type: 3}
+  - {fileID: 8924447822736860011, guid: 2993a7e387a3a04419fd63a242d89873, type: 3}
+  - {fileID: 2107765846953220489, guid: b90ab4820c1831d45b30696e8970e393, type: 3}
   LobbyObject: {fileID: 5178724012728375204, guid: 52041036956b4014396265b4cb8fe8fb,
     type: 3}
   SelectObject: {fileID: 3980503246029387689, guid: f73aa7e0a315b0f4a95aff425228ff81,

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartSceneBtn : MonoBehaviour
+public class StartSceneController : MonoBehaviour
 {
     public void OnClick()
     {
