@@ -19,7 +19,7 @@ public class ThiefMovement : MonoBehaviour
         m_length = ThiefCaveManager.Instance.m_hidePosition.Length;
         m_hidePosition = new Vector3[m_length];
 
-        //ThiefCavaManager ¿¡¼­ À§Ä¡°ªÀ» ¹Þ¾Æ¿Í Ä³½ÌÇØµÎ±â
+        //ThiefCavaManager ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ Ä³ï¿½ï¿½ï¿½ØµÎ±ï¿½
         for (int i = 0; i < m_length; i++)
         {
             m_hidePosition[i] = ThiefCaveManager.Instance.m_hidePosition[i];
@@ -30,18 +30,18 @@ public class ThiefMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // °ÔÀÓ ÁøÇàÁß ¿©ºÎ¸¦ ÇÁ·¹ÀÓ¸¶´Ù ¹Þ¾Æ¿À±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
         m_isGaming = ThiefCaveManager.Instance.IsGaiming;
         m_isChanging = ThiefCaveManager.Instance.IsChanging;
 
         if (m_isGaming == true)
         {
-            //°ÔÀÓÀÌ ÁøÇàÁßÀÌ¸é¼­ ÇöÀç À§Ä¡¿Í Å¸°Ù À§Ä¡°¡ ´Ù¸¦ °æ¿ì ´ÙÀ½ ¸ñÇ¥·Î ÀÌµ¿ÇÏ±â
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸é¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï±ï¿½
             if (gameObject.transform.position != m_targetPositon)
             {
                 gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_targetPositon, m_thiefSpeed);
             }
-            //´ÙÀ½ ¸ñÇ¥ À§Ä¡¸¦ ·£´ý°ªÀ¸·Î ¼³Á¤ÇÏ´Â ½ºÅ©¸³Æ®
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
             else
             {
                 if(m_isChanging)
