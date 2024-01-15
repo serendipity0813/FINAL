@@ -1,44 +1,39 @@
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.GraphicsBuffer;
 
-public class CharacterControl: MonoBehaviour
+public class CharacterControl : MonoBehaviour
 {
 
-
+    private float m_speed = 3.0f;
 
     private void Update()
     {
-        /*
-        if(TouchManager.instance.IsDragging())//≈Õƒ° ¥©∏£∞Ì ¿÷¥¬ ªÛ≈¬¿œ∂ß
+        if (TouchManager.instance.IsDragging())//ÌÑ∞Ïπò ÎàÑÎ•¥Í≥† ÏûàÎäî ÏÉÅÌÉúÏùºÎïå
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 pos;
+            Vector3 hitpos;
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.transform.tag == "Terrain") 
+            if (Physics.Raycast(ray, out hit) && hit.transform.tag == "Terrain")
             {
-                pos = hit.point;
-                pos.y = transform.position.y;
+                hitpos = hit.point;
             }
             else
             {
-                pos = transform.position;
+                hitpos = transform.position;
             }
 
-            
-            Debug.LogFormat("{0}, {1}", transform.position, pos);
-            //transform.position = Vector3.Slerp(transform.position, pos == Vector3.zero ? transform.position : pos, Time.deltaTime/10000);
-            
-           transform.position = pos;
+            hitpos = hitpos - transform.position;
+            hitpos.y = gameObject.GetComponent<Rigidbody>().velocity.y;
+            gameObject.GetComponent<Rigidbody>().velocity = hitpos.normalized * m_speed;
         }
-        */
 
-        if(TouchManager.instance.IsDragUp())
+        
+        if (TouchManager.instance.IsDragUp())
         {
+
             gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 400, 0));
         }
-
+        
     }
 
 }

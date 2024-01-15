@@ -4,23 +4,23 @@ public class TouchManager : MonoBehaviour
 {
     public static TouchManager instance;
 
-    private bool m_dragDown;//¾Æ·¡·Î µå·¡±×
-    private bool m_dragUp;//À§·Î µå·¡±×
-    private bool m_dragLeft;//¿ŞÂÊ
-    private bool m_dragRight;//¿À¸¥ÂÊ
+    private bool m_dragDown;//ì•„ë˜ë¡œ ë“œë˜ê·¸
+    private bool m_dragUp;//ìœ„ë¡œ ë“œë˜ê·¸
+    private bool m_dragLeft;//ì™¼ìª½
+    private bool m_dragRight;//ì˜¤ë¥¸ìª½
 
-    private bool m_isDragging;//¼Õ°¡¶ôÀ» ´©¸£°í ÀÖ´Â »óÅÂ
+    private bool m_isDragging;//ì†ê°€ë½ì„ ëˆ„ë¥´ê³  ìˆëŠ” ìƒíƒœ
 
     private Vector2 m_position;//
-    private Vector2 m_velocity;//µå·¡±× ¼Óµµ
+    private Vector2 m_velocity;//ë“œë˜ê·¸ ì†ë„
     private Touch m_touch;
 
-    private float m_speed = 200.0f;//¹æÇâ °áÁ¤ ±âÁØ ¼Óµµ
+    private float m_speed = 200.0f;//ë°©í–¥ ê²°ì • ê¸°ì¤€ ì†ë„
 
     
     private void Awake()
     {
-        //ÅÍÄ¡ ¸Å´ÏÀú ½Ì±ÛÅæÈ­
+        //í„°ì¹˜ ë§¤ë‹ˆì € ì‹±ê¸€í†¤í™”
         instance = this;
     }
 
@@ -30,7 +30,7 @@ public class TouchManager : MonoBehaviour
     }
 
 
-    //Input¿¡¼­ ÅÍÄ¡°ªÀ» ¹Ş¾Æ¿Í ÀÌµ¿ ÁÂÇ¥¿Í ¹æÇâ ÃÊ±âÈ­ÇÏ´Â ÇÔ¼ö
+    //Inputì—ì„œ í„°ì¹˜ê°’ì„ ë°›ì•„ì™€ ì´ë™ ì¢Œí‘œì™€ ë°©í–¥ ì´ˆê¸°í™”í•˜ëŠ” í•¨ìˆ˜
     private void UpdateInput()
     {
 
@@ -38,20 +38,20 @@ public class TouchManager : MonoBehaviour
         {
             m_touch = Input.GetTouch(0);
 
-            if (m_touch.phase == TouchPhase.Began)//ÅÍÄ¡½ÃÀÛ ½Ã ¼Óµµ ÃÊ±âÈ­
+            if (m_touch.phase == TouchPhase.Began)//í„°ì¹˜ì‹œì‘ ì‹œ ì†ë„ ì´ˆê¸°í™”
             {
                 m_velocity = Vector2.zero;
                 
             }
 
-            if (m_touch.phase == TouchPhase.Moved)//µå·¡±× Áß ½Ç½Ã°£À¸·Î ÁÂÇ¥ ÀúÀå
+            if (m_touch.phase == TouchPhase.Moved)//ë“œë˜ê·¸ ì¤‘ ì‹¤ì‹œê°„ìœ¼ë¡œ ì¢Œí‘œ ì €ì¥
             {
                 m_isDragging = true;
                 m_position = m_touch.position;
                 m_velocity += m_touch.deltaPosition;
             }
 
-            if (m_touch.phase == TouchPhase.Ended)//ÅÍÄ¡Á¾·á ½Ã ¼Óµµ Ã¼Å©
+            if (m_touch.phase == TouchPhase.Ended)//í„°ì¹˜ì¢…ë£Œ ì‹œ ì†ë„ ì²´í¬
             {
                 CheckDirection();
                 m_isDragging = false;
@@ -59,7 +59,7 @@ public class TouchManager : MonoBehaviour
         }
     }
 
-    //m_velocity º¤ÅÍÀÇ ¹æÇâ¿¡ µû¶ó ¾î´À ¹æÇâÀ¸·Î µå·¡±×ÇÏ¿´´ÂÁö ÃÊ±âÈ­ÇÏ´Â ÇÔ¼ö
+    //m_velocity ë²¡í„°ì˜ ë°©í–¥ì— ë”°ë¼ ì–´ëŠ ë°©í–¥ìœ¼ë¡œ ë“œë˜ê·¸í•˜ì˜€ëŠ”ì§€ ì´ˆê¸°í™”í•˜ëŠ” í•¨ìˆ˜
     private void CheckDirection()
     {
         if (m_velocity.x < -m_speed)
@@ -98,7 +98,7 @@ public class TouchManager : MonoBehaviour
             m_dragUp = false;
         }
 
-        Debug.LogFormat("Is Left = {0} Is Right {1} Is Up = {2} Is Down {3}", m_dragLeft, m_dragRight, m_dragUp, m_dragDown);
+        //Debug.LogFormat("Is Left = {0} Is Right {1} Is Up = {2} Is Down {3}", m_dragLeft, m_dragRight, m_dragUp, m_dragDown);
     }
 
     public Vector2 GetPosition()
