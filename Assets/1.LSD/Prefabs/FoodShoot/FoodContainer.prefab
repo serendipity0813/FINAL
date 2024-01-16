@@ -50,5 +50,5 @@ MonoBehaviour:
     type: 3}
   m_cherry: {fileID: 1593361852537594749, guid: 66a1df0f295844a408020cb7e1c71887,
     type: 3}
-  m_repetition: 0
+  m_repetition: 5
   m_parentTrn: {fileID: 0}
