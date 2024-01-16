@@ -51,14 +51,14 @@ public class MiniGameManager : MonoBehaviour
     public void GameClear()
     {
         Stage++;
-        UIManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
         Destroy(m_currentGame);
     }
 
     public void GameFail()
     {
         Destroy(m_currentGame);
-        UIManager.Instance.SceneSelect(SCENES.LobbyScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
     }
 
 }
