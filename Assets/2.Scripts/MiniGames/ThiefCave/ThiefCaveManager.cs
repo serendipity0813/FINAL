@@ -21,7 +21,7 @@ public class ThiefCaveManager : MonoBehaviour
 
     private void Awake()
     {
-        //½Ì±ÛÅæÈ­
+        //ì‹±ê¸€í†¤í™”
         if(Instance == null)
         {
             Instance = this;
@@ -41,13 +41,13 @@ public class ThiefCaveManager : MonoBehaviour
         IsChanging = true;
         m_hidePosition = new Vector3[stage * 2 + 1];
 
-        //·£´ıÇÑ À§Ä¡¿¡ µµµÏÀÌ ¼ûÀ» °ø°£ »ı¼º
+        //ëœë¤í•œ ìœ„ì¹˜ì— ë„ë‘‘ì´ ìˆ¨ì„ ê³µê°„ ìƒì„±
         for (int i = 0; i <= stage * 2 ; i++)
         {
             m_hidePosition[i] = new Vector3((int)Random.Range(-2, 3) * 2, 0, (int)Random.Range(-2, 5) * 2);
             if(i == 0)
             {
-                //Ã¹ ¹øÂ° »ı¼ºÇÒ ¶§ Å¸°Ùµµ »ı¼º
+                //ì²« ë²ˆì§¸ ìƒì„±í•  ë•Œ íƒ€ê²Ÿë„ ìƒì„±
                 Target.transform.position = m_hidePosition[i];
                 Instantiate(Target);
             }
@@ -65,7 +65,7 @@ public class ThiefCaveManager : MonoBehaviour
 
     private void Update()
     {
-        //½Ã°£ Èå¸§¿¡ µû¶ó °ÔÀÓ ÁøÇà 
+        //ì‹œê°„ íë¦„ì— ë”°ë¼ ê²Œì„ ì§„í–‰ 
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && Mission.activeSelf == false)
         {
@@ -89,7 +89,7 @@ public class ThiefCaveManager : MonoBehaviour
 
             if(Input.GetMouseButtonDown(0))
             {
-                // ¸¶¿ì½º Å¬¸¯½Ã RAY¸¦ È°¿ëÇÏ¿© Å¸°Ù Ã£±â
+                // ë§ˆìš°ìŠ¤ í´ë¦­ì‹œ RAYë¥¼ í™œìš©í•˜ì—¬ íƒ€ê²Ÿ ì°¾ê¸°
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if(Physics.Raycast(ray, out hit))
@@ -97,10 +97,12 @@ public class ThiefCaveManager : MonoBehaviour
                     if (hit.collider.tag == "Target")
                     {
                         Clear.SetActive(true);
+                        Invoke("GameClear", 1);
                     }
                     else
                     {
-                        Fail.SetActive(true);
+                        Fail.SetActive(true); 
+                        Invoke("GameFail", 1);
                     }
                 }
             }
@@ -110,9 +112,21 @@ public class ThiefCaveManager : MonoBehaviour
         if (m_timer > 15 && m_clear == false)
         {
             Fail.SetActive(true);
+            Invoke("GameFail", 1);
         }
 
     }
 
+    private void GameClear()
+    {
+        Clear.SetActive(false);
+        //MiniGameManager.Instance.GameClear();
+    }
+
+    public void GameFail()
+    {
+        Fail.SetActive(false);
+        //MiniGameManager.Instance.GameFail();
+    }
 
 }

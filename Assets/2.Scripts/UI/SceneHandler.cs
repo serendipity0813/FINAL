@@ -9,6 +9,7 @@ public enum SCENES
     SelectScene,
     GatchaScene,
     GameChangeScene,
+    InGameScene,
     OptionScene,
     RankScene,
     ShopScene
@@ -88,10 +89,5 @@ public class SceneHandler : MonoBehaviour
         Destroy(m_PopupUI);
     }
 
-
-    private void CameraChange(int SceneNumber)
-    {
-
-    }
 
 }
