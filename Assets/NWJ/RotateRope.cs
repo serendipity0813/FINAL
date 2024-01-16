@@ -16,9 +16,4 @@ public class RotateRope : MonoBehaviour
     {
         rope.transform.Rotate(new Vector3(0, 0, Time.deltaTime* m_rotateSpeed));
     }
-
-    public void CollisionDetected()
-    {
-        Debug.Log("GameOver");
-    }
 }

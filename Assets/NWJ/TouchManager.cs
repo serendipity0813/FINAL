@@ -9,7 +9,8 @@ public class TouchManager : MonoBehaviour
     private bool m_dragLeft;//왼쪽
     private bool m_dragRight;//오른쪽
 
-    private bool m_isDragging;//손가락을 누르고 있는 상태
+    private bool m_isHolding;//손가락을 누르고 있는 상태
+    private bool m_isBegan;//터치 시작했을 때
 
     private Vector2 m_position;//
     private Vector2 m_velocity;//드래그 속도
@@ -17,7 +18,7 @@ public class TouchManager : MonoBehaviour
 
     private float m_speed = 200.0f;//방향 결정 기준 속도
 
-    
+
     private void Awake()
     {
         //터치 매니저 싱글톤화
@@ -38,23 +39,26 @@ public class TouchManager : MonoBehaviour
         {
             m_touch = Input.GetTouch(0);
 
-            if (m_touch.phase == TouchPhase.Began)//터치시작 시 속도 초기화
-            {
-                m_velocity = Vector2.zero;
-                
-            }
 
-            if (m_touch.phase == TouchPhase.Moved)//드래그 중 실시간으로 좌표 저장
+            switch (m_touch.phase)
             {
-                m_isDragging = true;
-                m_position = m_touch.position;
-                m_velocity += m_touch.deltaPosition;
-            }
+                case TouchPhase.Began:
+                    m_isBegan = true;
+                    m_isHolding = true;
+                    m_velocity = Vector2.zero;
+                    break;
 
-            if (m_touch.phase == TouchPhase.Ended)//터치종료 시 속도 체크
-            {
-                CheckDirection();
-                m_isDragging = false;
+                case TouchPhase.Ended:
+                    CheckDirection();
+                    m_isHolding = false;
+                    m_isBegan = false;
+                    break;
+
+                case TouchPhase.Moved:
+                    m_position = m_touch.position;
+                    m_velocity += m_touch.deltaPosition;
+                    break;
+
             }
         }
     }
@@ -98,7 +102,6 @@ public class TouchManager : MonoBehaviour
             m_dragUp = false;
         }
 
-        //Debug.LogFormat("Is Left = {0} Is Right {1} Is Up = {2} Is Down {3}", m_dragLeft, m_dragRight, m_dragUp, m_dragDown);
     }
 
     public Vector2 GetPosition()
@@ -106,9 +109,22 @@ public class TouchManager : MonoBehaviour
         return m_position;
     }
 
-    public bool IsDragging()
+    public bool IsHolding()
     {
-        return m_isDragging;
+        return m_isHolding;
+    }
+
+    public bool IsBegan()
+    {
+        if (m_isBegan)
+        {
+            m_isBegan = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool IsDragLeft()
@@ -151,10 +167,10 @@ public class TouchManager : MonoBehaviour
     }
 
     public bool IsDragUp()
-    { 
-        if(m_dragUp)
-        { 
-            m_dragUp = false; 
+    {
+        if (m_dragUp)
+        {
+            m_dragUp = false;
             return true;
         }
         else
