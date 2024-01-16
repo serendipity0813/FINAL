@@ -26,4 +26,9 @@ public class UIManager : MonoBehaviour
         sceneHandler.ChangeScene(scene);
     }
 
+    public void PopUpSelect(SCENES scene)
+    {
+        sceneHandler.PopUpChange(scene);
+    }
+
 }

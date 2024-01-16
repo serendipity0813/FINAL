@@ -11,7 +11,7 @@ public class GatchaSceneController : MonoBehaviour
 
     public void OptionClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.OptionScene);
+        UIManager.Instance.PopUpSelect(SCENES.OptionScene);
     }
 
     public void AdClick()

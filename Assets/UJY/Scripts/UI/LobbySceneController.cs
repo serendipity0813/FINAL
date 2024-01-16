@@ -21,16 +21,16 @@ public class LobbySceneController : MonoBehaviour
 
     public void OptionClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.OptionScene);
+        UIManager.Instance.PopUpSelect(SCENES.OptionScene);
     }
 
     public void ShopClick()
     {
-       UIManager.Instance.SceneSelect(SCENES.ShopScene);
+       UIManager.Instance.PopUpSelect(SCENES.ShopScene);
     }
 
     public void RankClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.RankScene);
+        UIManager.Instance.PopUpSelect(SCENES.RankScene);
     }
 }

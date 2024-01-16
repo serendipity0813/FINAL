@@ -23,6 +23,10 @@ public class SceneHandler : MonoBehaviour
     private GameObject m_currentScene;
     private GameObject m_choiceScene;
     private GameObject m_sceneObject;
+    private GameObject m_PopupUI;
+
+    private int m_popupNumber;
+    private int m_sceneNumber;
 
     // Start is called before the first frame update
     private void Start()
@@ -37,27 +41,53 @@ public class SceneHandler : MonoBehaviour
 
     public void ChangeScene(SCENES scene)
     {
-        int sceneNumber = (int)scene;
-        m_choiceScene = Scenes[sceneNumber];
+        m_sceneNumber = (int)scene;
+        m_choiceScene = Scenes[m_sceneNumber];
         Destroy(m_scenePrefab);
         m_scenePrefab = Instantiate(m_choiceScene);
         m_currentScene = m_choiceScene;
-        ChangeSceneObject(sceneNumber);
+        ChangeSceneObject(m_sceneNumber);
     }
 
-    private void ChangeSceneObject(int SceneNumber)
+    private void ChangeSceneObject(int sceneNumber)
     {
         Destroy(m_sceneObject);
 
-        if (SceneNumber == (int)SCENES.LobbyScene)
+        if (sceneNumber == (int)SCENES.LobbyScene)
         {
             m_sceneObject = Instantiate(LobbyObject);
         }
-        else if (SceneNumber == (int)SCENES.SelectScene)
+        else if (sceneNumber == (int)SCENES.SelectScene)
         {
             m_sceneObject = Instantiate(SelectObject);
         }
     }
+
+    public void PopUpChange(SCENES scene)
+    {
+        if(m_popupNumber == 0)
+        {
+            m_popupNumber = (int)scene;
+            m_PopupUI = Instantiate(Scenes[m_popupNumber]);
+        }
+        else if(m_popupNumber == (int)scene)
+        {
+            Destroy(m_PopupUI);
+            m_popupNumber = 0;
+        }
+        else
+        {
+            Destroy(m_PopupUI);
+            m_PopupUI = Instantiate(Scenes[m_popupNumber]);
+        }
+
+    }
+
+    public void PopUpDown()
+    {
+        Destroy(m_PopupUI);
+    }
+
 
     private void CameraChange(int SceneNumber)
     {
