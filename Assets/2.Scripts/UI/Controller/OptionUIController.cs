@@ -6,7 +6,7 @@ public class OptionUIController : MonoBehaviour
 {
     public void OptionClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.OptionScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.OptionScene);
     }
 
 }

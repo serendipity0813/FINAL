@@ -11,13 +11,15 @@ public class ThiefMovement : MonoBehaviour
     private int m_length;
     private bool m_isGaming; 
     private bool m_isChanging;
+    private bool m_over;
 
     private void Start()
     {
 
-        m_thiefSpeed = 0.1f;
+        m_thiefSpeed = 0.2f;
         m_length = ThiefCaveManager.Instance.m_hidePosition.Length;
         m_hidePosition = new Vector3[m_length];
+        m_over = ThiefCaveManager.Instance.GameOver;
 
         //ThiefCavaManager ���� ��ġ���� �޾ƿ� ĳ���صα�
         for (int i = 0; i < m_length; i++)
@@ -48,7 +50,11 @@ public class ThiefMovement : MonoBehaviour
                 m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
             }
         }
-          
+
+        if (m_over)
+            Destroy(gameObject);
+
     }
+
 
 }

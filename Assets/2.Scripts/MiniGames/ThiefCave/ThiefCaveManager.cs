@@ -11,7 +11,9 @@ public class ThiefCaveManager : MonoBehaviour
     public Vector3[] m_hidePosition { get; private set; }
     public bool IsGaiming { get; private set; }
     public bool IsChanging { get; private set; }
+    public bool GameOver { get; private set; }
     private bool m_clear;
+    private GameObject[] m_prefabs;
     public GameObject Target;
     public GameObject Thief;
     public GameObject Cave;
@@ -39,6 +41,7 @@ public class ThiefCaveManager : MonoBehaviour
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;
+        GameOver = false;
         m_hidePosition = new Vector3[stage * 2 + 1];
 
         //랜덤한 위치에 도둑이 숨을 공간 생성
@@ -54,6 +57,7 @@ public class ThiefCaveManager : MonoBehaviour
             Cave.transform.position = m_hidePosition[i];
             Instantiate(Cave);
 
+            //i가 홀수일 때 마다 타겟이 아닌 오브젝트 생성
             if(i%2 == 1)
             {
                 Thief.transform.position = m_hidePosition[i];
@@ -120,13 +124,15 @@ public class ThiefCaveManager : MonoBehaviour
     private void GameClear()
     {
         Clear.SetActive(false);
-        //MiniGameManager.Instance.GameClear();
+        GameOver = true;
+        MiniGameManager.Instance.GameClear();
     }
 
     public void GameFail()
     {
         Fail.SetActive(false);
-        //MiniGameManager.Instance.GameFail();
+        GameOver = true;
+        MiniGameManager.Instance.GameFail();
     }
 
 }

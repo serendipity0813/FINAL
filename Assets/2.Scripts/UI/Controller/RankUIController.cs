@@ -6,6 +6,6 @@ public class RankUIController : MonoBehaviour
 {
     public void RankClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.RankScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.RankScene);
     }
 }

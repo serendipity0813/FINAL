@@ -6,12 +6,12 @@ public class GatchaSceneController : MonoBehaviour
 {
     public void LobbyClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.LobbyScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
     }
 
     public void OptionClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.OptionScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.OptionScene);
     }
 
     public void AdClick()

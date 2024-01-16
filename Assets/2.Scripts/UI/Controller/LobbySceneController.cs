@@ -6,31 +6,31 @@ public class LobbySceneController : MonoBehaviour
 {
     public void ChoiceModeClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.SelectScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.SelectScene);
     }
 
     public void RandomModeClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
     }
 
     public void GatchaClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.GatchaScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.GatchaScene);
     }
 
     public void OptionClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.OptionScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.OptionScene);
     }
 
     public void ShopClick()
     {
-       UIManager.Instance.PopUpSelect(SCENES.ShopScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.ShopScene);
     }
 
     public void RankClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.RankScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.RankScene);
     }
 }

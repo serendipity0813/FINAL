@@ -15,8 +15,9 @@ public enum SCENES
     ShopScene
 }
 
-public class SceneHandler : MonoBehaviour
+public class GameSceneManager : MonoBehaviour
 {
+    public static GameSceneManager Instance;
     public GameObject[] Scenes;
     public GameObject LobbyObject;
     public GameObject SelectObject;
@@ -28,6 +29,18 @@ public class SceneHandler : MonoBehaviour
 
     private int m_popupNumber;
     private int m_sceneNumber;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -40,7 +53,7 @@ public class SceneHandler : MonoBehaviour
 
     }
 
-    public void ChangeScene(SCENES scene)
+    public void SceneSelect(SCENES scene)
     {
         m_sceneNumber = (int)scene;
         m_choiceScene = Scenes[m_sceneNumber];
@@ -64,7 +77,7 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
-    public void PopUpChange(SCENES scene)
+    public void PopUpSelect(SCENES scene)
     {
         if(m_popupNumber == 0)
         {

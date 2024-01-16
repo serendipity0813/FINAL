@@ -11,17 +11,17 @@ public class GameChangeSceneController : MonoBehaviour
 
     public void LobbyClick()
     {
-        UIManager.Instance.SceneSelect(SCENES.LobbyScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
     }
 
     public void OptionClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.OptionScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.OptionScene);
     }
 
     private void GoToGameScene()
     {
-        UIManager.Instance.SceneSelect(SCENES.InGameScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.InGameScene);
         MiniGameManager.Instance.GameStart();
     }
 

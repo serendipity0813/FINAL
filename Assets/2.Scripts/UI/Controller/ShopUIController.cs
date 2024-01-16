@@ -7,7 +7,7 @@ public class ShopUIController : MonoBehaviour
 
     public void ShopClick()
     {
-        UIManager.Instance.PopUpSelect(SCENES.ShopScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.ShopScene);
     }
 
 }
