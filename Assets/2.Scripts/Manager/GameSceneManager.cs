@@ -11,8 +11,9 @@ public enum SCENES
     GatchaScene,
     GameChangeScene,
     InGameScene,
-    OptionScene,
+    GameOverSceme,
     GameSelectScene,
+    OptionScene,
     ShopScene
 }
 
