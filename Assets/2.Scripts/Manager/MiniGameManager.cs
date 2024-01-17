@@ -60,7 +60,7 @@ public class MiniGameManager : MonoBehaviour
     public void GameFail()
     {
         Destroy(m_currentGame);
-        GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
     }
 
 }

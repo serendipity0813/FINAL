@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 5357460201596755114}
   m_Layer: 5
   m_Name: InGameScene
-  m_TagString: Untagged
+  m_TagString: GameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2302,7 +2302,7 @@ RectTransform:
   m_Children:
   - {fileID: 1869460208402967169}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2321,7 +2321,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417c7773d28a92c42a1272a21a35a1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InGameUIs:
+  - {fileID: 4062786747327369607}
+  - {fileID: 5332046046973660721}
+  - {fileID: 6764118255142554038}
+  - {fileID: 7302851038779289384}
+  - {fileID: 4453533832031696368}
+  - {fileID: 5187669377742578273}
   m_inGameOption: {fileID: 4062786747327369607}
+  m_mission: {fileID: 5332046046973660721}
+  m_clear: {fileID: 6764118255142554038}
+  m_fail: {fileID: 7302851038779289384}
+  m_timeAttack: {fileID: 4453533832031696368}
+  m_count: {fileID: 5187669377742578273}
 --- !u!1 &6638395457927113751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,12 +2709,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5006741122379822042}
   - {fileID: 1742866250871651319}
-  - {fileID: 8448631510953638739}
   - {fileID: 8679353640879545262}
+  - {fileID: 8448631510953638739}
   - {fileID: 8449362856195856822}
   - {fileID: 3504820684858830060}
-  - {fileID: 5006741122379822042}
   m_Father: {fileID: 3523509957122585765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
