@@ -1,9 +1,10 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class JumpRopeGame : MonoBehaviour
+public class DragToMoveController : MonoBehaviour
 {
-    private Rigidbody m_rigidbody;
+    private Rigidbody m_rigidbody;//플레이어의 Rigidbody
     private float m_speed = 3.0f;//이동 속도
     private float m_jumpPower = 300.0f;//점프 거리 
     private bool m_readyJump;//점프가능한 상태인지 확인하는 변수
@@ -14,7 +15,8 @@ public class JumpRopeGame : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    //점프도 가능한 캐릭터 이동 함수
+    public void UpdateMoveWithJump()
     {
 
         float dis = 0.0f;
@@ -37,6 +39,7 @@ public class JumpRopeGame : MonoBehaviour
 
             if (m_rayHitted && TouchManager.instance.IsBegan())//처음 터치한 대상이 플레이어일 때 점프가능한 상태로 만들기
             {//점프 가능한 상태일 때는 플레이어 이동이 안됨
+                Debug.Log("PlayerClicked");
                 m_readyJump = hit.transform.tag == "Player" ? true : false;
             }
 
@@ -67,4 +70,34 @@ public class JumpRopeGame : MonoBehaviour
             }
         }
     }
+
+    //점프를 제외하고 이동만 가능한 함수
+    public void UpdateMove()
+    {
+     
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 hitpos;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit) && TouchManager.instance.IsHolding() )
+            {
+
+                if (hit.transform.tag == "Terrain")
+                {
+                    hitpos = hit.point;
+                }
+                else
+                {
+                    hitpos = transform.position;
+                }
+
+                hitpos = hitpos - transform.position;
+                hitpos.y = 0;
+                m_rigidbody.velocity = hitpos.normalized * m_speed;
+            }
+        
+    }
+
+
 }
