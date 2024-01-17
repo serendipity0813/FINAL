@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 8867486495428625671}
   - component: {fileID: 1475705137292854082}
   m_Layer: 0
-  m_Name: ThiefCaveManager
+  m_Name: ThiefCaveGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
