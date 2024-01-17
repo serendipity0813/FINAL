@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MosquitoMovement : MonoBehaviour
 {
-    private Vector3 m_targetPosition;
-    private float m_mosquitoSpeed;
+    private Vector3 m_targetPosition;   //다음으로 이동할 위치
+    private float m_mosquitoSpeed;      //모기의 이동속도
     float m_xPosition;
     float m_yPosition;
 

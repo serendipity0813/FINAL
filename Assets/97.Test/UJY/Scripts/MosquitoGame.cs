@@ -7,14 +7,6 @@ using UnityEngine.UIElements;
 public class MosquitoGame : MiniGameSetting
 {
     [SerializeField] private GameObject Mosquito;
-    //[SerializeField] private GameObject m_missionUI;
-    //private GameObject m_missionPrefab;
-    //[SerializeField] private GameObject m_timeUI;
-    //private GameObject m_timePrefab;
-    //[SerializeField] private GameObject m_clearUI;
-    //private GameObject m_clearPrefab;
-    //[SerializeField] private GameObject m_failUI;
-    //private GameObject m_failPrefab;
 
     private int stage = 10;
     private float m_timer;
@@ -22,6 +14,7 @@ public class MosquitoGame : MiniGameSetting
 
     private void Start()
     {
+        //현재 스테이지에 2배수로 모기 생성
         m_clearCount = stage * 2;
 
         for (int i=0; i < m_clearCount; i++)
@@ -31,18 +24,11 @@ public class MosquitoGame : MiniGameSetting
 
         StartSetting();
 
-        //m_missionPrefab = Instantiate(m_missionUI, transform.position, Quaternion.identity, transform);
-        //m_timePrefab = Instantiate(m_timeUI, transform.position, Quaternion.identity, transform);
-        //m_clearPrefab = Instantiate(m_clearUI, transform.position, Quaternion.identity, transform);
-        //m_failPrefab = Instantiate(m_failUI, transform.position, Quaternion.identity, transform);
-        //m_missionPrefab.SetActive(false);
-        //m_timePrefab.SetActive(false);
-        //m_clearPrefab.SetActive(false);
-        //m_failPrefab.SetActive(false);
     }
 
     private void Update()
     {
+        //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
@@ -64,6 +50,7 @@ public class MosquitoGame : MiniGameSetting
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
+                //클릭한 오브젝트가 타겟(모기)일 경우 해당 오브젝트의 SetActive를 false로 바꾸고 클리어카운트 줄이기
                 if (hit.collider.tag == "Target")
                 {
                     hit.collider.gameObject.SetActive(false);
@@ -73,12 +60,14 @@ public class MosquitoGame : MiniGameSetting
             }
         }
 
+        //게임 승리조건
         if(m_clearCount == 0)
         {
             m_clearPrefab.SetActive(true);
             Invoke("GameClear", 1);
         }
 
+        //게임 패배조건
         if (m_timer > 10 && m_clearCount > 0)
         {
             m_failPrefab.SetActive(true);
@@ -87,13 +76,5 @@ public class MosquitoGame : MiniGameSetting
 
 
     }
-    //private void GameClear()
-    //{        
-    //    MiniGameManager.Instance.GameClear();
-    //}
 
-    //private void GameFail()
-    //{
-    //    MiniGameManager.Instance.GameFail();
-    //}
 }
