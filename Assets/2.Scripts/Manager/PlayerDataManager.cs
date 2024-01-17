@@ -62,14 +62,14 @@ public class PlayerDataManager : MonoBehaviour
     */
 
     // 현재 Json 파일을 저장하고 싶다면 아래 메소드를 호출
-    void SaveJson()
+    public void SaveJson()
     {   
         string jsonData = JsonUtility.ToJson(m_playerData,true); // JSON 형태로 포멧팅
         File.WriteAllText(path, jsonData); // 파일 생성 및 저장
     }
 
     // 저장 되어있는 Json 파일을 불러오고 싶다면 아래 메소드를 호출
-    void LoadJson()
+    public void LoadJson()
     {
         string jsonData = File.ReadAllText(path); // 파일의 텍스트를 string으로 저장
         m_playerData = JsonUtility.FromJson<PlayerData>(jsonData); // 이 Json데이터를 역직렬화하여 playerData에 넣어줌
@@ -83,8 +83,8 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.level = 1;
         m_playerData.exe = 0;
         m_playerData.coin = 100;
-        m_playerData.haveGamesIndex = new List<bool>() {true,true,true};
-        m_playerData.rankingPoint = new List<int>() {0,0,0};
+        m_playerData.haveGamesIndex = new List<bool>() {true,true,true,false};
+        m_playerData.rankingPoint = new List<int>() {0,0,0,0};
     }
     private void OnApplicationQuit()
     {
