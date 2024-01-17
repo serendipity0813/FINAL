@@ -8,12 +8,11 @@ public class ThiefCaveManager : MonoBehaviour
     public static ThiefCaveManager Instance;
     private int stage = 3;
     private float m_timer;
-    public Vector3[] m_hidePosition { get; private set; }
-    public bool IsGaiming { get; private set; }
-    public bool IsChanging { get; private set; }
+    public Vector3[] m_hidePosition { get; private set; }   //동굴 위치를 나타내는 백터 배열
+    public bool IsGaiming { get; private set; }     //게임 진행중임을 체크
+    public bool IsChanging { get; private set; }    //도둑들이 다음 경로를 찾아야하는지 여부 체크용
     public bool GameOver { get; private set; }
     private bool m_clear;
-    private GameObject[] m_prefabs;
     public GameObject Target;
     public GameObject Thief;
     public GameObject Cave;
@@ -41,7 +40,6 @@ public class ThiefCaveManager : MonoBehaviour
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;
-        GameOver = false;
         m_hidePosition = new Vector3[stage * 2 + 1];
 
         //랜덤한 위치에 도둑이 숨을 공간 생성
@@ -81,14 +79,17 @@ public class ThiefCaveManager : MonoBehaviour
         }
         if(m_timer > 2)
         {
+            //게임 진행이 시작되며 도둑들이 움직임
             IsGaiming = true;
         }
         if (m_timer > 7)
         {
+            //도둑은 움직이지만 다음 경로를 찾는 행위는 중지됨
             IsChanging = false;
         }
         if (m_timer > 9)
-        {
+        {   
+            //도둑들이 멈추고 플레이어가 타겟을 찾기 시작
             IsGaiming = false;
 
             if(Input.GetMouseButtonDown(0))
@@ -124,14 +125,12 @@ public class ThiefCaveManager : MonoBehaviour
     private void GameClear()
     {
         Clear.SetActive(false);
-        GameOver = true;
         MiniGameManager.Instance.GameClear();
     }
 
     public void GameFail()
     {
         Fail.SetActive(false);
-        GameOver = true;
         MiniGameManager.Instance.GameFail();
     }
 
