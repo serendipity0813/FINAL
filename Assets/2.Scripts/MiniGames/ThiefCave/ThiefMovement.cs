@@ -18,7 +18,6 @@ public class ThiefMovement : MonoBehaviour
         m_thiefSpeed = 0.2f;
         m_length = ThiefCaveManager.Instance.m_hidePosition.Length;
         m_hidePosition = new Vector3[m_length];
-        m_over = ThiefCaveManager.Instance.GameOver;
 
         //ThiefCavaManager 로 부터 동굴의 위치값을 받아온 후 캐싱해두기
         for (int i = 0; i < m_length; i++)
