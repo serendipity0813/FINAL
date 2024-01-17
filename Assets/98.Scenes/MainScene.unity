@@ -1117,6 +1117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   molePrefab: {fileID: 1152126996345194406, guid: 3d2d7bbdb445f7a4fbc64a8165fcbfef,
     type: 3}
+  moleDeadPrefab: {fileID: 1152126996345194406, guid: 7e96c401a4d2fcc4ca8711bccb586778,
+    type: 3}
   visibleTime: 2
   waitTime: 1
   animationTime: 0.5
@@ -1133,7 +1135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4d574b4982cee4289ef9dc36c8e471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
 --- !u!1 &2145433131
 GameObject:
   m_ObjectHideFlags: 0

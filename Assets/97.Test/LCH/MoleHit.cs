@@ -1,33 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoleHit : MonoBehaviour
 {
-    public int points = 10; // Points this mole gives when hit
+    public int points = 10; // Points awarded for hitting this mole
+    public delegate void HitAction(GameObject mole);
+    public event HitAction OnHit; // Event to notify when the mole is hit
 
-    void Update()
+    private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0)) // Check for mouse click
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform == this.transform)
-                {
-                    OnHit();
-                }
-            }
-        }
-    }
-
-    void OnHit()
-    {
-        // Add logic for what happens when the mole is hit
-
-        ScoreManager.Instance.AddScore(points);
-        // You can also add logic here to hide the mole when hit
+        // This method is called when the mole is clicked
+        OnHit?.Invoke(gameObject); // Invoke the OnHit event
+        // Additional logic for when the mole is hit can be added here
     }
 }

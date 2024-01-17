@@ -4,7 +4,8 @@ using UnityEngine;
 public class MoleController : MonoBehaviour
 {
     private Transform[] holes; // Array to store the positions of the holes
-    public GameObject molePrefab; // Prefab for the mole GameObject
+    public GameObject molePrefab; // Prefab for the alive mole
+    public GameObject moleDeadPrefab; // Prefab for the dead mole
     public float visibleTime = 2.0f; // Time for which the mole remains visible
     public float waitTime = 1.0f; // Waiting time between mole appearances
     public float animationTime = 0.5f; // Duration of the up/down animation
@@ -54,6 +55,8 @@ public class MoleController : MonoBehaviour
             Vector3 startPosition = holes[holeIndex].position + new Vector3(0, -targetHeight, 0);
             Vector3 showPosition = holes[holeIndex].position + new Vector3(0, targetHeight, 0);
             currentMole = Instantiate(molePrefab, startPosition, Quaternion.identity);
+            currentMole.GetComponent<MoleHit>().OnHit += HandleMoleHit; // Subscribe to the OnHit event
+
             currentMoveCoroutine = StartCoroutine(MoveMole(currentMole.transform, showPosition, animationTime));
 
             // Wait for the mole to be visible for the specified time
@@ -62,6 +65,24 @@ public class MoleController : MonoBehaviour
             // Start moving the mole down again
             currentMoveCoroutine = StartCoroutine(MoveMole(currentMole.transform, startPosition, animationTime));
             yield return new WaitForSeconds(animationTime + waitTime); // Wait for the animation to complete and additional waiting time
+        }
+    }
+
+    private void HandleMoleHit(GameObject hitMole)
+    {
+        if (hitMole == currentMole)
+        {
+            // Update the score here before destroying the mole
+            ScoreManager.Instance.AddScore(hitMole.GetComponent<MoleHit>().points);
+
+            // Replace the mole with a dead mole prefab
+            GameObject deadMole = Instantiate(moleDeadPrefab, currentMole.transform.position, Quaternion.identity);
+            Destroy(currentMole); // Destroy the original mole
+            currentMole = deadMole; // Update the reference to the current mole
+
+            // Continue with hiding animation for the dead mole
+            Vector3 hidePosition = deadMole.transform.position + new Vector3(0, -targetHeight, 0);
+            currentMoveCoroutine = StartCoroutine(MoveMole(deadMole.transform, hidePosition, animationTime));
         }
     }
 
