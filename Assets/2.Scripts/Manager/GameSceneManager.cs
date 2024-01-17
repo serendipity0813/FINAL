@@ -12,7 +12,7 @@ public enum SCENES
     GameChangeScene,
     InGameScene,
     OptionScene,
-    RankScene,
+    GameSelectScene,
     ShopScene
 }
 

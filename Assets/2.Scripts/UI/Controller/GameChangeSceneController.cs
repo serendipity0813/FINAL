@@ -22,7 +22,7 @@ public class GameChangeSceneController : MonoBehaviour
     private void GoToGameScene()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.InGameScene);
-        MiniGameManager.Instance.GameStart();
+        MiniGameManager.Instance.RandomGameStart();
     }
 
 }

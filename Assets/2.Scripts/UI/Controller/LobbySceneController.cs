@@ -29,8 +29,4 @@ public class LobbySceneController : MonoBehaviour
         GameSceneManager.Instance.PopUpSelect(SCENES.ShopScene);
     }
 
-    public void RankClick()
-    {
-        GameSceneManager.Instance.PopUpSelect(SCENES.RankScene);
-    }
 }
