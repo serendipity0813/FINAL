@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoleHit : MonoBehaviour
 {
-    public float hitForce = 5f; // Force applied when hit
+    public int points = 10; // Points this mole gives when hit
 
     void Update()
     {
@@ -25,9 +25,9 @@ public class MoleHit : MonoBehaviour
 
     void OnHit()
     {
-        Debug.Log("Mole Hit!");
         // Add logic for what happens when the mole is hit
-        // For example, you could add a force to the mole
-        // GetComponent<Rigidbody>().AddForce(Vector3.up * hitForce, ForceMode.Impulse);
+
+        ScoreManager.Instance.AddScore(points);
+        // You can also add logic here to hide the mole when hit
     }
 }

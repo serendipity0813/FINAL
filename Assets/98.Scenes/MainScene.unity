@@ -1078,6 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670329676}
   - component: {fileID: 1670329677}
+  - component: {fileID: 1670329678}
   m_Layer: 0
   m_Name: MoleGame
   m_TagString: Untagged
@@ -1118,6 +1119,21 @@ MonoBehaviour:
     type: 3}
   visibleTime: 2
   waitTime: 1
+  animationTime: 0.5
+  targetHeight: 1
+--- !u!114 &1670329678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670329675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4d574b4982cee4289ef9dc36c8e471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!1 &2145433131
 GameObject:
   m_ObjectHideFlags: 0
