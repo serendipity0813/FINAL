@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SelectSceneController : MonoBehaviour
 {
+
+    public void ChoiceModeClick()
+    {
+        GameSceneManager.Instance.SceneSelect(SCENES.SelectScene);
+    }
+
     public void LobbyClick()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
