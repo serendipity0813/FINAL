@@ -1984,9 +1984,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ab26fe1cabdc6458900bef22049d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_missionUI: {fileID: 0}
+  m_timeUI: {fileID: 0}
+  m_countUI: {fileID: 0}
+  m_clearUI: {fileID: 0}
+  m_failUI: {fileID: 0}
   Target: {fileID: 1096704211734615353, guid: 5e8415ff9272cb549bf3d4fd9ff3048b, type: 3}
   Thief: {fileID: 1938704586141592077, guid: f0a0ed1f4bc342740be5bff4d186b73b, type: 3}
   Cave: {fileID: 4332245673681265512, guid: 6275c2ed2ca791246a66b93b1a23b08e, type: 3}
-  Mission: {fileID: 917184715}
-  Clear: {fileID: 1988297120}
-  Fail: {fileID: 1406771284}
