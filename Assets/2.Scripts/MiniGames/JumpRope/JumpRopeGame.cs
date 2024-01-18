@@ -33,13 +33,28 @@ public class JumpRopeGame : MonoBehaviour
                 result = m_count > 10 ? true : false;
                 break;
             case 3:
-                result = m_count > 10 ? true : false;
+                result = m_count > 15 ? true : false;
                 break;
             default:
                 //난이도가 필요없는 경우 무조건 지는 판정으로 
                 result = false;
                 break;
         }
+
+
+        if(result)
+        {
+            MiniGameManager.Instance.GameClear();
+        }
+        else
+        {
+            MiniGameManager.Instance.GameFail();
+        }
+    }
+
+    public void AddCount()
+    {
+        m_count++;
     }
 
     public void SetLevel(int difficulty)
@@ -47,18 +62,5 @@ public class JumpRopeGame : MonoBehaviour
         m_difficulty = difficulty;
     }
 
-    public void GameClear()
-    {
-        Debug.Log("Clear");
-    }
 
-    public void GameOver()
-    {
-        Debug.Log("GameOver");
-    }
-
-    public void DestroyGame()
-    {
-
-    }
 }
