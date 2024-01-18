@@ -16,10 +16,15 @@ public class ThiefCaveGame : MiniGameSetting
     public GameObject Thief;
     public GameObject Cave;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
+
     // Start is called before the first frame update
     private void Start()
     {
-        StartSetting();
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;

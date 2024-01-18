@@ -8,9 +8,15 @@ public class MosquitoGame : MiniGameSetting
 {
     [SerializeField] private GameObject Mosquito;
 
-    private int stage = 10;
+    private int stage = 5;
     private float m_timer;
     private int m_clearCount;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+    }
 
     private void Start()
     {
@@ -21,8 +27,6 @@ public class MosquitoGame : MiniGameSetting
         {
             Instantiate(Mosquito,transform.position, Quaternion.identity, transform);
         }
-
-        StartSetting();
 
     }
 
