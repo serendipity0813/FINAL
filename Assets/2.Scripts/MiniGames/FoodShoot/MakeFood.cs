@@ -6,12 +6,14 @@ public class MakeFood : MonoBehaviour
     [SerializeField] private GameObject m_banana;
     [SerializeField] private GameObject m_cheese;
     [SerializeField] private GameObject m_cherry;
-    [SerializeField] private int m_repetition; // 몇번 반복할지
     [SerializeField] private Transform m_parentTrn;
+    [SerializeField] private int m_repetition;
 
     void Awake()
     {
         m_parentTrn = transform.parent;
+        FoodShoot foodShoot = GetComponentInParent<FoodShoot>();
+        m_repetition = foodShoot.m_repetition;
     }
 
     void Start()
@@ -21,6 +23,7 @@ public class MakeFood : MonoBehaviour
 
     IEnumerator FoodMakeCoroutine() // 코루틴 repetition 값 만큼 반복
     {
+        yield return new WaitForSeconds(1f);
         while (m_repetition != 0)
         {
             if (gameObject == null) // 게임 오브젝트가 파괴되면 코루틴 종료
