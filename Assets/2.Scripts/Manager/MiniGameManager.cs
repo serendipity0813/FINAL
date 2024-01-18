@@ -25,7 +25,7 @@ public class MiniGameManager : MonoBehaviour
     }
 
 
-    public void GameStart()
+    public void RandomGameStart()
     {
         int random = Random.Range(0, MiniGames.Length);
         m_currentGame = Instantiate(MiniGames[random]);
@@ -60,7 +60,7 @@ public class MiniGameManager : MonoBehaviour
     public void GameFail()
     {
         Destroy(m_currentGame);
-        GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
     }
 
 }

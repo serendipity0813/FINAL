@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class ThiefCaveManager : MonoBehaviour
+public class ThiefCaveGame : MiniGameSetting
 {
-    public static ThiefCaveManager Instance;
     private int stage = 3;
     private float m_timer;
     public Vector3[] m_hidePosition { get; private set; }   //동굴 위치를 나타내는 백터 배열
@@ -16,27 +15,12 @@ public class ThiefCaveManager : MonoBehaviour
     public GameObject Target;
     public GameObject Thief;
     public GameObject Cave;
-    public GameObject Mission;
-    public GameObject Clear;
-    public GameObject Fail;
 
-    private void Awake()
-    {
-        //싱글톤화
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-    }
 
     // Start is called before the first frame update
     private void Start()
     {
+        StartSetting();
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;
@@ -49,8 +33,7 @@ public class ThiefCaveManager : MonoBehaviour
             if(i == 0)
             {
                 //첫 번째 생성할 때 타겟도 생성
-                Target.transform.position = m_hidePosition[i];
-                Instantiate(Target);
+                Instantiate(Target, m_hidePosition[i], Quaternion.identity, transform);
             }
             Cave.transform.position = m_hidePosition[i];
             Instantiate(Cave);
@@ -59,9 +42,10 @@ public class ThiefCaveManager : MonoBehaviour
             if(i%2 == 1)
             {
                 Thief.transform.position = m_hidePosition[i];
-                Instantiate(Thief);
+                Instantiate(Thief, m_hidePosition[i], Quaternion.identity, transform);
             }
         }
+
 
     }
 
@@ -69,15 +53,16 @@ public class ThiefCaveManager : MonoBehaviour
     {
         //시간 흐름에 따라 게임 진행 
         m_timer += Time.deltaTime;
-        if (m_timer > 0.5 && Mission.activeSelf == false)
+        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
-            Mission.SetActive(true);
+            m_missionPrefab.SetActive(true);
         }
-        if (m_timer > 1.5 && Mission.activeSelf == true)
+        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
         {
-            Mission.SetActive(false);
+            m_missionPrefab.SetActive(false);
         }
-        if(m_timer > 2)
+
+        if (m_timer > 2)
         {
             //게임 진행이 시작되며 도둑들이 움직임
             IsGaiming = true;
@@ -91,8 +76,9 @@ public class ThiefCaveManager : MonoBehaviour
         {   
             //도둑들이 멈추고 플레이어가 타겟을 찾기 시작
             IsGaiming = false;
+            m_timePrefab.SetActive(true);
 
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 // 마우스 클릭시 RAY를 활용하여 타겟 찾기
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -101,12 +87,12 @@ public class ThiefCaveManager : MonoBehaviour
                 {
                     if (hit.collider.tag == "Target")
                     {
-                        Clear.SetActive(true);
+                        m_clearPrefab.SetActive(true);
                         Invoke("GameClear", 1);
                     }
                     else
                     {
-                        Fail.SetActive(true); 
+                        m_failPrefab.SetActive(true); 
                         Invoke("GameFail", 1);
                     }
                 }
@@ -116,22 +102,10 @@ public class ThiefCaveManager : MonoBehaviour
 
         if (m_timer > 15 && m_clear == false)
         {
-            Fail.SetActive(true);
+            m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
         }
 
-    }
-
-    private void GameClear()
-    {
-        Clear.SetActive(false);
-        MiniGameManager.Instance.GameClear();
-    }
-
-    public void GameFail()
-    {
-        Fail.SetActive(false);
-        MiniGameManager.Instance.GameFail();
     }
 
 }

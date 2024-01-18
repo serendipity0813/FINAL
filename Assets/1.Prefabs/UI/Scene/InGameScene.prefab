@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 5357460201596755114}
   m_Layer: 5
   m_Name: InGameScene
-  m_TagString: Untagged
+  m_TagString: GameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2321,7 +2321,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417c7773d28a92c42a1272a21a35a1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InGameUIs:
+  - {fileID: 4062786747327369607}
+  - {fileID: 5332046046973660721}
+  - {fileID: 6764118255142554038}
+  - {fileID: 7302851038779289384}
+  - {fileID: 4453533832031696368}
+  - {fileID: 5187669377742578273}
   m_inGameOption: {fileID: 4062786747327369607}
+  m_mission: {fileID: 5332046046973660721}
+  m_clear: {fileID: 6764118255142554038}
+  m_fail: {fileID: 7302851038779289384}
+  m_timeAttack: {fileID: 4453533832031696368}
+  m_count: {fileID: 5187669377742578273}
 --- !u!1 &6638395457927113751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,23 +2706,23 @@ RectTransform:
   m_GameObject: {fileID: 7704318911340398137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5006741122379822042}
   - {fileID: 1742866250871651319}
-  - {fileID: 8448631510953638739}
   - {fileID: 8679353640879545262}
+  - {fileID: 8448631510953638739}
   - {fileID: 8449362856195856822}
   - {fileID: 3504820684858830060}
-  - {fileID: 5006741122379822042}
   m_Father: {fileID: 3523509957122585765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!223 &2893525570547490846
 Canvas:
   m_ObjectHideFlags: 0
@@ -2720,7 +2732,7 @@ Canvas:
   m_GameObject: {fileID: 7704318911340398137}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2746,12 +2758,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1152, y: 2048}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3192,7 +3204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: 552}
+  m_AnchoredPosition: {x: 351, y: 808}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7960336123699186051
