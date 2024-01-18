@@ -73,13 +73,13 @@ public class CarDrivingGame : MiniGameSetting
     public void LeftBtn()
     {
         if (m_positionx < 6 && m_timer > 2)
-            m_positionx += (float)1.5;
+            m_positionx += (float)2;
     }
 
     public void RightBtn()
     {
         if (m_positionx > -12 && m_timer > 2)
-            m_positionx -= (float)1.5;
+            m_positionx -= (float)2;
     }
 
 
