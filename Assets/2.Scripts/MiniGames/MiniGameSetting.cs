@@ -5,17 +5,25 @@ using UnityEngine;
 public class MiniGameSetting : MonoBehaviour
 {
     //ui오브젝트를 인스펙터 창에서 받아온 뒤 프리펩 오브젝트로 따로 생성
-    [SerializeField] protected GameObject m_missionUI;
-    [SerializeField] protected GameObject m_timeUI;
-    [SerializeField] protected GameObject m_countUI;
-    [SerializeField] protected GameObject m_clearUI;
-    [SerializeField] protected GameObject m_failUI;
+    protected GameObject m_missionUI;
+    protected GameObject m_timeUI;
+    protected GameObject m_countUI;
+    protected GameObject m_clearUI;
+    protected GameObject m_failUI;
     protected GameObject m_missionPrefab;
     protected GameObject m_timePrefab;
     protected GameObject m_countPrefab;
     protected GameObject m_clearPrefab;
     protected GameObject m_failPrefab;
 
+    private void Awake()
+    {
+        m_missionUI = MiniGameManager.Instance.InGameUIs[0];
+        m_timeUI = MiniGameManager.Instance.InGameUIs[1];
+        m_countUI = MiniGameManager.Instance.InGameUIs[2];
+        m_clearUI = MiniGameManager.Instance.InGameUIs[3];
+        m_failUI = MiniGameManager.Instance.InGameUIs[4];
+    }
 
     protected void StartSetting()
     {

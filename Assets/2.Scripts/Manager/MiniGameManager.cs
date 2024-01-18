@@ -7,6 +7,7 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager Instance;
     public GameObject[] MiniGames;
+    public GameObject[] InGameUIs;
     private GameObject m_currentGame;
     public int Stage {get; private set;}
     private int m_beforeStageNumber;

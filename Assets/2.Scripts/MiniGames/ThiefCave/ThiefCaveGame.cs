@@ -16,7 +16,6 @@ public class ThiefCaveGame : MiniGameSetting
     public GameObject Thief;
     public GameObject Cave;
 
-
     // Start is called before the first frame update
     private void Start()
     {
