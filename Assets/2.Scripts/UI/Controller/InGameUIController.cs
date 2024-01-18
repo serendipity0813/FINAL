@@ -6,6 +6,8 @@ public class InGameUIController : MonoBehaviour
 {
     [SerializeField] private GameObject m_inGameOption;
 
+
+
     public void InGameOptionToggle()
     {
         //인게임 옵션버튼 토글화

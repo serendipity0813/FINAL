@@ -4,16 +4,17 @@ using UnityEngine;
 
 public enum SCENES
 {
-    //화면종류(0~5) 열거형 - 팝업 ui도 포함 (6~8)
+    //  0~5 : 게임 씬들, 6~9 : PopUp UI들
     StartScene = 0,
     LobbyScene,
     SelectScene,
     GatchaScene,
     GameChangeScene,
     InGameScene,
+    GameOverScene,
+    GameSelectScene,
     OptionScene,
-    RankScene,
-    ShopScene
+    ShopScene,
 }
 
 public class GameSceneManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class GameSceneManager : MonoBehaviour
     private GameObject m_PopupUI;
     private GameObject m_currentScene;      //현재 씬과 클릭으로 고른 씬 분리를 위함
     private GameObject m_choiceScene;
+    private InGameUIController m_inGameUIController;
 
     private int m_popupNumber;      //팝업 ui와 씬 ui를 숫자로 분류하여 관리하기 위함
     private int m_sceneNumber;
@@ -41,7 +43,7 @@ public class GameSceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        m_inGameUIController = Scenes[5].GetComponent<InGameUIController>();
     }
 
     // Start is called before the first frame update
@@ -111,6 +113,7 @@ public class GameSceneManager : MonoBehaviour
         }
 
     }
+
 
 
 }

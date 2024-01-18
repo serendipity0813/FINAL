@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 8867486495428625671}
   - component: {fileID: 1475705137292854082}
   m_Layer: 0
-  m_Name: ThiefCaveManager
+  m_Name: ThiefCaveGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ Transform:
   - {fileID: 3604038278200018455}
   - {fileID: 3842060414095608430}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1475705137292854082
 MonoBehaviour:
@@ -562,12 +562,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ab26fe1cabdc6458900bef22049d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_missionUI: {fileID: 4294028303045037594, guid: 36c0d43dab4380544ab257331083d410,
+    type: 3}
+  m_timeUI: {fileID: 5906936143371695536, guid: 79861da38857d4f49beb971b1b430fb4,
+    type: 3}
+  m_countUI: {fileID: 5150726837436343492, guid: eeb01b6ba97fc064498ccf8872b856f8,
+    type: 3}
+  m_clearUI: {fileID: 6049568981001140377, guid: 4323474a9e2f9524db5316c560e6692f,
+    type: 3}
+  m_failUI: {fileID: 6486424152945817699, guid: 5a20af4cb97f5f54190f366f2e0144f9,
+    type: 3}
   Target: {fileID: 1096704211734615353, guid: 5e8415ff9272cb549bf3d4fd9ff3048b, type: 3}
   Thief: {fileID: 1938704586141592077, guid: f0a0ed1f4bc342740be5bff4d186b73b, type: 3}
   Cave: {fileID: 4332245673681265512, guid: 6275c2ed2ca791246a66b93b1a23b08e, type: 3}
-  Mission: {fileID: 1870243728774479650}
-  Clear: {fileID: 3767044563988515836}
-  Fail: {fileID: 6605782725748207169}
 --- !u!1 &6605782725748207169
 GameObject:
   m_ObjectHideFlags: 0
