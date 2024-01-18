@@ -38,6 +38,8 @@ public class PlayerDataManager : MonoBehaviour
             FirstSave(); // PlayerData를 FirstSave()에 설정되어 있는 값으로 초기화
             SaveJson(); // 이후 json에 저장
         }
+        // 만약 게임 개수가 플레이어 데이터와 일치하지 않는다면
+        // 게임 개수 동일화 + 랭킹포인트 게임 개수와 동일화 + 세이브
     }
     /* 
         다른 곳에서 활용 예시 : 게임이 끝나고 결과창

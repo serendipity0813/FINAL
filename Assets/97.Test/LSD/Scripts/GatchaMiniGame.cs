@@ -6,7 +6,6 @@ public class GatchaMiniGame : MonoBehaviour
     [SerializeField] private Button m_gatchaBtn;
     private int m_price = 10;
 
-
     private void Awake()
     {
         m_gatchaBtn = GetComponent<Button>();
@@ -16,23 +15,26 @@ public class GatchaMiniGame : MonoBehaviour
     void GatchaActiveBtn()
     {
         int gameCount = 0;
+        bool haveAllGame = true;
         // 현재 플레이어 데이터에서 게임을 모두 가지고 있는지 체크
         foreach (bool havegame in PlayerDataManager.instance.m_playerData.haveGamesIndex)
         {
             if (havegame)
             {
                 gameCount++;
-                if (gameCount == PlayerDataManager.instance.m_playerData.haveGamesIndex.Count)
-                {
-                    Debug.Log("게임을 모두 가지고 있습니다.");
-                    return;
-                }
-                continue;
             }
             else
             {
+                // 하나라도 가지고 있지 않다면 false 이후 break
+                haveAllGame = false;
                 break;
             }
+        }
+        // 게임을 모두 가지고 있다면 메소드 종료
+        if (haveAllGame)
+        {
+            Debug.Log("게임을 모두 가지고 있습니다.");
+            return;
         }
 
         // 코인이 있을 시 가차,없을 시 작동X
