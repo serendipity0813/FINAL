@@ -1,19 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateRope : MonoBehaviour
 {
-    public GameObject rope;
-    private float m_rotateSpeed = 90.0f;
+
+    private JumpRopeGame m_game;//부모 객체의 스크립트를 가져오기 위한 변수
+    private float m_rotateSpeed = 90.0f;//회전속도
+    private bool m_once;//회전 한번에 하나만 카운트 하기 위한 변수
+    private bool m_inside = false;//밧줄 안쪽에 들어왔는지 확인하는 변수
+
+
+    private void Start()
+    {
+        m_game = transform.parent.GetComponent<JumpRopeGame>();
+    }
 
     private void Update()
     {
-        Rotate();
+        transform.Rotate(new Vector3(0, 0, Time.deltaTime * m_rotateSpeed));
+
+        if (m_inside && transform.rotation.eulerAngles.z < 10)
+        {
+
+            if (!m_once)
+            {
+                m_game.AddCount();
+                //Debug.Log("Correct!");
+            }
+
+            m_once = true;
+        }
+        else
+        {
+            m_once = false;
+        }
     }
 
-    private void Rotate()
+    private void OnTriggerEnter(Collider other)
     {
-        rope.transform.Rotate(new Vector3(0, 0, Time.deltaTime* m_rotateSpeed));
+        if (other.transform.tag == "Player")
+        {
+            m_inside = true;
+           // Debug.Log("Enter!");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            m_inside = false;
+           // Debug.Log("Exit!");
+        }
     }
 }
