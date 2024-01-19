@@ -34,6 +34,13 @@ public class FoodShoot : MiniGameSetting
                 break;
         }
     }
+    private void Start()
+    {
+        //인게임 text내용 설정 + 게임 승리조건
+        m_missionText.text = "Shoot " + (m_win) + " Food";
+        m_timeText[0].text = "TimeLimit";
+        m_countText[0].text = "Count";
+    }
     void Update()
     {
         UiTime();
@@ -52,6 +59,13 @@ public class FoodShoot : MiniGameSetting
         {
             m_missionPrefab.SetActive(false);
             m_timePrefab.SetActive(true);
+        }
+
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+        if (m_timer > 2)
+        {
+            m_timePrefab.SetActive(true);
+            m_countPrefab.SetActive(true);
         }
     }
     void Bullet() // 업데이트에서 동작
@@ -92,7 +106,7 @@ public class FoodShoot : MiniGameSetting
             m_clearPrefab.SetActive(true);
             Invoke("GameClear", 1);
         }
-        else if (m_winCount < m_win && m_bulletCount == 0)
+        else if (m_winCount < m_win && m_bulletCount == 0 || m_timer > 12)
         {
             // 패배시 로직
             Debug.Log("졌다!");

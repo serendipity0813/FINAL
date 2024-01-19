@@ -12,7 +12,7 @@ public class FoodEatPrefabs : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            foodEat.m_winCount--;
+            foodEat.m_clearCount--;
             Destroy(gameObject);
         }
     }
