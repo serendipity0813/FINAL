@@ -11,7 +11,8 @@ public class MiniGameBaseCode : MiniGameSetting
     {
         /*부모클래스 필드 및 메소드 받아오기
          인게임 UI 목록 : m_missionUI, m_timeUI, m_countUI, m_clearUI, m_failUI
-         인게임 Text 목록 : m_missionText, m_timeText[0]. m_timeText[1], m_countText[0], m_countText[1]
+         인게임 Text 목록 : m_missionText, m_timeText[0], m_timeText[1], m_countText[0], m_countText[1]
+         배열의 경우 0번은 내용(남은시간, 남은횟수 등), 1번은 숫자 입니다.
          인게임 Method 목록 : GameClear(); , GameFail(); */
 
         base.Awake();
@@ -33,14 +34,14 @@ public class MiniGameBaseCode : MiniGameSetting
         m_timeText[1].text = m_timer.ToString("0.00");
         m_countText[1].text = m_clearCount.ToString();
 
-        //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true )
             m_missionPrefab.SetActive(false);
 
-        //2초 후 부터 실제 게임시작 
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
         if(m_timer > 2)
         {
             m_timePrefab.SetActive(true);

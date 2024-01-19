@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class RunningGame : MiniGameSetting
@@ -18,13 +19,18 @@ public class RunningGame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
+        m_missionText.text = " Run For Win";
+        m_timeText[0].text = "TimeLimit";
+        m_countText[0].text = "Count";
+
         m_mapPosition = m_map.transform.position;
         m_positionz = -4;
     }
 
     // Update is called once per frame
     private void Update()
-    {   
+    {
+        m_timeText[1].text = (12 - m_timer).ToString("0.00");
         //실시간으로 맵의 위치를 바꿔줌 - 버튼을 누를 때마다 일정 수치만큼 맵이 뒤로 -> 플레이어는 앞으로 가는 느낌
         m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz);
         m_timer += Time.deltaTime;
@@ -48,7 +54,7 @@ public class RunningGame : MiniGameSetting
         }
 
         //게임 패배조건 - 제한시간 내로 버튼을 충분히 누르지 못한 경우
-        if (m_timer > 10 && m_positionz > -270)
+        if (m_timer > 12 && m_positionz > -270)
         {
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);

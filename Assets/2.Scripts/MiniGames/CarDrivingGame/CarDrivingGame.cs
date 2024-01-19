@@ -20,6 +20,10 @@ public class CarDrivingGame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
+        m_missionText.text = "Drive Car with left, right Button";
+        m_timeText[0].text = "Remain";
+        m_countText[0].text = "Count";
+
         //맵의 초기 위치값 세팅
         m_mapPosition = m_map.transform.position;
         m_positionx = -1;
@@ -30,9 +34,11 @@ public class CarDrivingGame : MiniGameSetting
 
     private void Update()
     {
+        m_timeText[1].text = (m_positionz + 500).ToString("0.00");
+
         //시간이 흐르면서 맵이 자동적으로 뒤로 가도록 함 
 
-        if(m_positionz > -550 && m_timer > 2)      //수치제한
+        if (m_positionz > -550 && m_timer > 2)      //수치제한
         {
             m_positionz -= Time.deltaTime * 30;
         }
