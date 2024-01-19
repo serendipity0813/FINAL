@@ -17,7 +17,6 @@ public class PlayerCar : MonoBehaviour
         if (collision.transform.gameObject.CompareTag("Target") == true)
         {
             m_carHitCount++;
-            Debug.Log(m_carHitCount);
             if (m_carHitCount == 3)
             {
                 carDrivingGame.HitOver();

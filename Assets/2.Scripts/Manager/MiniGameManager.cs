@@ -13,6 +13,7 @@ public class MiniGameManager : MonoBehaviour
     private GameObject m_currentGame;
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     public int Stage {get; private set;}
+    private int m_beforeGame;
     public string GameName { get; set;}
 
 
@@ -35,13 +36,24 @@ public class MiniGameManager : MonoBehaviour
         {
             m_gameDictionary.Add(MiniGames[i].name, i);
         }
+        m_beforeGame = -1;
     }
 
     //랜덤게임 진행시 불러오는 메소드
     public void RandomGameStart()
     {
         int random = Random.Range(0, MiniGames.Length);
-        m_currentGame = Instantiate(MiniGames[random]);
+        if(random != m_beforeGame)  //게임이 중복으로 나오는 걸 막기 위한 코드
+        {
+            m_currentGame = Instantiate(MiniGames[random]);
+            m_beforeGame = random;
+        }
+        else
+        {
+            random = Random.Range(0, MiniGames.Length);
+            m_currentGame = Instantiate(MiniGames[random]);
+            m_beforeGame = random;
+        }
 
         //바로 이전 게임은 등장하지 않거나 이전에 진행한 게임은 제외시키거나 하는 등의 로직 코드구현 필요
 
