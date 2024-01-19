@@ -1,11 +1,9 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FoodEatController : MonoBehaviour
 {
     private Rigidbody m_rigidbody;//플레이어의 Rigidbody
-    [SerializeField] private float m_speed = 10.0f;//이동 속도
+    public float m_speed = 10.0f; //이동 속도
 
     private void Start()
     {

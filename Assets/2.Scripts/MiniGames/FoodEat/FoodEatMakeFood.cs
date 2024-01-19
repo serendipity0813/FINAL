@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodEatMakeFood : MonoBehaviour
@@ -13,16 +12,17 @@ public class FoodEatMakeFood : MonoBehaviour
     [SerializeField] private GameObject m_watermelon;
     [SerializeField] private Transform m_parentTrn;
     [SerializeField] private int m_repetition;
-
+    private Camera m_camera;
 
     private void Awake()
     {
         m_parentTrn = transform.parent;
-        FoodEat foodEat = GetComponentInParent<FoodEat>();
-        m_repetition = foodEat.m_repetition;
+        m_camera = Camera.main;
     }
     void Start()
     {
+        FoodEat foodEat = GetComponentInParent<FoodEat>();
+        m_repetition = foodEat.m_repetition;
         StartCoroutine(FoodMakeCoroutine()); // 코루틴 실행
     }
     IEnumerator FoodMakeCoroutine() // 코루틴 repetition 값 만큼 반복
@@ -35,16 +35,30 @@ public class FoodEatMakeFood : MonoBehaviour
 
             FoodContainerPosition(); // 포지션을 바꾼다.
             m_repetition--; // 1번 동작할때마다 repetition 값을 -
+            yield return new WaitForSeconds(0.05f);
         }
     }
     void FoodContainerPosition() // 푸드 컨테이너 위치값 랜덤 설정
     {
+        float cameraHeight = 2f * m_camera.orthographicSize; // 카메라 세로 크기
+        float cameraWidth = cameraHeight * m_camera.aspect; // 카메라 가로 크기
+        float rndX;
+        float rndZ;
+
         // 화면 크기에 따라 포지션값 받아오기
-        float rndX = Random.Range(6.5f, -6.6f);
-        float rndZ = Random.Range(6.5f, -6.6f);
-        Vector3 position; // 새로 생성된 포지션 값을 할당하기 위한 백터 선언
-        position = new Vector3(rndX + m_parentTrn.position.x,.5f + m_parentTrn.position.y, rndZ + m_parentTrn.position.z);
-        MakeFoods(position); // position 위치에 푸드를 만든다.
+        while (true)
+        {
+            rndX = Random.Range(-cameraWidth / 2 + 1, cameraWidth / 2 - 1);
+            rndZ = Random.Range(-cameraHeight / 2 + 1, cameraHeight / 2 - 2);
+            if (rndX < m_parentTrn.position.x + 1 || rndX > m_parentTrn.position.x - 1 &&
+                rndZ < m_parentTrn.position.z + 1 || rndZ > m_parentTrn.position.z - 1)
+            {
+                break;
+            }
+        }
+        Vector3 position;
+        position = new Vector3(rndX + m_parentTrn.position.x, .5f + m_parentTrn.position.y, rndZ + m_parentTrn.position.z);
+        MakeFoods(position);
     }
     void MakeFoods(Vector3 position) // 랜덤 푸드 생성
     {

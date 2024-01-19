@@ -1,14 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodEatPrefabs : MonoBehaviour
 {
+    FoodEat foodEat;
+
+    private void Awake()
+    {
+        foodEat = GetComponentInParent<FoodEat>();
+    }
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.transform.CompareTag("Player"))
+        if (collider.CompareTag("Player"))
         {
-            FoodEat foodEat = GetComponentInParent<FoodEat>();
             foodEat.m_winCount--;
             Destroy(gameObject);
         }
