@@ -12,12 +12,12 @@ public class MakeFood : MonoBehaviour
     void Awake()
     {
         m_parentTrn = transform.parent;
-        FoodShoot foodShoot = GetComponentInParent<FoodShoot>();
-        m_repetition = foodShoot.m_repetition;
     }
 
     void Start()
     {
+        FoodShoot foodShoot = GetComponentInParent<FoodShoot>();
+        m_repetition = foodShoot.m_repetition;
         StartCoroutine(FoodMakeCoroutine()); // 코루틴 실행
     }
 
