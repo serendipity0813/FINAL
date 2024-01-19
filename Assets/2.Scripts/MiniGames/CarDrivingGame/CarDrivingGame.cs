@@ -9,6 +9,8 @@ public class CarDrivingGame : MiniGameSetting
     private float m_positionx;
     private float m_positionz;
     private float m_timer;
+    private bool m_left;
+    private bool m_right;
 
     protected override void Awake()
     {
@@ -18,11 +20,12 @@ public class CarDrivingGame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
-        //맵으 초기 위치값 세팅
+        //맵의 초기 위치값 세팅
         m_mapPosition = m_map.transform.position;
         m_positionx = -1;
         m_positionz = 0;
-
+        m_left = false; 
+        m_right = false;
     }
 
     private void Update()
@@ -33,6 +36,13 @@ public class CarDrivingGame : MiniGameSetting
         {
             m_positionz -= Time.deltaTime * 30;
         }
+
+        if (m_positionx < 6 && m_left == true)
+            m_positionx += Time.deltaTime * 10;
+
+        if (m_positionx > -12 && m_right == true)
+            m_positionx -= Time.deltaTime * 10;
+
         //맵을 좌, 우로 옮기는 효과 - 플레이어는 캐릭터가 좌, 우로 움직이는 느낌
         m_map.transform.position = new Vector3(m_positionx, m_mapPosition.y, m_positionz);
         m_timer += Time.deltaTime;
@@ -72,14 +82,21 @@ public class CarDrivingGame : MiniGameSetting
 
     public void LeftBtn()
     {
-        if (m_positionx < 6 && m_timer > 2)
-            m_positionx += (float)2;
+        if (m_timer > 2)
+        {
+            m_left = true;
+            m_right = false;
+        }
+
     }
 
     public void RightBtn()
     {
-        if (m_positionx > -12 && m_timer > 2)
-            m_positionx -= (float)2;
+        if (m_timer > 2)
+        {
+            m_left = false;
+            m_right = true;
+        }
     }
 
 

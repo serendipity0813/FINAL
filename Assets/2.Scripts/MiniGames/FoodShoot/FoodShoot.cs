@@ -11,7 +11,7 @@ public class FoodShoot : MiniGameSetting
 
     void Awake()
     {
-        StartSetting();
+        //StartSetting();
         // m_level을 매니저에서 가져오기 임시로 레벨 1로 부여
         m_level = 1;
         switch(m_level)
