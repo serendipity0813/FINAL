@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SelectSceneController : ButtonHandler
 {
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -22,6 +23,4 @@ public class SelectSceneController : ButtonHandler
             }
         }
     }
-
-
 }

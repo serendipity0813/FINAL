@@ -13,6 +13,7 @@ class WallCollisions : MonoBehaviour
     [SerializeField] private float m_botSpace;
 
     private Camera m_camera;
+    private float m_camSize = 10.0f;
 
     private void Awake()
     {
@@ -24,15 +25,21 @@ class WallCollisions : MonoBehaviour
         SetWalls();
     }
 
+    public void SetOrthographicSize(Camera camera)
+    {
+        m_camSize = camera.orthographicSize;
+    }
+
     //사방면의 벽을 화면 크기에 맞춰서 옮기는 함수
     public void SetWalls()
     {
-        float cameraHeight = 2f * m_camera.orthographicSize; // 카메라 세로 크기
+        float cameraHeight = 2.0f * m_camSize; // 카메라 세로 크기
         float cameraWidth = cameraHeight * m_camera.aspect; // 카메라 가로 크기
 
-        m_left.transform.position = new Vector3(-cameraWidth / 2 + m_leftSpace, 0.5f, 0);
-        m_right.transform.position = new Vector3(cameraWidth / 2 + m_rightSpace, 0.5f, 0);
-        m_top.transform.position = new Vector3(0, 0.5f, cameraHeight / 2 + m_topSpace);
-        m_bot.transform.position = new Vector3(0, 0.5f, -cameraHeight / 2 + m_botSpace);
+        m_left.transform.position = new Vector3(-cameraWidth / 2.0f + m_leftSpace, 0.5f, 0.0f);
+        m_right.transform.position = new Vector3(cameraWidth / 2.0f + m_rightSpace, 0.5f, 0.0f);
+
+        m_top.transform.position = new Vector3(0.0f, 0.5f, cameraHeight / 2.0f + m_topSpace);
+        m_bot.transform.position = new Vector3(0.0f, 0.5f, -cameraHeight / 2.0f + m_botSpace);
     }
 }
