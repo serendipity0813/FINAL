@@ -24,6 +24,8 @@ public class MazeRunner : MonoBehaviour
         m_map = new bool[m_mazeWidth, m_mazeHeight];//미로 크기 9x9
         m_pos = new Vector2Int(1, 1);
 
+       
+
         for (int x = 0; x < m_mazeWidth; x++)
         {
             for (int y = 0; y < m_mazeHeight; y++)
@@ -33,7 +35,7 @@ public class MazeRunner : MonoBehaviour
         }
 
         BuildMaze();
-
+        m_map[8, 15] = false; //출구 뚫어놓기
         //벽 배치
         for (int x = 1; x < m_mazeWidth-1; x++)
         {
