@@ -6,6 +6,7 @@ public class FoodEat : MiniGameSetting
     public int m_winCount; // 승리 카운트 선언
     public int m_repetition; // 과일을 몇번 뿌릴지
     private float m_timer;
+    private bool m_end = false;
 
     private void Awake()
     {
@@ -31,6 +32,11 @@ public class FoodEat : MiniGameSetting
     }
     private void Update()
     {
+        UiTime();
+        CheckWinLose();
+    }
+    void UiTime()
+    {
         //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
         m_timer += Time.deltaTime;
         if (m_timer > 0 && m_missionPrefab.activeSelf == false)
@@ -43,23 +49,27 @@ public class FoodEat : MiniGameSetting
             m_missionPrefab.SetActive(false);
             m_timePrefab.SetActive(true);
         }
-        CheckWinLose();
     }
     void CheckWinLose() // 승리 패배 판단 함수
     {
-        if (m_winCount <= 0)
+        if (!m_end)
         {
-            // 승리시 로직
-            Debug.Log("이겼다!");
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
+            if (m_winCount <= 0)
+            {
+                // 승리시 로직
+                Debug.Log("이겼다!");
+                m_clearPrefab.SetActive(true);
+                m_end = true;
+                Invoke("GameClear", 1);
+            }
+            //else if (m_winCount > 0 && 시간 == 0)
+            //{// 만약 제한시간 내에 음식을 모두 못먹을 시
+            //    // 패배시 로직
+            //    Debug.Log("졌다!");
+            //    m_failPrefab.SetActive(true);
+            //    m_end = true;
+            //    Invoke("GameFail", 1);
+            //}
         }
-        //else if (m_winCount > 0 && 시간 == 0)
-        //{// 만약 제한시간 내에 음식을 모두 못먹을 시
-        //    // 패배시 로직
-        //    Debug.Log("졌다!");
-        //    m_failPrefab.SetActive(true);
-        //    Invoke("GameFail", 1);
-        //}
     }
 }

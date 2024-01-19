@@ -14,11 +14,11 @@ public class FoodShoot : MiniGameSetting
         StartSetting();
         // m_level을 매니저에서 가져오기 임시로 레벨 1로 부여
         m_level = 1;
-        switch(m_level)
+        switch (m_level)
         {
             case 0:
             case 1:
-                m_bulletCount = 5; 
+                m_bulletCount = 5;
                 m_win = 3;
                 m_repetition = 7;
                 break;
@@ -36,22 +36,24 @@ public class FoodShoot : MiniGameSetting
     }
     void Update()
     {
+        UiTime();
+        Bullet(); // 보기 편하게 만들기 위해 함수로 변경
+    }
+    void UiTime()
+    {
         //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
         m_timer += Time.deltaTime;
         if (m_timer > 0 && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
-            
+
         }
         if (m_timer > 1 && m_missionPrefab.activeSelf == true)
         {
             m_missionPrefab.SetActive(false);
             m_timePrefab.SetActive(true);
         }
-            
-        Bullet(); // 보기 편하게 만들기 위해 함수로 변경
     }
-
     void Bullet() // 업데이트에서 동작
     {
         if (m_bulletCount != 0) // 현재 총알이 0개가 아닐경우
