@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class MiniGameManager : MonoBehaviour
     public static MiniGameManager Instance;
     public GameObject[] MiniGames;
     public GameObject[] InGameUIs;
+    public TextMeshProUGUI[] InGameTexts;
     private GameObject m_currentGame;
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     public int Stage {get; private set;}

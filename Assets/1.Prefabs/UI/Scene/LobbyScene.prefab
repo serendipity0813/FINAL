@@ -2391,4 +2391,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c281241c73e946a4fa2978a8f752a2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChoiceGame: 
+  m_playerNameText: {fileID: 4374291738629953614}
+  m_playerCoinText: {fileID: 8692735325314881575}
