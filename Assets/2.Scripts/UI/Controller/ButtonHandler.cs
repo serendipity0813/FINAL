@@ -38,6 +38,7 @@ public class ButtonHandler : MonoBehaviour
     public void ChoiceModeStartClick()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
     }
 
     public void ChoiceXbtnClick()

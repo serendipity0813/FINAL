@@ -16,14 +16,12 @@ public class GameChangeSceneController : ButtonHandler
     private void StartRandomGame()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.InGameScene);
-        GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         MiniGameManager.Instance.RandomGameStart();
     }
 
     private void StartChoiceGame()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.InGameScene);
-        GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         MiniGameManager.Instance.ChoiceGameStart();
     }
 
