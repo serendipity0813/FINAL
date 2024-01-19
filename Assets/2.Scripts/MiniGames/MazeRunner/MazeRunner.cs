@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class MazeRunner : MonoBehaviour
+public class MazeRunner : MiniGameSetting
 {
 
     [SerializeField] private DragToMoveController m_controller;
@@ -15,7 +15,12 @@ public class MazeRunner : MonoBehaviour
     private Vector2Int[] m_direction = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
     private Stack<Vector2Int> m_stackDir = new Stack<Vector2Int>(); //지나온 길의 방향 저장
     private float m_timer = 0.0f;//타이머
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void Start()
     {
         m_timer = 10.0f;
@@ -121,6 +126,10 @@ public class MazeRunner : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
+        {
             Debug.LogFormat("GameClear in {0}sec", m_timer);
+            Invoke("GameClear", 1);
+        }
+           
     }
 }

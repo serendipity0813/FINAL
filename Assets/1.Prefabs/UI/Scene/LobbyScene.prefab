@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8662303041794521820}
   - component: {fileID: 2920414661993572851}
   m_Layer: 0
-  m_Name: ChoiceMode
+  m_Name: SelectMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Choice
+  m_text: 'Select
 
     Mode'
   m_isRightToLeft: 0
@@ -1333,8 +1333,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1676689275038292317}
-        m_TargetAssemblyTypeName: LobbySceneBtn, Assembly-CSharp
-        m_MethodName: ChoiceModeClick
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
+        m_MethodName: SelectModeClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2391,3 +2391,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c281241c73e946a4fa2978a8f752a2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChoiceGame: 
