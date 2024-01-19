@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class JumpRopeGame : MonoBehaviour
+public class JumpRopeGame : MiniGameSetting
 {
     [SerializeField]
     private DragToMoveController m_dragToMoveController;
@@ -9,9 +9,9 @@ public class JumpRopeGame : MonoBehaviour
     private int m_count;
     private int m_difficulty;
 
-    private void Update()
+    protected override void Awake()
     {
-
+        base.Awake();
     }
 
     // Update is called once per frame
@@ -44,11 +44,11 @@ public class JumpRopeGame : MonoBehaviour
 
         if(result)
         {
-            MiniGameManager.Instance.GameClear();
+            GameClear();
         }
         else
         {
-            MiniGameManager.Instance.GameFail();
+            GameFail();
         }
     }
 

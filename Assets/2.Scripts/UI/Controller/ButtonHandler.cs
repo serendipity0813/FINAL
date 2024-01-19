@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
+
     public void LobbyClick()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
     }
 
-    public void ChoiceModeClick()
+    public void SelectModeClick()
     {
         GameSceneManager.Instance.SceneSelect(SCENES.SelectScene);
     }
 
     public void RandomModeClick()
     {
-        GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        MiniGameManager.Instance.GameName = "Random";
+        GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
     }
 
     public void GatchaClick()
@@ -33,4 +36,16 @@ public class ButtonHandler : MonoBehaviour
     {
         GameSceneManager.Instance.PopUpSelect(SCENES.ShopScene);
     }
+
+    public void ChoiceModeStartClick()
+    {
+        GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
+    }
+
+    public void ChoiceXbtnClick()
+    {
+        GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
+    }
+
 }

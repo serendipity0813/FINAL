@@ -9,9 +9,9 @@ public class FoodShoot : MiniGameSetting
     public int m_repetition; // 과일을 몇번 뿌릴지
     private float m_timer;
 
-    void Awake()
+    protected override void Awake()
     {
-        StartSetting();
+        base.Awake();
         // m_level을 매니저에서 가져오기 임시로 레벨 1로 부여
         m_level = 1;
         switch (m_level)
