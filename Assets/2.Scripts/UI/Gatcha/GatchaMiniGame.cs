@@ -17,7 +17,7 @@ public class GatchaMiniGame : MonoBehaviour
         int gameCount = 0;
         bool haveAllGame = true;
         // 현재 플레이어 데이터에서 게임을 모두 가지고 있는지 체크
-        foreach (bool havegame in PlayerDataManager.instance.m_playerData.haveGamesIndex)
+        foreach (bool havegame in PlayerDataManager.instance.m_playerData.haveGames)
         {
             if (havegame)
             {
@@ -53,13 +53,13 @@ public class GatchaMiniGame : MonoBehaviour
     {
         while (true)
         {
-            int rnd = Random.Range(0, PlayerDataManager.instance.m_playerData.haveGamesIndex.Count);
+            int rnd = Random.Range(0, PlayerDataManager.instance.m_playerData.haveGames.Count);
 
-            if (PlayerDataManager.instance.m_playerData.haveGamesIndex[rnd] == false)
+            if (PlayerDataManager.instance.m_playerData.haveGames[rnd] == false)
             {
-                PlayerDataManager.instance.m_playerData.haveGamesIndex[rnd] = true;
+                PlayerDataManager.instance.m_playerData.haveGames[rnd] = true;
                 PlayerDataManager.instance.SaveJson();
-                Debug.Log("게임을 얻었습니다.");
+                Debug.Log(PlayerDataManager.instance.miniGameDataSO.games[rnd].gameName + "게임을 얻었습니다.");
                 break;
             }
         }
