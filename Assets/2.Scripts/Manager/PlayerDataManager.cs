@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public static PlayerDataManager instance {get; private set;}
+    public static PlayerDataManager instance { get; private set; }
+    public MiniGameDataSO miniGameDataSO;
     public PlayerData m_playerData;
     private string path;
 
@@ -18,7 +19,7 @@ public class PlayerDataManager : MonoBehaviour
         }
         else
         {
-            if(instance != this)
+            if (instance != this)
                 Destroy(gameObject);
         }
         // Json 데이터 위치 불러오기
@@ -31,6 +32,8 @@ public class PlayerDataManager : MonoBehaviour
         {
             // json 파일이 있다면 시작할 때 json 파일 데이터 불러오기
             LoadJson();
+            MiniGameDataCheck(); // 미니게임 데이터 체크 (SO 데이터와 맞는지)
+            SaveJson(); // 이후 json에 저장
         }
         else
         {
@@ -38,35 +41,19 @@ public class PlayerDataManager : MonoBehaviour
             FirstSave(); // PlayerData를 FirstSave()에 설정되어 있는 값으로 초기화
             SaveJson(); // 이후 json에 저장
         }
-        // 만약 게임 개수가 플레이어 데이터와 일치하지 않는다면
-        // 게임 개수 동일화 + 랭킹포인트 게임 개수와 동일화 + 세이브
     }
     /* 
         다른 곳에서 활용 예시 : 게임이 끝나고 결과창
-        PlayerData m_playerData < 편하게 하고싶다면 선언 필요
-
-        게임 결과 로직
-        if (현재 스코어 > m_playerData.rankingPoint[게임 번호])
-        {
-            m_playerData.rankingPoint[게임 번호] = 현재 스코어;
-        }
-        m_playerData.exe += 로직 결과;
-        m_playerData.coin += 로직 결과;
-
-        if(m_playerData.exe >= 레벨업 관련 함수[m_playerData.level])
-        {
-            m_playerData.exe -= 레벨업 관련 함수[m_playerData.level];
-            m_playerData.level++;
-        }
-        ★ PlayerDataManager.instance.SaveJson(); 이후 로직 마지막에 Json 세이브
-        ★ PlayerDataManager.instance.LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
-        게임 결과창 표시 로직
+        PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
+        PlayerDataManager.instance.SaveJson(); Json 세이브
+        PlayerDataManager.instance.LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
+        PlayerData 값을 사용하여 결과창 표시 로직
     */
 
     // 현재 Json 파일을 저장하고 싶다면 아래 메소드를 호출
     public void SaveJson()
-    {   
-        string jsonData = JsonUtility.ToJson(m_playerData,true); // JSON 형태로 포멧팅
+    {
+        string jsonData = JsonUtility.ToJson(m_playerData, true); // JSON 형태로 포멧팅
         File.WriteAllText(path, jsonData); // 파일 생성 및 저장
     }
 
@@ -85,8 +72,36 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.level = 1;
         m_playerData.exe = 0;
         m_playerData.coin = 100;
-        m_playerData.haveGamesIndex = new List<bool>() {true,true,true,false};
-        m_playerData.rankingPoint = new List<int>() {0,0,0,0};
+        m_playerData.gameIndex = new List<int>();
+        m_playerData.haveGames = new List<bool>();
+        m_playerData.rankingPoint = new List<int>();
+
+        for (int i = 0; i < miniGameDataSO.games.Count; i++)
+        {
+            // miniGameDataSO의 List 수만큼 추가
+            m_playerData.gameIndex.Add(i);
+            m_playerData.haveGames.Add(false);
+            m_playerData.rankingPoint.Add(0);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            // 처음 5개의 게임은 주어질 예정
+            m_playerData.haveGames[i] = true;
+        }
+    }
+    void MiniGameDataCheck()
+    {
+        for (int i = 0; i < miniGameDataSO.games.Count; i++)
+        {
+            // 만약 m_playerData.gameIndex 에 i가 포함되어있지 않다면
+            if (!m_playerData.gameIndex.Contains(i))
+            {
+                // 그 위치에 값을 추가
+                m_playerData.gameIndex.Insert(i, i);
+                m_playerData.haveGames.Insert(i, false);
+                m_playerData.rankingPoint.Insert(i, 0);
+            }
+        }
     }
     private void OnApplicationQuit()
     {
@@ -104,9 +119,14 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public float exe;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
 
+    // 미니게임 인덱스값 저장
+    public List<int> gameIndex;
+
     // 미니게임을 가지고 있는지 없는지 판단 false은 없고 true은 가지고 있는걸로
-    public List<bool> haveGamesIndex;
+    public List<bool> haveGames;
 
     // haveGamesIndex와 인덱스가 동일하게, 점수를 기록
     public List<int> rankingPoint;
+
+
 }

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager Instance;
