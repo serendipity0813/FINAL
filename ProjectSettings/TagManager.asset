@@ -8,6 +8,8 @@ TagManager:
   - Terrain
   - Rope
   - MoleHole
+  - GameUI
+  - Camera
   layers:
   - Default
   - TransparentFX
