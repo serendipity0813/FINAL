@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BurgerKingGame : MiniGameSetting
 {
-    private int m_stage = 10;    //현재는 임시로 숫자 1 사용
+    private int m_stage;    //현재는 임시로 숫자 1 사용
     private float m_timer;
     private int m_count;
     private bool m_clear;
@@ -36,6 +36,7 @@ public class BurgerKingGame : MiniGameSetting
     {
 
         //인게임 text내용 설정 + 게임 승리조건
+        m_stage = 2;
         m_burgerLength = m_stage + 5;
         m_clear = false;
         m_count = 0;
