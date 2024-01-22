@@ -5,9 +5,20 @@ class WallCollisions : MonoBehaviour
     [Header("Wall Collisions")]
     public GameObject m_left;
     public GameObject m_right;
+    public GameObject m_top;
+    public GameObject m_bot;
+    [SerializeField] private float m_leftSpace;
+    [SerializeField] private float m_rightSpace;
+    [SerializeField] private float m_topSpace;
+    [SerializeField] private float m_botSpace;
 
+    private Camera m_camera;
     private float m_camSize = 10.0f;
 
+    private void Awake()
+    {
+        m_camera = Camera.main;
+    }
     //테스트용
     private void Start()
     {
@@ -22,10 +33,13 @@ class WallCollisions : MonoBehaviour
     //사방면의 벽을 화면 크기에 맞춰서 옮기는 함수
     public void SetWalls()
     {
-        float aspect = (float)Screen.width / Screen.height;
-        float worldWidth = m_camSize * aspect;
+        float cameraHeight = 2.0f * m_camSize; // 카메라 세로 크기
+        float cameraWidth = cameraHeight * m_camera.aspect; // 카메라 가로 크기
 
-        m_left.transform.position = new Vector3(-worldWidth, 0, 0);
-        m_right.transform.position = new Vector3(worldWidth, 0, 0);
+        m_left.transform.position = new Vector3(-cameraWidth / 2.0f + m_leftSpace, 0.5f, 0.0f);
+        m_right.transform.position = new Vector3(cameraWidth / 2.0f + m_rightSpace, 0.5f, 0.0f);
+
+        m_top.transform.position = new Vector3(0.0f, 0.5f, cameraHeight / 2.0f + m_topSpace);
+        m_bot.transform.position = new Vector3(0.0f, 0.5f, -cameraHeight / 2.0f + m_botSpace);
     }
 }

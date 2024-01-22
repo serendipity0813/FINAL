@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class ThiefCaveGame : MiniGameSetting
@@ -16,11 +17,19 @@ public class ThiefCaveGame : MiniGameSetting
     public GameObject Thief;
     public GameObject Cave;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
 
     // Start is called before the first frame update
     private void Start()
     {
-        StartSetting();
+        m_missionText.text = "Find Thief";
+        m_timeText[0].text = "TimeLimit";
+        m_countText[0].text = "Count";
+
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;
@@ -51,6 +60,8 @@ public class ThiefCaveGame : MiniGameSetting
 
     private void Update()
     {
+        m_timeText[1].text = (15 - m_timer).ToString("0.00");
+
         //시간 흐름에 따라 게임 진행 
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
