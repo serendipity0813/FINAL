@@ -4,7 +4,7 @@ public class FoodEat : MiniGameSetting
 {
     [SerializeField] private int m_level; // 현재 미니게임 난이도
     public int m_repetition; // 과일을 몇번 뿌릴지
-    private int m_stage = 1;    //현재는 임시로 숫자 1 사용
+    //private int m_stage = 1;    //현재는 임시로 숫자 1 사용
     public int m_clearCount; // 승리 카운트 선언
     private float m_timer;
     private bool m_end = false;
