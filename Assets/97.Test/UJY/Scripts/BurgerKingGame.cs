@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class BurgerKingGame : MiniGameSetting
 {
-    private int m_stage = 1;    //현재는 임시로 숫자 1 사용
+    private int m_stage = 10;    //현재는 임시로 숫자 1 사용
     private float m_timer;
     private int m_count;
     private bool m_clear;
     private int m_burgerLength;
     private int[] m_missionBurger;
     private int[] m_playerBurger;
-    private Vector3 m_spawnPosition;
+    private Vector3 m_burgerspawnPosition;
+    private Vector3 m_missionSpawnPosition;
     public GameObject Bread;
     public GameObject Patty;
     public GameObject Vegetable;
     public GameObject Cheeze;
-    
+    public GameObject MissionTable;
+    public GameObject MenuTable;
 
 
     protected override void Awake()
@@ -41,8 +43,8 @@ public class BurgerKingGame : MiniGameSetting
         m_timeText[0].text = "TimeLimit";
 
         //햄버거 재료 스폰위치 설정
-        m_spawnPosition = transform.position;
-        m_spawnPosition.y += 10;
+        m_missionSpawnPosition = MissionTable.transform.position;
+        m_burgerspawnPosition = MenuTable.transform.position;
 
         //만들어야 하는 햄버거 랜덤으로 설정
         m_missionBurger = new int[m_burgerLength];
@@ -58,6 +60,31 @@ public class BurgerKingGame : MiniGameSetting
                 m_missionBurger[i] = Random.Range(0, 4);
         }
 
+        //미션버거 생성
+        for(int i=0; i<m_burgerLength;i++)
+        {
+            if (m_missionBurger[i] == 0)
+            {
+                Instantiate(Bread, m_missionSpawnPosition, Quaternion.identity, transform);
+                m_missionSpawnPosition.y += (float)0.5;
+            }   
+            else if(m_missionBurger[i] == 1)
+            {
+                Instantiate(Patty, m_missionSpawnPosition, Quaternion.identity, transform);
+                m_missionSpawnPosition.y += (float)0.5;
+            }
+            else if (m_missionBurger[i] == 2)
+            {
+                Instantiate(Vegetable, m_missionSpawnPosition, Quaternion.identity, transform);
+                m_missionSpawnPosition.y += (float)0.5;
+            }
+            else if (m_missionBurger[i] == 3)
+            {
+                Instantiate(Cheeze, m_missionSpawnPosition, Quaternion.identity, transform);
+                m_missionSpawnPosition.y += (float)0.5;
+            }
+              
+        }
 
     }
 
@@ -77,7 +104,6 @@ public class BurgerKingGame : MiniGameSetting
         if (m_timer > 2)
         {
             m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
         }
 
         //게임 승리조건
@@ -108,6 +134,7 @@ public class BurgerKingGame : MiniGameSetting
 
     private void ClearCheck()
     {
+        //미션 버거와 만든 버거가 같은지 체크
         m_clear = true;
         for (int i=0; i<m_burgerLength; i++)
         {
@@ -116,32 +143,37 @@ public class BurgerKingGame : MiniGameSetting
         }
     }
 
+    //버튼 입력에 따라 버거 재료를 만들어주는 함수들
     public void BreadBtn()
     {
         m_playerBurger[m_count] = 0;
         m_count++;
-        Instantiate(Bread, m_spawnPosition, Quaternion.identity, transform);
+        m_burgerspawnPosition.y += (float)0.5;
+        Instantiate(Bread, m_burgerspawnPosition, Quaternion.identity, transform);
     }
 
     public void PattyBtn()
     {
         m_playerBurger[m_count] = 1;
         m_count++;
-        Instantiate(Patty, m_spawnPosition, Quaternion.identity, transform);
+        m_burgerspawnPosition.y += (float)0.5;
+        Instantiate(Patty, m_burgerspawnPosition, Quaternion.identity, transform);
     }
 
     public void VegetableBtn()
     {
         m_playerBurger[m_count] = 2;
         m_count++;
-        Instantiate(Vegetable, m_spawnPosition, Quaternion.identity, transform);
+        m_burgerspawnPosition.y += (float)0.5;
+        Instantiate(Vegetable, m_burgerspawnPosition, Quaternion.identity, transform);
     }
 
     public void CheezeBtn()
     {
         m_playerBurger[m_count] = 3;
         m_count++;
-        Instantiate(Cheeze, m_spawnPosition, Quaternion.identity, transform);
+        m_burgerspawnPosition.y += (float)0.5;
+        Instantiate(Cheeze, m_burgerspawnPosition, Quaternion.identity, transform);
     }
 
 }
