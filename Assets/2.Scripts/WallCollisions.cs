@@ -3,25 +3,22 @@ using UnityEngine;
 class WallCollisions : MonoBehaviour
 {
     [Header("Wall Collisions")]
-    public GameObject m_left;
-    public GameObject m_right;
     public GameObject m_top;
     public GameObject m_bot;
-    [SerializeField] private float m_leftSpace;
-    [SerializeField] private float m_rightSpace;
+    public GameObject m_left;
+    public GameObject m_right;
+
     [SerializeField] private float m_topSpace;
     [SerializeField] private float m_botSpace;
+    [SerializeField] private float m_leftSpace;
+    [SerializeField] private float m_rightSpace;
 
     private Camera m_camera;
     private float m_camSize = 10.0f;
 
-    private void Awake()
-    {
-        m_camera = Camera.main;
-    }
-    //테스트용
     private void Start()
     {
+        m_camera = CameraManager.Instance.GetCamera();
         SetWalls();
     }
 

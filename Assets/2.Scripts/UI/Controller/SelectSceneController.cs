@@ -10,7 +10,8 @@ public class SelectSceneController : ButtonHandler
         if (Input.GetMouseButtonDown(0))
         {
             // 마우스 클릭시 RAY를 활용하여 타겟 찾기
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Camera camera = CameraManager.Instance.GetCamera();//카메라 매니저에서 현재 카메라를 받아옴
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);//카메라 기준 레이 생성
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
