@@ -16,6 +16,7 @@ public class ThiefCaveGame : MiniGameSetting
     public GameObject Target;
     public GameObject Thief;
     public GameObject Cave;
+    private Camera m_camera;
 
     protected override void Awake()
     {
@@ -29,6 +30,8 @@ public class ThiefCaveGame : MiniGameSetting
         m_missionText.text = "Find Thief";
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Count";
+
+        m_camera = CameraManager.Instance.GetCamera();
 
         m_clear = false;
         IsGaiming = false;
@@ -92,7 +95,7 @@ public class ThiefCaveGame : MiniGameSetting
             if (Input.GetMouseButtonDown(0))
             {
                 // 마우스 클릭시 RAY를 활용하여 타겟 찾기
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if(Physics.Raycast(ray, out hit))
                 {

@@ -6,6 +6,7 @@ public class FoodShoot : MiniGameSetting
     [SerializeField] private int m_winCount = 0; // 승리 카운트 선언
     [SerializeField] private int m_win; // 미니 게임에 승리하기 위한 변수
     [SerializeField] private int m_level; // 현재 미니게임 난이도
+    private Camera m_camera;
     public int m_repetition; // 과일을 몇번 뿌릴지
     private float m_timer;
 
@@ -40,6 +41,8 @@ public class FoodShoot : MiniGameSetting
         m_missionText.text = "Shoot " + (m_win) + " Food";
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Count";
+
+        m_camera = CameraManager.Instance.GetCamera();
     }
     void Update()
     {
@@ -84,7 +87,7 @@ public class FoodShoot : MiniGameSetting
     void HitFood() // 레이를 쏴서 푸드를 맞췄을 시
     {
         // 마우스 위치에서 레이 생성
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
         
         RaycastHit hit; // 레이캐스트 히트 정보 받아오기
 
