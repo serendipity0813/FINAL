@@ -9,12 +9,12 @@ public class MazeRunner : MiniGameSetting
     [SerializeField] private GameObject m_wall;//미로 안쪽 벽의 프리펩
 
     private bool[,] m_map;
-    private int m_mazeWidth = 11;//벽까지 포함한 크기
-    private int m_mazeHeight = 17;//벽까지 포함한 크기
+    private int m_mazeWidth = 11;//벽까지 포함한 너비
+    private int m_mazeHeight = 17;//벽까지 포함한 높이
     private Vector2Int m_pos = Vector2Int.zero;
     private Vector2Int[] m_direction = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
     private Stack<Vector2Int> m_stackDir = new Stack<Vector2Int>(); //지나온 길의 방향 저장
-    private float m_timer = 0.0f;//타이머
+    private float m_timer = 10.0f;//타이머
 
     protected override void Awake()
     {
@@ -23,8 +23,8 @@ public class MazeRunner : MiniGameSetting
 
     private void Start()
     {
-        m_timer = 10.0f;
-        m_controller.SetMoveSpeed(6.0f);
+        CameraManager.Instance.ChangeCamera(CameraView.Angle90View);//90도 각도로 내려다 보는 카메라로 변경
+        m_controller.SetMoveSpeed(6.0f);//캐릭터 이동속도 6 설정
 
         m_map = new bool[m_mazeWidth, m_mazeHeight];//미로 크기 9x9
         m_pos = new Vector2Int(1, 1);
@@ -129,7 +129,7 @@ public class MazeRunner : MiniGameSetting
     {
         if (other.tag == "Player")
         {
-            Debug.LogFormat("GameClear in {0}sec", m_timer);
+            //Debug.LogFormat("GameClear in {0}sec", m_timer);//테스트용
             Invoke("GameClear", 1);
         }
            

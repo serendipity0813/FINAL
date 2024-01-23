@@ -6,8 +6,9 @@ public class JumpRopeGame : MiniGameSetting
     [SerializeField]
     private DragToMoveController m_dragToMoveController;
 
-    private int m_count;
-    private int m_difficulty;
+    private int m_count = 0;
+    private int m_difficulty = 1;
+    private bool m_collision = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
 
     protected override void Awake()
     {
@@ -20,7 +21,12 @@ public class JumpRopeGame : MiniGameSetting
         m_dragToMoveController.UpdateMoveWithJump();
     }
 
-    private void CheckWin()
+    private void Start()
+    {
+        CameraManager.Instance.ChangeCamera(CameraView.Angle60View);//90도 각도로 내려다 보는 카메라로 변경
+    }
+
+    public void CheckWin()
     {
         bool result;
 
@@ -41,15 +47,22 @@ public class JumpRopeGame : MiniGameSetting
                 break;
         }
 
-
-        if(result)
+        if (result)//개수 제한을 넘겼을 때 승리
         {
             GameClear();
         }
         else
         {
-            GameFail();
+            if (m_collision)//개수 제한을 못넘기고 줄에 걸렸을 때 패배
+            {
+                GameFail();
+            }
         }
+    }
+
+    public void SetCollision()
+    {
+        m_collision = true;
     }
 
     public void AddCount()
