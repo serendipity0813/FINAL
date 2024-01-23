@@ -53,6 +53,7 @@ public class BurgerKingGame : MiniGameSetting
 
         for (int i=0; i<m_burgerLength; i++)
         {
+            //첫 번재 재료와 마지막 재료는 빵이 나오도록 하기
             if (i == 0)
                 m_missionBurger[i] = 0;
             else if (i == m_burgerLength - 1)
@@ -64,6 +65,7 @@ public class BurgerKingGame : MiniGameSetting
         //미션버거 생성
         for(int i=0; i<m_burgerLength;i++)
         {
+            //0~3 숫자에 따라서 재료를 생성하고 생성포인트의 y값을 조금씩 올리기
             if (m_missionBurger[i] == 0)
             {
                 Instantiate(Bread, m_missionSpawnPosition, Quaternion.identity, transform);
