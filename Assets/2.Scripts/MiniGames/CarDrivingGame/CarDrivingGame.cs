@@ -8,6 +8,7 @@ public class CarDrivingGame : MiniGameSetting
     private Vector3 m_mapPosition;
     private float m_positionx;
     private float m_positionz;
+    public int clearCount;
     private float m_timer;
     private bool m_left;
     private bool m_right;
@@ -22,7 +23,7 @@ public class CarDrivingGame : MiniGameSetting
     {
         m_missionText.text = "Drive Car with left, right Button";
         m_timeText[0].text = "Remain";
-        m_countText[0].text = "Count";
+        m_countText[0].text = "Life";
 
         //맵의 초기 위치값 세팅
         m_mapPosition = m_map.transform.position;
@@ -35,6 +36,7 @@ public class CarDrivingGame : MiniGameSetting
     private void Update()
     {
         m_timeText[1].text = (m_positionz + 500).ToString("0.00");
+        m_countText[1].text = clearCount.ToString();
 
         //시간이 흐르면서 맵이 자동적으로 뒤로 가도록 함 
 
@@ -65,7 +67,8 @@ public class CarDrivingGame : MiniGameSetting
         if (m_timer > 2)
             m_timePrefab.SetActive(true);
 
-
+        if (clearCount >= 3)
+            HitOver();
 
 
         if (m_positionz < -500)
@@ -81,6 +84,7 @@ public class CarDrivingGame : MiniGameSetting
 
     public void HitOver()
     {
+        clearCount = 0;
         m_positionz = 0;
         m_failPrefab.SetActive(true);
         Invoke("GameFail", 1);
