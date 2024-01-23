@@ -282,12 +282,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9301203599da89418b920f875a15fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniGameDataSO: {fileID: 11400000, guid: 35269d14b28df34469c550d1737f9001, type: 2}
   m_playerData:
     name: 
     level: 0
     exe: 0
     coin: 0
-    haveGamesIndex: 
+    gameIndex: 
+    haveGames: 
     rankingPoint: 
 --- !u!1 &8603014183344929766
 GameObject:
@@ -320,5 +322,5 @@ Transform:
   - {fileID: 8839210220935931517}
   - {fileID: 7307081617020035831}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -11,16 +11,13 @@ public class PlayerDataManager : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            if (instance != this)
-                Destroy(gameObject);
+            Destroy(instance);
         }
         // Json 데이터 위치 불러오기
         path = Path.Combine(Application.dataPath, "Data", "playerData.json");
@@ -127,6 +124,4 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
 
     // haveGamesIndex와 인덱스가 동일하게, 점수를 기록
     public List<int> rankingPoint;
-
-
 }
