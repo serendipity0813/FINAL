@@ -6,12 +6,12 @@ using static UnityEngine.GraphicsBuffer;
 
 public class UpDownRopeGame : MiniGameSetting
 {
-    private int m_stage = 10;    //현재는 임시로 숫자 1 사용
+    private int m_stage = 11;    //현재는 임시로 숫자 11 사용
     [HideInInspector]public int clearCount;
     [HideInInspector]public float timer;
-    [SerializeField]private GameObject m_map;
+    [SerializeField]private GameObject m_player;
     [SerializeField]private GameObject m_obstacle;
-    private Vector3 m_mapPosition;
+    private Vector3 m_playerPosition;
     private float m_positiony;
 
     protected override void Awake()
@@ -28,16 +28,16 @@ public class UpDownRopeGame : MiniGameSetting
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        clearCount = 3;
+        clearCount = m_stage / 5;
         m_missionText.text = "To The Ground With Click!";
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Life";
 
         //맵의 위치값과 변동을 줄 y값 받아오기
-        m_mapPosition = m_map.transform.position;
-        m_positiony = m_mapPosition.y;
+        m_playerPosition = m_player.transform.position;
+        m_positiony = m_playerPosition.y;
 
-        for(int i=0; i < m_stage; i++)
+        for(int i=1; i <= m_stage; i++)
         {
             if(i % 3 == 1)
                 Instantiate(m_obstacle, m_obstacle.transform.position, Quaternion.identity, transform);
@@ -53,15 +53,15 @@ public class UpDownRopeGame : MiniGameSetting
             Vector3 mousePoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                 Input.mousePosition.y, -Camera.main.transform.position.z));
 
-            if (m_positiony > -36 && mousePoint.y > 0)
+            if (m_positiony > -33 && mousePoint.y < 0)
                 m_positiony -= Time.deltaTime * 7;
 
-            if (m_positiony < -1 && mousePoint.y < 0)
+            if (m_positiony < -1 && mousePoint.y > 0)
                 m_positiony += Time.deltaTime * 7;
         }
 
 
-        m_map.transform.position = new Vector3(m_mapPosition.x, m_positiony, m_mapPosition.z);
+        m_player.transform.position = new Vector3(m_playerPosition.x, m_positiony, m_playerPosition.z);
 
         //시간과 카운트 반영되는 코드
         m_timeText[1].text = (17- timer).ToString("0.00");
@@ -82,7 +82,7 @@ public class UpDownRopeGame : MiniGameSetting
         }
 
         //게임 승리조건
-        if (m_positiony > -3 && clearCount > 0)
+        if (m_positiony < -32 && clearCount > 0)
         {
             m_clearPrefab.SetActive(true);
             timer = 10;

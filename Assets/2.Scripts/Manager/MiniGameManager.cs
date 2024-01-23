@@ -11,8 +11,7 @@ public class MiniGameManager : MonoBehaviour
     public static MiniGameManager Instance;
     public MiniGameDataSO MiniGames;
     public GameObject[] InGameUIs;
-    public TextMeshProUGUI[] InGameTexts;
-    public GameObject m_currentGame;
+    private GameObject m_currentGame;
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     public int Stage {get; private set;}
     private int m_beforeGame;
