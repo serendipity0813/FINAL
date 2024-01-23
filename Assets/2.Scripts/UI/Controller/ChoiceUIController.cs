@@ -13,7 +13,7 @@ public class ChoiceUIController : ButtonHandler
     //클릭한 게임에 대한 실시간 정보를 출력하도록 코드 필요
     private void Start()
     {
-        m_gameNameText.text = MiniGameManager.Instance.GameName;
+        m_gameNameText.text = "선택된 게임 이름";
         m_gameDescriptionText.text = "Please Give me Description";
         m_HighScoreText.text = "HighScore";
         m_MyScoreText.text = "MyScore";
