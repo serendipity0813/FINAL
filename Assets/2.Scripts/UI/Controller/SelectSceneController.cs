@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SelectSceneController : ButtonHandler
@@ -20,7 +21,6 @@ public class SelectSceneController : ButtonHandler
                     MiniGameManager.Instance.GameName = hit.collider.gameObject.name;
                     GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
                 }
-
             }
         }
     }

@@ -155,6 +155,7 @@ Transform:
   - {fileID: 843192124}
   - {fileID: 1734638187}
   - {fileID: 1168904795}
+  - {fileID: 833815355}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -438,6 +439,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &833815354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833815355}
+  - component: {fileID: 833815356}
+  m_Layer: 0
+  m_Name: PlayerDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &833815355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833815354}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1126.937, y: 881.7841, z: 69.6476}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 379072969}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833815356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833815354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9301203599da89418b920f875a15fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniGameDataSO: {fileID: 11400000, guid: 35269d14b28df34469c550d1737f9001, type: 2}
+  m_playerData:
+    name: 
+    level: 0
+    exe: 0
+    coin: 0
+    gameIndex: 
+    haveGames: 
+    rankingPoint: 
 --- !u!1 &837833056
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,14 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cde31a5cf4396b40966edf2d089cd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MiniGames:
-  - {fileID: 5234212599103042680, guid: ba28fb8a250b1664986fd74191001e04, type: 3}
-  - {fileID: 7119253979682219890, guid: f43f9e063fe07d846a56e272d98e8b94, type: 3}
-  - {fileID: 4642967370994252163, guid: ee893930f2bb6d44ab3f9877e1c8ff30, type: 3}
-  - {fileID: 7295525553317641642, guid: 4ae27f4fe1f4e2f4ba6ff4c957283955, type: 3}
-  - {fileID: 5044721599280428100, guid: b5d0426f2d38cf844883e583363cdbb3, type: 3}
-  - {fileID: 5312180280199975616, guid: 5ea8e68030cac8f44ba45f3b0e194432, type: 3}
-  - {fileID: 6561224674077451620, guid: df1cb5d75e4ae2d44b67b4a1d24934a1, type: 3}
+  MiniGames: {fileID: 11400000, guid: 35269d14b28df34469c550d1737f9001, type: 2}
   InGameUIs:
   - {fileID: 4294028303045037594, guid: 36c0d43dab4380544ab257331083d410, type: 3}
   - {fileID: 5906936143371695536, guid: 79861da38857d4f49beb971b1b430fb4, type: 3}
@@ -697,6 +744,7 @@ MonoBehaviour:
   - {fileID: 6049568981001140377, guid: 4323474a9e2f9524db5316c560e6692f, type: 3}
   - {fileID: 6486424152945817699, guid: 5a20af4cb97f5f54190f366f2e0144f9, type: 3}
   InGameTexts: []
+  m_currentGame: {fileID: 0}
 --- !u!1 &1210944122
 GameObject:
   m_ObjectHideFlags: 0
