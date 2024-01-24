@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KanuGame : MiniGameSetting
 {
     [SerializeField] private GameObject m_map;
+    [SerializeField] private Slider m_slider;
     private Vector3 m_mapPosition;
     private float m_positionz;
     private float m_power;
 
     private int m_stage = 1;    //현재는 임시로 숫자 1 사용
-    private int m_clearCount;
     private float m_timer;
 
 
@@ -32,34 +33,48 @@ public class KanuGame : MiniGameSetting
         m_positionz = m_mapPosition.y;
 
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "kill " + (m_stage * 2) + " Mosquito";
+        m_missionText.text = "Click or UnClick at Green";
         m_timeText[0].text = "TimeLimit";
-        m_countText[0].text = "Count";
 
     }
 
     private void FixedUpdate()
     {
+        ///마우스를 누를 땐 시간당 힘 증가, 마우스를 때면 시간당 힘 감소
+        ///누르고 있는 경우 힘에 비례하여 앞으로 가지만 힘 수치가 일정량 초과시 오히려 뒤로감
+        ///때고 있는 경우 힘에 반비례하여 앞으로 가지만 힘 수치가 일정량 미달시 오히려 뒤로감
+        ///
 
         if (m_timer > 2)
         {
-
             if (Input.GetMouseButton(0))
-                m_positionz -= Time.deltaTime * m_power;
-            else
-                m_positionz += Time.deltaTime * 10;
+            {
+                m_power += Time.deltaTime*5;
+                if (m_power <= 10)
+                    m_positionz -= m_power;
+                else
+                    m_positionz += m_power-10;
 
+            }
+            else
+            {
+                m_power -= Time.deltaTime*5;
+                if (m_power >= 5)
+                    m_positionz -= (10-m_power);
+                else
+                    m_positionz -= m_power - 5;
+            }
         }
-        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz);
+
+        m_slider.value = m_power;
+        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz / 5);
     }
 
     private void Update()
     {
 
-
         //시간과 카운트 반영되는 코드
         m_timeText[1].text = m_timer.ToString("0.00");
-        m_countText[1].text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer += Time.deltaTime;
@@ -72,19 +87,20 @@ public class KanuGame : MiniGameSetting
         if (m_timer > 2)
         {
             m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
         }
 
         //게임 승리조건
-        if (m_positionz < -100)
+        if (m_positionz < -1000)
         {
             m_clearPrefab.SetActive(true);
             Invoke("GameClear", 1);
         }
 
         //게임 패배조건
-        if (m_timer > 12)
+        if (m_timer > 12 || m_positionz > 300)
         {
+            m_power = 0;
+            m_positionz = -500;
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
         }
