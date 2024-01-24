@@ -7,6 +7,7 @@ public class KanuGame : MiniGameSetting
     [SerializeField] private GameObject m_map;
     private Vector3 m_mapPosition;
     private float m_positionz;
+    private float m_power;
 
     private int m_stage = 1;    //현재는 임시로 숫자 1 사용
     private int m_clearCount;
@@ -39,14 +40,17 @@ public class KanuGame : MiniGameSetting
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0) && m_timer > 2)
-            m_positionz -= Time.deltaTime * 10;
-        else
-            m_positionz += Time.deltaTime * 10;
 
+        if (m_timer > 2)
+        {
 
+            if (Input.GetMouseButton(0))
+                m_positionz -= Time.deltaTime * m_power;
+            else
+                m_positionz += Time.deltaTime * 10;
+
+        }
         m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz);
-
     }
 
     private void Update()
