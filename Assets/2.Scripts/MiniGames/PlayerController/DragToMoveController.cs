@@ -1,8 +1,11 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
+
 class DragToMoveController : MonoBehaviour
 {
     private Rigidbody m_rigidbody;//플레이어의 Rigidbody
+    private Camera m_camera;//현재 포커싱 카메라
     private float m_speed = 3.0f;//이동 속도
     private float m_jumpPower = 300.0f;//점프 거리 
     private bool m_readyJump;//점프가능한 상태인지 확인하는 변수
@@ -11,6 +14,7 @@ class DragToMoveController : MonoBehaviour
     private void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
+        m_camera = CameraManager.Instance.GetCamera();//현재 작동중인 카메라를 받아옴
     }
 
     //점프도 가능한 캐릭터 이동 함수
@@ -29,7 +33,7 @@ class DragToMoveController : MonoBehaviour
 
         if (dis < 0.51f)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//카메라로 부터 클릭한 위치까지의 레이 생성
+            Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);//카메라로 부터 클릭한 위치까지의 레이 생성
             Vector3 hitpos;
 
             RaycastHit hit;
@@ -72,7 +76,7 @@ class DragToMoveController : MonoBehaviour
     public void UpdateMove()
     {
      
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             Vector3 hitpos;
 
             RaycastHit hit;

@@ -24,7 +24,7 @@ public class RotateRope : MonoBehaviour
             if (!m_once)
             {
                 m_game.AddCount();
-                //Debug.Log("Correct!");
+                m_game.CheckWin();
             }
 
             m_once = true;

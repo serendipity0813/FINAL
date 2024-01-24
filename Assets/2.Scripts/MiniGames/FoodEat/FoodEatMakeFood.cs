@@ -17,11 +17,11 @@ public class FoodEatMakeFood : MonoBehaviour
     private void Awake()
     {
         m_parentTrn = transform.parent;
-        m_camera = Camera.main;
     }
     void Start()
     {
         FoodEat foodEat = GetComponentInParent<FoodEat>();
+        m_camera = CameraManager.Instance.GetCamera();
         m_repetition = foodEat.m_repetition;
         StartCoroutine(FoodMakeCoroutine()); // 코루틴 실행
     }

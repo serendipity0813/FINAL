@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class MosquitoGame : MiniGameSetting
 {
     [SerializeField] private GameObject Mosquito;
+    private Camera m_camera;
 
     private int m_stage = 5;
     private float m_timer;
@@ -15,11 +16,12 @@ public class MosquitoGame : MiniGameSetting
     protected override void Awake()
     {
         base.Awake();
-
     }
 
     private void Start()
     {
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        m_camera = CameraManager.Instance.GetCamera();
         //현재 스테이지에 2배수로 모기 생성
         m_clearCount = m_stage * 2;
 
@@ -61,7 +63,7 @@ public class MosquitoGame : MiniGameSetting
         // 마우스 클릭시 RAY를 활용하여 타겟 찾기
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
