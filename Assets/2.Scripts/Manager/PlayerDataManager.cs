@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager instance { get; private set; }
-    public MiniGameDataSO miniGameDataSO;
     public PlayerData m_playerData;
     private string path;
 
@@ -73,7 +72,7 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
 
-        for (int i = 0; i < miniGameDataSO.games.Count; i++)
+        for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
             // miniGameDataSO의 List 수만큼 추가
             m_playerData.gameIndex.Add(i);
@@ -88,7 +87,7 @@ public class PlayerDataManager : MonoBehaviour
     }
     void MiniGameDataCheck()
     {
-        for (int i = 0; i < miniGameDataSO.games.Count; i++)
+        for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
             // 만약 m_playerData.gameIndex 에 i가 포함되어있지 않다면
             if (!m_playerData.gameIndex.Contains(i))

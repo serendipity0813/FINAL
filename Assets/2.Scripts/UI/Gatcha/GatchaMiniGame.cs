@@ -59,7 +59,7 @@ public class GatchaMiniGame : MonoBehaviour
             {
                 PlayerDataManager.instance.m_playerData.haveGames[rnd] = true;
                 PlayerDataManager.instance.SaveJson();
-                Debug.Log(PlayerDataManager.instance.miniGameDataSO.games[rnd].gameName + "게임을 얻었습니다.");
+                Debug.Log(MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.");
                 break;
             }
         }
