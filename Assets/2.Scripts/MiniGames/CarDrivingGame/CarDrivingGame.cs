@@ -33,11 +33,8 @@ public class CarDrivingGame : MiniGameSetting
         m_right = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        m_timeText[1].text = (m_positionz + 500).ToString("0.00");
-        m_countText[1].text = clearCount.ToString();
-
         //시간이 흐르면서 맵이 자동적으로 뒤로 가도록 함 
 
         if (m_positionz > -550 && m_timer > 2)      //수치제한
@@ -53,6 +50,14 @@ public class CarDrivingGame : MiniGameSetting
 
         //맵을 좌, 우로 옮기는 효과 - 플레이어는 캐릭터가 좌, 우로 움직이는 느낌
         m_map.transform.position = new Vector3(m_positionx, m_mapPosition.y, m_positionz);
+    }
+
+    private void Update()
+    {
+        m_timeText[1].text = (m_positionz + 500).ToString("0.00");
+        m_countText[1].text = clearCount.ToString();
+
+      
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {

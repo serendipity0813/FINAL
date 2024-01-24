@@ -45,7 +45,7 @@ public class UpDownRopeGame : MiniGameSetting
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
         if (Input.GetMouseButton(0) && timer > 2)
@@ -63,6 +63,11 @@ public class UpDownRopeGame : MiniGameSetting
 
         m_player.transform.position = new Vector3(m_playerPosition.x, m_positiony, m_playerPosition.z);
 
+    }
+
+    private void Update()
+    {
+      
         //시간과 카운트 반영되는 코드
         m_timeText[1].text = (17- timer).ToString("0.00");
         m_countText[1].text = clearCount.ToString();
