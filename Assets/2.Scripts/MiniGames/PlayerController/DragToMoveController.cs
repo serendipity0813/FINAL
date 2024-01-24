@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
+
 class DragToMoveController : MonoBehaviour
 {
     private Rigidbody m_rigidbody;//플레이어의 Rigidbody

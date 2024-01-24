@@ -4,6 +4,7 @@ using UnityEngine;
 public class JumpRopeGame : MiniGameSetting
 {
     [SerializeField]
+    private GameObject m_player;
     private DragToMoveController m_dragToMoveController;
 
     private int m_count = 0;
@@ -24,6 +25,10 @@ public class JumpRopeGame : MiniGameSetting
     private void Start()
     {
         CameraManager.Instance.ChangeCamera(CameraView.Angle60View);//90도 각도로 내려다 보는 카메라로 변경
+        CameraManager.Instance.SetFollowTarget(m_player);
+        CameraManager.Instance.ToggleCameraFollow();
+
+        m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
     }
 
     public void CheckWin()
@@ -50,12 +55,14 @@ public class JumpRopeGame : MiniGameSetting
         if (result)//개수 제한을 넘겼을 때 승리
         {
             GameClear();
+            CameraManager.Instance.ToggleCameraFollow();
         }
         else
         {
             if (m_collision)//개수 제한을 못넘기고 줄에 걸렸을 때 패배
             {
                 GameFail();
+                CameraManager.Instance.ToggleCameraFollow();
             }
         }
     }

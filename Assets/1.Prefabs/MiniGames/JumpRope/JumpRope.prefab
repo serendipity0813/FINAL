@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a7dffe64e0d4b44a795395e8dbb01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_dragToMoveController: {fileID: 6231610268142624200}
+  m_player: {fileID: 920027943929445267}
 --- !u!1 &5372076571965048478
 GameObject:
   m_ObjectHideFlags: 0
