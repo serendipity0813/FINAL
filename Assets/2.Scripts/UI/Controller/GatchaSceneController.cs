@@ -9,7 +9,7 @@ public class GatchaSceneController : ButtonHandler
 
     private void Start()
     {
-        m_playerCoinText.text = "9999";
+        m_playerCoinText.text = "99";
     }
 
     public void AdClick()
