@@ -2284,6 +2284,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BG
       objectReference: {fileID: 0}
+    - target: {fileID: 8646607508184489223, guid: bab0ffac7f536124d81d6d68bbb8bad8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3172,7 +3177,7 @@ PrefabInstance:
     - target: {fileID: 1178254485423841950, guid: 20afb42b8869b4b49a64dd109ce9c5b1,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523509957122585765, guid: 20afb42b8869b4b49a64dd109ce9c5b1,
         type: 3}
