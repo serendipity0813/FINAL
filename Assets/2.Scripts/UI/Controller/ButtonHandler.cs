@@ -8,12 +8,14 @@ public class ButtonHandler : MonoBehaviour
 
     public void LobbyClick()
     {
+        GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void SelectModeClick()
     {
+        GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.SelectScene);
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
     }
@@ -27,6 +29,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void GatchaClick()
     {
+        GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.GatchaScene);
         //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }

@@ -114,6 +114,12 @@ public class GameSceneManager : MonoBehaviour
 
     }
 
+    public void PopupClear()
+    {
+        Destroy(m_PopupUI);
+        m_popupNumber = 0;
+    }
+
 
 
 }
