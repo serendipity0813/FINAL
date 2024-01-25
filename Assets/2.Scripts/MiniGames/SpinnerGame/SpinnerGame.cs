@@ -11,18 +11,18 @@ public class SpinnerGame : MiniGameSetting
     {
         base.Awake();
         // m_level을 매니저에서 가져오기 임시로 레벨 1로 부여
-        m_level = 1;
+        m_level = 3;
         switch (m_level)
         {
             case 0:
             case 1:
-                m_winCount = 5;
+                m_winCount = 30;
                 break;
             case 2:
-                m_winCount = 8;
+                m_winCount = 45;
                 break;
             case 3:
-                m_winCount = 10;
+                m_winCount = 60;
                 break;
         }
     }

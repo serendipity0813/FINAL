@@ -6,7 +6,6 @@ public class SpinnerController : MonoBehaviour
     private SpinnerGame spinnerGame;
     private bool m_down = false; // 점수가 올라가는 기준치
     private bool m_up = false; 
-    private float m_speed = 100f; // 돌아가는 스피드
     private Vector3 m_halfScreen; // 스크린 위아래 나누기
     private Vector3 m_mousePosition; // 현재 마우스 포지션
     private bool m_isUpDown; // 화면 기준 터치가 위인지 아래인지
@@ -17,7 +16,7 @@ public class SpinnerController : MonoBehaviour
         spinnerGame = GetComponentInParent<SpinnerGame>();
         // 화면 중간값 구하기
         m_halfScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0f);
-        m_rigidbody.angularDrag = 1f;
+        m_rigidbody.maxAngularVelocity = 50; // 돌아가는 스피드 max 값
     }
 
     void Update()
@@ -37,15 +36,18 @@ public class SpinnerController : MonoBehaviour
         {
             m_up = false;
             m_down = false;
-            spinnerGame.m_winCount--; // 회전 카운트 감소
+            if (spinnerGame.m_winCount > 0)
+            {
+                spinnerGame.m_winCount--; // 회전 카운트 감소
+            }
         }
 
         // 위, 아래를 넘었을시
-        if (!m_up && currentRotation.y > 0.9f || currentRotation.y < -0.9f)
+        if (!m_up && currentRotation.y > 0.6f || currentRotation.y < -0.6f)
         {
             m_up = true;
         }
-        if (!m_down && (currentRotation.y > 0f && currentRotation.y < -0.1f) || (currentRotation.y < 0f && currentRotation.y > -0.1f))
+        if (!m_down && (currentRotation.y > 0f && currentRotation.y < -0.4f) || (currentRotation.y < 0f && currentRotation.y > -0.4f))
         {
             m_down = true;
         }
@@ -60,22 +62,23 @@ public class SpinnerController : MonoBehaviour
         {
             if (TouchManager.instance.IsDragLeft())
             {
-                m_rigidbody.angularVelocity = new Vector3(0f, -m_speed, 0f);
+                m_rigidbody.angularVelocity = Vector3.down * 100;
+
             }
             if (TouchManager.instance.IsDragRight())
             {
-                m_rigidbody.angularVelocity = new Vector3(0f, m_speed, 0f);
+                m_rigidbody.angularVelocity = Vector3.up * 100;
             }
         }
         else
         {
             if (TouchManager.instance.IsDragLeft())
             {
-                m_rigidbody.angularVelocity = new Vector3(0f, m_speed, 0f);
+                m_rigidbody.angularVelocity = Vector3.up * 100;
             }
             if (TouchManager.instance.IsDragRight())
             {
-                m_rigidbody.angularVelocity = new Vector3(0f, -m_speed, 0f);
+                m_rigidbody.angularVelocity = Vector3.down * 100;
             }
         }
     }
