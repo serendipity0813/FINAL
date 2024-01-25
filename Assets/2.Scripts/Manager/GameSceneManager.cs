@@ -114,7 +114,6 @@ public class GameSceneManager : MonoBehaviour
             m_PopupUI = Instantiate(Scenes[m_popupNumber]);
         }
 
-        Debug.Log(m_popupNumber);
     }
 
     public void PopupClear()
