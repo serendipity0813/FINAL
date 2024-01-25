@@ -93,10 +93,11 @@ public class GameSceneManager : MonoBehaviour
     }
 
     public void PopUpSelect(SCENES scene)
-    {   
+    {
         //전달받은 매개변수에 따라 팝업 ui를 생성하거나, 지우거나, 지우고 새로운 팝업창을 띄우는 매커니즘
         //번호가 0인지, 같은지, 다른지에 따라 구분
-        if(m_popupNumber == 0)
+
+        if (m_popupNumber == 0)
         {
             m_popupNumber = (int)scene;
             m_PopupUI = Instantiate(Scenes[m_popupNumber]);
@@ -109,9 +110,11 @@ public class GameSceneManager : MonoBehaviour
         else
         {
             Destroy(m_PopupUI);
+            m_popupNumber = (int)scene;
             m_PopupUI = Instantiate(Scenes[m_popupNumber]);
         }
 
+        Debug.Log(m_popupNumber);
     }
 
     public void PopupClear()
