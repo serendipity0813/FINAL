@@ -58,3 +58,8 @@ MonoBehaviour:
     gamePrefab: {fileID: 5203042310420051757, guid: c39fd77eb9e8c0a4cbd380e267f72f6b,
       type: 3}
     gameDescription: "\uC124\uBA85"
+  - gameName: TargetShoot
+    gameIndex: 9
+    gamePrefab: {fileID: 2781413037469842972, guid: f4c99d25db51053418f9d3687e218e37,
+      type: 3}
+    gameDescription: "\uC124\uBA85"
