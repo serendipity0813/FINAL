@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class GatchaSceneController : ButtonHandler
 {
-    [SerializeField] private TextMeshProUGUI m_playerCoinText;
+    [SerializeField] private TextMeshProUGUI m_playerTicketText;
 
     private void Start()
     {
-        m_playerCoinText.text = "99";
+        m_playerTicketText.text = "99";
     }
 
     public void AdClick()
