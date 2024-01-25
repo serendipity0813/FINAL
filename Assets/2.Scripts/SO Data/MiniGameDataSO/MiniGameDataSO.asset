@@ -63,3 +63,8 @@ MonoBehaviour:
     gamePrefab: {fileID: 2781413037469842972, guid: f4c99d25db51053418f9d3687e218e37,
       type: 3}
     gameDescription: "\uC124\uBA85"
+  - gameName: Spinner
+    gameIndex: 10
+    gamePrefab: {fileID: 3563286950308367704, guid: 9a683d89db323054b8e9b05fb4930bb7,
+      type: 3}
+    gameDescription: "\uC124\uBA85"
