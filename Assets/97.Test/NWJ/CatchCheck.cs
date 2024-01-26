@@ -14,7 +14,7 @@ public class CatchCheck : MonoBehaviour
         
         Destroy(other.gameObject);
 
-        if (other.tag == "target")
+        if (other.tag == "Target")
         {
             m_game.Lose();//음식이외의 오브젝트가 담기면 게임 종료
         }
