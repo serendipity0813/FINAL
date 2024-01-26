@@ -6,12 +6,13 @@ public class BasketGame : MiniGameSetting
     [SerializeField] private GameObject m_cheese;//치즈 프리펩
     [SerializeField] private GameObject m_banana;//바나나 프리펩
     [SerializeField] private GameObject m_cherry;//체리 프리펩
+    [SerializeField] private GameObject m_trash;//쓰레기 프리펩
 
     [SerializeField] private GameObject m_player;//이동가능한 캐릭터
 
     private Rigidbody m_rigidbody;
 
-    private int m_catchCounts = 0;//박스에 과일을 담은 개수
+    private int m_catchCounts = 0;//박스에 음식을 담은 개수
     private float m_speed = 4.0f;//캐릭터 이동속도
     private int m_difficulty = 1;
     private Vector3 m_velocity;//캐릭터 이동 방향
@@ -72,14 +73,12 @@ public class BasketGame : MiniGameSetting
     //랜덤으로 과일을 생성하는 함수
     private void GenerateFoods()
     {
-        int index = Random.Range(0, 3);
+        int index = Random.Range(0, 3 + m_difficulty);//난이도만큼 쓰레기가 스폰될 확률 증가
         Vector3 randomPos = new Vector3(Random.Range(-2.0f, 2.0f), 8.0f, 8.0f);//무작위 x 이동
         Quaternion randomRot = Quaternion.Euler(0.0f, Random.Range(0.0f, 180.0f), 0.0f);//무작위 y 회전
 
         GameObject food;
 
-
-        Debug.Log(Random.Range(-2.0f, 2.0f));
         //음식은 미니게임 오브젝트의 첫번째 자식인 FoodContainer에 넣음
         switch (index)
         {
@@ -93,8 +92,8 @@ public class BasketGame : MiniGameSetting
                 food = Instantiate(m_cherry, transform.GetChild(0));
                 break;
 
-            default://만약 index가 없을때
-                food = Instantiate(m_cherry, transform.GetChild(0));
+            default://이외에는 쓰레기를 생성
+                food = Instantiate(m_trash, transform.GetChild(0));
                 break;
         }
 
@@ -123,11 +122,36 @@ public class BasketGame : MiniGameSetting
             case 3:
                 result = m_catchCounts < 7 ? false : true;
                 break;
+            case 4:
+                result = m_catchCounts < 9 ? false : true;
+                break;
+            case 5:
+                result = m_catchCounts < 10 ? false : true;
+                break;
         }
 
         return result;
     }
 
+    //클리어 조건을 충족하였을 때 호출
+    public void Win()
+    {
+        GameClear();
+    }
+
+    //쓰레기를 바구니에 담게되면 호출
+    public void Lose()
+    {
+        GameFail();
+    }
+
+    //잡은 갯수 증가
+    public void AddCount()
+    {
+        m_catchCounts++;
+    }
+
+    //난이도 설정
     public void SetLevel(int difficulty)
     {
         m_difficulty = difficulty;

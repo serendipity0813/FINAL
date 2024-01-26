@@ -1237,6 +1237,7 @@ MonoBehaviour:
   m_banana: {fileID: 222508492634745078, guid: 1afa8f9431f3db846b1ff313bc2817ba, type: 3}
   m_cherry: {fileID: 8276839666598470225, guid: 5ec83a0b0a89d2d4581aea2b496bb227,
     type: 3}
+  m_trash: {fileID: 7703616705969415956, guid: b7b5474110a27244fb5d266ac69888ca, type: 3}
   m_player: {fileID: 1301605581}
 --- !u!1 &1451768594
 GameObject:
