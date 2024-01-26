@@ -17,10 +17,10 @@ public class GameOverSceneController : ButtonHandler
 
     private void Start()
     {
-        m_stageNum = MiniGameManager.Instance.Stage;
-        m_stageNum = MiniGameManager.Instance.Money;
-        m_stageNum = MiniGameManager.Instance.EXP;
-        m_stageNum = MiniGameManager.Instance.Point;
+        m_stageNum = PlayerDataManager.instance.m_playerData.stage;
+        m_moneyNum = PlayerDataManager.instance.m_playerData.rewardCoin;
+        m_ExpNum = PlayerDataManager.instance.m_playerData.rewardExp;
+        m_pointNum = PlayerDataManager.instance.m_playerData.rewardPoint;
         m_moneyText.text = m_moneyNum.ToString();
         m_EXPText.text = m_ExpNum.ToString();
         m_pointText.text = m_pointNum.ToString();

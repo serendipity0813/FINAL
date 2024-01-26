@@ -20,8 +20,7 @@ public class LobbySceneController : ButtonHandler
         m_playerEXPText.text = PlayerDataManager.instance.m_playerData.exp.ToString() + "%";
         m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
         m_playerLevelText.text = PlayerDataManager.instance.m_playerData.level.ToString();
-        m_playerDiamondText.text = "999";
-        //m_playerDiamondText.text = PlayerDataManager.instance.m_playerData.diamond.ToString();
+        m_playerDiamondText.text = PlayerDataManager.instance.m_playerData.diamond.ToString();
     }
 
 }

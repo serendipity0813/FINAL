@@ -114,6 +114,11 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int level;   // 플레이어 현재 레벨
     public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
+    public int diamond;
+    public int stage;
+    public int rewardExp;
+    public int rewardCoin;
+    public int rewardPoint;
 
     // 미니게임 인덱스값 저장
     public List<int> gameIndex;
