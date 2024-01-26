@@ -13,9 +13,12 @@ public class MiniGameManager : MonoBehaviour
     public GameObject[] InGameUIs;
     private GameObject m_currentGame;
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
-    public int Stage {get; private set;}
     private int m_beforeGame;
-    public string GameName { get; set; }
+    public int GameNumber { get; set; }
+    public int Stage { get; private set; }
+    public int EXP { get; private set; }
+    public int Money { get; private set; }
+    public int Point { get; private set; }
 
 
     private void Awake()
@@ -37,7 +40,7 @@ public class MiniGameManager : MonoBehaviour
         {
             m_gameDictionary.Add(MiniGames.games[i].gameName, i);
         }
-        m_beforeGame = -1;
+        m_beforeGame = -100;
     }
 
     //랜덤게임 진행시 불러오는 메소드
@@ -63,8 +66,7 @@ public class MiniGameManager : MonoBehaviour
     //선택게임 진행시 불러오는 메소드
     public void ChoiceGameStart()
     {
-        int gameNumber = m_gameDictionary[GameName];
-        m_currentGame = Instantiate(MiniGames.games[gameNumber].gamePrefab);
+        m_currentGame = Instantiate(MiniGames.games[GameNumber].gamePrefab);
     }
 
     // 게임 클리어시 스테이지 변수를 1 올리고 게임 선택 씬으로 이동하면서 현재 게임 파괴

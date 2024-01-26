@@ -3535,5 +3535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerNameText: {fileID: 4374291738629953614}
   m_playerLevelText: {fileID: 4330396014888294973}
+  m_playerEXPText: {fileID: 8301517707886315997}
   m_playerCoinText: {fileID: 8692735325314881575}
   m_playerDiamondText: {fileID: 7867983454796156429}
+  m_expSlider: {fileID: 8479887885480619063}

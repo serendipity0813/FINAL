@@ -10,11 +10,20 @@ public class GameOverSceneController : ButtonHandler
     [SerializeField] private TextMeshProUGUI m_pointText;
     [SerializeField] private TextMeshProUGUI m_stageText;
 
+    private int m_stageNum;
+    private int m_moneyNum;
+    private int m_ExpNum;
+    private int m_pointNum;
+
     private void Start()
     {
-        m_moneyText.text = "1234";
-        m_EXPText.text = "5678";
-        m_pointText.text = "4321";
-        m_stageText.text = "13";
+        m_stageNum = MiniGameManager.Instance.Stage;
+        m_stageNum = MiniGameManager.Instance.Money;
+        m_stageNum = MiniGameManager.Instance.EXP;
+        m_stageNum = MiniGameManager.Instance.Point;
+        m_moneyText.text = m_moneyNum.ToString();
+        m_EXPText.text = m_ExpNum.ToString();
+        m_pointText.text = m_pointNum.ToString();
+        m_stageText.text = m_stageNum.ToString();
     }
 }
