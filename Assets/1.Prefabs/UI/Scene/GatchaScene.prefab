@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7148491721794349741}
   - component: {fileID: 4658999186721609918}
   m_Layer: 0
-  m_Name: TenCoin
+  m_Name: Ad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 094b406587c8c6b42a82127d5fbf823a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa3bf53c498deb44b80ad60af801942c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3cf4d52b14bd4254d9f4fd063f8d9bfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2c576b6d07638b468b5ba303a3a07cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 7956190583007775713}
   - component: {fileID: 2297929995693109482}
   m_Layer: 0
-  m_Name: OneCoin
+  m_Name: Gatcha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 094b406587c8c6b42a82127d5fbf823a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7786f021e2e01224596039df378dc25d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 3744139192555773258}
   - component: {fileID: 5170943553253581611}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Ticket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce1f2de759372c34fa9d5a80240fd2bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b2bc8e3f7ca50048a4f7283131fdf16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1128,7 +1128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 7}
+  m_AnchoredPosition: {x: -2, y: 5}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2548371096789752654
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "10\uD68C \uBF51\uAE30"
+  m_text: "\uAD11\uACE0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dff46da0149bc34d838e21b1a84de77, type: 2}
   m_sharedMaterial: {fileID: -5086988188595471705, guid: 2dff46da0149bc34d838e21b1a84de77,
@@ -1264,7 +1264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 0}
+  m_AnchoredPosition: {x: 38, y: 5}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2633022424897533664
@@ -1295,7 +1295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1\uD68C \uBF51\uAE30"
+  m_text: "\uBF51\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dff46da0149bc34d838e21b1a84de77, type: 2}
   m_sharedMaterial: {fileID: -5086988188595471705, guid: 2dff46da0149bc34d838e21b1a84de77,
