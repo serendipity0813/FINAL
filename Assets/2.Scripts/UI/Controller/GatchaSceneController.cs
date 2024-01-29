@@ -9,7 +9,7 @@ public class GatchaSceneController : ButtonHandler
 
     private void Start()
     {
-        m_playerTicketText.text = "99";
+        m_playerTicketText.text = PlayerDataManager.instance.m_playerData.ticket.ToString();
     }
 
     public void AdClick()

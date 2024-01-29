@@ -3,6 +3,11 @@
     "level": 1,
     "exp": 0.0,
     "coin": 100,
+    "diamond": 0,
+    "stage": 0,
+    "rewardExp": 0,
+    "rewardCoin": 0,
+    "rewardPoint": 0,
     "gameIndex": [
         0,
         1,
