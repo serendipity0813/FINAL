@@ -4,6 +4,7 @@
     "exp": 0.0,
     "coin": 100,
     "diamond": 0,
+    "ticket": 0,
     "stage": 0,
     "rewardExp": 0,
     "rewardCoin": 0,
