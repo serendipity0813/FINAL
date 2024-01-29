@@ -16,7 +16,7 @@ public class ArrowShoot : MonoBehaviour
         MoveArrow();
         if (m_isfly) // 날고 있을시
         {
-            float rotation = 955f * Time.deltaTime; // 화살 회전값
+            float rotation = 1500f * Time.deltaTime; // 화살 회전값
             transform.Rotate(Vector3.forward, rotation); // 화살 회전
         }
     }
