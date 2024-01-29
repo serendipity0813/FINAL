@@ -37,6 +37,7 @@ public class FoodEat : MiniGameSetting
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Count";
 
+        CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
     }
     private void Update()
     {

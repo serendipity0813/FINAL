@@ -36,6 +36,7 @@ public class TargetShootGame : MiniGameSetting
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Count";
 
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
     private void Update()
     {
