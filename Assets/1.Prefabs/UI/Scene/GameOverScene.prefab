@@ -3567,7 +3567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moneyText: {fileID: 3936951940198916583}
   m_EXPText: {fileID: 337417312732761574}
-  m_pointText: {fileID: 0}
+  m_pointText: {fileID: 7662689581660101345}
   m_stageText: {fileID: 7662689581660101345}
 --- !u!1 &7975624622059104341
 GameObject:

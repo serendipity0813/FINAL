@@ -31,7 +31,7 @@ public class ButtonHandler : MonoBehaviour
     {
         GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.GatchaScene);
-        //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void OptionClick()

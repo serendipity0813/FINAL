@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9ca22510633fbfd4399f1704cd9d5c72, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.35211703, g: 0.7238915, b: 0.95842993, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -483,12 +483,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9301203599da89418b920f875a15fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniGameDataSO: {fileID: 11400000, guid: 35269d14b28df34469c550d1737f9001, type: 2}
   m_playerData:
     name: 
     level: 0
-    exe: 0
+    exp: 0
     coin: 0
+    diamond: 0
+    ticket: 0
+    stage: 0
+    rewardExp: 0
+    rewardCoin: 0
+    rewardPoint: 0
     gameIndex: 
     haveGames: 
     rankingPoint: 
@@ -630,10 +635,6 @@ MonoBehaviour:
   - {fileID: 8347239769962162959, guid: 2993a7e387a3a04419fd63a242d89873, type: 3}
   - {fileID: 216351856020000423, guid: 77385d2cf0afb444eb513a7ff1d29e67, type: 3}
   - {fileID: 2107765846953220489, guid: b90ab4820c1831d45b30696e8970e393, type: 3}
-  LobbyObject: {fileID: 5178724012728375204, guid: 52041036956b4014396265b4cb8fe8fb,
-    type: 3}
-  SelectObject: {fileID: 3980503246029387689, guid: f73aa7e0a315b0f4a95aff425228ff81,
-    type: 3}
 --- !u!1 &1168904794
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,8 +744,6 @@ MonoBehaviour:
   - {fileID: 5150726837436343492, guid: eeb01b6ba97fc064498ccf8872b856f8, type: 3}
   - {fileID: 6049568981001140377, guid: 4323474a9e2f9524db5316c560e6692f, type: 3}
   - {fileID: 6486424152945817699, guid: 5a20af4cb97f5f54190f366f2e0144f9, type: 3}
-  InGameTexts: []
-  m_currentGame: {fileID: 0}
 --- !u!1 &1210944122
 GameObject:
   m_ObjectHideFlags: 0
