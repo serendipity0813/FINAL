@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CarDrivingGame : MiniGameSetting
 {
-    [SerializeField] private GameObject m_map;
-    private Vector3 m_mapPosition;
-    private float m_positionx;
-    private float m_positionz;
-    public int clearCount;
-    private float m_timer;
-    private bool m_left;
-    private bool m_right;
+    [SerializeField] private GameObject m_player;
+
+    private CharacterController m_playerController;
+    private CarGenerator m_generator;
+    private int m_difficulty = 1;
+
+    private float m_runningSpeed = 0.4f;
+    private float m_sideSpeed = 0.2f;
 
     protected override void Awake()
     {
@@ -21,99 +21,61 @@ public class CarDrivingGame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
-        m_missionText.text = "Drive Car with left, right Button";
-        m_timeText[0].text = "Remain";
-        m_countText[0].text = "Life";
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.SetFollowSpeed(10.0f);
+        CameraManager.Instance.SetFollowTarget(m_player);
+        CameraManager.Instance.ToggleCameraFollow();
 
-        //맵의 초기 위치값 세팅
-        m_mapPosition = m_map.transform.position;
-        m_positionx = -1;
-        m_positionz = 0;
-        m_left = false; 
-        m_right = false;
+        m_playerController = m_player.GetComponent<CharacterController>();
+        m_generator = transform.GetChild(2).GetComponent<CarGenerator>();
+        m_generator.GenerateCars();//난이도에 맞춰서 차 생성
+
     }
 
     private void FixedUpdate()
     {
-        //시간이 흐르면서 맵이 자동적으로 뒤로 가도록 함 
 
-        if (m_positionz > -550 && m_timer > 2)      //수치제한
+        try
         {
-            m_positionz -= Time.deltaTime * 30;
+            m_playerController.Move(new Vector3(0, 0, m_runningSpeed));
+
+            if (TouchManager.instance.IsHolding())
+            {
+                float direction = Input.mousePosition.x - ((float)Screen.width / 2);//화면을 절반으로 나누어 왼쪽, 오른쪽 부분 어디를 선택하였는지 체크
+
+                if (direction > 0)
+                {
+                    m_playerController.Move(new Vector3(m_sideSpeed, 0, 0));
+                }
+                else
+                {
+                    m_playerController.Move(new Vector3(-m_sideSpeed, 0, 0));
+                }
+            }
+        }
+        catch
+        {
+            Debug.Log("Player's Rigidbody is Null");
         }
 
-        if (m_positionx < 6 && m_left == true)
-            m_positionx += Time.deltaTime * 10;
-
-        if (m_positionx > -12 && m_right == true)
-            m_positionx -= Time.deltaTime * 10;
-
-        //맵을 좌, 우로 옮기는 효과 - 플레이어는 캐릭터가 좌, 우로 움직이는 느낌
-        m_map.transform.position = new Vector3(m_positionx, m_mapPosition.y, m_positionz);
     }
 
-    private void Update()
+    public int GetDifficulty()
     {
-        m_timeText[1].text = (m_positionz + 500).ToString("0.00");
-        m_countText[1].text = clearCount.ToString();
-
-      
-        m_timer += Time.deltaTime;
-        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
-        {
-            m_missionPrefab.SetActive(true);
-        }
-        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
-        {
-            m_missionPrefab.SetActive(false);
-        }
-
-
-        if (m_timer > 2)
-            m_timePrefab.SetActive(true);
-
-        if (clearCount >= 3)
-            HitOver();
-
-
-        if (m_positionz < -500)
-        {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-        }
-
-        
-
-
+        return m_difficulty;
     }
 
-    public void HitOver()
+    public void Win()
     {
-        clearCount = 0;
-        m_positionz = 0;
-        m_failPrefab.SetActive(true);
-        Invoke("GameFail", 1);
+        CameraManager.Instance.ToggleCameraFollow();
+        GameClear();
     }
 
-    public void LeftBtn()
+    public void Lose()
     {
-        if (m_timer > 2)
-        {
-            m_left = true;
-            m_right = false;
-        }
-
+        CameraManager.Instance.ToggleCameraFollow();
+        GameFail();
     }
-
-    public void RightBtn()
-    {
-        if (m_timer > 2)
-        {
-            m_left = false;
-            m_right = true;
-        }
-    }
-
 
 
 }
