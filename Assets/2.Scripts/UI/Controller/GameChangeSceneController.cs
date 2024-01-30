@@ -9,7 +9,7 @@ public class GameChangeSceneController : ButtonHandler
 
     private void Start()
     {
-        m_stageNumber.text = MiniGameManager.Instance.Stage.ToString();
+        m_stageNumber.text = PlayerDataManager.instance.m_playerData.stage.ToString();
 
         if (MiniGameManager.Instance.GameNumber == -1)
             Invoke("StartRandomGame", 1);

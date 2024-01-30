@@ -22,6 +22,9 @@ public class BasketGame : MiniGameSetting
     private float m_lastTime = 0.0f;//음식을 생성하고 지난 시간
     private float m_screenWidth;//화면 해상도에 따른 오른쪽 끝의 World Point
 
+    private int m_clearCount;
+    private float m_timer;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,6 +33,11 @@ public class BasketGame : MiniGameSetting
     // Start is called before the first frame update
     void Start()
     {
+        m_clearCount = m_catchCounts;
+        m_missionText.text = "mission text";
+        m_timeText[0].text = "Limit";
+        m_countText[0].text = "Count";
+
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
         m_rigidbody = m_player.GetComponent<Rigidbody>();
 
@@ -83,6 +91,33 @@ public class BasketGame : MiniGameSetting
 
             m_lastTime = 0;//음식을 생성하고 다시 0으로 초기화
         }
+
+        #region   //게임 시간별 로직 + 성공실패 관리
+        //시간과 카운트 반영되는 코드
+        m_timeText[1].text = (12 - m_timer).ToString("0.00");
+        m_countText[1].text = m_clearCount.ToString();
+
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
+        m_timer += Time.deltaTime;
+        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+            m_missionPrefab.SetActive(true);
+        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+            m_missionPrefab.SetActive(false);
+
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+        if (m_timer > 2)
+        {
+            m_timePrefab.SetActive(true);
+            m_countPrefab.SetActive(true);
+        }
+
+        //게임 패배조건
+        if (m_timer > 12)
+        {
+            Lose();
+        }
+        #endregion
+
     }
 
 
@@ -152,13 +187,15 @@ public class BasketGame : MiniGameSetting
     //클리어 조건을 충족하였을 때 호출
     public void Win()
     {
-        GameClear();
+        m_clearPrefab.SetActive(true);
+        Invoke("GameClear", 1);
     }
 
     //쓰레기를 바구니에 담게되면 호출
     public void Lose()
     {
-        GameFail();
+        m_failPrefab.SetActive(true);
+        Invoke("GameFail", 1);
     }
 
     //잡은 갯수 증가

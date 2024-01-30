@@ -3,7 +3,6 @@ using UnityEngine;
 public class MiniGameBaseCode : MiniGameSetting
 {
 
-    private int m_stage = 1;    //현재는 임시로 숫자 1 사용
     private int m_clearCount;
     private float m_timer;
 
@@ -21,15 +20,16 @@ public class MiniGameBaseCode : MiniGameSetting
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        m_clearCount = m_stage * 10;
-        m_missionText.text = "kill " + (m_stage * 2) + " Mosquito";
-        m_timeText[0].text = "TimeLimit";
+        m_clearCount = 10;
+        m_missionText.text = "mission text";
+        m_timeText[0].text = "Limit";
         m_countText[0].text = "Count";
 
     }
 
     private void Update()
     {
+        #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
         m_timeText[1].text = m_timer.ToString("0.00");
         m_countText[1].text = m_clearCount.ToString();
@@ -61,6 +61,7 @@ public class MiniGameBaseCode : MiniGameSetting
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
         }
+        #endregion
 
 
     }

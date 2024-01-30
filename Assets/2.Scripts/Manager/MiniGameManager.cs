@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor.SceneManagement;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -15,10 +16,6 @@ public class MiniGameManager : MonoBehaviour
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     private int m_beforeGame;
     public int GameNumber { get; set; }
-    public int Stage { get; private set; }
-    public int EXP { get; private set; }
-    public int Money { get; private set; }
-    public int Point { get; private set; }
 
 
     private void Awake()
@@ -72,7 +69,7 @@ public class MiniGameManager : MonoBehaviour
     // 게임 클리어시 스테이지 변수를 1 올리고 게임 선택 씬으로 이동하면서 현재 게임 파괴
     public void GameClear()
     {
-        Stage++;
+        PlayerDataManager.instance.m_playerData.stage++;
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
         Destroy(m_currentGame);
     }

@@ -16,12 +16,6 @@ public class JumpRopeGame : MiniGameSetting
         base.Awake();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        m_dragToMoveController.UpdateMoveWithJump();
-    }
-
     private void Start()
     {
         CameraManager.Instance.ChangeCamera(CameraView.Angle60View);//90도 각도로 내려다 보는 카메라로 변경
@@ -29,6 +23,18 @@ public class JumpRopeGame : MiniGameSetting
         CameraManager.Instance.ToggleCameraFollow();
 
         m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        m_dragToMoveController.UpdateMoveWithJump();
+    }
+
+
+    private void Update()
+    {
+        
     }
 
     public void CheckWin()
@@ -54,14 +60,16 @@ public class JumpRopeGame : MiniGameSetting
 
         if (result)//개수 제한을 넘겼을 때 승리
         {
-            GameClear();
+            m_clearPrefab.SetActive(true);
+            Invoke("GameClear", 1);
             CameraManager.Instance.ToggleCameraFollow();
         }
         else
         {
             if (m_collision)//개수 제한을 못넘기고 줄에 걸렸을 때 패배
             {
-                GameFail();
+                m_failPrefab.SetActive(true);
+                Invoke("GameFail", 1);
                 CameraManager.Instance.ToggleCameraFollow();
             }
         }
