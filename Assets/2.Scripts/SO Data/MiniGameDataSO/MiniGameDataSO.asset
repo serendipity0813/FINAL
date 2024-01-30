@@ -15,7 +15,7 @@ MonoBehaviour:
   games:
   - gameName: CarDriving
     gameIndex: 0
-    gamePrefab: {fileID: 5234212599103042680, guid: ba28fb8a250b1664986fd74191001e04,
+    gamePrefab: {fileID: 4636359251180530714, guid: bef68a6d864fa1041b9e1a072b834a70,
       type: 3}
     gameDescription: "\uC124\uBA85"
   - gameName: FoodEat
@@ -66,5 +66,10 @@ MonoBehaviour:
   - gameName: Spinner
     gameIndex: 10
     gamePrefab: {fileID: 3563286950308367704, guid: 9a683d89db323054b8e9b05fb4930bb7,
+      type: 3}
+    gameDescription: "\uC124\uBA85"
+  - gameName: BasketGame
+    gameIndex: 11
+    gamePrefab: {fileID: 361351859215424243, guid: bacc970d90c537340830224e592576c6,
       type: 3}
     gameDescription: "\uC124\uBA85"
