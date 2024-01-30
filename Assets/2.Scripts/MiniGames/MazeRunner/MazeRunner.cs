@@ -14,7 +14,7 @@ public class MazeRunner : MiniGameSetting
     private Vector2Int m_pos = Vector2Int.zero;
     private Vector2Int[] m_direction = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
     private Stack<Vector2Int> m_stackDir = new Stack<Vector2Int>(); //지나온 길의 방향 저장
-    private float m_timer = 10.0f;//타이머
+    private float m_timer = 12.0f;//타이머
 
     protected override void Awake()
     {
@@ -23,6 +23,10 @@ public class MazeRunner : MiniGameSetting
 
     private void Start()
     {
+        m_missionText.text = "mission text";
+        m_timeText[0].text = "Limit";
+        m_countText[0].text = "Count";
+
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);//90도 각도로 내려다 보는 카메라로 변경
         m_controller.SetMoveSpeed(6.0f);//캐릭터 이동속도 6 설정
 
@@ -61,6 +65,35 @@ public class MazeRunner : MiniGameSetting
     {
         m_timer -= Time.deltaTime;
         m_controller.UpdateMove();
+    }
+
+    private void Update()
+    {
+        #region   //게임 시간별 로직 + 성공실패 관리
+        //시간과 카운트 반영되는 코드
+        m_timeText[1].text = m_timer.ToString("0.00");
+
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
+        m_timer += Time.deltaTime;
+        if (m_timer < 11.5 && m_missionPrefab.activeSelf == false)
+            m_missionPrefab.SetActive(true);
+        if (m_timer < 10.5 && m_missionPrefab.activeSelf == true)
+            m_missionPrefab.SetActive(false);
+
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+        if (m_timer < 10)
+        {
+            m_timePrefab.SetActive(true);
+            m_countPrefab.SetActive(true);
+        }
+
+        //게임 패배조건
+        if (m_timer < 0)
+        {
+            m_failPrefab.SetActive(true);
+            Invoke("GameFail", 1);
+        }
+        #endregion
     }
 
     private void BuildMaze()
@@ -130,6 +163,7 @@ public class MazeRunner : MiniGameSetting
         if (other.tag == "Player")
         {
             //Debug.LogFormat("GameClear in {0}sec", m_timer);//테스트용
+            m_clearPrefab.SetActive(true);
             Invoke("GameClear", 1);
         }
            

@@ -18,13 +18,10 @@ public class MiniGameSetting : MonoBehaviour
     protected TextMeshProUGUI[] m_timeText;
     protected TextMeshProUGUI[] m_countText;
 
-    protected int Stage;
-
     protected virtual void Awake()
     {
         if (MiniGameManager.Instance != null)
         {
-            Stage = PlayerDataManager.instance.m_playerData.stage;
 
             //미니게임 매니저로부터 받아와 캐싱해두기
             m_missionUI = MiniGameManager.Instance.InGameUIs[0];

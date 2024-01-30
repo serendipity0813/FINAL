@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class BurgerKingGame : MiniGameSetting
 {
     private float m_timer;
     private int m_count;
+    private int m_stage;
     private bool m_clear;
     private int m_burgerLength;
     private int[] m_missionBurger;
@@ -34,9 +36,9 @@ public class BurgerKingGame : MiniGameSetting
 
     private void Start()
     {
-
         //인게임 text내용 설정 + 게임 승리조건
-        m_burgerLength = Stage + 5;
+        m_stage = PlayerDataManager.instance.m_playerData.stage;
+        m_burgerLength = m_stage + 5;
         m_clear = false;
         m_count = 0;
         m_missionText.text = "Make Perfact Burger";

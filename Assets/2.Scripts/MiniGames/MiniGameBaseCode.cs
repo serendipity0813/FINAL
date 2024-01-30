@@ -31,7 +31,7 @@ public class MiniGameBaseCode : MiniGameSetting
     {
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
-        m_timeText[1].text = m_timer.ToString("0.00");
+        m_timeText[1].text = (12-m_timer).ToString("0.00");
         m_countText[1].text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움

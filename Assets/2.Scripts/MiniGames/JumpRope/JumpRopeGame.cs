@@ -11,6 +11,8 @@ public class JumpRopeGame : MiniGameSetting
     private int m_difficulty = 1;
     private bool m_collision = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
 
+    private float m_timer;
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +25,11 @@ public class JumpRopeGame : MiniGameSetting
         CameraManager.Instance.ToggleCameraFollow();
 
         m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
+
+        //인게임 text내용 설정 + 게임 승리조건
+        m_missionText.text = "mission text";
+        m_timeText[0].text = "Limit";
+        m_countText[0].text = "Count";
     }
 
     // Update is called once per frame
@@ -34,7 +41,32 @@ public class JumpRopeGame : MiniGameSetting
 
     private void Update()
     {
-        
+        #region   //게임 시간별 로직 + 성공실패 관리
+        //시간과 카운트 반영되는 코드
+        m_timeText[1].text = (12-m_timer).ToString("0.00");
+        m_countText[1].text = m_count.ToString();
+
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
+        m_timer += Time.deltaTime;
+        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+            m_missionPrefab.SetActive(true);
+        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+            m_missionPrefab.SetActive(false);
+
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+        if (m_timer > 2)
+        {
+            m_timePrefab.SetActive(true);
+            m_countPrefab.SetActive(true);
+        }
+
+        //게임 패배조건 - 시간초과
+        if (m_timer > 12)
+        {
+            m_failPrefab.SetActive(true);
+            Invoke("GameFail", 1);
+        }
+        #endregion
     }
 
     public void CheckWin()
