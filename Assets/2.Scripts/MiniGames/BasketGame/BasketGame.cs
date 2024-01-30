@@ -51,15 +51,15 @@ public class BasketGame : MiniGameSetting
     void Update()
     {
 
-        if (TouchManager.instance.IsHolding())
+        if (TouchManager.instance.IsHolding())//화면을 터치하고 있을 때
         {
-            float direction = Input.mousePosition.x - ((float)Screen.width / 2);
+            float direction = Input.mousePosition.x - ((float)Screen.width / 2);//화면을 절반으로 나누어 왼쪽, 오른쪽 부분 어디를 선택하였는지 체크
 
-            if (direction > 0)
+            if (direction > 0)//오른쪽을 클릭했을 때
             {
                 m_velocity = new Vector3(m_speed, 0, 0);
             }
-            else
+            else//왼쪽을 클릭했을 때
             {
                 m_velocity = new Vector3(-m_speed, 0, 0);
             }
@@ -67,7 +67,7 @@ public class BasketGame : MiniGameSetting
 
             try
             {
-                m_rigidbody.velocity = m_velocity;
+                m_rigidbody.velocity = m_velocity;//Rigidbody가 없을 경우 오류 발생
             }
             catch
             {
