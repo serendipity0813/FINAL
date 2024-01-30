@@ -310,7 +310,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 8ca41ba4b6bf7e946a5af1844b5d8cd5, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 2768de5096bcd8f4ab7d46e1e4d11c2c, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -587,7 +587,7 @@ Transform:
   - {fileID: 835058154346230361}
   - {fileID: 401359587327802164}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2462189670592121154
 MonoBehaviour:
