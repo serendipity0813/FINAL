@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
 class WallCollisions : MonoBehaviour
 {
     [Header("Wall Collisions")]
