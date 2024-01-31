@@ -7,23 +7,34 @@ public class GameOverSceneController : ButtonHandler
 {
     [SerializeField] private TextMeshProUGUI m_moneyText;
     [SerializeField] private TextMeshProUGUI m_EXPText;
-    [SerializeField] private TextMeshProUGUI m_pointText;
-    [SerializeField] private TextMeshProUGUI m_stageText;
+    [SerializeField] private TextMeshProUGUI m_stagePointText;
+    [SerializeField] private TextMeshProUGUI m_timePointText;
+    [SerializeField] private TextMeshProUGUI m_bonusPointText;
+    [SerializeField] private TextMeshProUGUI m_totalPointText;
 
-    private int m_stageNum;
     private int m_moneyNum;
     private int m_ExpNum;
-    private int m_pointNum;
+    private int m_stagePointNum;
+    private int m_timePointNum;
+    private int m_bonusPointNum;
+    private int m_totalPointNum;
 
     private void Start()
     {
-        m_stageNum = PlayerDataManager.instance.m_playerData.stage;
         m_moneyNum = PlayerDataManager.instance.m_playerData.rewardCoin;
         m_ExpNum = PlayerDataManager.instance.m_playerData.rewardExp;
-        m_pointNum = PlayerDataManager.instance.m_playerData.rewardPoint;
+        m_stagePointNum = PlayerDataManager.instance.m_playerData.stage * 1000;
+        m_timePointNum = PlayerDataManager.instance.m_playerData.timePoint;
+        m_bonusPointNum = PlayerDataManager.instance.m_playerData.bonusPoint;
+        m_totalPointNum = m_stagePointNum + m_timePointNum + m_bonusPointNum;
+
         m_moneyText.text = m_moneyNum.ToString();
         m_EXPText.text = m_ExpNum.ToString();
-        m_pointText.text = m_pointNum.ToString();
-        m_stageText.text = m_stageNum.ToString();
+        m_stagePointText.text = m_stagePointNum.ToString();
+        m_timePointText.text = m_timePointNum.ToString();
+        m_bonusPointText.text = m_bonusPointNum.ToString();
+        m_totalPointText.text = m_totalPointNum.ToString();
+
+        MiniGameManager.Instance.GameReset();
     }
 }

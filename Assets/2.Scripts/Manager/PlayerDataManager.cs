@@ -117,9 +117,11 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int diamond; // 플레이어가 가지고 있는 보석 재화
     public int ticket;   // 플레이어가 가지고 있는 게임 뽑기 티켓 수
     public int stage;   // 게임 진행시 현재 진행 스테이지
+    public int life;   // 게임 진행시 플레이어의 목숨 수치
     public int rewardExp;   // 게임 진행 후 얻을 경험치
     public int rewardCoin;  // 게임 진행 후 얻을 코인
-    public int rewardPoint; // 게임 진행 기록점수
+    public int timePoint;   // 게임 진행 시간 보너스 점수
+    public int bonusPoint;  // 게임 진행 기타 보너스 점수
 
     // 미니게임 인덱스값 저장
     public List<int> gameIndex;

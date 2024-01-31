@@ -10,6 +10,7 @@ public class ButtonHandler : MonoBehaviour
     {
         GameSceneManager.Instance.PopupClear();
         MiniGameManager.Instance.GameReset();
+        Time.timeScale = 1.0f;
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
@@ -62,7 +63,9 @@ public class ButtonHandler : MonoBehaviour
 
     public void RestartbtnClick()
     {
+        Time.timeScale = 1.0f;
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        MiniGameManager.Instance.GameReset();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 

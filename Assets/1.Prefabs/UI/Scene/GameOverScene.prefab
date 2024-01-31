@@ -3608,7 +3608,7 @@ Transform:
   - {fileID: 1471102187435933150}
   - {fileID: 4381759056800334921}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &702951250820799023
 MonoBehaviour:
@@ -3624,8 +3624,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moneyText: {fileID: 3936951940198916583}
   m_EXPText: {fileID: 337417312732761574}
-  m_pointText: {fileID: 7662689581660101345}
-  m_stageText: {fileID: 7662689581660101345}
+  m_stagePointText: {fileID: 6974692501280767294}
+  m_timePointText: {fileID: 2802760838135474020}
+  m_bonusPointText: {fileID: 3081526845915588714}
+  m_totalPointText: {fileID: 7662689581660101345}
 --- !u!1 &7975624622059104341
 GameObject:
   m_ObjectHideFlags: 0

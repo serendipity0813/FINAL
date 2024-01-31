@@ -385,7 +385,7 @@ RectTransform:
   m_Children:
   - {fileID: 3710225931708963638}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -405,6 +405,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stageNumber: {fileID: 5236474398792820996}
+  m_life:
+  - {fileID: 6481328451988653839}
+  - {fileID: 4998904267355119969}
+  - {fileID: 4180887830098575216}
+  - {fileID: 8212064173166919718}
 --- !u!1 &2258541286110428937
 GameObject:
   m_ObjectHideFlags: 0
