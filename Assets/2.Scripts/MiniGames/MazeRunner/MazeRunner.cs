@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class MazeRunner : MiniGameSetting
 {
@@ -63,7 +62,6 @@ public class MazeRunner : MiniGameSetting
     // Update is called once per frame
     private void FixedUpdate()
     {
-        m_timer -= Time.deltaTime;
         m_controller.UpdateMove();
     }
 
@@ -74,17 +72,16 @@ public class MazeRunner : MiniGameSetting
         m_timeText[1].text = m_timer.ToString("0.00");
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
-        if (m_timer < 11.5 && m_missionPrefab.activeSelf == false)
+        m_timer -= Time.deltaTime;
+        if (m_timer < 11.5)
             m_missionPrefab.SetActive(true);
-        if (m_timer < 10.5 && m_missionPrefab.activeSelf == true)
+        if (m_timer < 10.5)
             m_missionPrefab.SetActive(false);
 
         //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
         if (m_timer < 10)
         {
             m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
         }
 
         //게임 패배조건
@@ -133,7 +130,6 @@ public class MazeRunner : MiniGameSetting
         }
         while (m_stackDir.Count != 0); //스택이 0이라는 것은 모든 길을 순회했다는 것을 의미하므로 반복문 종료
 
-
     }
 
     private void RandDirection() //무작위로 방향을 섞는 메소드
@@ -166,6 +162,5 @@ public class MazeRunner : MiniGameSetting
             m_clearPrefab.SetActive(true);
             Invoke("GameClear", 1);
         }
-           
     }
 }
