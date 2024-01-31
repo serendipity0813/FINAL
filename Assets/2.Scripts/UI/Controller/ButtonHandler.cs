@@ -50,13 +50,19 @@ public class ButtonHandler : MonoBehaviour
     {
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
-        //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void ChoiceXbtnClick()
     {
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+    }
+
+    public void RestartbtnClick()
+    {
+        GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
 }
