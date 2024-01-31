@@ -9,6 +9,7 @@ public class ButtonHandler : MonoBehaviour
     public void LobbyClick()
     {
         GameSceneManager.Instance.PopupClear();
+        MiniGameManager.Instance.GameReset();
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }

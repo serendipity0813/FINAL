@@ -22,20 +22,19 @@ public class MiniGameSetting : MonoBehaviour
     {
         if (MiniGameManager.Instance != null)
         {
-
             //미니게임 매니저로부터 받아와 캐싱해두기
-            m_missionUI = MiniGameManager.Instance.InGameUIs[0];
-            m_timeUI = MiniGameManager.Instance.InGameUIs[1];
-            m_countUI = MiniGameManager.Instance.InGameUIs[2];
-            m_clearUI = MiniGameManager.Instance.InGameUIs[3];
-            m_failUI = MiniGameManager.Instance.InGameUIs[4];
+            m_missionPrefab = MiniGameManager.Instance.InGameUIs[0];
+            m_timePrefab = MiniGameManager.Instance.InGameUIs[1];
+            m_countPrefab = MiniGameManager.Instance.InGameUIs[2];
+            m_clearPrefab = MiniGameManager.Instance.InGameUIs[3];
+            m_failPrefab = MiniGameManager.Instance.InGameUIs[4];
 
             //미니게임 오브젝트 하위에 생성되도록 하기
-            m_missionPrefab = Instantiate(m_missionUI, transform.position, Quaternion.identity, transform);
-            m_timePrefab = Instantiate(m_timeUI, transform.position, Quaternion.identity, transform);
-            m_countPrefab = Instantiate(m_countUI, transform.position, Quaternion.identity, transform);
-            m_clearPrefab = Instantiate(m_clearUI, transform.position, Quaternion.identity, transform);
-            m_failPrefab = Instantiate(m_failUI, transform.position, Quaternion.identity, transform);
+            //m_missionPrefab = Instantiate(m_missionUI, transform.position, Quaternion.identity, transform);
+            //m_timePrefab = Instantiate(m_timeUI, transform.position, Quaternion.identity, transform);
+            //m_countPrefab = Instantiate(m_countUI, transform.position, Quaternion.identity, transform);
+            //m_clearPrefab = Instantiate(m_clearUI, transform.position, Quaternion.identity, transform);
+            //m_failPrefab = Instantiate(m_failUI, transform.position, Quaternion.identity, transform);
 
             //UI오브젝트 하위의 Text오브젝트의 컴포넌트 캐싱해두기, time과 count는 2개 받아와서 0번은 설명, 1번은 숫자값
             m_missionText = m_missionPrefab.GetComponentInChildren<TextMeshProUGUI>();
@@ -55,11 +54,21 @@ public class MiniGameSetting : MonoBehaviour
     protected void GameClear()
     {
         MiniGameManager.Instance.GameClear();
+        m_missionPrefab.SetActive(false);
+        m_timePrefab.SetActive(false);
+        m_countPrefab.SetActive(false);
+        m_clearPrefab.SetActive(false);
+        m_failPrefab.SetActive(false);
     }
 
     protected void GameFail()
     {
         MiniGameManager.Instance.GameFail();
+        m_missionPrefab.SetActive(false);
+        m_timePrefab.SetActive(false);
+        m_countPrefab.SetActive(false);
+        m_clearPrefab.SetActive(false);
+        m_failPrefab.SetActive(false);
     }
 
 
