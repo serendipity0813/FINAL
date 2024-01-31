@@ -56,29 +56,32 @@ public class SpinnerController : MonoBehaviour
     // 스핀 동작
     void Spin()
     {
-        m_mousePosition = Input.mousePosition;
-        m_isUpDown = m_mousePosition.y > m_halfScreen.y;
-        if (m_isUpDown)
+        if (spinnerGame.m_startTimer)
         {
-            if (TouchManager.instance.IsDragLeft())
+            m_mousePosition = Input.mousePosition;
+            m_isUpDown = m_mousePosition.y > m_halfScreen.y;
+            if (m_isUpDown)
             {
-                m_rigidbody.angularVelocity = Vector3.down * 100;
+                if (TouchManager.instance.IsDragLeft())
+                {
+                    m_rigidbody.angularVelocity = Vector3.down * 100;
 
+                }
+                if (TouchManager.instance.IsDragRight())
+                {
+                    m_rigidbody.angularVelocity = Vector3.up * 100;
+                }
             }
-            if (TouchManager.instance.IsDragRight())
+            else
             {
-                m_rigidbody.angularVelocity = Vector3.up * 100;
-            }
-        }
-        else
-        {
-            if (TouchManager.instance.IsDragLeft())
-            {
-                m_rigidbody.angularVelocity = Vector3.up * 100;
-            }
-            if (TouchManager.instance.IsDragRight())
-            {
-                m_rigidbody.angularVelocity = Vector3.down * 100;
+                if (TouchManager.instance.IsDragLeft())
+                {
+                    m_rigidbody.angularVelocity = Vector3.up * 100;
+                }
+                if (TouchManager.instance.IsDragRight())
+                {
+                    m_rigidbody.angularVelocity = Vector3.down * 100;
+                }
             }
         }
     }

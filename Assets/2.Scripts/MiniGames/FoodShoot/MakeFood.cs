@@ -23,7 +23,7 @@ public class MakeFood : MonoBehaviour
 
     IEnumerator FoodMakeCoroutine() // 코루틴 repetition 값 만큼 반복
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         while (m_repetition != 0)
         {
             if (gameObject == null) // 게임 오브젝트가 파괴되면 코루틴 종료
