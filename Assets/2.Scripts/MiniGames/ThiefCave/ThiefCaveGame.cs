@@ -31,6 +31,7 @@ public class ThiefCaveGame : MiniGameSetting
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Count";
 
+        CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
         m_camera = CameraManager.Instance.GetCamera();
 
         m_clear = false;
@@ -48,10 +49,10 @@ public class ThiefCaveGame : MiniGameSetting
                 Instantiate(Target, m_hidePosition[i], Quaternion.identity, transform);
             }
             Cave.transform.position = m_hidePosition[i];
-            Instantiate(Cave);
+            Instantiate(Cave, m_hidePosition[i], Quaternion.identity, transform);
 
             //i가 홀수일 때 마다 타겟이 아닌 오브젝트 생성
-            if(i%2 == 1)
+            if (i%2 == 1)
             {
                 Thief.transform.position = m_hidePosition[i];
                 Instantiate(Thief, m_hidePosition[i], Quaternion.identity, transform);

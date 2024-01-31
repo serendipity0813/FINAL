@@ -81,4 +81,10 @@ public class MiniGameManager : MonoBehaviour
         GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
     }
 
+    public void GameReset()
+    {
+        Destroy(m_currentGame);
+        PlayerDataManager.instance.m_playerData.stage = 1;
+    }
+
 }

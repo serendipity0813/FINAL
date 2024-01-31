@@ -24,7 +24,7 @@ public class ButtonHandler : MonoBehaviour
     {
         MiniGameManager.Instance.GameNumber = -1;
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
-        //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void GatchaClick()
