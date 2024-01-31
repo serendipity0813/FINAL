@@ -1,28 +1,26 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ToiletPaperRollController : MonoBehaviour
 {
-    private Rigidbody m_rigidbody;//플레이어의 Rigidbody
+    private Rigidbody m_rigidbody; //플레이어의 Rigidbody
     private ToiletPaperRoll toiletPaperRoll;
     private bool m_down = false; // 점수가 올라가는 기준치
     private bool m_up = false;
-    private float m_maxCount;
-    private float m_nowScale = 2.0f;
-    private Quaternion paperQuaternion;
-
-    [SerializeField] private GameObject m_paper;
+    private float m_maxCount; // 난이도에 따른 롤 카운트 맥스값
+    private float m_nowScale; // 프리팹 크기 조절 관련 선언
+    private Quaternion paperQuaternion; // 생성할 paper 프리팹 앵글
+    [SerializeField] private GameObject m_paper; // paper 프리팹
 
     private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody>();
         toiletPaperRoll = GetComponentInParent<ToiletPaperRoll>();
-        m_rigidbody.maxAngularVelocity = 100; // 돌아가는 스피드 max 값
-        paperQuaternion = Quaternion.Euler(0, 27.413f, 0); // 판넬 회전값
     }
     private void Start()
     {
-        m_maxCount = toiletPaperRoll.m_rollCount;
+        m_maxCount = toiletPaperRoll.m_rollCount; // 현재 난이도의 rollCount 값 가져오기
+        m_rigidbody.maxAngularVelocity = toiletPaperRoll.m_angularVelocity; // 돌아가는 스피드 max 값
+        paperQuaternion = Quaternion.Euler(0, 27.413f, 0); // paper 회전값
     }
 
     void Update()
@@ -44,20 +42,22 @@ public class ToiletPaperRollController : MonoBehaviour
             m_up = false;
             m_down = false;
 
+            // 회전 카운트가 0보다 클 시
             if (toiletPaperRoll.m_rollCount > 0)
             {
                 toiletPaperRoll.m_rollCount--; // 회전 카운트 감소
 
+                // 1부터 시작해서 0.3 까지 스케일 값이 점점 줄어듦
                 m_nowScale = Mathf.Lerp(0.3f, 1f, toiletPaperRoll.m_rollCount / m_maxCount);
                 transform.localScale = new Vector3(1f, m_nowScale, m_nowScale);
                 
+                // 인스턴스 프리팹 생성
                 GameObject newPaper = Instantiate(m_paper,transform.position + new Vector3(0f, -0.5f, 0f), paperQuaternion, transform.parent);
                 newPaper.transform.localScale = new Vector3(1f, m_nowScale + 0.5f, m_nowScale);
             }
         }
 
-
-        // 위, 아래를 넘었을시
+        // 화장지 회전 체크
         if (!m_up && currentRotation.x > 0.6f || currentRotation.x < -0.6f)
         {
             m_up = true;
@@ -71,9 +71,12 @@ public class ToiletPaperRollController : MonoBehaviour
     // 스핀 동작
     void Roll()
     {
-        if (TouchManager.instance.IsDragDown())
+        if (toiletPaperRoll.m_startTimer)
         {
-            m_rigidbody.angularVelocity = transform.TransformDirection(Vector3.left) * 100;
+            if (TouchManager.instance.IsDragDown())
+            {
+                m_rigidbody.angularVelocity = transform.TransformDirection(Vector3.left) * 100;
+            }
         }
     }
 }

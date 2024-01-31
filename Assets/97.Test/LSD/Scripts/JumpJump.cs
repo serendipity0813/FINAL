@@ -16,7 +16,7 @@ public class JumpJump : MiniGameSetting
     protected override void Awake()
     {
         base.Awake();
-        m_level1 = 1; // 임시 레벨
+        m_level1 = 3; // 임시 레벨
         m_level2 = 3;
 
         // 1-1, 2-1, 3-1 에 해당되는 난이도

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class FoodShoot : MiniGameSetting
@@ -5,42 +6,61 @@ public class FoodShoot : MiniGameSetting
     [SerializeField] private int m_bulletCount; // 처음에 주어지는 총알 개수
     [SerializeField] private int m_winCount = 0; // 승리 카운트 선언
     [SerializeField] private int m_win; // 미니 게임에 승리하기 위한 변수
-    [SerializeField] private int m_level; // 현재 미니게임 난이도
-    private Camera m_camera;
+    private int m_level1; // 현재 미니게임 난이도1
+    private int m_level2; // 현재 미니게임 난이도2
+    private bool m_end = false; // 게임이 끝났는가?
+    private Camera m_camera; // 레이를 위한 카메라
     public int m_repetition; // 과일을 몇번 뿌릴지
-    private float m_timer;
+    private float m_timer; // 현재 시간
+    private bool m_startTimer = false; // 첫 스타트 시간 체크
+
 
     protected override void Awake()
     {
         base.Awake();
-        // m_level을 매니저에서 가져오기 임시로 레벨 1로 부여
-        m_level = 1;
-        switch (m_level)
+        m_level1 = 3; // 임시 레벨
+        m_level2 = 3;
+
+        // 1-1, 2-1, 3-1 에 해당되는 난이도
+        switch (m_level1)
+        {
+            case 0:
+            case 1:
+                m_win = 3;
+                break;
+            case 2:
+                m_win = 4;
+                break;
+            case 3:
+                m_win = 5;
+                break;
+        }
+
+        // 1-1, 1-2, 1-3 에 해당되는 난이도
+        switch (m_level2)
         {
             case 0:
             case 1:
                 m_bulletCount = 5;
-                m_win = 3;
-                m_repetition = 7;
+                m_repetition = 10;
                 break;
             case 2:
                 m_bulletCount = 5;
-                m_win = 3;
-                m_repetition = 5;
+                m_repetition = 8;
                 break;
             case 3:
-                m_bulletCount = 4;
-                m_win = 3;
-                m_repetition = 4;
+                m_bulletCount = 5;
+                m_repetition = 6;
                 break;
         }
     }
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "Shoot " + (m_win) + " Food";
+        m_missionText.text = "In " + m_bulletCount + " shots  Shoot " + m_win + " Food";
         m_timeText[0].text = "TimeLimit";
         m_countText[0].text = "Count";
+
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         m_camera = CameraManager.Instance.GetCamera();
@@ -52,24 +72,27 @@ public class FoodShoot : MiniGameSetting
     }
     void UiTime()
     {
-        //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
+        //시간과 카운트 반영되는 코드
+        m_timeText[1].text = m_timer.ToString("0.00");
+        m_countText[1].text = m_win.ToString();
+
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer += Time.deltaTime;
-        if (m_timer > 0 && m_missionPrefab.activeSelf == false)
+        if (!m_startTimer)
         {
-            m_missionPrefab.SetActive(true);
+            if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+                m_missionPrefab.SetActive(true);
+            if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+                m_missionPrefab.SetActive(false);
 
-        }
-        if (m_timer > 1 && m_missionPrefab.activeSelf == true)
-        {
-            m_missionPrefab.SetActive(false);
-            m_timePrefab.SetActive(true);
-        }
-
-        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer > 2)
-        {
-            m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
+            //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+            if (m_timer > 2)
+            {
+                m_timer = 0f;
+                m_startTimer = true;
+                m_timePrefab.SetActive(true);
+                m_countPrefab.SetActive(true);
+            }
         }
     }
     void Bullet() // 업데이트에서 동작
@@ -89,7 +112,7 @@ public class FoodShoot : MiniGameSetting
     {
         // 마우스 위치에서 레이 생성
         Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
-        
+
         RaycastHit hit; // 레이캐스트 히트 정보 받아오기
 
         if (Physics.Raycast(ray, out hit))  // 레이캐스트 실행
@@ -102,20 +125,25 @@ public class FoodShoot : MiniGameSetting
 
     void CheckWinLose() // 승리 패배 판단 함수
     {
-        if (m_winCount >= m_win)
+        if (!m_end)
         {
-            // 승리시 로직
-            m_bulletCount = 0; // 승리했을 시 총알 개수를 0개로 변경
-            Debug.Log("이겼다!");
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-        }
-        else if (m_winCount < m_win && m_bulletCount == 0 || m_timer > 12)
-        {
-            // 패배시 로직
-            Debug.Log("졌다!");
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
+            if (m_winCount >= m_win)
+            {
+                // 승리시 로직
+                m_bulletCount = 0; // 승리했을 시 총알 개수를 0개로 변경
+                Debug.Log("이겼다!");
+                m_clearPrefab.SetActive(true);
+                m_end = true;
+                Invoke("GameClear", 1);
+            }
+            else if (m_winCount < m_win && m_bulletCount == 0 || m_timer > 10)
+            {
+                // 패배시 로직
+                Debug.Log("졌다!");
+                m_failPrefab.SetActive(true);
+                m_end = true;
+                Invoke("GameFail", 1);
+            }
         }
     }
 }

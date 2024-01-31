@@ -12,7 +12,7 @@ public class FoodEatMakeFood : MonoBehaviour
     [SerializeField] private GameObject m_watermelon;
     [SerializeField] private Transform m_parentTrn;
     [SerializeField] private int m_repetition;
-    private Camera m_camera;
+    FoodEat foodEat;
 
     private void Awake()
     {
@@ -20,8 +20,7 @@ public class FoodEatMakeFood : MonoBehaviour
     }
     void Start()
     {
-        FoodEat foodEat = GetComponentInParent<FoodEat>();
-        m_camera = CameraManager.Instance.GetCamera();
+        foodEat = GetComponentInParent<FoodEat>();
         m_repetition = foodEat.m_repetition;
         StartCoroutine(FoodMakeCoroutine()); // 코루틴 실행
     }
@@ -40,6 +39,7 @@ public class FoodEatMakeFood : MonoBehaviour
     }
     void FoodContainerPosition() // 푸드 컨테이너 위치값 랜덤 설정
     {
+        Camera m_camera = CameraManager.Instance.GetCamera();
         float cameraHeight = 2f * m_camera.orthographicSize; // 카메라 세로 크기
         float cameraWidth = cameraHeight * m_camera.aspect; // 카메라 가로 크기
         float rndX;
