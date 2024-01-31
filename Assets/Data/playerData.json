@@ -21,7 +21,11 @@
         8,
         9,
         10,
-        11
+        11,
+        12,
+        13,
+        14,
+        15
     ],
     "haveGames": [
         true,
@@ -35,9 +39,17 @@
         false,
         false,
         false,
+        false,
+        false,
+        false,
+        false,
         false
     ],
     "rankingPoint": [
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
