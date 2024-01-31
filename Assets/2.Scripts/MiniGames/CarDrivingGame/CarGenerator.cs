@@ -7,13 +7,13 @@ public class CarGenerator : MonoBehaviour
     private int[] m_cars;//배치된 차들
     private int m_difficulty = 1;//현재 난이도
     private int m_carCount = 0;//최대 차의 개수 난이도에 따라 증가
-    private float m_carDistance = 7.0f;//차 사이의 거리
+    private float m_carDistance = 9.0f;//차 사이의 거리
 
     public void GenerateCars()
     {
         m_difficulty = transform.parent.GetComponent<CarDrivingGame>().GetDifficulty();//진행중인 게임에서 난이도를 받아옴
-        m_cars = new int[60];//차를 배치할 배열
-        m_carCount = 10 + (m_difficulty * 5);//차의 개수 기본 10개에 난이도에 따라 증가
+        m_cars = new int[40];//차를 배치할 배열
+        m_carCount = 10 + (m_difficulty * 3);//차의 개수 기본 10개에 난이도에 따라 증가
         m_carCount = m_carCount > m_cars.Length ? m_cars.Length : m_carCount;//차의 개수가 배열을 초과한 경우 최대로 고정
 
         for (int i = 0; i < m_cars.Length; i++)
@@ -65,12 +65,12 @@ public class CarGenerator : MonoBehaviour
             if (m_cars[i] == (int)CarPosition.Left)
             {
                 GameObject tmp = Instantiate(m_blueCar, transform);
-                tmp.transform.position = new Vector3(1.8f, 0, 10.0f + (i * m_carDistance));
+                tmp.transform.position = new Vector3(1.5f, 0, 10.0f + (i * m_carDistance));
             }
             else if (m_cars[i] == (int)CarPosition.Right)
             {
                 GameObject tmp = Instantiate(m_blueCar, transform);
-                tmp.transform.position = new Vector3(-1.8f, 0, 10.0f + (i * m_carDistance));
+                tmp.transform.position = new Vector3(-1.5f, 0, 10.0f + (i * m_carDistance));
             }
         }
        
