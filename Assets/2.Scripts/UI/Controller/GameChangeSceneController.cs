@@ -36,8 +36,7 @@ public class GameChangeSceneController : ButtonHandler
     private void LifeCheck()
     {
         int lifenum = PlayerDataManager.instance.m_playerData.life;
-
-        for(int i = 0; i<4; i++)
+        for(int i = 0; i < 4; i++)
         {
             if(lifenum > i)
                 m_life[i].SetActive(true);

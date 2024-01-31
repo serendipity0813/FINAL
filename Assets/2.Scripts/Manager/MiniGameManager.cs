@@ -79,7 +79,7 @@ public class MiniGameManager : MonoBehaviour
     {
         Destroy(m_currentGame);
         {
-            if (PlayerDataManager.instance.m_playerData.life > 0)
+            if (PlayerDataManager.instance.m_playerData.life > 1)
             {
                 PlayerDataManager.instance.m_playerData.life--;
                 GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);

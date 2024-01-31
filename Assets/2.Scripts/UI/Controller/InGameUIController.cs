@@ -6,7 +6,6 @@ using UnityEngine;
 public class InGameUIController : ButtonHandler
 {
     [SerializeField] private GameObject m_pause;
-    public GameObject Mission;
 
     public void PauseClick()
     {

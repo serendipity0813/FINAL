@@ -50,13 +50,12 @@ public class UpDownRopeGame : MiniGameSetting
         //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
         if (Input.GetMouseButton(0) && timer > 2)
         {
-            Vector3 mousePoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
-                Input.mousePosition.y, -Camera.main.transform.position.z));
+            float direction = Input.mousePosition.y - ((float)Screen.height / 2);
 
-            if (m_positiony > -33 && mousePoint.y < 0)
+            if (m_positiony > -33 && direction < 0)
                 m_positiony -= Time.deltaTime * 7;
 
-            if (m_positiony < -1 && mousePoint.y > 0)
+            if (m_positiony < -1 && direction > 0)
                 m_positiony += Time.deltaTime * 7;
         }
 
