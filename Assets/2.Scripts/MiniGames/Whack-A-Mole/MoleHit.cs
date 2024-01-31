@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoleHit : MonoBehaviour
 {
-    public int points = 10; // Points for hitting the mole
+    public int points = 1; // Points for hitting the mole
 
     private void OnMouseDown()
     {

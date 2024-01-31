@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ public class SelectSceneController : ButtonHandler
             {
                 if (hit.collider.tag == "Target")
                 {
-                    MiniGameManager.Instance.GameName = hit.collider.gameObject.name;
+                    MiniGameManager.Instance.GameNumber = Int32.Parse(hit.collider.gameObject.name);
                     GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
                 }
             }

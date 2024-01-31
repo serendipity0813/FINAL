@@ -66,7 +66,7 @@ public class PlayerDataManager : MonoBehaviour
         // name은 게임 시작시 닉네임 실정에 따라 변경하게 만들 예정
         m_playerData.name = "name";
         m_playerData.level = 1;
-        m_playerData.exe = 0;
+        m_playerData.exp = 0;
         m_playerData.coin = 100;
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
@@ -112,8 +112,14 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     // public int id; 고유 id 코드를 불러오는 것인데 아직 필요한지 모르겠음
     public string name; // 플레이어 이름
     public int level;   // 플레이어 현재 레벨
-    public float exe;   // 플레이어 현재 경험치 량
+    public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
+    public int diamond; // 플레이어가 가지고 있는 보석 재화
+    public int ticket;   // 플레이어가 가지고 있는 게임 뽑기 티켓 수
+    public int stage;   // 게임 진행시 현재 진행 스테이지
+    public int rewardExp;   // 게임 진행 후 얻을 경험치
+    public int rewardCoin;  // 게임 진행 후 얻을 코인
+    public int rewardPoint; // 게임 진행 기록점수
 
     // 미니게임 인덱스값 저장
     public List<int> gameIndex;

@@ -20,7 +20,8 @@ public class MakeBalls : MonoBehaviour
             float rndZ = UnityEngine.Random.Range(-2f, 2);
             Vector3 position = new Vector3(rndX, transform.position.y, rndZ);
             GameObject newBall = Instantiate(gameBall, position, Quaternion.identity, transform);
-            newBall.name = MiniGameManager.Instance.MiniGames.games[i].gameName;
+            //newBall.name = MiniGameManager.Instance.MiniGames.games[i].gameName;
+            newBall.name = i.ToString();
         }
     }
 }

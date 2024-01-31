@@ -8,27 +8,30 @@ public class ButtonHandler : MonoBehaviour
 
     public void LobbyClick()
     {
+        GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void SelectModeClick()
     {
+        GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.SelectScene);
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
     }
 
     public void RandomModeClick()
     {
-        MiniGameManager.Instance.GameName = "Random";
+        MiniGameManager.Instance.GameNumber = -1;
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void GatchaClick()
     {
+        GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.GatchaScene);
-        //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void OptionClick()

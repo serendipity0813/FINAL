@@ -22,6 +22,7 @@ public class MiniGameSetting : MonoBehaviour
     {
         if (MiniGameManager.Instance != null)
         {
+
             //미니게임 매니저로부터 받아와 캐싱해두기
             m_missionUI = MiniGameManager.Instance.InGameUIs[0];
             m_timeUI = MiniGameManager.Instance.InGameUIs[1];

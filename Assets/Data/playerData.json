@@ -1,8 +1,14 @@
 {
     "name": "name",
     "level": 1,
-    "exe": 0.0,
+    "exp": 0.0,
     "coin": 100,
+    "diamond": 0,
+    "ticket": 0,
+    "stage": 0,
+    "rewardExp": 0,
+    "rewardCoin": 0,
+    "rewardPoint": 0,
     "gameIndex": [
         0,
         1,
@@ -14,7 +20,8 @@
         7,
         8,
         9,
-        10
+        10,
+        11
     ],
     "haveGames": [
         true,
@@ -27,9 +34,11 @@
         false,
         false,
         false,
+        false,
         false
     ],
     "rankingPoint": [
+        0,
         0,
         0,
         0,

@@ -21,14 +21,10 @@ public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager Instance;    //싱글톤
     public GameObject[] Scenes;     //씬 ui들 배열
-    public GameObject LobbyObject;      //로비화면 캐릭터 
-    public GameObject SelectObject;     //선택화면 게임 오브젝트
     private GameObject m_scenePrefab;       //화면전환시 프리펩 생성 및 삭제를 위한 캐싱
-    private GameObject m_sceneObject;
     private GameObject m_PopupUI;
     private GameObject m_currentScene;      //현재 씬과 클릭으로 고른 씬 분리를 위함
     private GameObject m_choiceScene;
-    private InGameUIController m_inGameUIController;
 
     private int m_popupNumber;      //팝업 ui와 씬 ui를 숫자로 분류하여 관리하기 위함
     private int m_sceneNumber;
@@ -43,7 +39,6 @@ public class GameSceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        m_inGameUIController = Scenes[5].GetComponent<InGameUIController>();
     }
 
     // Start is called before the first frame update
@@ -73,30 +68,15 @@ public class GameSceneManager : MonoBehaviour
         Destroy(m_scenePrefab);
         m_scenePrefab = Instantiate(m_choiceScene);
         m_currentScene = m_choiceScene;
-        ChangeSceneObject(m_sceneNumber);
     }
 
-    private void ChangeSceneObject(int sceneNumber)
-    {
-
-        //매개변수로 전달받은 씬 오브젝트에 따라 이전 씬 오브젝트 파과 후 씬 오브젝트 생성 
-        Destroy(m_sceneObject);
-
-        if (sceneNumber == (int)SCENES.LobbyScene)
-        {
-            m_sceneObject = Instantiate(LobbyObject);
-        }
-        else if (sceneNumber == (int)SCENES.SelectScene)
-        {
-            m_sceneObject = Instantiate(SelectObject);
-        }
-    }
 
     public void PopUpSelect(SCENES scene)
-    {   
+    {
         //전달받은 매개변수에 따라 팝업 ui를 생성하거나, 지우거나, 지우고 새로운 팝업창을 띄우는 매커니즘
         //번호가 0인지, 같은지, 다른지에 따라 구분
-        if(m_popupNumber == 0)
+
+        if (m_popupNumber == 0)
         {
             m_popupNumber = (int)scene;
             m_PopupUI = Instantiate(Scenes[m_popupNumber]);
@@ -109,9 +89,16 @@ public class GameSceneManager : MonoBehaviour
         else
         {
             Destroy(m_PopupUI);
+            m_popupNumber = (int)scene;
             m_PopupUI = Instantiate(Scenes[m_popupNumber]);
         }
 
+    }
+
+    public void PopupClear()
+    {
+        Destroy(m_PopupUI);
+        m_popupNumber = 0;
     }
 
 

@@ -6,13 +6,12 @@ using UnityEngine;
 public class GameChangeSceneController : ButtonHandler
 {
     [SerializeField] private TextMeshProUGUI m_stageNumber;
-    [SerializeField] private GameObject m_playerLife;
 
     private void Start()
     {
-        m_stageNumber.text = "9999";
+        m_stageNumber.text = PlayerDataManager.instance.m_playerData.stage.ToString();
 
-        if (MiniGameManager.Instance.GameName == "Random")
+        if (MiniGameManager.Instance.GameNumber == -1)
             Invoke("StartRandomGame", 1);
         else
             Invoke("StartChoiceGame", 1);

@@ -27,12 +27,17 @@ public class RunningGame : MiniGameSetting
         m_positionz = -4;
     }
 
+    private void FixedUpdate()
+    {
+        //실시간으로 맵의 위치를 바꿔줌 - 버튼을 누를 때마다 일정 수치만큼 맵이 뒤로 -> 플레이어는 앞으로 가는 느낌
+        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz);
+    }
+
     // Update is called once per frame
     private void Update()
     {
         m_timeText[1].text = (12 - m_timer).ToString("0.00");
-        //실시간으로 맵의 위치를 바꿔줌 - 버튼을 누를 때마다 일정 수치만큼 맵이 뒤로 -> 플레이어는 앞으로 가는 느낌
-        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz);
+
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
