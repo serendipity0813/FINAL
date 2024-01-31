@@ -78,7 +78,34 @@ public class MiniGameManager : MonoBehaviour
     public void GameFail()
     {
         Destroy(m_currentGame);
-        GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
+        {
+            if (PlayerDataManager.instance.m_playerData.life > 1)
+            {
+                PlayerDataManager.instance.m_playerData.life--;
+                GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+            }
+      
+            else
+            {
+                PlayerDataManager.instance.m_playerData.exp += PlayerDataManager.instance.m_playerData.rewardExp;
+                PlayerDataManager.instance.m_playerData.coin += PlayerDataManager.instance.m_playerData.rewardCoin;
+                GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
+            }
+        }
+    }
+
+    public void GameReset()
+    {
+        if(m_currentGame != null)
+        {
+            Destroy(m_currentGame);
+        }
+        PlayerDataManager.instance.m_playerData.stage = 1;
+        PlayerDataManager.instance.m_playerData.life = 3;
+        PlayerDataManager.instance.m_playerData.rewardExp = 0;
+        PlayerDataManager.instance.m_playerData.rewardCoin = 0;
+        PlayerDataManager.instance.m_playerData.timePoint = 0;
+        PlayerDataManager.instance.m_playerData.bonusPoint = 0;
     }
 
 }

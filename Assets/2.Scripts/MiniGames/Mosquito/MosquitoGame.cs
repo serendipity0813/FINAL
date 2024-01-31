@@ -47,12 +47,13 @@ public class MosquitoGame : MiniGameSetting
         {
             m_missionPrefab.SetActive(true);
         }
-        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true )
+        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
         {
             m_missionPrefab.SetActive(false);
         }
 
-        if(m_timer > 2)
+
+        if (m_timer > 2)
         {
             m_timePrefab.SetActive(true);
             m_countPrefab.SetActive(true);

@@ -18,11 +18,14 @@ public class MiniGameSetting : MonoBehaviour
     protected TextMeshProUGUI[] m_timeText;
     protected TextMeshProUGUI[] m_countText;
 
+    protected int m_difficulty1;
+    protected int m_difficulty2;
+
     protected virtual void Awake()
-    {
+    {   
+
         if (MiniGameManager.Instance != null)
         {
-
             //미니게임 매니저로부터 받아와 캐싱해두기
             m_missionUI = MiniGameManager.Instance.InGameUIs[0];
             m_timeUI = MiniGameManager.Instance.InGameUIs[1];
@@ -50,6 +53,15 @@ public class MiniGameSetting : MonoBehaviour
             m_failPrefab.SetActive(false);
         }
     }
+
+    private void Update()
+    {
+        m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
+        m_difficulty2 = PlayerDataManager.instance.m_playerData.stage % 3 + 1;
+        if (m_difficulty1 > 3)
+            m_difficulty1 = 3;
+    }
+
 
     //게임 클리어, 실패 함수
     protected void GameClear()

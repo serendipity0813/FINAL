@@ -9,6 +9,8 @@ public class ButtonHandler : MonoBehaviour
     public void LobbyClick()
     {
         GameSceneManager.Instance.PopupClear();
+        MiniGameManager.Instance.GameReset();
+        Time.timeScale = 1.0f;
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
@@ -24,7 +26,7 @@ public class ButtonHandler : MonoBehaviour
     {
         MiniGameManager.Instance.GameNumber = -1;
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
-        //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void GatchaClick()
@@ -50,13 +52,21 @@ public class ButtonHandler : MonoBehaviour
     {
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
-        //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     public void ChoiceXbtnClick()
     {
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+    }
+
+    public void RestartbtnClick()
+    {
+        Time.timeScale = 1.0f;
+        GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+        MiniGameManager.Instance.GameReset();
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
 }
