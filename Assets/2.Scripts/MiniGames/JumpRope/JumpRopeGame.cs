@@ -8,7 +8,6 @@ public class JumpRopeGame : MiniGameSetting
     private DragToMoveController m_dragToMoveController;
 
     private int m_count = 0;
-    private int m_difficulty = 1;
     private bool m_collision = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
 
     private float m_timer;
@@ -70,7 +69,7 @@ public class JumpRopeGame : MiniGameSetting
     public void CheckWin()
     {
         bool result;       
-        switch (m_difficulty)
+        switch (m_difficulty1 * 3 + m_difficulty2 - 3)
         {
             case 1:
                 result = m_count > 5 ? true : false;
@@ -114,10 +113,7 @@ public class JumpRopeGame : MiniGameSetting
         m_count++;
     }
 
-    public void SetLevel(int difficulty)
-    {
-        m_difficulty = difficulty;
-    }
+
 
 
 }

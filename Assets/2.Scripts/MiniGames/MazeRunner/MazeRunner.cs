@@ -13,7 +13,7 @@ public class MazeRunner : MiniGameSetting
     private Vector2Int m_pos = Vector2Int.zero;
     private Vector2Int[] m_direction = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
     private Stack<Vector2Int> m_stackDir = new Stack<Vector2Int>(); //지나온 길의 방향 저장
-    private float m_timer = 12.0f;//타이머
+    private float m_timer = 20.0f;//타이머
 
     protected override void Awake()
     {
@@ -23,6 +23,7 @@ public class MazeRunner : MiniGameSetting
     private void Start()
     {
         m_missionText.text = "mission text";
+        m_timer -= m_difficulty1 * 3 + m_difficulty2 - 3;
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);//90도 각도로 내려다 보는 카메라로 변경
         m_controller.SetMoveSpeed(6.0f);//캐릭터 이동속도 6 설정

@@ -5,8 +5,6 @@ public class FoodShoot : MiniGameSetting
     private int m_bulletCount; // 처음에 주어지는 총알 개수
     private int m_winCount = 0; // 승리 카운트 선언
     private int m_win; // 미니 게임에 승리하기 위한 변수
-    private int m_level1; // 현재 미니게임 난이도1
-    private int m_level2; // 현재 미니게임 난이도2
     private bool m_end = false; // 게임이 끝났는가?
     private Camera m_camera; // 레이를 위한 카메라
     public int m_repetition; // 과일을 몇번 뿌릴지
@@ -17,12 +15,10 @@ public class FoodShoot : MiniGameSetting
     protected override void Awake()
     {
         base.Awake();
-        m_level1 = 3; // 임시 레벨
-        m_level2 = 3;
         m_bulletCount = 5; //총알 5발 고정
 
         // 1-1, 2-1, 3-1 에 해당되는 난이도
-        switch (m_level1)
+        switch (m_difficulty1)
         {
             case 0:
             case 1:
@@ -37,7 +33,7 @@ public class FoodShoot : MiniGameSetting
         }
 
         // 1-1, 1-2, 1-3 에 해당되는 난이도
-        switch (m_level2)
+        switch (m_difficulty2)
         {
             case 0:
             case 1:

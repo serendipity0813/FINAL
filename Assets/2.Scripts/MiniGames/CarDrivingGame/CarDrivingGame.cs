@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class CarDrivingGame : MiniGameSetting
@@ -63,21 +64,48 @@ public class CarDrivingGame : MiniGameSetting
 
     }
 
+    private void Update()
+    {
+        #region   //게임 시간별 로직 + 성공실패 관리
+        //시간과 카운트 반영되는 코드
+        m_timeText.text = (m_timer-3).ToString("0.00");
+
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
+        m_timer += Time.deltaTime;
+        if (m_timer > 1 && m_missionPrefab.activeSelf == false)
+            m_missionPrefab.SetActive(true);
+        if (m_timer > 2 && m_missionPrefab.activeSelf == true)
+            m_missionPrefab.SetActive(false);
+
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+        if (m_timer > 3)
+        {
+            m_timePrefab.SetActive(true);
+            m_countPrefab.SetActive(true);
+        }
+
+      
+        #endregion
+    }
+
     public int GetDifficulty()
     {
+        m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
         return m_difficulty;
     }
 
     public void Win()
     {
         CameraManager.Instance.ToggleCameraFollow();
-        GameClear();
+        m_clearPrefab.SetActive(true);
+        Invoke("GameClear", 1);
     }
 
     public void Lose()
     {
         CameraManager.Instance.ToggleCameraFollow();
-        GameFail();
+        m_failPrefab.SetActive(true);
+        Invoke("GameFail", 1);
     }
 
 

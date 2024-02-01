@@ -7,8 +7,6 @@ public class FoodEat : MiniGameSetting
     public bool m_startTimer = false; // 첫 스타트 시간 체크
     private float m_maxTime; // 게임 끝나는 시간 지점
     private bool m_end = false; // 게임이 끝났는가?
-    private int m_level1; // 현재 미니게임 난이도1
-    private int m_level2; // 현재 미니게임 난이도2
 
     public int m_repetition; // 과일을 몇번 뿌릴지
     public float m_speed; // 플레이어 이동 속도
@@ -16,11 +14,10 @@ public class FoodEat : MiniGameSetting
     protected override void Awake()
     {
         base.Awake();
-        m_level1 = 3; // 임시 레벨
-        m_level2 = 3;
+
 
         // 1-1, 2-1, 3-1 에 해당되는 난이도
-        switch (m_level1)
+        switch (m_difficulty1)
         {
             case 0:
             case 1:
@@ -41,7 +38,7 @@ public class FoodEat : MiniGameSetting
         }
 
         // 1-1, 1-2, 1-3 에 해당되는 난이도
-        switch (m_level2)
+        switch (m_difficulty2)
         {
             case 0:
             case 1:

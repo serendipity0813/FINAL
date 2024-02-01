@@ -162,7 +162,7 @@ public class BasketGame : MiniGameSetting
         bool result = false;
 
         //난이도 만큼 잡아야 하는 과일 개수를 못채웠을 경우 false 리턴
-        switch (m_difficulty)
+        switch (m_difficulty1 * 3 + m_difficulty2 - 3)
         {
             case 1:
                 result = m_catchCounts < 3 ? false : true;

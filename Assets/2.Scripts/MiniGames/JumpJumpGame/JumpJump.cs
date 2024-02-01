@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class JumpJump : MiniGameSetting
 {
-    public int m_level1; // 현재 미니게임 난이도1
-    public int m_level2; // 현재 미니게임 난이도2
     [SerializeField] private GameObject m_player;
     private float m_timer;
     private float m_maxTime;
@@ -16,11 +14,9 @@ public class JumpJump : MiniGameSetting
     protected override void Awake()
     {
         base.Awake();
-        m_level1 = 3; // 임시 레벨
-        m_level2 = 3;
 
         // 1-1, 2-1, 3-1 에 해당되는 난이도
-        switch (m_level1)
+        switch (m_difficulty1)
         {
             case 0:
             case 1:
@@ -35,7 +31,7 @@ public class JumpJump : MiniGameSetting
         }
 
         // 1-1, 1-2, 1-3 에 해당되는 난이도
-        switch (m_level2)
+        switch (m_difficulty2)
         {
             case 0:
             case 1:
