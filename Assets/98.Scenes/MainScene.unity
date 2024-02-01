@@ -896,8 +896,8 @@ MonoBehaviour:
   InGameUIs:
   - {fileID: 4818267222950564916, guid: 3af4c219a2681a642aac8387dfeffff7, type: 3}
   - {fileID: 4839911595461568207, guid: de80beaccfff34541856d9bd1a7556fb, type: 3}
-  - {fileID: 1396134759798909953, guid: 2d0fdfb76d911ef4ba8172a7d81ba953, type: 3}
   - {fileID: 3298075009621990133, guid: aabd395a7167d56448651764831f98fe, type: 3}
+  - {fileID: 1396134759798909953, guid: 2d0fdfb76d911ef4ba8172a7d81ba953, type: 3}
   - {fileID: 8356692665265373312, guid: 8f435d172eb64c343aecc50210f3f462, type: 3}
 --- !u!1 &1210944122
 GameObject:
