@@ -67,11 +67,13 @@ public class MiniGameSetting : MonoBehaviour
     protected void GameClear()
     {
         MiniGameManager.Instance.GameClear();
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     protected void GameFail()
     {
         MiniGameManager.Instance.GameFail();
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
 
