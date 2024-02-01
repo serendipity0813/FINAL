@@ -51,13 +51,14 @@ public class JumpJump : MiniGameSetting
                 m_maxTime = 10f;
                 break;
         }
+        m_timer = m_maxTime;
     }
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "Jump In " + m_maxTime + " second";
-        m_timeText[0].text = "TimeLimit";
-        m_countText[0].text = "Count";
+        m_missionText.text = m_maxTime + "초 안에 점프해서 도달해라";
+        m_timeText[0].text = "";
+        m_countText[0].text = "";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         CameraManager.Instance.SetFollowSpeed(5f);
@@ -76,18 +77,24 @@ public class JumpJump : MiniGameSetting
         m_countText[1].text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        if (m_timer > 0f)
+        {
+            if (!m_end)
+            {
+                m_timer -= Time.deltaTime;
+            }
+        }
         if (!m_startTimer)
         {
-            if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+            if (m_timer < m_maxTime - 0.5f && m_missionPrefab.activeSelf == false)
                 m_missionPrefab.SetActive(true);
-            if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+            if (m_timer < m_maxTime - 1.5f && m_missionPrefab.activeSelf == true)
                 m_missionPrefab.SetActive(false);
 
             //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-            if (m_timer > 2)
+            if (m_timer < m_maxTime - 2f)
             {
-                m_timer = 0f;
+                m_timer = m_maxTime;
                 m_startTimer = true;
                 m_timePrefab.SetActive(true);
                 m_countPrefab.SetActive(true);
@@ -107,7 +114,7 @@ public class JumpJump : MiniGameSetting
                 CameraManager.Instance.ToggleCameraFollow();
                 Invoke("GameClear", 1);
             }
-            if (m_timer > m_maxTime)
+            if (m_timer <= 0f && m_clearCount > 0)
             {
                 // 패배시 로직
                 Debug.Log("졌다!");
