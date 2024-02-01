@@ -9,7 +9,6 @@ public class MosquitoGame : MiniGameSetting
     [SerializeField] private GameObject Mosquito;
     private Camera m_camera;
 
-    private int m_stage = 5;
     private float m_timer;
     private int m_clearCount;
 
@@ -22,7 +21,7 @@ public class MosquitoGame : MiniGameSetting
     {
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         m_camera = CameraManager.Instance.GetCamera();
-        //현재 스테이지에 2배수로 모기 생성
+
         m_clearCount = m_difficulty1 * 3;
 
         m_missionText.text = "kill " + (m_difficulty1 * 3) + " Mosquito";

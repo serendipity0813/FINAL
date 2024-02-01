@@ -18,8 +18,7 @@ public class ObstacleMovement : MonoBehaviour
     {
         m_targetPosition.x = Random.Range(4.0f, 8.0f);
         m_targetPosition.y = Random.Range(-31, 0);
-        m_speed = Random.Range(0.05f, 0.25f);
-
+        m_speed = Random.Range(0.05f, 0.15f) + upDownRopeGame.difficulty * 0.5f;
         gameObject.transform.position = m_targetPosition;
     }
 

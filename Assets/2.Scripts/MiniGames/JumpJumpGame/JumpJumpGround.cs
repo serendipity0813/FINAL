@@ -20,7 +20,7 @@ public class JumpJumpGround : MonoBehaviour
     }
     void RandomDistanceLocation()
     {
-        switch (m_jumpJump.m_level1)
+        switch (m_jumpJump.difficulty)
         {
             case 0:
             case 1:

@@ -13,8 +13,6 @@ public class KanuGame : MiniGameSetting
     private Vector3 m_mapPosition;
     private float m_positionz;
     private float m_power;
-
-    private int m_stage = 4;    //현재는 임시로 숫자 1 사용
     private float m_timer;
 
 
@@ -49,7 +47,7 @@ public class KanuGame : MiniGameSetting
 
         if (m_timer > 2)
         {
-            m_positionz += m_stage * 0.2f;
+            m_positionz += m_difficulty2 * 0.1f;
             if (Input.GetMouseButton(0))
             {
                 m_power += Time.deltaTime*5;
@@ -91,7 +89,7 @@ public class KanuGame : MiniGameSetting
 
 
         m_slider.value = m_power;
-        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz / 5);
+        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz / (3 + m_difficulty2-m_difficulty2));
     }
 
     private void Update()

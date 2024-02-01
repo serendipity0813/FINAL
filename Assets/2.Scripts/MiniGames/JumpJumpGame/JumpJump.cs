@@ -10,11 +10,12 @@ public class JumpJump : MiniGameSetting
     public float m_JumpArrivalPoint; // 도착지점 거리
     public int m_clearCount = 1; // 승리 카운트 선언
     public float m_JumpForceSpeed;  // 점프 각도 스피드
+    public int difficulty;
 
     protected override void Awake()
     {
         base.Awake();
-
+        difficulty = m_difficulty1;
         // 1-1, 2-1, 3-1 에 해당되는 난이도
         switch (m_difficulty1)
         {

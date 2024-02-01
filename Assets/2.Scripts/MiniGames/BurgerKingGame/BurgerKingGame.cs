@@ -8,7 +8,7 @@ public class BurgerKingGame : MiniGameSetting
 {
     private float m_timer;
     private int m_count;
-    private int m_stage;
+    private int m_difficulty;
     private bool m_clear;
     private int m_burgerLength;
     private int[] m_missionBurger;
@@ -37,8 +37,8 @@ public class BurgerKingGame : MiniGameSetting
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        m_stage = PlayerDataManager.instance.m_playerData.stage;
-        m_burgerLength = m_stage + 5;
+        m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
+        m_burgerLength = m_difficulty + 4;
         m_clear = false;
         m_count = 0;
         m_missionText.text = "Make Perfact Burger";

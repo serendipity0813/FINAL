@@ -6,8 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class UpDownRopeGame : MiniGameSetting
 {
-    private int m_stage = 11;    //현재는 임시로 숫자 11 사용
     [HideInInspector]public int clearCount;
+    [HideInInspector]public int difficulty;
     [HideInInspector]public float timer;
     [SerializeField]private GameObject m_player;
     [SerializeField]private GameObject m_obstacle;
@@ -28,17 +28,17 @@ public class UpDownRopeGame : MiniGameSetting
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        clearCount = m_stage / 5;
+        clearCount = 1 + ((m_difficulty1 + m_difficulty2)/ 3);
         m_missionText.text = "To The Ground With Click!";
+        difficulty = m_difficulty1;
 
         //맵의 위치값과 변동을 줄 y값 받아오기
         m_playerPosition = m_player.transform.position;
         m_positiony = m_playerPosition.y;
 
-        for(int i=1; i <= m_stage; i++)
+        for(int i=1; i <= m_difficulty2 + m_difficulty1 - 1; i++)
         {
-            if(i % 3 == 1)
-                Instantiate(m_obstacle, m_obstacle.transform.position, Quaternion.identity, transform);
+             Instantiate(m_obstacle, m_obstacle.transform.position, Quaternion.identity, transform);
         }
 
     }
