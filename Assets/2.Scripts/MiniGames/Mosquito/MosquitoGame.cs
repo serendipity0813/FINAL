@@ -24,7 +24,7 @@ public class MosquitoGame : MiniGameSetting
 
         m_clearCount = m_difficulty1 * 3;
 
-        m_missionText.text = "kill " + (m_difficulty1 * 3) + " Mosquito";
+        m_missionText.text = "모기를 전부 잡아라!";
 
         for (int i=0; i < m_clearCount; i++)
         {

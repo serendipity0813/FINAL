@@ -19,7 +19,7 @@ public class RunningGame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
-        m_missionText.text = " Run For Win";
+        m_missionText.text = "결승선까지 달려라!";
         m_timer -= m_difficulty2;
         m_mapPosition = m_map.transform.position;
         m_positionz = -4;

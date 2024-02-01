@@ -34,7 +34,7 @@ public class KanuGame : MiniGameSetting
         m_positionz = m_mapPosition.y;
 
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "Push & Pull with Nice Timing";
+        m_missionText.text = "위에서 땡기고 아래에서 밀어라!";
 
     }
 

@@ -41,7 +41,7 @@ public class BurgerKingGame : MiniGameSetting
         m_burgerLength = m_difficulty + 4;
         m_clear = false;
         m_count = 0;
-        m_missionText.text = "Make Perfact Burger";
+        m_missionText.text = "똑같은 햄버거를 만들어보자!";
 
         //햄버거 재료 스폰위치 설정
         m_missionSpawnPosition = MissionTable.transform.position;

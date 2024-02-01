@@ -22,7 +22,7 @@ public class MazeRunner : MiniGameSetting
 
     private void Start()
     {
-        m_missionText.text = "mission text";
+        m_missionText.text = "제한시간 내에 미로를 탈출하자!";
         m_timer -= m_difficulty1 * 3 + m_difficulty2 - 3;
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);//90도 각도로 내려다 보는 카메라로 변경

@@ -30,6 +30,8 @@ public class CarDrivingGame : MiniGameSetting
         m_generator = transform.GetChild(2).GetComponent<CarGenerator>();
         m_generator.GenerateCars();//난이도에 맞춰서 차 생성
 
+        m_missionText.text = "차를 피해서 목표에 도달하자!";
+
     }
 
     private void FixedUpdate()

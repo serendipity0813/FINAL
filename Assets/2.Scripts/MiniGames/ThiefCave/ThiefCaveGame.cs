@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class ThiefCaveGame : MiniGameSetting
 {
-    private int stage = 3;
     private float m_timer;
     public Vector3[] m_hidePosition { get; private set; }   //동굴 위치를 나타내는 백터 배열
     public bool IsGaiming { get; private set; }     //게임 진행중임을 체크
@@ -27,7 +26,7 @@ public class ThiefCaveGame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
-        m_missionText.text = "Find Thief";
+        m_missionText.text = "보물을 가진 도둑을 잡아라!";
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
         m_camera = CameraManager.Instance.GetCamera();
@@ -35,26 +34,27 @@ public class ThiefCaveGame : MiniGameSetting
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;
-        m_hidePosition = new Vector3[stage * 2 + 1];
+        m_hidePosition = new Vector3[1 + m_difficulty2 * 2];
 
         //랜덤한 위치에 도둑이 숨을 공간 생성
-        for (int i = 0; i <= stage * 2 ; i++)
+        for (int i = 0; i <= 1 + m_difficulty2 * 2 ; i++)
         {
             m_hidePosition[i] = new Vector3((int)Random.Range(-2, 3) * 2, 0, (int)Random.Range(-2, 5) * 2);
             if(i == 0)
             {
                 //첫 번째 생성할 때 타겟도 생성
                 Instantiate(Target, m_hidePosition[i], Quaternion.identity, transform);
+                Cave.transform.position = m_hidePosition[i];
+                Instantiate(Cave, m_hidePosition[i], Quaternion.identity, transform);
             }
-            Cave.transform.position = m_hidePosition[i];
-            Instantiate(Cave, m_hidePosition[i], Quaternion.identity, transform);
-
-            //i가 홀수일 때 마다 타겟이 아닌 오브젝트 생성
-            if (i%2 == 1)
+            else
             {
+                Cave.transform.position = m_hidePosition[i];
+                Instantiate(Cave, m_hidePosition[i], Quaternion.identity, transform);
                 Thief.transform.position = m_hidePosition[i];
                 Instantiate(Thief, m_hidePosition[i], Quaternion.identity, transform);
             }
+
         }
 
 

@@ -23,7 +23,6 @@ public class BasketGame : MiniGameSetting
     private float m_screenWidth;//화면 해상도에 따른 오른쪽 끝의 World Point
 
     private int m_clearCount;
-    private int m_stage;
     private float m_timer;
 
     protected override void Awake()
@@ -34,9 +33,8 @@ public class BasketGame : MiniGameSetting
     // Start is called before the first frame update
     void Start()
     {
-        m_stage = PlayerDataManager.instance.m_playerData.stage;
         m_clearCount = m_catchCounts;
-        m_missionText.text = "mission text";
+        m_missionText.text = "떨어지는 음식을 바구니에 담자!";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
         m_rigidbody = m_player.GetComponent<Rigidbody>();

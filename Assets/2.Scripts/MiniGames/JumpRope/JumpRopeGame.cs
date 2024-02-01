@@ -6,7 +6,7 @@ public class JumpRopeGame : MiniGameSetting
     [SerializeField]
     private GameObject m_player;
     private DragToMoveController m_dragToMoveController;
-
+    private int m_difficuty;
     private int m_count = 0;
     private bool m_collision = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
 
@@ -24,9 +24,9 @@ public class JumpRopeGame : MiniGameSetting
         CameraManager.Instance.ToggleCameraFollow();
 
         m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
-
+        m_difficuty = m_difficulty1 * 3 + m_difficulty2 - 3;
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "mission text";
+        m_missionText.text = m_difficuty.ToString() + "회 줄넘기!";
     }
 
     // Update is called once per frame
@@ -69,7 +69,7 @@ public class JumpRopeGame : MiniGameSetting
     public void CheckWin()
     {
         bool result;       
-        switch (m_difficulty1 * 3 + m_difficulty2 - 3)
+        switch (m_difficuty)
         {
             case 1:
                 result = m_count > 5 ? true : false;

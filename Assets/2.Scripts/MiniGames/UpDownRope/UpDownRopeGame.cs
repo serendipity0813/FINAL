@@ -27,9 +27,15 @@ public class UpDownRopeGame : MiniGameSetting
 
     private void Start()
     {
+        //카메라 설정
+        CameraManager.Instance.ChangeCamera(CameraView.Angle30View);
+        CameraManager.Instance.SetFollowSpeed(10.0f);
+        CameraManager.Instance.SetFollowTarget(m_player);
+        CameraManager.Instance.ToggleCameraFollow();
+
         //인게임 text내용 설정 + 게임 승리조건
         clearCount = 1 + ((m_difficulty1 + m_difficulty2)/ 3);
-        m_missionText.text = "To The Ground With Click!";
+        m_missionText.text = "장애물을 피해 바닥까지 내려가자!";
         difficulty = m_difficulty1;
 
         //맵의 위치값과 변동을 줄 y값 받아오기
@@ -89,6 +95,7 @@ public class UpDownRopeGame : MiniGameSetting
             m_clearPrefab.SetActive(true);
             timer = 10;
             Invoke("GameClear", 1);
+            CameraManager.Instance.ToggleCameraFollow();
         }
 
         //게임 패배조건
@@ -96,6 +103,7 @@ public class UpDownRopeGame : MiniGameSetting
         {
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
+            CameraManager.Instance.ToggleCameraFollow();
         }
 
 
