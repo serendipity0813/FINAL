@@ -69,8 +69,7 @@ public class JumpRopeGame : MiniGameSetting
 
     public void CheckWin()
     {
-        bool result;
-
+        bool result;       
         switch (m_difficulty)
         {
             case 1:

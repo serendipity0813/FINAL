@@ -56,8 +56,6 @@ public class FoodShoot : MiniGameSetting
     {
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = m_bulletCount + "발 안에 음식을 " + m_win + "개 맞춰라";
-        m_timeText[0].text = "";
-        m_countText[0].text = "";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         m_camera = CameraManager.Instance.GetCamera();
@@ -70,8 +68,8 @@ public class FoodShoot : MiniGameSetting
     void UiTime()
     {
         //시간과 카운트 반영되는 코드
-        m_timeText[1].text = m_timer.ToString("0.00");
-        m_countText[1].text = m_winCount.ToString() + "/" + m_win.ToString();
+        m_timeText.text = m_timer.ToString("0.00");
+        m_countText.text = m_winCount.ToString() + "/" + m_win.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         if (m_timer > 0f)

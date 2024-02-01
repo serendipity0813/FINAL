@@ -22,8 +22,8 @@ public class MiniGameSetting : MonoBehaviour
     protected int m_difficulty2;
 
     protected virtual void Awake()
-    {   
-
+    {
+        //미니게임 난이도 : m_difficulty1 - m_difficulty2 (ex : 2-3) -> 최대 3-3 (9스테이지)
         if (MiniGameManager.Instance != null)
         {
             m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
