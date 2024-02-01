@@ -21,7 +21,7 @@ public class ThiefMovement : MonoBehaviour
     private void Start()
     {
 
-        m_thiefSpeed = (PlayerDataManager.instance.m_playerData.stage / 3 + 1) * 0.1f;
+        m_thiefSpeed = (PlayerDataManager.instance.m_playerData.stage / 3 + 1) * 0.05f + 0.05f;
         m_length = thiefCaveGame.m_hidePosition.Length;
         m_hidePosition = new Vector3[m_length];
 
