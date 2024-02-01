@@ -23,7 +23,7 @@ public class GameOverSceneController : ButtonHandler
     {
         m_moneyNum = PlayerDataManager.instance.m_playerData.rewardCoin;
         m_ExpNum = PlayerDataManager.instance.m_playerData.rewardExp;
-        m_stagePointNum = PlayerDataManager.instance.m_playerData.stage * 1000;
+        m_stagePointNum = (PlayerDataManager.instance.m_playerData.stage+1) * 1000;
         m_timePointNum = PlayerDataManager.instance.m_playerData.timePoint;
         m_bonusPointNum = PlayerDataManager.instance.m_playerData.bonusPoint;
         m_totalPointNum = m_stagePointNum + m_timePointNum + m_bonusPointNum;

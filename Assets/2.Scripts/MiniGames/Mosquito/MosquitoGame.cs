@@ -22,7 +22,7 @@ public class MosquitoGame : MiniGameSetting
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         m_camera = CameraManager.Instance.GetCamera();
 
-        m_clearCount = m_difficulty1 * 3;
+        m_clearCount = m_difficulty2 * 3;
 
         m_missionText.text = "모기를 전부 잡아라!";
 

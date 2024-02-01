@@ -12,7 +12,7 @@ public class MosquitoMovement : MonoBehaviour
     private void Start()
     {
         m_targetPosition = new Vector3(0, 0, 0);
-        m_mosquitoSpeed = (PlayerDataManager.instance.m_playerData.stage % 3 + 1) * 0.1f;
+        m_mosquitoSpeed = (PlayerDataManager.instance.m_playerData.stage / 3 + 1) * 0.1f;
     }
 
     private void FixedUpdate()

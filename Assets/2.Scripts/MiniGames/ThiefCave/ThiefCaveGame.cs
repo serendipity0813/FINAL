@@ -37,7 +37,7 @@ public class ThiefCaveGame : MiniGameSetting
         m_hidePosition = new Vector3[1 + m_difficulty2 * 2];
 
         //랜덤한 위치에 도둑이 숨을 공간 생성
-        for (int i = 0; i <= 1 + m_difficulty2 * 2 ; i++)
+        for (int i = 0; i < 1 + m_difficulty2 * 2 ; i++)
         {
             m_hidePosition[i] = new Vector3((int)Random.Range(-2, 3) * 2, 0, (int)Random.Range(-2, 5) * 2);
             if(i == 0)

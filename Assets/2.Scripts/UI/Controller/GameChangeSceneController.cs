@@ -11,13 +11,14 @@ public class GameChangeSceneController : ButtonHandler
     private void Start()
     {
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
-        m_stageNumber.text = PlayerDataManager.instance.m_playerData.stage.ToString();
+        m_stageNumber.text = (PlayerDataManager.instance.m_playerData.stage+1).ToString();
         LifeCheck();
 
         if (MiniGameManager.Instance.GameNumber == -1)
             Invoke("StartRandomGame", 1);
         else
             Invoke("StartChoiceGame", 1);
+
 
     }
 

@@ -31,6 +31,8 @@ public class MiniGameSetting : MonoBehaviour
             if (m_difficulty1 > 3)
                 m_difficulty1 = 3;
 
+            Debug.Log(m_difficulty1 + " - " + m_difficulty2 + " life : " + PlayerDataManager.instance.m_playerData.life);
+
             //미니게임 매니저로부터 받아와 캐싱해두기
             m_missionUI = MiniGameManager.Instance.InGameUIs[0];
             m_timeUI = MiniGameManager.Instance.InGameUIs[1];
@@ -63,12 +65,14 @@ public class MiniGameSetting : MonoBehaviour
     //게임 클리어, 실패 함수
     protected void GameClear()
     {
+        MiniGameManager.Instance.EndCheck();
         MiniGameManager.Instance.GameClear();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     protected void GameFail()
     {
+        MiniGameManager.Instance.EndCheck();
         MiniGameManager.Instance.GameFail();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
