@@ -15,8 +15,8 @@ public class MiniGameSetting : MonoBehaviour
     protected GameObject m_clearPrefab;
     protected GameObject m_failPrefab;
     protected TextMeshProUGUI m_missionText;
-    protected TextMeshProUGUI[] m_timeText;
-    protected TextMeshProUGUI[] m_countText;
+    protected TextMeshProUGUI m_timeText;
+    protected TextMeshProUGUI m_countText;
 
     protected int m_difficulty1;
     protected int m_difficulty2;
@@ -26,6 +26,11 @@ public class MiniGameSetting : MonoBehaviour
 
         if (MiniGameManager.Instance != null)
         {
+            m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
+            m_difficulty2 = PlayerDataManager.instance.m_playerData.stage % 3 + 1;
+            if (m_difficulty1 > 3)
+                m_difficulty1 = 3;
+
             //미니게임 매니저로부터 받아와 캐싱해두기
             m_missionUI = MiniGameManager.Instance.InGameUIs[0];
             m_timeUI = MiniGameManager.Instance.InGameUIs[1];
@@ -42,8 +47,8 @@ public class MiniGameSetting : MonoBehaviour
 
             //UI오브젝트 하위의 Text오브젝트의 컴포넌트 캐싱해두기, time과 count는 2개 받아와서 0번은 설명, 1번은 숫자값
             m_missionText = m_missionPrefab.GetComponentInChildren<TextMeshProUGUI>();
-            m_timeText = m_timePrefab.GetComponentsInChildren<TextMeshProUGUI>();
-            m_countText = m_countPrefab.GetComponentsInChildren<TextMeshProUGUI>();
+            m_timeText = m_timePrefab.GetComponentInChildren<TextMeshProUGUI>();
+            m_countText = m_countPrefab.GetComponentInChildren<TextMeshProUGUI>();
 
             //초기에는 false로 설정되도록 
             m_missionPrefab.SetActive(false);
@@ -52,14 +57,6 @@ public class MiniGameSetting : MonoBehaviour
             m_clearPrefab.SetActive(false);
             m_failPrefab.SetActive(false);
         }
-    }
-
-    private void Update()
-    {
-        m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
-        m_difficulty2 = PlayerDataManager.instance.m_playerData.stage % 3 + 1;
-        if (m_difficulty1 > 3)
-            m_difficulty1 = 3;
     }
 
 

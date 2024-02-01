@@ -28,8 +28,6 @@ public class ThiefCaveGame : MiniGameSetting
     private void Start()
     {
         m_missionText.text = "Find Thief";
-        m_timeText[0].text = "TimeLimit";
-        m_countText[0].text = "Count";
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
         m_camera = CameraManager.Instance.GetCamera();
@@ -64,7 +62,7 @@ public class ThiefCaveGame : MiniGameSetting
 
     private void Update()
     {
-        m_timeText[1].text = (15 - m_timer).ToString("0.00");
+        m_timeText.text = (15 - m_timer).ToString("0.00");
 
         //시간 흐름에 따라 게임 진행 
         m_timer += Time.deltaTime;

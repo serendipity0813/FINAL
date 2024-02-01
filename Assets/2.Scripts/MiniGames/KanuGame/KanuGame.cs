@@ -23,7 +23,7 @@ public class KanuGame : MiniGameSetting
     {
         /*부모클래스 필드 및 메소드 받아오기
          인게임 UI 목록 : m_missionUI, m_timeUI, m_countUI, m_clearUI, m_failUI
-         인게임 Text 목록 : m_missionText, m_timeText[0], m_timeText[1], m_countText[0], m_countText[1]
+         인게임 Text 목록 : m_missionText, m_timeText, m_timeText, m_countText, m_countText
          배열의 경우 0번은 내용(남은시간, 남은횟수 등), 1번은 숫자 입니다.
          인게임 Method 목록 : GameClear(); , GameFail(); */
 
@@ -37,7 +37,6 @@ public class KanuGame : MiniGameSetting
 
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = "Push & Pull with Nice Timing";
-        m_timeText[0].text = "TimeLimit";
 
     }
 
@@ -99,7 +98,7 @@ public class KanuGame : MiniGameSetting
     {
 
         //시간과 카운트 반영되는 코드
-        m_timeText[1].text = m_timer.ToString("0.00");
+        m_timeText.text = m_timer.ToString("0.00");
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer += Time.deltaTime;

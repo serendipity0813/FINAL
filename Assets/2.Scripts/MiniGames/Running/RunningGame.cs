@@ -20,8 +20,6 @@ public class RunningGame : MiniGameSetting
     private void Start()
     {
         m_missionText.text = " Run For Win";
-        m_timeText[0].text = "TimeLimit";
-        m_countText[0].text = "Count";
 
         m_mapPosition = m_map.transform.position;
         m_positionz = -4;
@@ -36,7 +34,7 @@ public class RunningGame : MiniGameSetting
     // Update is called once per frame
     private void Update()
     {
-        m_timeText[1].text = (12 - m_timer).ToString("0.00");
+        m_timeText.text = (12 - m_timer).ToString("0.00");
 
         m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)

@@ -28,8 +28,6 @@ public class JumpRopeGame : MiniGameSetting
 
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = "mission text";
-        m_timeText[0].text = "Limit";
-        m_countText[0].text = "Count";
     }
 
     // Update is called once per frame
@@ -43,8 +41,8 @@ public class JumpRopeGame : MiniGameSetting
     {
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
-        m_timeText[1].text = (12-m_timer).ToString("0.00");
-        m_countText[1].text = m_count.ToString();
+        m_timeText.text = (12-m_timer).ToString("0.00");
+        m_countText.text = m_count.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer += Time.deltaTime;

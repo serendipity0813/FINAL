@@ -23,8 +23,6 @@ public class MazeRunner : MiniGameSetting
     private void Start()
     {
         m_missionText.text = "mission text";
-        m_timeText[0].text = "Limit";
-        m_countText[0].text = "Count";
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);//90도 각도로 내려다 보는 카메라로 변경
         m_controller.SetMoveSpeed(6.0f);//캐릭터 이동속도 6 설정
@@ -69,7 +67,7 @@ public class MazeRunner : MiniGameSetting
     {
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
-        m_timeText[1].text = m_timer.ToString("0.00");
+        m_timeText.text = m_timer.ToString("0.00");
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer -= Time.deltaTime;

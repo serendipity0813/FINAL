@@ -61,8 +61,6 @@ public class FoodEat : MiniGameSetting
     {
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = "Eat " + m_repetition + " Food In " + m_maxTime + " second";
-        m_timeText[0].text = "TimeLimit";
-        m_countText[0].text = "Count";
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
     }
     private void Update()
@@ -73,8 +71,8 @@ public class FoodEat : MiniGameSetting
     void UiTime()
     {
         //시간과 카운트 반영되는 코드
-        m_timeText[1].text = m_timer.ToString("0.00");
-        m_countText[1].text = m_clearCount.ToString();
+        m_timeText.text = m_timer.ToString("0.00");
+        m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer += Time.deltaTime;
