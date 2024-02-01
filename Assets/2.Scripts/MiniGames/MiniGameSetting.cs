@@ -26,12 +26,20 @@ public class MiniGameSetting : MonoBehaviour
         //미니게임 난이도 : m_difficulty1 - m_difficulty2 (ex : 2-3) -> 최대 3-3 (9스테이지)
         if (MiniGameManager.Instance != null)
         {
-            m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
-            m_difficulty2 = PlayerDataManager.instance.m_playerData.stage % 3 + 1;
-            if (m_difficulty1 > 3)
-                m_difficulty1 = 3;
+            if(PlayerDataManager.instance != null)
+            {
+                m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
+                m_difficulty2 = PlayerDataManager.instance.m_playerData.stage % 3 + 1;
+                if (m_difficulty1 > 3)
+                    m_difficulty1 = 3;
+                //Debug.Log(m_difficulty1 + " - " + m_difficulty2 + " life : " + PlayerDataManager.instance.m_playerData.life);
+            }
+            else
+            {
+                m_difficulty1 = 1;
+                m_difficulty2 = 1;
+            }
 
-            Debug.Log(m_difficulty1 + " - " + m_difficulty2 + " life : " + PlayerDataManager.instance.m_playerData.life);
 
             //미니게임 매니저로부터 받아와 캐싱해두기
             m_missionUI = MiniGameManager.Instance.InGameUIs[0];
