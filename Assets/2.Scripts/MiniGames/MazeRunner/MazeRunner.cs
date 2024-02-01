@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MazeRunner : MiniGameSetting
@@ -14,6 +15,7 @@ public class MazeRunner : MiniGameSetting
     private Vector2Int[] m_direction = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
     private Stack<Vector2Int> m_stackDir = new Stack<Vector2Int>(); //지나온 길의 방향 저장
     private float m_timer = 20.0f;//타이머
+    private float m_maxTime = 20.0f;//타이머
 
     protected override void Awake()
     {
@@ -24,6 +26,7 @@ public class MazeRunner : MiniGameSetting
     {
         m_missionText.text = "제한시간 내에 미로를 탈출하자!";
         m_timer -= m_difficulty1 * 3 + m_difficulty2 - 3;
+        m_maxTime = m_timer;
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);//90도 각도로 내려다 보는 카메라로 변경
         m_controller.SetMoveSpeed(6.0f);//캐릭터 이동속도 6 설정
@@ -31,7 +34,7 @@ public class MazeRunner : MiniGameSetting
         m_map = new bool[m_mazeWidth, m_mazeHeight];//미로 크기 9x9
         m_pos = new Vector2Int(1, 1);
 
-       
+
 
         for (int x = 0; x < m_mazeWidth; x++)
         {
@@ -44,16 +47,16 @@ public class MazeRunner : MiniGameSetting
         BuildMaze();
         m_map[8, 15] = false; //출구 뚫어놓기
         //벽 배치
-        for (int x = 1; x < m_mazeWidth-1; x++)
+        for (int x = 1; x < m_mazeWidth - 1; x++)
         {
-            for (int y = 1; y < m_mazeHeight-1; y++)
+            for (int y = 1; y < m_mazeHeight - 1; y++)
             {
                 if (m_map[x, y])
                 {
                     GameObject obj = Instantiate(m_wall, transform.GetChild(1));
-                    obj.transform.position = new Vector3(0.8f * x-4, 0.8f, 0.8f * y-6.8f);
+                    obj.transform.position = new Vector3(0.8f * x - 4, 0.8f, 0.8f * y - 6.8f);
                 }
-                
+
             }
         }
     }
@@ -61,7 +64,8 @@ public class MazeRunner : MiniGameSetting
     // Update is called once per frame
     private void FixedUpdate()
     {
-        m_controller.UpdateMove();
+        if (m_timer < m_timer - 2.0f)//2초후 부터 움직일 수 있게
+            m_controller.UpdateMove();
     }
 
     private void Update()
@@ -72,13 +76,15 @@ public class MazeRunner : MiniGameSetting
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer -= Time.deltaTime;
-        if (m_timer < 11.5)
+
+        if (m_timer < (m_maxTime - 0.5f) && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
-        if (m_timer < 10.5)
+        if (m_timer < (m_maxTime - 1.5f) && m_missionPrefab.activeSelf == true)
             m_missionPrefab.SetActive(false);
 
+
         //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer < 10)
+        if (m_timer < m_maxTime - 2.0f)
         {
             m_timePrefab.SetActive(true);
         }
