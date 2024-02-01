@@ -50,11 +50,14 @@ public class ToiletPaperRoll : MiniGameSetting
                 m_rollCount = 50;
                 break;
         }
+        m_timer = m_maxTime;
     }
     private void Start()
     {
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "all Use toilet paper " + m_maxTime + " second";
+        m_missionText.text = m_maxTime + "초 안에 휴지를 전부 뜯어라";
+        m_timeText[0].text = "";
+        m_countText[0].text = "";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
@@ -66,22 +69,28 @@ public class ToiletPaperRoll : MiniGameSetting
     void UiTime()
     {
         //시간과 카운트 반영되는 코드
-        m_timeText.text = m_timer.ToString("0.00");
-        m_countText.text = m_winCount.ToString();
+        m_timeText[1].text = m_timer.ToString("0.00");
+        m_countText[1].text = m_winCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        if (m_timer > 0f)
+        {
+            if (!m_end)
+            {
+                m_timer -= Time.deltaTime;
+            }
+        }
         if (!m_startTimer)
         {
-            if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+            if (m_timer < m_maxTime - 0.5f && m_missionPrefab.activeSelf == false)
                 m_missionPrefab.SetActive(true);
-            if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+            if (m_timer < m_maxTime - 1.5f && m_missionPrefab.activeSelf == true)
                 m_missionPrefab.SetActive(false);
 
             //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-            if (m_timer > 2)
+            if (m_timer < m_maxTime - 2f)
             {
-                m_timer = 0f;
+                m_timer = m_maxTime;
                 m_startTimer = true;
                 m_timePrefab.SetActive(true);
                 m_countPrefab.SetActive(true);
@@ -102,7 +111,7 @@ public class ToiletPaperRoll : MiniGameSetting
                 m_end = true;
                 Invoke("GameClear", 1);
             }
-            else if (m_winCount > 0 && m_timer > m_maxTime)
+            if (m_timer <= 0f && m_winCount > 0)
             {
                 // 패배시 로직
                 Debug.Log("졌다!");

@@ -8,6 +8,7 @@ public class MakeFood : MonoBehaviour
     [SerializeField] private GameObject m_cherry;
     [SerializeField] private Transform m_parentTrn;
     [SerializeField] private int m_repetition;
+    [SerializeField] private FoodShoot foodShoot;
 
     void Awake()
     {
@@ -16,7 +17,7 @@ public class MakeFood : MonoBehaviour
 
     void Start()
     {
-        FoodShoot foodShoot = GetComponentInParent<FoodShoot>();
+        foodShoot = GetComponentInParent<FoodShoot>();
         m_repetition = foodShoot.m_repetition;
         StartCoroutine(FoodMakeCoroutine()); // 코루틴 실행
     }
