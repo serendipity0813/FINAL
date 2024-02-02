@@ -5,12 +5,6 @@
     "coin": 100,
     "diamond": 0,
     "ticket": 0,
-    "stage": 23,
-    "life": 1,
-    "rewardExp": 0,
-    "rewardCoin": 0,
-    "timePoint": 0,
-    "bonusPoint": 0,
     "gameIndex": [
         0,
         1,
