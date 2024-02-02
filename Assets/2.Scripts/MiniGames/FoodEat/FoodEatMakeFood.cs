@@ -49,7 +49,7 @@ public class FoodEatMakeFood : MonoBehaviour
         while (true)
         {
             rndX = Random.Range(-cameraWidth / 2 + 1, cameraWidth / 2 - 1);
-            rndZ = Random.Range(-cameraHeight / 2 + 1, cameraHeight / 2 - 2);
+            rndZ = Random.Range(-cameraHeight / 2 + 1, cameraHeight / 2 - 3);
             if (rndX < m_parentTrn.position.x + 1 || rndX > m_parentTrn.position.x - 1 &&
                 rndZ < m_parentTrn.position.z + 1 || rndZ > m_parentTrn.position.z - 1)
             {
