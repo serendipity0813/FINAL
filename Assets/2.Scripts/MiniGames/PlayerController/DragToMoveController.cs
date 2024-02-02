@@ -48,8 +48,9 @@ class DragToMoveController : MonoBehaviour
             {
                 if (TouchManager.instance.IsDragUp())//위로 드래그 했을 경우
                 {
+                    Vector3 force = new Vector3(0, m_jumpPower, 0);
                     m_readyJump = false;//준비 상태 해제
-                    m_rigidbody.AddForce(new Vector3(0, m_jumpPower, 0));//위로 AddForce
+                    m_rigidbody.AddForce(force);//위로 AddForce
                 }
             }
             

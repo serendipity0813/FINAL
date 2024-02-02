@@ -40,15 +40,18 @@ public class BasketGame : MiniGameSetting
         m_rigidbody = m_player.GetComponent<Rigidbody>();
 
         //화면 해상도 기준 오른쪽 끝에 레이 발사
-        Ray ray = CameraManager.Instance.GetCamera().ScreenPointToRay(new Vector3(Screen.width, Screen.height));
+        Vector3 pos = new Vector3(Screen.width, Screen.height);
+        Ray ray = CameraManager.Instance.GetCamera().ScreenPointToRay(pos);
         RaycastHit hit;
 
         //좌우 벽을 화면 끝에 배치하는 기능
         if (Physics.Raycast(ray, out hit))
         {
             m_screenWidth = hit.point.x - 0.2f;
-            m_leftWall.transform.position = new Vector3(-m_screenWidth, 0, 8.0f);
-            m_rightWall.transform.position = new Vector3(m_screenWidth, 0, 8.0f);
+            Vector3 screenLeft = new Vector3(-m_screenWidth, 0, 8.0f);
+            Vector3 screenRight = new Vector3(m_screenWidth, 0, 8.0f);
+            m_leftWall.transform.position = screenLeft;
+            m_rightWall.transform.position = screenRight;
         }
         m_screenWidth -= 0.5f;//음식 생성 범위 조정 /음식이 벽 Collider에 튕기는 경우가 생겨서 벽보다 조금 안쪽에 생성되게
     }
@@ -63,13 +66,14 @@ public class BasketGame : MiniGameSetting
 
             if (direction > 0)//오른쪽을 클릭했을 때
             {
-                m_velocity = new Vector3(m_speed, 0, 0);
+                Vector3 velocity = new Vector3(m_speed, 0, 0);
+                m_velocity = velocity;
             }
             else//왼쪽을 클릭했을 때
             {
-                m_velocity = new Vector3(-m_speed, 0, 0);
+                Vector3 velocity = new Vector3(-m_speed, 0, 0);
+                m_velocity = velocity;
             }
-
 
             try
             {
@@ -151,7 +155,6 @@ public class BasketGame : MiniGameSetting
             food.transform.position = randomPos;
             food.transform.rotation = randomRot;
         }
-
     }
 
     //클리어 조건을 충족하였는지 체크하는 함수
