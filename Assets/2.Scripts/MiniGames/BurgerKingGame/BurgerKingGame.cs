@@ -36,6 +36,7 @@ public class BurgerKingGame : MiniGameSetting
 
     private void Start()
     {
+
         //인게임 text내용 설정 + 게임 승리조건
         m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
         m_burgerLength = m_difficulty + 4;

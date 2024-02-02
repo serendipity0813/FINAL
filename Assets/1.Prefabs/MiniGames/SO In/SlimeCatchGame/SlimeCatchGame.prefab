@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a153b49b6523c449becbb62e6fee74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slime: {fileID: 0}
+  Slime: {fileID: 8189661196513174334, guid: 3137e72b892b30940bb304af12975bf8, type: 3}
 --- !u!1 &5421805400541958017
 GameObject:
   m_ObjectHideFlags: 0
