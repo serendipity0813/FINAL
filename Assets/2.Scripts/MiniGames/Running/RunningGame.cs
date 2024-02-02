@@ -9,7 +9,8 @@ public class RunningGame : MiniGameSetting
     [SerializeField] private GameObject m_map;
     private Vector3 m_mapPosition;
     private float m_positionz;
-    private float m_timer = 15f;
+    private float m_maxTime = 15f;
+    private float m_timer = 0f;
 
     protected override void Awake()
     {
@@ -20,7 +21,7 @@ public class RunningGame : MiniGameSetting
     private void Start()
     {
         m_missionText.text = "결승선까지 달려라!";
-        m_timer -= m_difficulty2;
+        m_maxTime -= m_difficulty2;
         m_mapPosition = m_map.transform.position;
         m_positionz = -4;
     }
@@ -34,10 +35,10 @@ public class RunningGame : MiniGameSetting
     // Update is called once per frame
     private void Update()
     {
-        m_timeText.text = m_timer.ToString("0.00");
+        m_timeText.text = (m_maxTime - m_timer).ToString("0.00");
        
 
-        m_timer -= Time.deltaTime;
+        m_timer += Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
@@ -58,7 +59,7 @@ public class RunningGame : MiniGameSetting
         }
 
         //게임 패배조건 - 제한시간 내로 버튼을 충분히 누르지 못한 경우
-        if (m_timer > 12 && m_positionz > -270)
+        if ((m_maxTime - m_timer) < 0 && m_positionz > -270)
         {
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
