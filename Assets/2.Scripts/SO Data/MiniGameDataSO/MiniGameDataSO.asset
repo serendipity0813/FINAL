@@ -41,7 +41,7 @@ MonoBehaviour:
     gamePrefab: {fileID: 7295525553317641642, guid: 4ae27f4fe1f4e2f4ba6ff4c957283955,
       type: 3}
     gameDescription: "\uC81C\uD55C\uC2DC\uAC04 \uB0B4\uC5D0 \uBBF8\uB85C \uD0C8\uCD9C\uD558\uAE30"
-  - gameName: Mosquito
+  - gameName: SlimeCatchGame
     gameIndex: 5
     gamePrefab: {fileID: 5044721599280428100, guid: b5d0426f2d38cf844883e583363cdbb3,
       type: 3}
@@ -53,13 +53,12 @@ MonoBehaviour:
       type: 3}
     gameDescription: "\uB2EC\uB9AC\uAE30 \uBC84\uD2BC\uC744 \uC5F0\uD0C0\uD574 \uACB0\uC2B9\uC120\uAE4C\uC9C0
       \uB3C4\uB2EC\uD574\uB77C"
-  - gameName: ThiefCave
+  - gameName: FindThief
     gameIndex: 7
     gamePrefab: {fileID: 6561224674077451620, guid: df1cb5d75e4ae2d44b67b4a1d24934a1,
       type: 3}
-    gameDescription: "\uB3D9\uAD74\uC5D0 \uC228\uC73C\uBA74\uC11C \uC6C0\uC9C1\uC5EC\uB2E4\uB2C8\uB294
-      \uB3C4\uB451 \uC911 \uBCF4\uBB3C\uC744 \uAC00\uC9C4 \uD2B9\uC815\uD55C \uB3C4\uB451\uC744
-      \uCC3E\uC544\uB77C"
+    gameDescription: "\uC6C0\uC9C1\uC774\uB294 \uB3C4\uB451\uC911 \uBCF4\uBB3C\uC744
+      \uD6D4\uCE5C \uD2B9\uBCC4\uD55C \uB3C4\uB451\uC744 \uCC3E\uC544\uB77C!"
   - gameName: Spinner
     gameIndex: 8
     gamePrefab: {fileID: 3563286950308367704, guid: 9a683d89db323054b8e9b05fb4930bb7,

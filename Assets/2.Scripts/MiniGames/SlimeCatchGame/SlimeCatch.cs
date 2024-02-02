@@ -4,9 +4,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MosquitoGame : MiniGameSetting
+public class SlimeCatch : MiniGameSetting
 {
-    [SerializeField] private GameObject Mosquito;
+    [SerializeField] private GameObject Slime;
     private Camera m_camera;
 
     private float m_timer;
@@ -22,13 +22,13 @@ public class MosquitoGame : MiniGameSetting
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         m_camera = CameraManager.Instance.GetCamera();
 
-        m_clearCount = m_difficulty2 * 3;
+        m_clearCount = m_difficulty2 * 2 + 2;
 
-        m_missionText.text = "모기를 전부 잡아라!";
+        m_missionText.text = "슬리암을 전부 잡아라!";
 
         for (int i=0; i < m_clearCount; i++)
         {
-            Instantiate(Mosquito,transform.position, Quaternion.identity, transform);
+            Instantiate(Slime, transform.position, Quaternion.identity, transform);
         }
 
     }
