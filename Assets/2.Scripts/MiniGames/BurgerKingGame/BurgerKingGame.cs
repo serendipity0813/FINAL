@@ -46,6 +46,8 @@ public class BurgerKingGame : MiniGameSetting
         //햄버거 재료 스폰위치 설정
         m_missionSpawnPosition = MissionTable.transform.position;
         m_burgerspawnPosition = MenuTable.transform.position;
+        m_missionSpawnPosition.y++;
+        m_burgerspawnPosition.y++;
 
         //만들어야 하는 햄버거 랜덤으로 설정
         m_missionBurger = new int[m_burgerLength];

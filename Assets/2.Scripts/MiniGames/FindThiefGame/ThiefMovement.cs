@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ThiefMovement : MonoBehaviour
 {
-    private FindThiefGame findThiefGame;
+    private findthiefgame findThiefGame;
     private Vector3[] m_hidePosition;   //도둑이 숨을 동굴들의 위치값 배열
     private Vector3 m_targetPositon;        //다음 이동 목표
     private float m_thiefSpeed;
     private int m_length;
-    private bool m_isGaming; 
+    private bool m_isGaming;
     private bool m_isChanging;
 
     private void Awake()
     {
         //findThiefGame 참조
-        findThiefGame = transform.parent.GetComponent<FindThiefGame>();
+        findThiefGame = transform.parent.GetComponent<findthiefgame>();
     }
     private void Start()
     {
@@ -50,13 +49,11 @@ public class ThiefMovement : MonoBehaviour
             //만약 같을 경우 다음 포지션을 찾아야하는지 체크 후 랜덤한 다음 포지션을 설정
             else
             {
-                if(m_isChanging)
-                m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
+                if (m_isChanging)
+                    m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
             }
         }
 
 
     }
-
-
 }

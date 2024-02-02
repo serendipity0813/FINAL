@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
-public class FindThiefGame : MiniGameSetting
+public class findthiefgame : MiniGameSetting
 {
     private float m_timer;
     public Vector3[] m_hidePosition { get; private set; }   //동굴 위치를 나타내는 백터 배열
@@ -37,18 +35,18 @@ public class FindThiefGame : MiniGameSetting
         m_hidePosition = new Vector3[12];
 
         //도둑이 숨을 나무 생성
-        for(int i=1; i<4;  i++)
+        for (int i = 1; i < 4; i++)
         {
-            for(int j=1; j<5; j++)
+            for (int j = 1; j < 5; j++)
             {
-                m_hidePosition[i*4 + j - 5] = new Vector3(i*3 - 6, 0, j*4-10);
+                m_hidePosition[i * 4 + j - 5] = new Vector3(i * 3 - 6, 0, j * 4 - 10);
                 Cave.transform.position = m_hidePosition[i * 4 + j - 5];
                 Instantiate(Cave, m_hidePosition[i * 4 + j - 5], Quaternion.identity, transform);
 
             }
         }
 
-        for(int i=0; i<12; i++)
+        for (int i = 0; i < 12; i++)
         {
             if (i % 4 < m_difficulty2)
             {
@@ -94,7 +92,7 @@ public class FindThiefGame : MiniGameSetting
             IsChanging = false;
         }
         if (m_timer > 9)
-        {   
+        {
             //도둑들이 멈추고 플레이어가 타겟을 찾기 시작
             IsGaiming = false;
             m_timePrefab.SetActive(true);
@@ -104,7 +102,7 @@ public class FindThiefGame : MiniGameSetting
                 // 마우스 클릭시 RAY를 활용하여 타겟 찾기
                 Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if(Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.collider.tag == "Target")
                     {
@@ -113,7 +111,7 @@ public class FindThiefGame : MiniGameSetting
                     }
                     else
                     {
-                        m_failPrefab.SetActive(true); 
+                        m_failPrefab.SetActive(true);
                         Invoke("GameFail", 1);
                     }
                 }
@@ -128,5 +126,4 @@ public class FindThiefGame : MiniGameSetting
         }
 
     }
-
 }

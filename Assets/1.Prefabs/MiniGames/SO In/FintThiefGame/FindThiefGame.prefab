@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8867486495428625671}
-  - component: {fileID: 1475705137292854082}
+  - component: {fileID: 8274805139893953129}
   m_Layer: 0
   m_Name: FindThiefGame
   m_TagString: Untagged
@@ -369,7 +369,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1475705137292854082
+--- !u!114 &8274805139893953129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6561224674077451620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ab26fe1cabdc6458900bef22049d7a, type: 3}
+  m_Script: {fileID: 11500000, guid: d1c1235029c390b47ba0de3a8061f784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1096704211734615353, guid: 5e8415ff9272cb549bf3d4fd9ff3048b, type: 3}

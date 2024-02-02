@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SlimeCatch : MiniGameSetting
+public class SlimeCatchGame : MiniGameSetting
 {
     [SerializeField] private GameObject Slime;
     private Camera m_camera;
@@ -24,7 +24,7 @@ public class SlimeCatch : MiniGameSetting
 
         m_clearCount = m_difficulty2 * 2 + 2;
 
-        m_missionText.text = "슬리암을 전부 잡아라!";
+        m_missionText.text = "슬라임을 전부 잡아라!";
 
         for (int i=0; i < m_clearCount; i++)
         {

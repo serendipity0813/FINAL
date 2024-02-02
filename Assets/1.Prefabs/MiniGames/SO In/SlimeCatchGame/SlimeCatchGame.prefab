@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2867437052033627584}
-  - component: {fileID: 4699168172157530804}
+  - component: {fileID: 3019120885631799132}
   m_Layer: 0
   m_Name: SlimeCatchGame
   m_TagString: Untagged
@@ -324,7 +324,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4699168172157530804
+--- !u!114 &3019120885631799132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,10 +333,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5044721599280428100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a00bf76cde66f364abc5f826ce700f2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a153b49b6523c449becbb62e6fee74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slime: {fileID: 8189661196513174334, guid: 3137e72b892b30940bb304af12975bf8, type: 3}
+  Slime: {fileID: 0}
 --- !u!1 &5421805400541958017
 GameObject:
   m_ObjectHideFlags: 0
