@@ -11,10 +11,12 @@ public class FoodEatController : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         m_foodEat = GetComponentInParent<FoodEat>();
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
         UpdateMove();
     }
+    
 
     public void UpdateMove()
     {
@@ -26,16 +28,13 @@ public class FoodEatController : MonoBehaviour
 
         if (m_foodEat.m_startTimer)
         {
-            if (Physics.Raycast(ray, out hit) && TouchManager.instance.IsHolding())
+            if (Physics.Raycast(ray, out hit) && TouchManager.instance.IsBegan())
             {
                 hitpos = hit.point;
-                if (hit.transform.name == "Collider")
-                {
-                    hitpos = transform.position;
-                }
                 hitpos = hitpos - transform.position;
                 hitpos.y = 0;
                 m_rigidbody.velocity = hitpos.normalized * m_foodEat.m_speed;
+                transform.rotation = Quaternion.LookRotation(hitpos, Vector3.up);
             }
         }
     }

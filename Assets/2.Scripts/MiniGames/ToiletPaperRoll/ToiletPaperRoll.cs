@@ -50,10 +50,8 @@ public class ToiletPaperRoll : MiniGameSetting
     }
     private void Start()
     {
-        //인게임 text내용 설정 + 게임 승리조건
+        //인게임 text내용 설정 + 게임 승리조건.
         m_missionText.text = m_maxTime + "초 안에 휴지를 전부 뜯어라";
-        m_timeText.text = "";
-        m_countText.text = "";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }

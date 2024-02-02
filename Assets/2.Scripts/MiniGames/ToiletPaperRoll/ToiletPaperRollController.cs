@@ -58,11 +58,11 @@ public class ToiletPaperRollController : MonoBehaviour
         }
 
         // 화장지 회전 체크
-        if (!m_up && currentRotation.x > 0.6f || currentRotation.x < -0.6f)
+        if (!m_up && currentRotation.x > 0.5f || currentRotation.x < -0.5f)
         {
             m_up = true;
         }
-        if (!m_down && (currentRotation.x > 0f && currentRotation.x < -0.4f) || (currentRotation.x < 0f && currentRotation.x > -0.4f))
+        if (!m_down && (currentRotation.x > 0f && currentRotation.x < -0.5f) || (currentRotation.x < 0f && currentRotation.x > -0.5f))
         {
             m_down = true;
         }

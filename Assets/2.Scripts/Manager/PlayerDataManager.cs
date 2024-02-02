@@ -38,13 +38,6 @@ public class PlayerDataManager : MonoBehaviour
             SaveJson(); // 이후 json에 저장
         }
     }
-    /* 
-        다른 곳에서 활용 예시 : 게임이 끝나고 결과창
-        PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
-        PlayerDataManager.instance.SaveJson(); Json 세이브
-        PlayerDataManager.instance.LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
-        PlayerData 값을 사용하여 결과창 표시 로직
-    */
 
     // 현재 Json 파일을 저장하고 싶다면 아래 메소드를 호출
     public void SaveJson()
@@ -106,6 +99,14 @@ public class PlayerDataManager : MonoBehaviour
     }
 }
 
+    /* 
+        다른 곳에서 활용 예시 : 게임이 끝나고 결과창
+        PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
+        PlayerDataManager.instance.SaveJson(); Json 세이브
+        PlayerDataManager.instance.LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
+        PlayerData 값을 사용하여 결과창 표시 로직
+    */
+
 [System.Serializable]
 public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 데이터 
 {
@@ -116,12 +117,12 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int coin;    // 플레이어가 가지고 있는 코인 재화
     public int diamond; // 플레이어가 가지고 있는 보석 재화
     public int ticket;   // 플레이어가 가지고 있는 게임 뽑기 티켓 수
-    public int stage;   // 게임 진행시 현재 진행 스테이지
-    public int life;   // 게임 진행시 플레이어의 목숨 수치
-    public int rewardExp;   // 게임 진행 후 얻을 경험치
-    public int rewardCoin;  // 게임 진행 후 얻을 코인
-    public int timePoint;   // 게임 진행 시간 보너스 점수
-    public int bonusPoint;  // 게임 진행 기타 보너스 점수
+    public int stage { get; set; }   // 게임 진행시 현재 진행 스테이지
+    public int life { get; set; }   // 게임 진행시 플레이어의 목숨 수치
+    public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치
+    public int rewardCoin { get; set; }  // 게임 진행 후 얻을 코인
+    public int timePoint { get; set; }   // 게임 진행 시간 보너스 점수
+    public int bonusPoint { get; set; }  // 게임 진행 기타 보너스 점수
 
     // 미니게임 인덱스값 저장
     public List<int> gameIndex;

@@ -43,11 +43,11 @@ public class SpinnerController : MonoBehaviour
         }
 
         // 위, 아래를 넘었을시
-        if (!m_up && currentRotation.y > 0.6f || currentRotation.y < -0.6f)
+        if (!m_up && currentRotation.y > 0.5f || currentRotation.y < -0.5f)
         {
             m_up = true;
         }
-        if (!m_down && (currentRotation.y > 0f && currentRotation.y < -0.4f) || (currentRotation.y < 0f && currentRotation.y > -0.4f))
+        if (!m_down && (currentRotation.y > 0f && currentRotation.y < -0.5f) || (currentRotation.y < 0f && currentRotation.y > -0.5f))
         {
             m_down = true;
         }
