@@ -150,7 +150,7 @@ Transform:
   - {fileID: 6322176170791225895}
   - {fileID: 4580111879298929213}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8075787999972321422
 MonoBehaviour:
@@ -1016,16 +1016,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6322176170791225895}
     m_Modifications:
-    - target: {fileID: 1342700970717424045, guid: 93df5c48d5e021040916b0e984d9b01a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2348533616728591503, guid: 93df5c48d5e021040916b0e984d9b01a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3467851699220123360, guid: 93df5c48d5e021040916b0e984d9b01a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1085,16 +1075,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime_03 King
-      objectReference: {fileID: 0}
-    - target: {fileID: 7742023579735404407, guid: 93df5c48d5e021040916b0e984d9b01a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8822947617055703412, guid: 93df5c48d5e021040916b0e984d9b01a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
