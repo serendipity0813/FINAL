@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 8867486495428625671}
   - component: {fileID: 1475705137292854082}
   m_Layer: 0
-  m_Name: ThiefCaveGame
+  m_Name: FindThiefGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +367,7 @@ Transform:
   m_Children:
   - {fileID: 2621359481417986761}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1475705137292854082
 MonoBehaviour:

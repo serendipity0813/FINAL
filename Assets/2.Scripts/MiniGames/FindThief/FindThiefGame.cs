@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
-public class ThiefCaveGame : MiniGameSetting
+public class FindThiefGame : MiniGameSetting
 {
     private float m_timer;
     public Vector3[] m_hidePosition { get; private set; }   //동굴 위치를 나타내는 백터 배열
@@ -34,27 +34,35 @@ public class ThiefCaveGame : MiniGameSetting
         m_clear = false;
         IsGaiming = false;
         IsChanging = true;
-        m_hidePosition = new Vector3[1 + m_difficulty2 * 2];
+        m_hidePosition = new Vector3[12];
 
-        //랜덤한 위치에 도둑이 숨을 공간 생성
-        for (int i = 0; i < 1 + m_difficulty2 * 2 ; i++)
+        //도둑이 숨을 나무 생성
+        for(int i=1; i<4;  i++)
         {
-            m_hidePosition[i] = new Vector3((int)Random.Range(-2, 3) * 2, 0, (int)Random.Range(-2, 5) * 2);
-            if(i == 0)
+            for(int j=1; j<5; j++)
             {
-                //첫 번째 생성할 때 타겟도 생성
-                Instantiate(Target, m_hidePosition[i], Quaternion.identity, transform);
-                Cave.transform.position = m_hidePosition[i];
-                Instantiate(Cave, m_hidePosition[i], Quaternion.identity, transform);
+                m_hidePosition[i*4 + j - 5] = new Vector3(i*3 - 6, 0, j*4-10);
+                Cave.transform.position = m_hidePosition[i * 4 + j - 5];
+                Instantiate(Cave, m_hidePosition[i * 4 + j - 5], Quaternion.identity, transform);
+
             }
-            else
+        }
+
+        for(int i=0; i<12; i++)
+        {
+            if (i % 4 < m_difficulty2)
             {
-                Cave.transform.position = m_hidePosition[i];
-                Instantiate(Cave, m_hidePosition[i], Quaternion.identity, transform);
-                Thief.transform.position = m_hidePosition[i];
-                Instantiate(Thief, m_hidePosition[i], Quaternion.identity, transform);
+                int position = Random.Range(0, 12);
+                Thief.transform.position = m_hidePosition[position];
+                Instantiate(Thief, m_hidePosition[position], Quaternion.identity, transform);
             }
 
+            if (i == 0)
+            {
+                int targetposition = Random.Range(0, 12);
+                Target.transform.position = m_hidePosition[targetposition];
+                Instantiate(Target, m_hidePosition[targetposition], Quaternion.identity, transform);
+            }
         }
 
 
