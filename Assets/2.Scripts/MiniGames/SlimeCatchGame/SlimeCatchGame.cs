@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public class SlimeCatchGame : MiniGameSetting
 
     private float m_timer;
     private int m_clearCount;
+    private bool m_end = false;
 
     protected override void Awake()
     {
@@ -39,7 +41,7 @@ public class SlimeCatchGame : MiniGameSetting
         m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
-        m_timer += Time.deltaTime;
+        m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
@@ -71,24 +73,30 @@ public class SlimeCatchGame : MiniGameSetting
                     hit.collider.gameObject.SetActive(false);
                     m_clearCount--;
                 }
-
             }
         }
 
-        //게임 승리조건
-        if(m_clearCount == 0)
-        {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-        }
 
-        //게임 패배조건
-        if (m_timer > 12 && m_clearCount > 0)
+        if (!m_end)
         {
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
-        }
+            //게임 승리조건
+            if (m_clearCount == 0)
+            {
+                m_clearPrefab.SetActive(true);
+                Invoke("GameClear", 1);
+                m_end = true;
+            }
 
+            //게임 패배조건
+            if (m_timer > 12 && m_clearCount > 0)
+            {
+                m_failPrefab.SetActive(true);
+                Invoke("GameFail", 1);
+                m_end = true;
+            }
+
+        }
+     
 
     }
 

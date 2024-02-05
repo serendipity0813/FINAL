@@ -9,6 +9,7 @@ public class findthiefgame : MiniGameSetting
     public bool IsGaiming { get; private set; }     //게임 진행중임을 체크
     public bool IsChanging { get; private set; }    //도둑들이 다음 경로를 찾아야하는지 여부 체크용
     public bool GameOver { get; private set; }
+    private bool m_end = false;
     private bool m_clear;
     public GameObject Target;
     public GameObject Thief;
@@ -68,10 +69,10 @@ public class findthiefgame : MiniGameSetting
 
     private void Update()
     {
-        m_timeText.text = (15 - m_timer).ToString("0.00");
+        m_timeText.text = (12 - m_timer).ToString("0.00");
 
         //시간 흐름에 따라 게임 진행 
-        m_timer += Time.deltaTime;
+        m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
@@ -91,7 +92,7 @@ public class findthiefgame : MiniGameSetting
             //도둑은 움직이지만 다음 경로를 찾는 행위는 중지됨
             IsChanging = false;
         }
-        if (m_timer > 9)
+        if (m_timer > 8)
         {
             //도둑들이 멈추고 플레이어가 타겟을 찾기 시작
             IsGaiming = false;
@@ -104,16 +105,22 @@ public class findthiefgame : MiniGameSetting
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.tag == "Target")
+                    if (!m_end)
                     {
-                        m_clearPrefab.SetActive(true);
-                        Invoke("GameClear", 1);
+                        if (hit.collider.tag == "Target")
+                        {
+                            m_clearPrefab.SetActive(true);
+                            Invoke("GameClear", 1);
+                            m_end = true;
+                        }
+                        else
+                        {
+                            m_failPrefab.SetActive(true);
+                            Invoke("GameFail", 1);
+                            m_end = true;
+                        }
                     }
-                    else
-                    {
-                        m_failPrefab.SetActive(true);
-                        Invoke("GameFail", 1);
-                    }
+           
                 }
             }
 
@@ -123,6 +130,7 @@ public class findthiefgame : MiniGameSetting
         {
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
+            m_end = true;
         }
 
     }

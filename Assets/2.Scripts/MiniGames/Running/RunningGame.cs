@@ -38,9 +38,9 @@ public class RunningGame : MiniGameSetting
     private void Update()
     {
         m_timeText.text = (m_maxTime - m_timer).ToString("0.00");
-       
 
-        m_timer += Time.deltaTime;
+
+        m_timer = m_timer >= m_maxTime ? m_maxTime : m_timer + Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
@@ -60,6 +60,7 @@ public class RunningGame : MiniGameSetting
             {
                 m_clearPrefab.SetActive(true);
                 Invoke("GameClear", 1);
+                m_end = true;
             }
 
             //게임 패배조건 - 제한시간 내로 버튼을 충분히 누르지 못한 경우
@@ -67,6 +68,8 @@ public class RunningGame : MiniGameSetting
             {
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
+                m_end = true;
+
             }
 
         }

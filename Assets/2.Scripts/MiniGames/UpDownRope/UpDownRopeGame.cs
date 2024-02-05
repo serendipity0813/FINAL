@@ -78,7 +78,7 @@ public class UpDownRopeGame : MiniGameSetting
         m_countText.text = clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        timer += Time.deltaTime;
+        timer = timer >= 17 ? 17 : timer + Time.deltaTime;
         if (timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -100,7 +100,7 @@ public class UpDownRopeGame : MiniGameSetting
                 timer = 10;
                 Invoke("GameClear", 1);
                 CameraManager.Instance.ToggleCameraFollow();
-                m_end = false;
+                m_end = true;
             }
 
             //게임 패배조건
@@ -109,7 +109,7 @@ public class UpDownRopeGame : MiniGameSetting
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 CameraManager.Instance.ToggleCameraFollow();
-                m_end = false;
+                m_end = true;
             }
 
         }

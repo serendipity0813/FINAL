@@ -100,7 +100,8 @@ public class BurgerKingGame : MiniGameSetting
         m_timeText.text = (12 - m_timer).ToString("0.00");
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+
+        m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
