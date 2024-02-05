@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class MazeRunner : MiniGameSetting
@@ -64,8 +63,10 @@ public class MazeRunner : MiniGameSetting
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (m_timer < m_timer - 2.0f)//2초후 부터 움직일 수 있게
+        if (m_timer < m_maxTime - 1.5f)//2초후 부터 움직일 수 있게
+        {
             m_controller.UpdateMove();
+        }
     }
 
     private void Update()
