@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class KanuGame : MiniGameSetting
     private float m_positionz;
     private float m_power;
     private float m_timer;
-
+    private bool m_end = false;
 
 
     protected override void Awake()
@@ -111,21 +112,28 @@ public class KanuGame : MiniGameSetting
             m_timePrefab.SetActive(true);
         }
 
-        //게임 승리조건
-        if (m_positionz < -1000)
+        if (!m_end)
         {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-        }
+            //게임 승리조건
+            if (m_positionz < -1000)
+            {
+                m_clearPrefab.SetActive(true);
+                Invoke("GameClear", 1);
+                m_end = true;
+            }
 
-        //게임 패배조건
-        if (m_timer > 12 || m_positionz > 300)
-        {
-            m_power = 0;
-            m_positionz = -500;
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
+            //게임 패배조건
+            if (m_timer > 12 || m_positionz > 300)
+            {
+                m_power = 0;
+                m_positionz = -500;
+                m_failPrefab.SetActive(true);
+                Invoke("GameFail", 1);
+                m_end = true;
+            }
+
         }
+        
 
 
     }

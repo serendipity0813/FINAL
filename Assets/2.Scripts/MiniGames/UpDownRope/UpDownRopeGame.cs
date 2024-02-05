@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -13,6 +14,7 @@ public class UpDownRopeGame : MiniGameSetting
     [SerializeField]private GameObject m_obstacle;
     private Vector3 m_playerPosition;
     private float m_positiony;
+    private bool m_end = false;
 
     protected override void Awake()
     {
@@ -89,22 +91,29 @@ public class UpDownRopeGame : MiniGameSetting
             m_countPrefab.SetActive(true);
         }
 
-        //게임 승리조건
-        if (m_positiony < -32 && clearCount > 0)
+        if (!m_end)
         {
-            m_clearPrefab.SetActive(true);
-            timer = 10;
-            Invoke("GameClear", 1);
-            CameraManager.Instance.ToggleCameraFollow();
-        }
+            //게임 승리조건
+            if (m_positiony < -32 && clearCount > 0)
+            {
+                m_clearPrefab.SetActive(true);
+                timer = 10;
+                Invoke("GameClear", 1);
+                CameraManager.Instance.ToggleCameraFollow();
+                m_end = false;
+            }
 
-        //게임 패배조건
-        if (timer > 17 || clearCount <= 0)
-        {
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
-            CameraManager.Instance.ToggleCameraFollow();
+            //게임 패배조건
+            if (timer > 17 || clearCount <= 0)
+            {
+                m_failPrefab.SetActive(true);
+                Invoke("GameFail", 1);
+                CameraManager.Instance.ToggleCameraFollow();
+                m_end = false;
+            }
+
         }
+      
 
 
     }

@@ -57,6 +57,7 @@ public class SpinnerGame : MiniGameSetting
         UiTime();
         CheckWinLose();
     }
+
     void UiTime()
     {
         //시간과 카운트 반영되는 코드
