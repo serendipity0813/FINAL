@@ -72,7 +72,7 @@ public class PlayerDataManager : MonoBehaviour
             m_playerData.haveGames.Add(false);
             m_playerData.rankingPoint.Add(0);
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             // 처음 5개의 게임은 주어질 예정
             m_playerData.haveGames[i] = true;
@@ -124,12 +124,12 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int timePoint { get; set; }   // 게임 진행 시간 보너스 점수
     public int bonusPoint { get; set; }  // 게임 진행 기타 보너스 점수
 
-    // 미니게임 인덱스값 저장
+    // 미니게임 인덱스값 저장, 0번은 랜덤게임으로 고정
     public List<int> gameIndex;
 
     // 미니게임을 가지고 있는지 없는지 판단 false은 없고 true은 가지고 있는걸로
     public List<bool> haveGames;
 
-    // haveGamesIndex와 인덱스가 동일하게, 점수를 기록
+    // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
     public List<int> rankingPoint;
 }

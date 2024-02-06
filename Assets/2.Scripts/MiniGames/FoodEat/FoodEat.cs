@@ -14,7 +14,6 @@ public class FoodEat : MiniGameSetting
     protected override void Awake()
     {
         base.Awake();
-        m_difficulty1 = 3; m_difficulty2 = 3;
 
         // 1-1, 2-1, 3-1 에 해당되는 난이도
         switch (m_difficulty1)
