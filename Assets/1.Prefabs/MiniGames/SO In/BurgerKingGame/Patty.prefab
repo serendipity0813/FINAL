@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 2041396693869693260}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7940247405344120028
 MeshFilter:
@@ -211,6 +211,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e4b2076d9a064704fa392382596d88d1,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e4b2076d9a064704fa392382596d88d1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -4770390735465466038, guid: e4b2076d9a064704fa392382596d88d1,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: e4b2076d9a064704fa392382596d88d1,
         type: 3}
       propertyPath: m_Name
