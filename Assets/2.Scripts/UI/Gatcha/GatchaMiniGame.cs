@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class GatchaMiniGame : MonoBehaviour
 {
     [SerializeField] private Button m_gatchaBtn;
-    private int m_price = 10;
+    private int m_price = 100;
 
     private void Awake()
     {
