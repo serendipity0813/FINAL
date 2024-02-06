@@ -52,7 +52,7 @@ public class KanuGame : MiniGameSetting
             m_positionz += m_difficulty2 * 0.3f;
             if (Input.GetMouseButton(0))
             {
-                m_power += Time.deltaTime*5;
+                m_power += Time.deltaTime*(5+ m_difficulty1);
                 if (m_power <= 10)
                     m_positionz -= m_power;
                 else
@@ -61,7 +61,7 @@ public class KanuGame : MiniGameSetting
             }
             else
             {
-                m_power -= Time.deltaTime*5;
+                m_power -= Time.deltaTime* (5 + m_difficulty1);
                 if (m_power >= 5)
                     m_positionz -= (10-m_power);
                 else
