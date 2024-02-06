@@ -7,14 +7,15 @@ public class MazeRunner : MiniGameSetting
     [SerializeField] private DragToMoveController m_controller;
     [SerializeField] private GameObject m_wall;//미로 안쪽 벽의 프리펩
 
-    private bool[,] m_map;
+    private bool[,] m_map;//미로 맵, false가 빈공간
     private int m_mazeWidth = 11;//벽까지 포함한 너비
     private int m_mazeHeight = 17;//벽까지 포함한 높이
     private Vector2Int m_pos = Vector2Int.zero;
     private Vector2Int[] m_direction = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
     private Stack<Vector2Int> m_stackDir = new Stack<Vector2Int>(); //지나온 길의 방향 저장
-    private float m_timer = 20.0f;//타이머
-    private float m_maxTime = 20.0f;//타이머
+    private float m_timer = 20.0f;//현재 타이머
+    private float m_maxTime = 20.0f;//최대 타이머
+    private bool m_once = true;//GameClear를 한번만 호출하기 위한 변수
 
     protected override void Awake()
     {
@@ -63,7 +64,7 @@ public class MazeRunner : MiniGameSetting
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (m_timer < m_maxTime - 1.5f)//2초후 부터 움직일 수 있게
+        if (m_timer < m_maxTime - 2.0f)//2초후 부터 움직일 수 있게
         {
             m_controller.UpdateMove();
         }
@@ -75,9 +76,10 @@ public class MazeRunner : MiniGameSetting
         //시간과 카운트 반영되는 코드
         m_timeText.text = m_timer.ToString("0.00");
 
-        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer -= Time.deltaTime;
+        //타이머가 0미만인 경우 0으로 고정하고 이외에는 타이머 감소
+        m_timer = m_timer <= 0 ? 0 :m_timer - Time.deltaTime;
 
+        //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         if (m_timer < (m_maxTime - 0.5f) && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer < (m_maxTime - 1.5f) && m_missionPrefab.activeSelf == true)
@@ -85,16 +87,17 @@ public class MazeRunner : MiniGameSetting
 
 
         //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer < m_maxTime - 2.0f)
+        if (m_timer < m_maxTime - 2.0f && m_timePrefab.activeSelf == false)
         {
             m_timePrefab.SetActive(true);
         }
 
         //게임 패배조건
-        if (m_timer < 0)
+        if (m_timer < 0 && m_once) 
         {
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
+            m_once = false;//한게임에 한번만 패배 판정이 나게
         }
         #endregion
     }
