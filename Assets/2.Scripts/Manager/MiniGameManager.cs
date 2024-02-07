@@ -48,21 +48,28 @@ public class MiniGameManager : MonoBehaviour
     {
         m_endCheck = false;
         RandomMod = true;
-        int random = Random.Range(1, MiniGames.games.Count);
-        if (random != m_beforeGame)  //게임이 중복으로 나오는 걸 막기 위한 코드
-        {
-            m_currentGame = Instantiate(MiniGames.games[random].gamePrefab);
-            m_beforeGame = random;
-        }
-        else
-        {
-            random = Random.Range(1, MiniGames.games.Count);
-            m_currentGame = Instantiate(MiniGames.games[random].gamePrefab);
-            m_beforeGame = random;
-        }
+        int random = RandomGameCheck();
+
+        m_currentGame = Instantiate(MiniGames.games[random].gamePrefab);
+        m_beforeGame = random;
 
         //바로 이전 게임은 등장하지 않거나 이전에 진행한 게임은 제외시키거나 하는 등의 로직 코드구현 필요
+    }
+    private int RandomGameCheck()
+    {
+        int random;
+        while (true)
+        {
+            random = Random.Range(1, MiniGames.games.Count);
 
+            if (PlayerDataManager.instance.m_playerData.haveGames[random])
+            {
+                if (random != m_beforeGame)  //게임이 중복으로 나오는 걸 막기 위한 코드
+                {
+                    return random;
+                }
+            }
+        }
     }
 
     //선택게임 진행시 불러오는 메소드
@@ -92,21 +99,18 @@ public class MiniGameManager : MonoBehaviour
             m_endCheck = true;
             Destroy(m_currentGame);
 
-            if (PlayerDataManager.instance.m_playerData.life > 1)
+            if (PlayerDataManager.instance.m_playerData.life >= 1)
             {
-                if (PlayerDataManager.instance.m_playerData.life >= 1)
+                PlayerDataManager.instance.m_playerData.life--;
+                // 체력이 감소하고 나서 0일시 게임 종료
+                if (PlayerDataManager.instance.m_playerData.life <= 0)
                 {
-                    PlayerDataManager.instance.m_playerData.life--;
-
-                    // 체력이 감소하고 나서 0일시 게임 종료
-                    if (PlayerDataManager.instance.m_playerData.life <= 0)
-                    {
-                        GameSave();
-                        return; // 게임 끝
-                    }
-                    //체력이 감소하지 않았다면
-                    GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+                    GameSave();
+                    GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
+                    return; // 게임 끝
                 }
+                //체력이 감소하지 않았다면
+                GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             }
         }
     }
@@ -136,7 +140,6 @@ public class MiniGameManager : MonoBehaviour
             }
         }
         PlayerDataManager.instance.SaveJson();
-        GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
     }
 
     public void GameReset()

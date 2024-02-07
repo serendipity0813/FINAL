@@ -56,9 +56,9 @@ public class JumpJump : MiniGameSetting
         m_missionText.text = m_maxTime + "초 안에 점프해서 도달해라";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.ToggleCameraFollow();
         CameraManager.Instance.SetFollowSpeed(5f);
         CameraManager.Instance.SetFollowTarget(m_player);
-        CameraManager.Instance.ToggleCameraFollow();
     }
     private void Update()
     {

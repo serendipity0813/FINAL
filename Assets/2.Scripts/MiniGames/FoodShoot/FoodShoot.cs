@@ -120,7 +120,12 @@ public class FoodShoot : MiniGameSetting
         {
             GameObject hitObject = hit.collider.gameObject; // 맞은 오브젝트를 가져옴
             m_winCount++; // 승리 카운터 증가
+            EffectSoundManager.Instance.PlayEffect(1);
             Destroy(hitObject); // 맞은 오브젝트를 삭제
+        }
+        else
+        {
+            EffectSoundManager.Instance.PlayEffect(18);
         }
 
     }
