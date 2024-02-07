@@ -51,6 +51,7 @@ public class GameChangeSceneController : ButtonHandler
                 m_loseLife[i].SetActive(true);
             }
 
+
         }
     }
 
