@@ -21,7 +21,7 @@ public class JumpRopeGame : MiniGameSetting
     {
         CameraManager.Instance.ChangeCamera(CameraView.Angle60View);//90도 각도로 내려다 보는 카메라로 변경
         CameraManager.Instance.SetFollowTarget(m_player);
-        CameraManager.Instance.ToggleCameraFollow();
+        CameraManager.Instance.m_followEnabled = true;
 
         m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
         m_difficuty = m_difficulty1 * 3 + m_difficulty2 - 3;
@@ -90,7 +90,7 @@ public class JumpRopeGame : MiniGameSetting
         {
             m_clearPrefab.SetActive(true);
             Invoke("GameClear", 1);
-            CameraManager.Instance.ToggleCameraFollow();
+            CameraManager.Instance.m_followEnabled = false;
         }
         else
         {
@@ -98,7 +98,7 @@ public class JumpRopeGame : MiniGameSetting
             {
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
-                CameraManager.Instance.ToggleCameraFollow();
+                CameraManager.Instance.m_followEnabled = false;
             }
         }
     }

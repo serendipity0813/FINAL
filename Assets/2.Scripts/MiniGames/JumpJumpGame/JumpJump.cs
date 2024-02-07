@@ -56,9 +56,9 @@ public class JumpJump : MiniGameSetting
         m_missionText.text = m_maxTime + "초 안에 점프해서 도달해라";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
-        CameraManager.Instance.ToggleCameraFollow();
         CameraManager.Instance.SetFollowSpeed(5f);
         CameraManager.Instance.SetFollowTarget(m_player);
+        CameraManager.Instance.m_followEnabled = true;
     }
     private void Update()
     {
@@ -106,7 +106,7 @@ public class JumpJump : MiniGameSetting
                 Debug.Log("이겼다!");
                 m_clearPrefab.SetActive(true);
                 m_end = true;
-                CameraManager.Instance.ToggleCameraFollow();
+                CameraManager.Instance.m_followEnabled = false;
                 Invoke("GameClear", 1);
             }
             if (m_timer <= 0f && m_clearCount > 0)
@@ -115,7 +115,7 @@ public class JumpJump : MiniGameSetting
                 Debug.Log("졌다!");
                 m_failPrefab.SetActive(true);
                 m_end = true;
-                CameraManager.Instance.ToggleCameraFollow();
+                CameraManager.Instance.m_followEnabled = false;
                 Invoke("GameFail", 1);
             }
         }

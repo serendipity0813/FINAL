@@ -24,7 +24,7 @@ public class CarDrivingGame : MiniGameSetting
         CameraManager.Instance.ChangeCamera(CameraView.Angle30View);
         CameraManager.Instance.SetFollowSpeed(10.0f);
         CameraManager.Instance.SetFollowTarget(m_cameraTarget.transform.GetChild(0).gameObject);
-        CameraManager.Instance.ToggleCameraFollow();
+        CameraManager.Instance.m_followEnabled = true;
 
         m_playerController = m_cameraTarget.GetComponent<CharacterController>();
         m_generator = transform.GetChild(2).GetComponent<CarGenerator>();
@@ -98,14 +98,14 @@ public class CarDrivingGame : MiniGameSetting
 
     public void Win()
     {
-        CameraManager.Instance.ToggleCameraFollow();
+        CameraManager.Instance.m_followEnabled = false;
         m_clearPrefab.SetActive(true);
         Invoke("GameClear", 1);
     }
 
     public void Lose()
     {
-        CameraManager.Instance.ToggleCameraFollow();
+        CameraManager.Instance.m_followEnabled = false;
         m_failPrefab.SetActive(true);
         Invoke("GameFail", 1);
     }
