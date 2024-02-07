@@ -36,6 +36,7 @@ public class BurgerKingGame : MiniGameSetting
 
     private void Start()
     {
+
         //인게임 text내용 설정 + 게임 승리조건
         m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
         m_burgerLength = m_difficulty + 4;
@@ -46,10 +47,12 @@ public class BurgerKingGame : MiniGameSetting
         //햄버거 재료 스폰위치 설정
         m_missionSpawnPosition = MissionTable.transform.position;
         m_burgerspawnPosition = MenuTable.transform.position;
+        m_missionSpawnPosition.y++;
+        m_burgerspawnPosition.y++;
 
         //만들어야 하는 햄버거 랜덤으로 설정
         m_missionBurger = new int[m_burgerLength];
-        m_playerBurger = new int[m_burgerLength];
+        m_playerBurger = new int[m_burgerLength + 5];
 
         for (int i=0; i<m_burgerLength; i++)
         {
@@ -94,10 +97,11 @@ public class BurgerKingGame : MiniGameSetting
     private void Update()
     {
         //시간과 카운트 반영되는 코드
-        m_timeText.text = (m_timer-2).ToString("0.00");
+        m_timeText.text = (12 - m_timer).ToString("0.00");
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+
+        m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -117,8 +121,9 @@ public class BurgerKingGame : MiniGameSetting
             {
                 m_clearPrefab.SetActive(true);
                 Invoke("GameClear", 1);
+                m_clear = false;
             }
-            else
+            else if(!m_clear)
             {
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);

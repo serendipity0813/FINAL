@@ -15,7 +15,7 @@ public class MiniGameManager : MonoBehaviour
     private GameObject m_currentGame;
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     private int m_beforeGame;
-    private bool m_endCheck;
+    public bool m_endCheck;
     public int GameNumber { get; set; }
     public bool RandomMod = false;
     public bool m_isWin;
@@ -77,6 +77,7 @@ public class MiniGameManager : MonoBehaviour
     {
         if (m_endCheck)
         {
+            m_endCheck = true;
             PlayerDataManager.instance.m_playerData.stage++;
             GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             Destroy(m_currentGame);
@@ -88,7 +89,10 @@ public class MiniGameManager : MonoBehaviour
     {
         if (m_endCheck)
         {
+            m_endCheck = true;
             Destroy(m_currentGame);
+
+            if (PlayerDataManager.instance.m_playerData.life > 1)
             {
                 if (PlayerDataManager.instance.m_playerData.life >= 1)
                 {
