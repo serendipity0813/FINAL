@@ -16,7 +16,7 @@ public class MiniGameManager : MonoBehaviour
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     private int m_beforeGame;
     public bool m_endCheck;
-    public bool m_clearCheck = true;
+    public int m_clearCheck = 0;
     public int GameNumber { get; set; }
 
 
@@ -77,6 +77,7 @@ public class MiniGameManager : MonoBehaviour
         if (!m_endCheck)
         {
             m_endCheck = true;
+            m_clearCheck = 1;
             PlayerDataManager.instance.m_playerData.stage++;
             GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             Destroy(m_currentGame);
@@ -91,8 +92,8 @@ public class MiniGameManager : MonoBehaviour
         if (!m_endCheck)
         {
             m_endCheck = true;
+            m_clearCheck = -1;
             Destroy(m_currentGame);
-
             if (PlayerDataManager.instance.m_playerData.life > 1)
             {
                 PlayerDataManager.instance.m_playerData.life--;
