@@ -16,6 +16,7 @@ public class MiniGameManager : MonoBehaviour
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     private int m_beforeGame;
     public bool m_endCheck;
+    public bool m_clearCheck = true;
     public int GameNumber { get; set; }
 
 
