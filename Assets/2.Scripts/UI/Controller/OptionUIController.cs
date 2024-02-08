@@ -27,9 +27,14 @@ public class OptionUIController : ButtonHandler
         Application.OpenURL("https://forms.gle/1b7589nJ6FvL3RFm8");
     }
 
+    public void GameInformationButton()
+    {
+        Application.OpenURL("https://docs.google.com/spreadsheets/d/1hn1rmcynR9mKSCHu-gE9RO24Xt2r56avrzpsiET8xl4/edit?resourcekey#gid=1058894120");
+    }
+
     public void UpdateHistoryButton()
     {
-        Application.OpenURL("https://www.notion.so/b69e76da62334ce1af9470b6dad29cf2");
+        Application.OpenURL("https://docs.google.com/spreadsheets/d/1hn1rmcynR9mKSCHu-gE9RO24Xt2r56avrzpsiET8xl4/edit?resourcekey#gid=0");
     }
 
 }
