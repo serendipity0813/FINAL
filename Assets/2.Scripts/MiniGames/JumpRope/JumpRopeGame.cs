@@ -24,6 +24,7 @@ public class JumpRopeGame : MiniGameSetting
         CameraManager.Instance.ToggleCameraFollow();
 
         m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
+        m_dragToMoveController.SetJumpPower(500.0f);
         m_difficuty = m_difficulty1 * 3 + m_difficulty2 - 3;
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = m_difficuty.ToString() + "회 줄넘기!";
@@ -44,7 +45,7 @@ public class JumpRopeGame : MiniGameSetting
         m_countText.text = m_count.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)

@@ -117,5 +117,9 @@ public class CameraManager : MonoBehaviour
 
         //해당 번호의 카메라 켜기
         m_cameras[index].enabled = true;
+
+        m_followEnabled = false;
+        m_cameraBox.transform.position = Vector3.zero;//원래 위치로 되돌리기
+        m_targetObject = null;//타겟 초기화
     }
 }

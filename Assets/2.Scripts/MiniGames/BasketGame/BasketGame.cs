@@ -38,39 +38,44 @@ public class BasketGame : MiniGameSetting
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
         m_rigidbody = m_player.GetComponent<Rigidbody>();
-
+        m_player = m_player.transform.GetChild(0).gameObject;
         //화면 해상도 기준 오른쪽 끝에 레이 발사
-        Ray ray = CameraManager.Instance.GetCamera().ScreenPointToRay(new Vector3(Screen.width, Screen.height));
+        Vector3 pos = new Vector3(Screen.width, Screen.height);
+        Ray ray = CameraManager.Instance.GetCamera().ScreenPointToRay(pos);
         RaycastHit hit;
 
         //좌우 벽을 화면 끝에 배치하는 기능
         if (Physics.Raycast(ray, out hit))
         {
             m_screenWidth = hit.point.x - 0.2f;
-            m_leftWall.transform.position = new Vector3(-m_screenWidth, 0, 8.0f);
-            m_rightWall.transform.position = new Vector3(m_screenWidth, 0, 8.0f);
+            Vector3 screenLeft = new Vector3(-m_screenWidth, 0, 8.0f);
+            Vector3 screenRight = new Vector3(m_screenWidth, 0, 8.0f);
+            m_leftWall.transform.position = screenLeft;
+            m_rightWall.transform.position = screenRight;
         }
         m_screenWidth -= 0.5f;//음식 생성 범위 조정 /음식이 벽 Collider에 튕기는 경우가 생겨서 벽보다 조금 안쪽에 생성되게
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-
         if (TouchManager.instance.IsHolding())//화면을 터치하고 있을 때
         {
             float direction = Input.mousePosition.x - ((float)Screen.width / 2);//화면을 절반으로 나누어 왼쪽, 오른쪽 부분 어디를 선택하였는지 체크
 
             if (direction > 0)//오른쪽을 클릭했을 때
             {
-                m_velocity = new Vector3(m_speed, 0, 0);
+                Vector3 velocity = new Vector3(m_speed, 0, 0);
+                m_player.transform.rotation = Quaternion.LookRotation(Vector3.right, Vector3.up);//캐릭터를 오른쪽으로 회전
+                m_velocity = velocity;
             }
             else//왼쪽을 클릭했을 때
             {
-                m_velocity = new Vector3(-m_speed, 0, 0);
+                Vector3 velocity = new Vector3(-m_speed, 0, 0);
+                m_player.transform.rotation = Quaternion.LookRotation(Vector3.left, Vector3.up);//캐릭터를 왼쪽으로 회전
+                m_velocity = velocity;
             }
 
-
+           
             try
             {
                 m_rigidbody.velocity = m_velocity;//Rigidbody가 없을 경우 오류 발생
@@ -80,7 +85,11 @@ public class BasketGame : MiniGameSetting
                 Debug.Log("Player's Rigidbody is Null");
             }
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
         m_lastTime += Time.deltaTime;
         if (m_lastTime > 1)//음식은 1초마다 생성
         {
@@ -96,7 +105,7 @@ public class BasketGame : MiniGameSetting
         m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -123,7 +132,7 @@ public class BasketGame : MiniGameSetting
     private void GenerateFoods()
     {
         int index = Random.Range(0, 3 + m_difficulty);//난이도만큼 쓰레기가 스폰될 확률 증가
-        Vector3 randomPos = new Vector3(Random.Range(-(m_screenWidth), (m_screenWidth)), 8.0f, 8.0f);//무작위 x 이동
+        Vector3 randomPos = new Vector3(Random.Range(-(m_screenWidth), (m_screenWidth)), 10.0f, 8.0f);//무작위 x 이동
         Quaternion randomRot = Quaternion.Euler(0.0f, Random.Range(0.0f, 180.0f), 0.0f);//무작위 y 회전
 
         GameObject food;
@@ -151,7 +160,6 @@ public class BasketGame : MiniGameSetting
             food.transform.position = randomPos;
             food.transform.rotation = randomRot;
         }
-
     }
 
     //클리어 조건을 충족하였는지 체크하는 함수
