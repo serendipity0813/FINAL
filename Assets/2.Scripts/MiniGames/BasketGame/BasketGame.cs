@@ -24,6 +24,7 @@ public class BasketGame : MiniGameSetting
 
     private int m_clearCount;
     private float m_timer;
+    private bool m_startTimer = false;
 
     protected override void Awake()
     {
@@ -54,6 +55,7 @@ public class BasketGame : MiniGameSetting
             m_rightWall.transform.position = screenRight;
         }
         m_screenWidth -= 0.5f;//음식 생성 범위 조정 /음식이 벽 Collider에 튕기는 경우가 생겨서 벽보다 조금 안쪽에 생성되게
+        m_timer = 12f; // 12초 고정
     }
 
     private void FixedUpdate()
@@ -101,25 +103,31 @@ public class BasketGame : MiniGameSetting
 
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
-        m_timeText.text = (12 - m_timer).ToString("0.00");
+        m_timeText.text = m_timer.ToString("0.00");
         m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
-        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
-            m_missionPrefab.SetActive(true);
-        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
-            m_missionPrefab.SetActive(false);
 
-        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer > 2)
+        if (!m_startTimer)
         {
-            m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
+            if (m_timer < 11.5 && m_missionPrefab.activeSelf == false)
+                m_missionPrefab.SetActive(true);
+            if (m_timer < 10.5 && m_missionPrefab.activeSelf == true)
+                m_missionPrefab.SetActive(false);
+
+            //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+            if (m_timer < 10f)
+            {
+                m_timer = 10f;
+                m_startTimer = true;
+                m_timePrefab.SetActive(true);
+                m_countPrefab.SetActive(true);
+            }
         }
 
         //게임 패배조건
-        if (m_timer > 12)
+        if (m_timer <= 0)
         {
             Lose();
         }

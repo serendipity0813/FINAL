@@ -19,6 +19,7 @@ public class JumpJumpBtn : MonoBehaviour
         // 점프 상태가 아니라면 (바닥 이라면)
         if (!m_jumpCon.m_isJump)
         {
+            EffectSoundManager.Instance.PlayEffect(11);
             m_jumpCon.Jump(); // m_jumpCon 안의 Jump() 메소드 실행
             m_jumpCon.m_isJump = true;
             fallSave = m_jumpCon.transform.position;

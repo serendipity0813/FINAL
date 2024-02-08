@@ -46,6 +46,7 @@ public class ToiletPaperRollController : MonoBehaviour
             if (toiletPaperRoll.m_rollCount > 0)
             {
                 toiletPaperRoll.m_rollCount--; // 회전 카운트 감소
+                EffectSoundManager.Instance.PlayEffect(18);
 
                 // 1부터 시작해서 0.3 까지 스케일 값이 점점 줄어듦
                 m_nowScale = Mathf.Lerp(0.3f, 1f, toiletPaperRoll.m_rollCount / m_maxCount);

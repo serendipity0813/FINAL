@@ -24,6 +24,7 @@ public class ArrowShootBtn : MonoBehaviour
         // 화살을 날릴 수 있다면
         if (m_isShoot)
         {
+            EffectSoundManager.Instance.PlayEffect(16);
             StartCoroutine(ShootCoolTime());
         }
     }

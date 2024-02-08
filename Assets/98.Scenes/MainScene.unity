@@ -156,8 +156,8 @@ Transform:
   - {fileID: 843192124}
   - {fileID: 1734638187}
   - {fileID: 1168904795}
-  - {fileID: 833815355}
   - {fileID: 1871794270}
+  - {fileID: 833815355}
   - {fileID: 869022770}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -891,6 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cameraBox: {fileID: 770817381}
+  m_followEnabled: 0
 --- !u!1 &1204972791
 GameObject:
   m_ObjectHideFlags: 0
