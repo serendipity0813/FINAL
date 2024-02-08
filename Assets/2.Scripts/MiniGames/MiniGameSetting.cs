@@ -30,9 +30,12 @@ public class MiniGameSetting : MonoBehaviour
             {
                 m_difficulty1 = PlayerDataManager.instance.m_playerData.stage / 3 + 1;
                 m_difficulty2 = PlayerDataManager.instance.m_playerData.stage % 3 + 1;
-                if (m_difficulty1 > 3)
+                if (PlayerDataManager.instance.m_playerData.stage >= 9)
+                {
                     m_difficulty1 = 3;
-                //Debug.Log(m_difficulty1 + " - " + m_difficulty2 + " life : " + PlayerDataManager.instance.m_playerData.life);
+                    m_difficulty2 = 3;
+                }
+                 //Debug.Log(m_difficulty1 + " - " + m_difficulty2 + " life : " + PlayerDataManager.instance.m_playerData.life);
             }
             else
             {
@@ -73,14 +76,12 @@ public class MiniGameSetting : MonoBehaviour
     //게임 클리어, 실패 함수
     protected void GameClear()
     {
-        MiniGameManager.Instance.EndCheck();
         MiniGameManager.Instance.GameClear();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     protected void GameFail()
     {
-        MiniGameManager.Instance.EndCheck();
         MiniGameManager.Instance.GameFail();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }

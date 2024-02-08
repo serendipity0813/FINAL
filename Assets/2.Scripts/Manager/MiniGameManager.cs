@@ -15,7 +15,7 @@ public class MiniGameManager : MonoBehaviour
     private GameObject m_currentGame;
     private Dictionary<string, int> m_gameDictionary = new Dictionary<string, int>();
     private int m_beforeGame;
-    private bool m_endCheck;
+    public bool m_endCheck;
     public int GameNumber { get; set; }
 
 
@@ -72,12 +72,13 @@ public class MiniGameManager : MonoBehaviour
     // 게임 클리어시 스테이지 변수를 1 올리고 게임 선택 씬으로 이동하면서 현재 게임 파괴
     public void GameClear()
     {
-        if(m_endCheck)
+
+        if (!m_endCheck)
         {
+            m_endCheck = true;
             PlayerDataManager.instance.m_playerData.stage++;
             GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             Destroy(m_currentGame);
-   
         }
 
     }
@@ -85,25 +86,26 @@ public class MiniGameManager : MonoBehaviour
     //게임 실패시 현재 게임을 파괴하고 로비 씬으로 전환하도록 함
     public void GameFail()
     {
-        if(m_endCheck)
+
+        if (!m_endCheck)
         {
+            m_endCheck = true;
             Destroy(m_currentGame);
+
+            if (PlayerDataManager.instance.m_playerData.life > 1)
             {
-                if (PlayerDataManager.instance.m_playerData.life > 1)
-                {
-                    PlayerDataManager.instance.m_playerData.life--;
-                    GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
-                }
-                else if(PlayerDataManager.instance.m_playerData.life == 1)
-                {
-                    PlayerDataManager.instance.m_playerData.exp += PlayerDataManager.instance.m_playerData.rewardExp;
-                    PlayerDataManager.instance.m_playerData.coin += PlayerDataManager.instance.m_playerData.rewardCoin;
-                    GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
-                }
+                PlayerDataManager.instance.m_playerData.life--;
+                GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             }
-       
+            else if (PlayerDataManager.instance.m_playerData.life == 1)
+            {
+                PlayerDataManager.instance.m_playerData.exp += PlayerDataManager.instance.m_playerData.rewardExp;
+                PlayerDataManager.instance.m_playerData.coin += PlayerDataManager.instance.m_playerData.rewardCoin;
+                GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
+            }
+
         }
-    
+
     }
 
     public void GameReset()
@@ -120,9 +122,5 @@ public class MiniGameManager : MonoBehaviour
         PlayerDataManager.instance.m_playerData.bonusPoint = 0;
     }
 
-    public void EndCheck()
-    {
-        m_endCheck = true;
-    }
 
 }

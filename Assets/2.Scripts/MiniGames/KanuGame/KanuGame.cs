@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,9 @@ public class KanuGame : MiniGameSetting
     private Vector3 m_mapPosition;
     private float m_positionz;
     private float m_power;
-    private float m_timer;
-
+    private float m_maxTime = 15;
+    private float m_timer = 0;
+    private bool m_end = false;
 
 
     protected override void Awake()
@@ -32,7 +34,7 @@ public class KanuGame : MiniGameSetting
     {
         m_mapPosition = m_map.transform.position;
         m_positionz = m_mapPosition.y;
-
+        m_maxTime -= m_difficulty1;
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = "위에서 땡기고 아래에서 밀어라!";
 
@@ -47,10 +49,10 @@ public class KanuGame : MiniGameSetting
 
         if (m_timer > 2)
         {
-            m_positionz += m_difficulty2 * 0.1f;
+            m_positionz += m_difficulty2 * 0.3f;
             if (Input.GetMouseButton(0))
             {
-                m_power += Time.deltaTime*5;
+                m_power += Time.deltaTime*(5+ m_difficulty1);
                 if (m_power <= 10)
                     m_positionz -= m_power;
                 else
@@ -59,7 +61,7 @@ public class KanuGame : MiniGameSetting
             }
             else
             {
-                m_power -= Time.deltaTime*5;
+                m_power -= Time.deltaTime* (5 + m_difficulty1);
                 if (m_power >= 5)
                     m_positionz -= (10-m_power);
                 else
@@ -89,17 +91,17 @@ public class KanuGame : MiniGameSetting
 
 
         m_slider.value = m_power;
-        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz / (3 + m_difficulty2-m_difficulty2));
+        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz / 5);
     }
 
     private void Update()
     {
 
         //시간과 카운트 반영되는 코드
-        m_timeText.text = m_timer.ToString("0.00");
+        m_timeText.text = (m_maxTime-m_timer).ToString("0.00");
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        m_timer = m_timer >= m_maxTime ? m_maxTime : m_timer + Time.deltaTime;
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -111,21 +113,28 @@ public class KanuGame : MiniGameSetting
             m_timePrefab.SetActive(true);
         }
 
-        //게임 승리조건
-        if (m_positionz < -1000)
+        if (!m_end)
         {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-        }
+            //게임 승리조건
+            if (m_positionz < -1000)
+            {
+                m_clearPrefab.SetActive(true);
+                Invoke("GameClear", 1);
+                m_end = true;
+            }
 
-        //게임 패배조건
-        if (m_timer > 12 || m_positionz > 300)
-        {
-            m_power = 0;
-            m_positionz = -500;
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
+            //게임 패배조건
+            if (m_timer > m_maxTime || m_positionz > 300)
+            {
+                m_power = 0;
+                m_positionz = -500;
+                m_failPrefab.SetActive(true);
+                Invoke("GameFail", 1);
+                m_end = true;
+            }
+
         }
+        
 
 
     }

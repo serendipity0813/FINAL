@@ -12,6 +12,7 @@ public class MiniGameDataSO : ScriptableObject
         public string gameName; // 게임 이름
         public int gameIndex; // 게임 인덱스
         public GameObject gamePrefab; // 게임 프리팹
+        public GameObject gameIcon; // 게임 대표 아이콘
 
         [TextArea]
         public string gameDescription; // 게임 설명
