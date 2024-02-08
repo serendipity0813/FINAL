@@ -103,6 +103,7 @@ public class ToiletPaperRoll : MiniGameSetting
                 Debug.Log("이겼다!");
                 m_clearPrefab.SetActive(true);
                 m_end = true;
+                EffectSoundManager.Instance.PlayEffect(8);
                 Invoke("GameClear", 1);
             }
             if (m_timer <= 0f && m_winCount > 0)

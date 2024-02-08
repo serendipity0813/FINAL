@@ -2,7 +2,7 @@
     "name": "name",
     "level": 1,
     "exp": 0.0,
-    "coin": 100,
+    "coin": 0,
     "diamond": 0,
     "ticket": 0,
     "gameIndex": [
@@ -21,9 +21,11 @@
         12,
         13,
         14,
-        15
+        15,
+        16
     ],
     "haveGames": [
+        true,
         true,
         true,
         true,
@@ -42,6 +44,8 @@
         true
     ],
     "rankingPoint": [
+        9,
+        1,
         0,
         0,
         0,
@@ -50,8 +54,7 @@
         0,
         0,
         0,
-        0,
-        0,
+        12,
         0,
         0,
         0,

@@ -13,7 +13,7 @@ public class MakeBalls : MonoBehaviour
 
     IEnumerator MakeBall()
     {
-        for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
+        for (int i = 1; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
             if (PlayerDataManager.instance.m_playerData.haveGames[i])
             {

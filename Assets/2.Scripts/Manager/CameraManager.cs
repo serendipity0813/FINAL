@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
     private CameraView m_cameraView;//카메라 순서를 enum으로 구별할 수 있게
 
     private GameObject m_targetObject;//따라가게 만들 오브젝트
-    private bool m_followEnabled = false;//카메라를 따라가게 할지 확인하는 변수
+    public bool m_followEnabled = false;//카메라를 따라가게 할지 확인하는 변수, false = 해제, true = 설정
     private float m_followSpeed = 1.0f;//카메라 이동 속도
 
     private void Awake()
@@ -52,11 +52,7 @@ public class CameraManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_followEnabled)//따라가기 기능이 켜져있을 경우
-        {
-            if (m_targetObject != null) //타켓이 있을 때
-                m_cameraBox.transform.position = Vector3.Slerp(m_cameraBox.transform.position, m_targetObject.transform.position, m_followSpeed * Time.deltaTime);
-        }
+        CameraFollow();
     }
 
     //현재 활성화된 카메라를 리턴
@@ -85,16 +81,20 @@ public class CameraManager : MonoBehaviour
     }
 
     //카메라 따라가기 기능 토글 함수
-    public void ToggleCameraFollow()
+    //카메라 따라가기 
+    public void CameraFollow()
     {
-        //bool 전환
-        m_followEnabled = !m_followEnabled;
-
-        if (!m_followEnabled)//Follow가 켜진 상태에서 전환될 때
+        if (m_followEnabled)//따라가기 기능이 켜져있을 경우
         {
+            if (m_targetObject != null) //타켓이 있을 때
+                m_cameraBox.transform.position = Vector3.Slerp(m_cameraBox.transform.position, m_targetObject.transform.position, m_followSpeed * Time.deltaTime);
+        }
+
+        if (!m_followEnabled) //Follow가 켜진 상태에서 전환될 때
+        {
+            m_followEnabled = false;
             m_cameraBox.transform.position = Vector3.zero;//원래 위치로 되돌리기
             m_targetObject = null;//타겟 초기화
-
         }
     }
 

@@ -39,6 +39,7 @@ public class SpinnerController : MonoBehaviour
             if (spinnerGame.m_winCount > 0)
             {
                 spinnerGame.m_winCount--; // 회전 카운트 감소
+                EffectSoundManager.Instance.PlayEffect(16);
             }
         }
 

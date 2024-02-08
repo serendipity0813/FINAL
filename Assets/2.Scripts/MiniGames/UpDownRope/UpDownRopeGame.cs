@@ -33,7 +33,7 @@ public class UpDownRopeGame : MiniGameSetting
         CameraManager.Instance.ChangeCamera(CameraView.Angle30View);
         CameraManager.Instance.SetFollowSpeed(10.0f);
         CameraManager.Instance.SetFollowTarget(m_player);
-        CameraManager.Instance.ToggleCameraFollow();
+        CameraManager.Instance.m_followEnabled = true;
 
         //인게임 text내용 설정 + 게임 승리조건
         clearCount = 1 + ((m_difficulty1 + m_difficulty2)/ 3);
@@ -99,7 +99,7 @@ public class UpDownRopeGame : MiniGameSetting
                 m_clearPrefab.SetActive(true);
                 timer = 10;
                 Invoke("GameClear", 1);
-                CameraManager.Instance.ToggleCameraFollow();
+                CameraManager.Instance.m_followEnabled = false;
                 m_end = true;
             }
 
@@ -108,7 +108,7 @@ public class UpDownRopeGame : MiniGameSetting
             {
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
-                CameraManager.Instance.ToggleCameraFollow();
+                CameraManager.Instance.m_followEnabled = false;
                 m_end = true;
             }
 

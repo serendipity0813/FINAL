@@ -12,6 +12,7 @@ public class FoodEatPrefabs : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            EffectSoundManager.Instance.PlayEffect(1);
             foodEat.m_clearCount--;
             Destroy(gameObject);
         }

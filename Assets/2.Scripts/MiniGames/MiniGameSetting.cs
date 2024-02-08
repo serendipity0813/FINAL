@@ -76,13 +76,15 @@ public class MiniGameSetting : MonoBehaviour
     //게임 클리어, 실패 함수
     protected void GameClear()
     {
-        MiniGameManager.Instance.GameClear();
-        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+       MiniGameManager.Instance.m_isWin = true;
+       MiniGameManager.Instance.EndCheck();
+       CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     protected void GameFail()
     {
-        MiniGameManager.Instance.GameFail();
+        MiniGameManager.Instance.m_isWin = false;
+        MiniGameManager.Instance.EndCheck();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 

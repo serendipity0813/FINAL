@@ -11,5 +11,6 @@ public class JumpJumpFall : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         jumpJumpBtn.PlayerSave();
+        EffectSoundManager.Instance.PlayEffect(18);
     }
 }

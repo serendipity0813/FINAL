@@ -8,6 +8,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void LobbyClick()
     {
+        CameraManager.Instance.m_followEnabled = false;
         GameSceneManager.Instance.PopupClear();
         MiniGameManager.Instance.GameReset();
         Time.timeScale = 1.0f;

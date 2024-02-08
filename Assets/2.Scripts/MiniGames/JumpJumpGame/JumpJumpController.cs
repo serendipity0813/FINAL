@@ -57,6 +57,7 @@ public class JumpJumpController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Finish"))
         {
+            EffectSoundManager.Instance.PlayEffect(8);
             m_jumpJump.m_clearCount--;
             m_rd.mass = 15f;
             m_isJump = true;
@@ -64,6 +65,7 @@ public class JumpJumpController : MonoBehaviour
         if (collision.gameObject.CompareTag("Terrain"))
         {
             m_rd.mass = 15f;
+            EffectSoundManager.Instance.PlayEffect(1);
         }
     }
     private void OnCollisionStay(Collision collision)

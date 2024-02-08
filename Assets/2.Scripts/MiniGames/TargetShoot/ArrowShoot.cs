@@ -29,6 +29,7 @@ public class ArrowShoot : MonoBehaviour
             targetShootGame.m_clearCount--; // 클리어 카운트 낮추기
             m_rb.velocity = Vector3.zero; // 초기화
             m_isfly = false; // 초기화
+            EffectSoundManager.Instance.PlayEffect(8);
             StickToTarget(collision.transform);
         }
     }
@@ -43,6 +44,7 @@ public class ArrowShoot : MonoBehaviour
         if (transform.position.z > 45f)
         {
             targetShootGame.m_arrowCount--; // z값 45 위치까지 이동해야 카운트를 -
+            EffectSoundManager.Instance.PlayEffect(18);
             if (targetShootGame.m_arrowCount <= 0)
             {
                 Destroy(gameObject);

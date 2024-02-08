@@ -49,6 +49,8 @@ public class MakeFood : MonoBehaviour
         {
             position = new Vector3(6 + m_parentTrn.position.x, rndY + m_parentTrn.position.y, m_parentTrn.position.z);// rnd 가 1일시 해당 좌표로 이동
         }
+        rnd = Random.Range(16, 18);
+        EffectSoundManager.Instance.PlayEffect(rnd);
         MakeFoods(position); // position 위치에 푸드를 만든다.
     }
 
