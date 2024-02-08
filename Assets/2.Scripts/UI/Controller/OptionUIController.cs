@@ -22,4 +22,14 @@ public class OptionUIController : ButtonHandler
         m_sfxSlider.value = 50;
     }
 
+    public void CustomerSurviceButton()
+    {
+        Application.OpenURL("https://forms.gle/1b7589nJ6FvL3RFm8");
+    }
+
+    public void UpdateHistoryButton()
+    {
+        Application.OpenURL("https://www.notion.so/b69e76da62334ce1af9470b6dad29cf2");
+    }
+
 }
