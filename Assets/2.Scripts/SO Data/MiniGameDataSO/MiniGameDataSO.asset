@@ -15,7 +15,7 @@ MonoBehaviour:
   games:
   - gameName: CarDriving
     gameIndex: 0
-    gamePrefab: {fileID: 4636359251180530714, guid: bef68a6d864fa1041b9e1a072b834a70,
+    gamePrefab: {fileID: 3706575475475320330, guid: bef68a6d864fa1041b9e1a072b834a70,
       type: 3}
     gameDescription: "\uB3C4\uB85C \uC704 \uCC28\uB4E4\uC744 \uD53C\uD574 \uBAA9\uD45C\uAE4C\uC9C0
       \uB3C4\uB2EC\uD574\uB77C"
@@ -38,7 +38,7 @@ MonoBehaviour:
       \uC810\uD504\uD574\uB77C"
   - gameName: MazeRunner
     gameIndex: 4
-    gamePrefab: {fileID: 7295525553317641642, guid: 4ae27f4fe1f4e2f4ba6ff4c957283955,
+    gamePrefab: {fileID: 5739036710204788887, guid: 4ae27f4fe1f4e2f4ba6ff4c957283955,
       type: 3}
     gameDescription: "\uC81C\uD55C\uC2DC\uAC04 \uB0B4\uC5D0 \uBBF8\uB85C \uD0C8\uCD9C\uD558\uAE30"
   - gameName: Mosquito

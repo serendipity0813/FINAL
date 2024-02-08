@@ -5,12 +5,12 @@ public class CarDrivingGame : MiniGameSetting
 {
     [SerializeField] private GameObject m_cameraTarget;
 
-    private CharacterController m_playerController;
+    private Rigidbody m_playerBody;
     private CarGenerator m_generator;
     private int m_difficulty = 1;
 
-    private float m_runningSpeed = 0.4f;
-    private float m_sideSpeed = 0.2f;
+    private float m_runningSpeed = 20.0f;
+    private float m_sideSpeed = 10.0f;
     private float m_timer = 0.0f;
 
     protected override void Awake()
@@ -26,7 +26,7 @@ public class CarDrivingGame : MiniGameSetting
         CameraManager.Instance.SetFollowTarget(m_cameraTarget.transform.GetChild(0).gameObject);
         CameraManager.Instance.ToggleCameraFollow();
 
-        m_playerController = m_cameraTarget.GetComponent<CharacterController>();
+        m_playerBody = m_cameraTarget.GetComponent<Rigidbody>();
         m_generator = transform.GetChild(2).GetComponent<CarGenerator>();
         m_generator.GenerateCars();//난이도에 맞춰서 차 생성
 
@@ -42,7 +42,8 @@ public class CarDrivingGame : MiniGameSetting
         {
             try
             {
-                m_playerController.Move(new Vector3(0, 0, m_runningSpeed));
+                Vector3 velocity;
+                velocity = new Vector3(0, 0, m_runningSpeed);
 
                 if (TouchManager.instance.IsHolding())
                 {
@@ -50,13 +51,18 @@ public class CarDrivingGame : MiniGameSetting
 
                     if (direction > 0)
                     {
-                        m_playerController.Move(new Vector3(m_sideSpeed, 0, 0));
+                        velocity.x = m_sideSpeed;
                     }
                     else
                     {
-                        m_playerController.Move(new Vector3(-m_sideSpeed, 0, 0));
+                        velocity.x = -m_sideSpeed;
                     }
+                }else
+                {
+                    velocity.x = 0.0f;
                 }
+
+                m_playerBody.velocity = velocity;
             }
             catch
             {
@@ -98,14 +104,12 @@ public class CarDrivingGame : MiniGameSetting
 
     public void Win()
     {
-        CameraManager.Instance.ToggleCameraFollow();
         m_clearPrefab.SetActive(true);
         Invoke("GameClear", 1);
     }
 
     public void Lose()
     {
-        CameraManager.Instance.ToggleCameraFollow();
         m_failPrefab.SetActive(true);
         Invoke("GameFail", 1);
     }

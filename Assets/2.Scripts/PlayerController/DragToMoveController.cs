@@ -17,6 +17,7 @@ class DragToMoveController : MonoBehaviour
     {
         m_rigidbody = GetComponent<Rigidbody>();
         m_camera = CameraManager.Instance.GetCamera();//현재 작동중인 카메라를 받아옴
+        m_isGround = true;//GroundCheck없이 사용할 게임을 위해 true로 초기화
     }
 
     //점프도 가능한 캐릭터 이동 함수
@@ -94,6 +95,7 @@ class DragToMoveController : MonoBehaviour
             hitpos = hitpos - transform.position;
             hitpos.y = 0;
             m_rigidbody.velocity = hitpos.normalized * m_speed;
+            transform.rotation = Quaternion.LookRotation(hitpos, Vector3.up);
         }
     }
 
