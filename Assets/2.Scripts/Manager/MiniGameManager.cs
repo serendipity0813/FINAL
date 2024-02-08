@@ -85,6 +85,7 @@ public class MiniGameManager : MonoBehaviour
     // 게임 클리어시 스테이지 변수를 1 올리고 게임 선택 씬으로 이동하면서 현재 게임 파괴
     public void GameClear()
     {
+        //게임 클리어시 변수 재설정 및 스테이지 상승
         if (m_endCheck)
         {
             m_endCheck = true;
@@ -147,6 +148,7 @@ public class MiniGameManager : MonoBehaviour
         PlayerDataManager.instance.SaveJson();
     }
 
+    //게임도중 나가거나 종료 후 초기화를 위한 메소드
     public void GameReset()
     {
         if (m_currentGame != null)
