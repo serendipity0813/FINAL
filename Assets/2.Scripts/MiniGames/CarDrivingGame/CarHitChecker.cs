@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarDrivingPlayer : MonoBehaviour
+public class CarHitChecker : MonoBehaviour
 {
     private CarDrivingGame m_game;
 
     private void Start()
     {
         m_game = transform.parent.GetComponent<CarDrivingGame>();
-
-
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+ 
+    private void OnCollisionEnter(Collision hit)
     {
         if (hit.transform.tag == "Target")
         {
