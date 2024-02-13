@@ -11,21 +11,24 @@ public class ChangeSceneAnimation : MonoBehaviour
 
     public void ClearAnimation()
     {
-        //게임 클리어 : 1, 패배 : -1, 처음시작 : 0 으로 변수 되도록 설정하여 나와야 하는 애니메이션 구분
-        if(MiniGameManager.Instance.m_clearCheck == 1)
-        {
-            m_clearEffect[0].SetActive(true);
-        }
-        else if(MiniGameManager.Instance.m_clearCheck == -1)
-        {
-            m_failEffect[0].SetActive(true);
-        }
-        else
-        {
-            m_normalEffect[0].SetActive(true);
-            m_normalEffect[1].SetActive(true);
-        }
-            
+        ////게임 클리어 : 1, 패배 : -1, 처음시작 : 0 으로 변수 되도록 설정하여 나와야 하는 애니메이션 구분
+        //if(MiniGameManager.Instance.m_clearCheck == 1)
+        //{
+        //    m_clearEffect[0].SetActive(true);
+        //}
+        //else if(MiniGameManager.Instance.m_clearCheck == -1)
+        //{
+        //    m_failEffect[0].SetActive(true);
+        //}
+        //else
+        //{
+        //    m_normalEffect[0].SetActive(true);
+        //    m_normalEffect[1].SetActive(true);
+        //}
+
+        m_normalEffect[0].SetActive(true);
+        m_normalEffect[1].SetActive(true);
+
     }
 
 }
