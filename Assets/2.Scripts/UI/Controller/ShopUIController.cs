@@ -33,11 +33,11 @@ public class ShopUIController : ButtonHandler
 
     }
 
-    public void ShopTaps(int tabNumber)
+    public void ShopTaps(int num)
     {
         for(int i=0; i< m_tabs.Length; i++)
         {
-            if(i == tabNumber)
+            if(i == num)
                 m_tabs[i].SetActive(true);
             else
                 m_tabs[i].SetActive(false);
