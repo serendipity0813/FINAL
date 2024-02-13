@@ -10,7 +10,7 @@ public class JumpRopeGame : MiniGameSetting
     private int m_count = 0;
     private bool m_collision = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
 
-    private float m_timer;
+    private float m_timer = 3.0f;
 
     protected override void Awake()
     {
@@ -46,24 +46,19 @@ public class JumpRopeGame : MiniGameSetting
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
-        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+        if (m_timer < 2.5f && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
-        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+        if (m_timer < 1.5 && m_missionPrefab.activeSelf == true)
             m_missionPrefab.SetActive(false);
 
         //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer > 2)
+        if (m_timer < 1)
         {
             m_timePrefab.SetActive(true);
             m_countPrefab.SetActive(true);
         }
 
-        //게임 패배조건 - 시간초과
-        if (m_timer > 12)
-        {
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
-        }
+
         #endregion
     }
 
