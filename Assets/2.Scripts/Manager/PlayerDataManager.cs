@@ -92,6 +92,17 @@ public class PlayerDataManager : MonoBehaviour
             }
         }
     }
+
+    public void GetItem(string ItemName, int ItemCount)
+    {
+        if (m_playerData.GameItem.ContainsKey(ItemName))
+            m_playerData.GameItem[ItemName] += ItemCount;
+        else
+            m_playerData.GameItem.Add(ItemName, ItemCount);
+
+
+    }
+
     private void OnApplicationQuit()
     {
         // 게임 종료 시 실행할 작업
@@ -132,4 +143,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
 
     // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
     public List<int> rankingPoint;
+
+    public Dictionary<string, int> GameItem;
+
 }
