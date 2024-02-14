@@ -13,28 +13,31 @@ MonoBehaviour:
   m_Name: ItemDataSO
   m_EditorClassIdentifier: 
   items:
-  - itemName: 1
+  - itemName: item0
+    itemIndex: 0
+    itemPrice: 0
+    itemIcon: {fileID: 445295799531992839, guid: 4fa3cf1ab181d73409dc6a3a27da2b7e,
+      type: 3}
+    itemDescription: Description1
+  - itemName: item1
     itemIndex: 1
-    itemPrice: 1
-    itemIcon: {fileID: 0}
-    itemDescription: 1
-  - itemName: 2
+    itemPrice: 100
+    itemIcon: {fileID: 1901613050895639237, guid: 8aef96368da180448a85a8e7c6f4c807,
+      type: 3}
+    itemDescription: Description2
+  - itemName: item2
     itemIndex: 2
-    itemPrice: 2
-    itemIcon: {fileID: 0}
-    itemDescription: 2
-  - itemName: 3
+    itemPrice: 200
+    itemIcon: {fileID: 445295799531992839, guid: c1b0205e9eeab1945a358c6b6077df0d,
+      type: 3}
+    itemDescription: Description3
+  - itemName: item3
     itemIndex: 3
-    itemPrice: 3
+    itemPrice: 300
     itemIcon: {fileID: 0}
-    itemDescription: 3
-  - itemName: 4
+    itemDescription: Description4
+  - itemName: item4
     itemIndex: 4
-    itemPrice: 4
+    itemPrice: 400
     itemIcon: {fileID: 0}
-    itemDescription: 4
-  - itemName: 5
-    itemIndex: 5
-    itemPrice: 5
-    itemIcon: {fileID: 0}
-    itemDescription: 5
+    itemDescription: Description5

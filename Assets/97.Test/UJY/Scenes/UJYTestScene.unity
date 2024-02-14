@@ -4459,10 +4459,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 629184567792148729, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629184567792148729, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629184567792148729, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -27
+      objectReference: {fileID: 0}
     - target: {fileID: 2107765846953220489, guid: b90ab4820c1831d45b30696e8970e393,
         type: 3}
       propertyPath: m_Name
       value: ShopUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107765846953220489, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345744874546021555, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000014305115
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770466494051219078, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770466494051219078, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770466494051219078, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5886439780041725467, guid: b90ab4820c1831d45b30696e8970e393,
         type: 3}
@@ -4518,6 +4558,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933314237460538311, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933314237460538311, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720977955687255961, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720977955687255961, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720977955687255961, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720977955687255961, guid: b90ab4820c1831d45b30696e8970e393,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7815,12 +7885,12 @@ MonoBehaviour:
     name: 
     level: 0
     exp: 0
-    coin: 10000
-    diamond: 0
-    ticket: 0
+    coin: 100
     gameIndex: 
     haveGames: 
     rankingPoint: 
+    haveSkin: 0100000000
+    equipSkin: 0000000000
   ItemData: {fileID: 11400000, guid: eabd2bde95a44e945be9c364f9545f5b, type: 2}
 --- !u!4 &834934322 stripped
 Transform:

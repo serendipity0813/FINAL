@@ -65,7 +65,8 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
-        m_playerData.gameItem = new Dictionary<int, int>();
+        m_playerData.haveSkin = new List<bool>();
+        m_playerData.equipSkin = new List<bool>();
 
         for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
@@ -80,9 +81,16 @@ public class PlayerDataManager : MonoBehaviour
             m_playerData.haveGames[i] = true;
         }
 
+        //첫 번째는 기본 아바타, 나머지는 없도록 세이브
         for(int i=0; i< ItemData.items.Count; i++)
         {
-            m_playerData.gameItem.Add(i, 0);
+            if(i==0)
+            {
+                m_playerData.haveSkin.Add(true);
+            }
+
+            else
+                m_playerData.haveSkin.Add(false);
         }
 
         
@@ -102,20 +110,31 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
-    public void GetItem(int ItemCode, int ItemCount)
+    public void GetItem(int ItemCode)
     {
-        if (m_playerData.gameItem.ContainsKey(ItemCode))
-            m_playerData.gameItem[ItemCode] += ItemCount;
-        else
-            m_playerData.gameItem.Add(ItemCode, ItemCount);
-
-
+        m_playerData.haveSkin[ItemCode] = true;
     }
 
-    public int GetItemValue(int ItemCode)
+    public void GetCoin(int ItemCode)
     {
-        int value = m_playerData.gameItem[ItemCode];
-        return value;
+        m_playerData.coin += ItemCode;
+    }
+
+    public void EquipItem(int ItemCode)
+    {
+        //bool 리스트로 소지여부 판단 후 장착관리
+        if(m_playerData.haveSkin[ItemCode])
+        {
+  
+            for (int i = 0; i < m_playerData.equipSkin.Count; i++)
+            {
+                if (i == ItemCode)
+                    m_playerData.equipSkin[ItemCode] = true;
+                else
+                    m_playerData.equipSkin[ItemCode] = false;
+            }
+        }
+       
     }
 
     private void OnApplicationQuit()
@@ -141,8 +160,6 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int level;   // 플레이어 현재 레벨
     public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
-    public int diamond; // 플레이어가 가지고 있는 보석 재화
-    public int ticket;   // 플레이어가 가지고 있는 게임 뽑기 티켓 수
     public int stage { get; set; }   // 게임 진행시 현재 진행 스테이지
     public int life { get; set; }   // 게임 진행시 플레이어의 목숨 수치
     public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치
@@ -159,6 +176,8 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
     public List<int> rankingPoint;
 
-    public Dictionary<int, int> gameItem;
+    //플레이어 스킨 소비여부, 장착여부 체크용
+    public List<bool> haveSkin;
+    public List<bool> equipSkin;
 
 }

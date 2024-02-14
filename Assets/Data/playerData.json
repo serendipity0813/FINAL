@@ -2,9 +2,7 @@
     "name": "name",
     "level": 1,
     "exp": 0.0,
-    "coin": 9980,
-    "diamond": 0,
-    "ticket": 0,
+    "coin": 9370,
     "gameIndex": [
         0,
         1,
@@ -61,5 +59,19 @@
         0,
         0,
         0
+    ],
+    "haveSkin": [
+        true,
+        true,
+        false,
+        false,
+        false
+    ],
+    "equipSkin": [
+        false,
+        false,
+        false,
+        false,
+        false
     ]
 }
