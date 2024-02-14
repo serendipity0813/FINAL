@@ -105,7 +105,7 @@ public class TutorialUIController : MonoBehaviour
             case 0:
                 GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
                 CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
-                m_text.text = "튜토리얼에 온걸 환영해!";
+                m_text.text = "이 게임이 처음이구나!\n튜토리얼에 온걸 환영해!";
                 break;
             case 1:
                 m_text.text = "지금은 게임의 메인 화면이야";

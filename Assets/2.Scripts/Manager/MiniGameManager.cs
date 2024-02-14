@@ -183,7 +183,7 @@ public class MiniGameManager : MonoBehaviour
     {
         if (!PlayerDataManager.instance.m_playerData.tutorial)
         {
-            TutorialUIController tutorialUIController = GameObject.Find("TutorialUI").GetComponent<TutorialUIController>();
+            TutorialUIController tutorialUIController = GameObject.Find("TutorialUI(Clone)").GetComponent<TutorialUIController>();
             tutorialUIController.SwitchButtonClick();
 
             if (PlayerDataManager.instance.m_playerData.life <= 2 && tutorialUIController.m_tutorialIndex == 12)

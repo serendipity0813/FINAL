@@ -525,6 +525,7 @@ MonoBehaviour:
     coin: 0
     diamond: 0
     ticket: 0
+    tutorial: 0
     gameIndex: 
     haveGames: 
     rankingPoint: 
@@ -957,6 +958,7 @@ MonoBehaviour:
   - {fileID: 1396134759798909953, guid: 2d0fdfb76d911ef4ba8172a7d81ba953, type: 3}
   - {fileID: 8356692665265373312, guid: 8f435d172eb64c343aecc50210f3f462, type: 3}
   m_endCheck: 0
+  m_clearCheck: 0
   RandomMod: 0
   m_isWin: 0
 --- !u!1 &1210944122
