@@ -9,7 +9,8 @@ public class GatchaSceneController : ButtonHandler
 
     private void Start()
     {
-        m_playerTicketText.text = PlayerDataManager.instance.m_playerData.ticket.ToString();
+        m_playerTicketText.text = PlayerDataManager.instance.GetItemValue(0).ToString();
+        //m_playerTicketText.text = PlayerDataManager.instance.m_playerData.ticket.ToString();
     }
 
     public void AdClick()

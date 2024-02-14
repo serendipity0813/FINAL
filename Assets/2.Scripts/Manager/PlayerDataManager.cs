@@ -6,6 +6,7 @@ public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager instance { get; private set; }
     public PlayerData m_playerData;
+    public ItemDataSO ItemData;
     private string path;
 
     private void Awake()
@@ -64,6 +65,7 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
+        m_playerData.gameItem = new Dictionary<int, int>();
 
         for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
@@ -77,6 +79,13 @@ public class PlayerDataManager : MonoBehaviour
             // 처음 5개의 게임은 주어질 예정
             m_playerData.haveGames[i] = true;
         }
+
+        for(int i=0; i< ItemData.items.Count; i++)
+        {
+            m_playerData.gameItem.Add(i, 0);
+        }
+
+        
     }
     void MiniGameDataCheck()
     {
@@ -93,14 +102,20 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
-    public void GetItem(string ItemName, int ItemCount)
+    public void GetItem(int ItemCode, int ItemCount)
     {
-        if (m_playerData.GameItem.ContainsKey(ItemName))
-            m_playerData.GameItem[ItemName] += ItemCount;
+        if (m_playerData.gameItem.ContainsKey(ItemCode))
+            m_playerData.gameItem[ItemCode] += ItemCount;
         else
-            m_playerData.GameItem.Add(ItemName, ItemCount);
+            m_playerData.gameItem.Add(ItemCode, ItemCount);
 
 
+    }
+
+    public int GetItemValue(int ItemCode)
+    {
+        int value = m_playerData.gameItem[ItemCode];
+        return value;
     }
 
     private void OnApplicationQuit()
@@ -144,6 +159,6 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
     public List<int> rankingPoint;
 
-    public Dictionary<string, int> GameItem;
+    public Dictionary<int, int> gameItem;
 
 }
