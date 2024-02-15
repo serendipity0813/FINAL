@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class ChoiceUIController : ButtonHandler
 {
@@ -10,7 +11,8 @@ public class ChoiceUIController : ButtonHandler
     [SerializeField] private TextMeshProUGUI m_HighScoreText;
     [SerializeField] private TextMeshProUGUI m_MyScoreText;
 
-    //클릭한 게임에 대한 실시간 정보를 출력하도록 코드 필요
+
+    
     private void Start()
     {
         int gameNumber = MiniGameManager.Instance.GameNumber;
@@ -30,6 +32,7 @@ public class ChoiceUIController : ButtonHandler
         }
 
     }
+
 
 
 }
