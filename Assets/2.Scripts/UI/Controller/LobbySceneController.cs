@@ -10,7 +10,6 @@ public class LobbySceneController : ButtonHandler
     [SerializeField] private TextMeshProUGUI m_playerLevelText;
     [SerializeField] private TextMeshProUGUI m_playerEXPText;
     [SerializeField] private TextMeshProUGUI m_playerCoinText;
-    [SerializeField] private TextMeshProUGUI m_playerDiamondText;
     [SerializeField] private Slider m_expSlider;
 
     private void Awake()
@@ -20,7 +19,6 @@ public class LobbySceneController : ButtonHandler
         m_playerEXPText.text = PlayerDataManager.instance.m_playerData.exp.ToString() + "%";
         m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
         m_playerLevelText.text = PlayerDataManager.instance.m_playerData.level.ToString();
-        m_playerDiamondText.text = PlayerDataManager.instance.m_playerData.diamond.ToString();
     }
 
 }

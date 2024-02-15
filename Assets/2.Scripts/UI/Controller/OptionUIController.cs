@@ -22,6 +22,7 @@ public class OptionUIController : ButtonHandler
         m_sfxSlider.value = 50;
     }
 
+    //설정창 내부 버튼 클릭시 관련 링크로 이동하는 메소드
     public void CustomerSurviceButton()
     {
         Application.OpenURL("https://forms.gle/1b7589nJ6FvL3RFm8");
