@@ -141,7 +141,7 @@ public class PlayerDataManager : MonoBehaviour
             }
             else
                 m_playerData.equipSkin[ItemCode] = false;
-
+            Debug.Log(m_playerData.equipSkin[ItemCode]);
         }
 
         SaveJson();
