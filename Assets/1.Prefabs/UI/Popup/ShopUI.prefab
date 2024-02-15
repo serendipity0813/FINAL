@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8212247520379174541}
   - component: {fileID: 6584972507435019822}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 7EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 3246240443691936431}
   - component: {fileID: 2737494969911730964}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 3EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 6476553799589309687}
   - component: {fileID: 3572598968927800122}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 1HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1721,7 +1721,7 @@ GameObject:
   - component: {fileID: 3621294318481918170}
   - component: {fileID: 1024884797938264957}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 4EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2521,7 +2521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4762220258247418221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3789,7 +3789,7 @@ GameObject:
   - component: {fileID: 4455773798056062101}
   - component: {fileID: 7694436129763696044}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 1EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6319,7 +6319,7 @@ GameObject:
   - component: {fileID: 5221552199220405522}
   - component: {fileID: 4100658302353091023}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 9HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6700,7 +6700,7 @@ GameObject:
   - component: {fileID: 8029204766207154316}
   - component: {fileID: 2537738374073381821}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 2HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9596,7 +9596,7 @@ GameObject:
   - component: {fileID: 4015448192283268496}
   - component: {fileID: 5401409840065191005}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 8EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9711,7 +9711,7 @@ GameObject:
   - component: {fileID: 5700328437703144623}
   - component: {fileID: 2202494812407217903}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 4HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9788,7 +9788,7 @@ GameObject:
   - component: {fileID: 984911489850627578}
   - component: {fileID: 4818033629275176439}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 8HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12998,7 +12998,7 @@ GameObject:
   - component: {fileID: 1362359594182288251}
   - component: {fileID: 7809161844204022505}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 2EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13710,7 +13710,7 @@ GameObject:
   - component: {fileID: 8498045673703776337}
   - component: {fileID: 3999890953984667894}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 10HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14444,7 +14444,7 @@ GameObject:
   - component: {fileID: 4585759333465803269}
   - component: {fileID: 7805463264257770058}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 3HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14942,7 +14942,7 @@ GameObject:
   - component: {fileID: 4938672096717955391}
   - component: {fileID: 8596208029699979295}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 6EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16943,7 +16943,7 @@ GameObject:
   - component: {fileID: 4990556990739753216}
   - component: {fileID: 148562203864008285}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 5EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18418,7 +18418,7 @@ GameObject:
   - component: {fileID: 7193286128434012261}
   - component: {fileID: 7902137545931250296}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 6HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19320,7 +19320,7 @@ GameObject:
   - component: {fileID: 3364574926797667614}
   - component: {fileID: 4899326557748771316}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 10EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19911,7 +19911,7 @@ GameObject:
   - component: {fileID: 7993085585755977660}
   - component: {fileID: 7067743603422646791}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 5HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20322,7 +20322,7 @@ GameObject:
   - component: {fileID: 6060119625849012261}
   - component: {fileID: 7886884476127962471}
   m_Layer: 0
-  m_Name: EquipMarkBG
+  m_Name: 9EquipMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20912,7 +20912,7 @@ GameObject:
   - component: {fileID: 5856589920271406176}
   - component: {fileID: 6124178293225207593}
   m_Layer: 0
-  m_Name: HaveMarkBG
+  m_Name: 7HaveMarkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
