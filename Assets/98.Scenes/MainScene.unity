@@ -641,12 +641,13 @@ MonoBehaviour:
     level: 0
     exp: 0
     coin: 0
+    tutorial: 0
     gameIndex: 
     haveGames: 
     rankingPoint: 
     haveSkin: 
     equipSkin: 
-  ItemData: {fileID: 0}
+  ItemData: {fileID: 11400000, guid: eabd2bde95a44e945be9c364f9545f5b, type: 2}
 --- !u!1 &837833056
 GameObject:
   m_ObjectHideFlags: 0

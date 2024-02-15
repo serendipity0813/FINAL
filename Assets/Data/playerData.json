@@ -2,7 +2,7 @@
     "name": "name",
     "level": 1,
     "exp": 0.0,
-    "coin": 30000,
+    "coin": 29700,
     "tutorial": true,
     "gameIndex": [
         0,
@@ -36,11 +36,11 @@
         false,
         false,
         false,
+        true,
         false,
+        true,
         false,
-        false,
-        false,
-        false
+        true
     ],
     "rankingPoint": [
         0,

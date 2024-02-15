@@ -180,6 +180,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치
     public int rewardCoin { get; set; }  // 게임 진행 후 얻을 코인
     public int timePoint { get; set; }   // 게임 진행 시간 보너스 점수
+    public int bonusPointIndex { get; set; }  // 게임 진행 기타 보너스 점수
     public int bonusPoint { get; set; }  // 게임 진행 기타 보너스 점수
 
     // 미니게임 인덱스값 저장, 0번은 랜덤게임으로 고정
