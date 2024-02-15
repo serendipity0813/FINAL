@@ -62,6 +62,7 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.level = 1;
         m_playerData.exp = 0;
         m_playerData.coin = 100;
+        m_playerData.tutorial = false;
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
