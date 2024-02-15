@@ -82,15 +82,29 @@ public class TutorialUIController : MonoBehaviour
                 Time.timeScale = 0f;
                 eventCheck = false;
             }
-            if (m_tiem > 0.5f && m_tutorialIndex == 12)
+            if (m_tiem > 1.0f && m_tutorialIndex == 12)
             {
                 SetAciveTrue();
+                Time.timeScale = 0f;
+                eventCheck = false;
+            }
+            if (m_tiem > 1.0f && m_tutorialIndex == 14)
+            {
+                SetAciveTrue();
+                m_arrow.SetActive(true);
                 Time.timeScale = 0f;
                 eventCheck = false;
             }
             if (m_tiem > 0.2f && m_tutorialIndex == 17)
             {
                 SetAciveTrue();
+                Time.timeScale = 0f;
+                eventCheck = false;
+            }
+            if (m_tiem > 1.0f && m_tutorialIndex == 19)
+            {
+                SetAciveTrue();
+                m_arrow.SetActive(true);
                 Time.timeScale = 0f;
                 eventCheck = false;
             }
@@ -175,15 +189,31 @@ public class TutorialUIController : MonoBehaviour
                 break;
             //만약 게임에 지게된다면
             case 12:
-                SetAciveTrue();
+                m_tiem = 0;
+                eventCheck = true;
+                SetAciveFalse();
+                m_text.text = "원래라면 패배했지만 지금은 튜토리얼이니까";
                 break;
             case 13:
+                m_text.text = "승리로 바꿔버렸어";
                 break;
             // 게임을 이기고 난 뒤
             case 14:
-                Time.timeScale = 0f;
-                SetAciveTrue();
-                m_arrow.SetActive(true);
+                Time.timeScale = 1.0f;
+                if (m_text.text == "승리로 바꿔버렸어")
+                {
+                    SetAciveTrue();
+                    Time.timeScale = 0f;
+                    m_arrow.SetActive(true);
+                    
+                }
+                else
+                {
+                    m_tiem = 0;
+                    eventCheck = true;
+                    SetAciveFalse();
+                }
+                
                 m_rectTransformArrow.anchoredPosition = new Vector2(0f, -200f);
                 m_rectTransformArrow.rotation = Quaternion.Euler(new Vector3(0f, 0f, -180f));
                 m_text.text = "게임을 승리하면\n스테이지가 올라";
@@ -211,13 +241,13 @@ public class TutorialUIController : MonoBehaviour
                 break;
             //패배
             case 19:
-                m_arrow.SetActive(true);
-                SetAciveTrue();
+                m_tiem = 0f;
+                eventCheck = true;
+                SetAciveFalse();
                 m_rectTransformArrow.anchoredPosition = new Vector2(0f, 0f);
                 m_rectTransformArrow.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
                 m_rectTransformDescriptionBG.anchoredPosition = new Vector2(0f, -500f);
                 m_text.text = "라이프가 하나씩 감소하게 되고\n0이 되면 게임이 끝나";
-                Time.timeScale = 0.0f;
                 break;
             // 메인화면으로 돌아옴
             case 20:
@@ -260,9 +290,9 @@ public class TutorialUIController : MonoBehaviour
                 GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
                 CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
                 m_arrow.SetActive(true);
-                m_rectTransformArrow.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-                m_rectTransformArrow.anchoredPosition = new Vector2(325f, -175f);
-                m_rectTransformDescriptionBG.anchoredPosition = new Vector2(0f, -500f);
+                m_rectTransformArrow.rotation = Quaternion.Euler(new Vector3(0f, 0f, -180f));
+                m_rectTransformArrow.anchoredPosition = new Vector2(325f, 700f);
+                m_rectTransformDescriptionBG.anchoredPosition = new Vector2(0f, 0f);
                 m_text.text = "미니게임을 뽑기 할 수 있는 곳은 이곳이야";
                 break;
             //랜덤게임 팝업창 닫기 이후 뽑기창으로

@@ -190,17 +190,21 @@ public class MiniGameManager : MonoBehaviour
 
             if (PlayerDataManager.instance.m_playerData.life <= 2 && tutorialUIController.m_tutorialIndex == 12)
             {
-                tutorialUIController.m_tiem = 0;
-                Time.timeScale = 0;
                 PlayerDataManager.instance.m_playerData.life++;
                 m_endCheck = true;
-                GameClear();
-                tutorialUIController.m_text.text = "원래라면 패배했지만 지금은 튜토리얼이니까";
+                if (m_endCheck)
+                {
+                    m_endCheck = true;
+                    m_clearCheck = 1;
+                    PlayerDataManager.instance.m_playerData.stage++;
+                    GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+                    Destroy(m_currentGame);
+                }
                 return;
             }
             else if (PlayerDataManager.instance.m_playerData.life <= 3 && tutorialUIController.m_tutorialIndex == 12)
             {
-                tutorialUIController.SwitchButtonClick();
+                tutorialUIController.m_tutorialIndex++;
                 tutorialUIController.SwitchButtonClick();
                 return;
             }
