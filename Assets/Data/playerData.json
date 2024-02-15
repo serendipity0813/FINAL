@@ -2,7 +2,7 @@
     "name": "name",
     "level": 1,
     "exp": 0.0,
-    "coin": 15000,
+    "coin": 5000,
     "tutorial": true,
     "gameIndex": [
         0,
@@ -64,8 +64,8 @@
     "haveSkin": [
         true,
         true,
-        false,
-        false,
+        true,
+        true,
         false,
         false,
         false,

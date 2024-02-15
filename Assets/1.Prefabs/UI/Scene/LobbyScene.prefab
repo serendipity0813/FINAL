@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -233.3, y: 222}
+  m_AnchoredPosition: {x: -233.3, y: -170}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8662303041794521820
@@ -2290,7 +2290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 20, y: 223}
+  m_AnchoredPosition: {x: 20, y: -169}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &671335192237426860
@@ -2930,7 +2930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97, y: -98}
+  m_AnchoredPosition: {x: -145, y: -150}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &935005276904740370
@@ -3340,7 +3340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 278.8, y: 223}
+  m_AnchoredPosition: {x: 278.8, y: -169}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2335081849331767401
@@ -4236,6 +4236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3064023179912379034}
   - component: {fileID: 1676689275038292317}
+  - component: {fileID: 1682305775516385037}
   m_Layer: 0
   m_Name: LobbyScene
   m_TagString: Untagged
@@ -4277,6 +4278,27 @@ MonoBehaviour:
   m_playerEXPText: {fileID: 8301517707886315997}
   m_playerCoinText: {fileID: 8692735325314881575}
   m_expSlider: {fileID: 8479887885480619063}
+--- !u!95 &1682305775516385037
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075892438522697343}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4e5076c97a96ae4f887e79f75473961, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4497203591661638
 PrefabInstance:
   m_ObjectHideFlags: 0

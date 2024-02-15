@@ -17,8 +17,11 @@ public class LobbySceneController : ButtonHandler
         m_expSlider.value = PlayerDataManager.instance.m_playerData.exp;
         m_playerNameText.text = PlayerDataManager.instance.m_playerData.name;
         m_playerEXPText.text = PlayerDataManager.instance.m_playerData.exp.ToString() + "%";
-        m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
         m_playerLevelText.text = PlayerDataManager.instance.m_playerData.level.ToString();
     }
 
+    private void Update()
+    {
+        m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+    }
 }

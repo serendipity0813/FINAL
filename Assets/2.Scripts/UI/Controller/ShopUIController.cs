@@ -54,9 +54,9 @@ public class ShopUIController : ButtonHandler
             }
             else if(!PlayerDataManager.instance.m_playerData.haveSkin[m_itemCode])
             {
-                m_itemNameText.text = PlayerDataManager.instance.ItemData.items[itemCode].itemName;
+                m_itemNameText.text = PlayerDataManager.instance.ItemData.items[itemCode].itemName + "을";
                 m_itemPrice = PlayerDataManager.instance.ItemData.items[itemCode].itemPrice;
-                m_itemPriceText.text = m_itemPrice.ToString();
+                m_itemPriceText.text = m_itemPrice.ToString() + "원에";
                 m_buyCheck.SetActive(true);
             }
    
