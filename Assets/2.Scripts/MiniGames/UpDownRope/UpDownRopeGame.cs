@@ -99,7 +99,6 @@ public class UpDownRopeGame : MiniGameSetting
                 m_clearPrefab.SetActive(true);
                 timer = 10;
                 Invoke("GameClear", 1);
-                CameraManager.Instance.m_followEnabled = false;
                 m_end = true;
             }
 
@@ -108,7 +107,6 @@ public class UpDownRopeGame : MiniGameSetting
             {
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
-                CameraManager.Instance.m_followEnabled = false;
                 m_end = true;
             }
 
