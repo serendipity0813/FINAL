@@ -15,21 +15,41 @@ MonoBehaviour:
   items:
   - itemName: item0
     itemIndex: 0
-    itemPrice: 0
+    itemPrice: 5000
     itemPrefab: {fileID: 0}
-    itemDescription: Description1
   - itemName: item1
     itemIndex: 1
-    itemPrice: 100
+    itemPrice: 5000
     itemPrefab: {fileID: 0}
-    itemDescription: Description2
   - itemName: item2
     itemIndex: 2
-    itemPrice: 200
+    itemPrice: 5000
     itemPrefab: {fileID: 0}
-    itemDescription: Description3
   - itemName: item3
     itemIndex: 3
-    itemPrice: 300
+    itemPrice: 5000
     itemPrefab: {fileID: 0}
-    itemDescription: Description4
+  - itemName: item4
+    itemIndex: 4
+    itemPrice: 5000
+    itemPrefab: {fileID: 0}
+  - itemName: item5
+    itemIndex: 5
+    itemPrice: 5000
+    itemPrefab: {fileID: 0}
+  - itemName: item6
+    itemIndex: 6
+    itemPrice: 5000
+    itemPrefab: {fileID: 0}
+  - itemName: item7
+    itemIndex: 7
+    itemPrice: 5000
+    itemPrefab: {fileID: 0}
+  - itemName: item8
+    itemIndex: 8
+    itemPrice: 5000
+    itemPrefab: {fileID: 0}
+  - itemName: item9
+    itemIndex: 9
+    itemPrice: 5000
+    itemPrefab: {fileID: 0}

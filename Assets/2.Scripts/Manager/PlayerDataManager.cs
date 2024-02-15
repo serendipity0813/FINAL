@@ -65,8 +65,8 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
-        m_playerData.haveSkin = new List<bool>();
-        m_playerData.equipSkin = new List<bool>();
+        m_playerData.haveSkin = new bool[10];
+        m_playerData.equipSkin = new bool[10];
 
         for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
@@ -86,11 +86,16 @@ public class PlayerDataManager : MonoBehaviour
         {
             if(i==0)
             {
-                m_playerData.haveSkin.Add(true);
+                m_playerData.haveSkin[i] = true;
+                m_playerData.equipSkin[i] = true;
             }
 
             else
-                m_playerData.haveSkin.Add(false);
+            {
+                m_playerData.haveSkin[i] = false;
+                m_playerData.equipSkin[i] = false;
+            }
+               
         }
 
         
@@ -113,28 +118,36 @@ public class PlayerDataManager : MonoBehaviour
     public void GetItem(int ItemCode)
     {
         m_playerData.haveSkin[ItemCode] = true;
+
+        SaveJson();
+        LoadJson();
     }
 
-    public void GetCoin(int ItemCode)
+    public void GetCoin(int index)
     {
-        m_playerData.coin += ItemCode;
+        m_playerData.coin += index;
+
+        SaveJson();
+        LoadJson();
     }
 
     public void EquipItem(int ItemCode)
     {
-        //bool 리스트로 소지여부 판단 후 장착관리
-        if(m_playerData.haveSkin[ItemCode])
+        for (int i = 0; i < m_playerData.equipSkin.Length; i++)
         {
-  
-            for (int i = 0; i < m_playerData.equipSkin.Count; i++)
+            if (i == ItemCode)
             {
-                if (i == ItemCode)
-                    m_playerData.equipSkin[ItemCode] = true;
-                else
-                    m_playerData.equipSkin[ItemCode] = false;
+                m_playerData.equipSkin[ItemCode] = true;
             }
+            else
+                m_playerData.equipSkin[ItemCode] = false;
+
         }
-       
+
+        SaveJson();
+        LoadJson();
+
+
     }
 
     private void OnApplicationQuit()
@@ -178,7 +191,8 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public List<int> rankingPoint;
 
     //플레이어 스킨 소비여부, 장착여부 체크용
-    public List<bool> haveSkin;
-    public List<bool> equipSkin;
+    public bool[] haveSkin;
+
+    public bool[] equipSkin;
 
 }

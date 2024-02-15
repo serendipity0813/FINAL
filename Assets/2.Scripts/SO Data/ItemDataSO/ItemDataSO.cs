@@ -15,8 +15,6 @@ public class ItemDataSO : ScriptableObject
         public int itemPrice;
         public GameObject itemPrefab; 
 
-        [TextArea]
-        public string itemDescription; 
     }
     public List<Items> items = new List<Items>();
 }
