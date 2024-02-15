@@ -61,7 +61,8 @@ MonoBehaviour:
     gameIndex: 6
     gamePrefab: {fileID: 5312180280199975616, guid: 5ea8e68030cac8f44ba45f3b0e194432,
       type: 3}
-    gameIcon: {fileID: 0}
+    gameIcon: {fileID: 3132827565773464112, guid: 7641a691ce74485488f40d133dc1e065,
+      type: 3}
     gameDescription: "\uB2EC\uB9AC\uAE30 \uBC84\uD2BC\uC744 \uC5F0\uD0C0\uD574 \uACB0\uC2B9\uC120\uAE4C\uC9C0
       \uB3C4\uB2EC\uD574\uB77C"
   - gameName: CarDriving
@@ -84,7 +85,8 @@ MonoBehaviour:
     gameIndex: 9
     gamePrefab: {fileID: 4642967370994252163, guid: ee893930f2bb6d44ab3f9877e1c8ff30,
       type: 3}
-    gameIcon: {fileID: 0}
+    gameIcon: {fileID: 868859769844269485, guid: 988c0c09212909e4b83fefa3e2f86012,
+      type: 3}
     gameDescription: "\uD68C\uC804\uD558\uB294 \uBC27\uC904 \uC548\uC5D0\uC11C \uD69F\uC218\uB9CC\uD07C
       \uC810\uD504\uD574\uB77C"
   - gameName: MazeRunner
