@@ -104,14 +104,12 @@ public class CarDrivingGame : MiniGameSetting
 
     public void Win()
     {
-        CameraManager.Instance.m_followEnabled = false;
         m_clearPrefab.SetActive(true);
         Invoke("GameClear", 1);
     }
 
     public void Lose()
     {
-        CameraManager.Instance.m_followEnabled = false;
         m_failPrefab.SetActive(true);
         Invoke("GameFail", 1);
     }
