@@ -16,28 +16,20 @@ MonoBehaviour:
   - itemName: item0
     itemIndex: 0
     itemPrice: 0
-    itemIcon: {fileID: 445295799531992839, guid: 4fa3cf1ab181d73409dc6a3a27da2b7e,
-      type: 3}
+    itemPrefab: {fileID: 0}
     itemDescription: Description1
   - itemName: item1
     itemIndex: 1
     itemPrice: 100
-    itemIcon: {fileID: 1901613050895639237, guid: 8aef96368da180448a85a8e7c6f4c807,
-      type: 3}
+    itemPrefab: {fileID: 0}
     itemDescription: Description2
   - itemName: item2
     itemIndex: 2
     itemPrice: 200
-    itemIcon: {fileID: 445295799531992839, guid: c1b0205e9eeab1945a358c6b6077df0d,
-      type: 3}
+    itemPrefab: {fileID: 0}
     itemDescription: Description3
   - itemName: item3
     itemIndex: 3
     itemPrice: 300
-    itemIcon: {fileID: 0}
+    itemPrefab: {fileID: 0}
     itemDescription: Description4
-  - itemName: item4
-    itemIndex: 4
-    itemPrice: 400
-    itemIcon: {fileID: 0}
-    itemDescription: Description5

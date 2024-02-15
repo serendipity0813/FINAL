@@ -8,6 +8,7 @@ public class ShopUIController : ButtonHandler
     [SerializeField] private GameObject m_buyCheck;
     [SerializeField] private TextMeshProUGUI m_itemNameText;
     [SerializeField] private TextMeshProUGUI m_itemPriceText;
+    [SerializeField] private GameObject m_success;
     [SerializeField] private GameObject m_fail;
     [SerializeField] private GameObject[] m_tabs;
     private int m_itemCode = 0;
@@ -16,11 +17,20 @@ public class ShopUIController : ButtonHandler
 
     public void ItemClick(int itemCode)
     {
-        m_itemCode = itemCode;
-        m_itemNameText.text = PlayerDataManager.instance.ItemData.items[itemCode].itemName;
-        m_itemPrice = PlayerDataManager.instance.ItemData.items[itemCode].itemPrice;
-        m_itemPriceText.text = m_itemPrice.ToString();
-        m_buyCheck.SetActive(true);
+        if(itemCode >= 1000)
+        {
+            m_itemCode = itemCode;
+            BuyCoin();
+        }
+        else
+        {
+            m_itemCode = itemCode;
+            m_itemNameText.text = PlayerDataManager.instance.ItemData.items[itemCode].itemName;
+            m_itemPrice = PlayerDataManager.instance.ItemData.items[itemCode].itemPrice;
+            m_itemPriceText.text = m_itemPrice.ToString();
+            m_buyCheck.SetActive(true);
+        }
+     
     }
 
     public void BuyCheck()
@@ -30,11 +40,17 @@ public class ShopUIController : ButtonHandler
         if(PlayerDataManager.instance.m_playerData.coin > m_itemPrice)
         {
             PlayerDataManager.instance.m_playerData.coin -= m_itemPrice;
-            PlayerDataManager.instance.GetItem(m_itemCode);
+            PlayerDataManager.instance.GetItem(m_itemPrice);
         }
         else
             m_fail.SetActive(true);
 
+    }
+
+    public void BuyCoin()
+    {
+        //PlayerDataManager.instance.GetCoin(m_itemCode);
+        m_success.SetActive(true);
     }
 
     public void ShopTaps(int num)
