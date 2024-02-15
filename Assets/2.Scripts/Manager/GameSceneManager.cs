@@ -26,6 +26,8 @@ public class GameSceneManager : MonoBehaviour
     private GameObject m_currentScene;      //현재 씬과 클릭으로 고른 씬 분리를 위함
     private GameObject m_choiceScene;
 
+    [SerializeField] private GameObject m_lightsObject;
+
     private int m_popupNumber;      //팝업 ui와 씬 ui를 숫자로 분류하여 관리하기 위함
     private int m_sceneNumber;
 
@@ -101,6 +103,11 @@ public class GameSceneManager : MonoBehaviour
         m_popupNumber = 0;
     }
 
+    //조명을 리턴하는 함수
+    public GameObject GetLight()
+    {
+        return m_lightsObject;
+    }
 
 
 }
