@@ -16,7 +16,7 @@ public class EffectSoundManager : MonoBehaviour
     [SerializeField] private List<SoundEffects> soundEffects = new List<SoundEffects>();
 
     public static EffectSoundManager Instance;
-    private AudioSource m_AudioSource;
+    public AudioSource m_AudioSource;
 
     private void Awake()
     {

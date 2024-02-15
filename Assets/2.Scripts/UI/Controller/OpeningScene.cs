@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StartSceneController : ButtonHandler
+public class StartSceneController : MonoBehaviour
 {
     [Header("Sun")]
     private Light m_sun;
@@ -21,7 +21,8 @@ public class StartSceneController : ButtonHandler
     [Header("Character")]
     [SerializeField] private GameObject m_character;//오프닝 화면의 캐릭터
     private AnimatorUpdater m_aniUpdater;//오프닝 캐릭터의 애니메이션 관리자
-    
+
+    [SerializeField] TutorialUIController tutorialUIController;// 튜토리얼 관련
     private float m_timeRate = 0.0f;//총 진행 시간 %퍼센트로  
     private float m_timeTakes = 5.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
     private bool m_once = true;
@@ -87,5 +88,26 @@ public class StartSceneController : ButtonHandler
         else if (lightSource.intensity > 0 && !go.activeInHierarchy)
             go.SetActive(true);
     }
-
+    private void LobbyClick()
+    {
+        if (PlayerDataManager.instance.m_playerData.tutorial)
+        {
+            CameraManager.Instance.m_followEnabled = false;
+            GameSceneManager.Instance.PopupClear();
+            MiniGameManager.Instance.GameReset();
+            Time.timeScale = 1.0f;
+            GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+            CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        }
+        else
+        {
+            Instantiate(tutorialUIController);
+            CameraManager.Instance.m_followEnabled = false;
+            GameSceneManager.Instance.PopupClear();
+            MiniGameManager.Instance.GameReset();
+            Time.timeScale = 1.0f;
+            GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+            CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        }
+    }
 }
