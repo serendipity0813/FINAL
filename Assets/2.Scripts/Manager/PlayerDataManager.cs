@@ -116,6 +116,28 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
+    public void MinigameRewardCheck()
+    {
+        //플레이어 리워드 계산 코드
+        m_playerData.rewardExp = m_playerData.stage;
+        m_playerData.rewardCoin = m_playerData.stage * 100+ m_playerData.timePoint * 10 + m_playerData.bonusPoint * 10;
+
+        // 경험치 코인 증가
+        m_playerData.exp += m_playerData.rewardExp;
+        m_playerData.coin += m_playerData.rewardCoin;
+
+        //레벨업 체크
+        if(m_playerData.exp > m_playerData.level * 10)
+        {
+            while(m_playerData.level * 10 < m_playerData.exp)
+            {
+                m_playerData.exp -= m_playerData.level * 10;
+                m_playerData.level++;
+            }
+        }
+
+    }
+
     public void GetItem(int ItemCode)
     {
         m_playerData.haveSkin[ItemCode] = true;
@@ -161,8 +183,8 @@ public class PlayerDataManager : MonoBehaviour
     /* 
         다른 곳에서 활용 예시 : 게임이 끝나고 결과창
         PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
-        PlayerDataManager.instance.SaveJson(); Json 세이브
-        PlayerDataManager.instance.LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
+        SaveJson(); Json 세이브
+        LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
         PlayerData 값을 사용하여 결과창 표시 로직
     */
 

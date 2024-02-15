@@ -25,7 +25,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void RandomModeClick()
     {
-        MiniGameManager.Instance.GameNumber = -1;
+        MiniGameManager.Instance.GameNumber = 0;
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
