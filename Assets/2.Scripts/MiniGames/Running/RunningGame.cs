@@ -58,6 +58,7 @@ public class RunningGame : MiniGameSetting
             //게임 승리조건 - 맵이 일정량 이상 뒤로 가면
             if (m_positionz < -270)
             {
+                EffectSoundManager.Instance.PlayEffect(21);
                 m_clearPrefab.SetActive(true);
                 Invoke("GameClear", 1);
                 m_end = true;
@@ -66,6 +67,7 @@ public class RunningGame : MiniGameSetting
             //게임 패배조건 - 제한시간 내로 버튼을 충분히 누르지 못한 경우
             if ((m_maxTime - m_timer) < 0 && m_positionz > -270)
             {
+                EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 m_end = true;
@@ -81,6 +83,8 @@ public class RunningGame : MiniGameSetting
         //버튼을 누르면 맵이 뒤로 가도록 설정
         if(m_positionz >= -270 && m_timer > 2)
         m_positionz -= 10 - m_difficulty1;
+
+        EffectSoundManager.Instance.PlayEffect(26);
     }
 
 }

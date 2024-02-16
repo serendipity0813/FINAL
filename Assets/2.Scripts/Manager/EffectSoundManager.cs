@@ -42,4 +42,9 @@ public class EffectSoundManager : MonoBehaviour
     {
         m_AudioSource.PlayOneShot(soundEffects[index].SoundEffect);
     }
+
+    public void StopEffect()
+    {
+        m_AudioSource.Stop();
+    }
 }

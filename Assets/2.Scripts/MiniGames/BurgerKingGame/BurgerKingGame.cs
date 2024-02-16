@@ -6,21 +6,24 @@ using UnityEngine;
 
 public class BurgerKingGame : MiniGameSetting
 {
-    private float m_timer;
-    private int m_count;
-    private int m_difficulty;
-    private bool m_clear;
-    private int m_burgerLength;
-    private int[] m_missionBurger;
-    private int[] m_playerBurger;
-    private Vector3 m_burgerspawnPosition;
-    private Vector3 m_missionSpawnPosition;
     public GameObject Bread;
     public GameObject Patty;
     public GameObject Vegetable;
     public GameObject Cheeze;
     public GameObject MissionTable;
     public GameObject MenuTable;
+    private Vector3 m_burgerspawnPosition;
+    private Vector3 m_missionSpawnPosition;
+    private int[] m_missionBurger;
+    private int[] m_playerBurger;
+    private float m_timer;
+    private int m_count;
+    private int m_difficulty;
+    private int m_burgerLength;
+    private bool m_clear;
+
+
+
 
 
     protected override void Awake()
@@ -145,13 +148,16 @@ public class BurgerKingGame : MiniGameSetting
 
     private void ClearCheck()
     {
+        bool clearFlag = true;
         //미션 버거와 만든 버거가 같은지 체크
-        m_clear = true;
         for (int i=0; i<m_burgerLength; i++)
         {
             if (m_playerBurger[i] != m_missionBurger[i])
-                m_clear = false;
+                clearFlag = false;
         }
+
+        m_clear = clearFlag;
+        m_count--;
     }
 
     //버튼 입력에 따라 버거 재료를 만들어주는 함수들

@@ -70,6 +70,7 @@ public class SlimeCatchGame : MiniGameSetting
                 //클릭한 오브젝트가 타겟(모기)일 경우 해당 오브젝트의 SetActive를 false로 바꾸고 클리어카운트 줄이기
                 if (hit.collider.tag == "Target")
                 {
+                    EffectSoundManager.Instance.PlayEffect(27);
                     hit.collider.gameObject.SetActive(false);
                     m_clearCount--;
                 }
@@ -82,6 +83,7 @@ public class SlimeCatchGame : MiniGameSetting
             //게임 승리조건
             if (m_clearCount == 0)
             {
+                EffectSoundManager.Instance.PlayEffect(21);
                 m_clearPrefab.SetActive(true);
                 Invoke("GameClear", 1);
                 m_end = true;
@@ -90,6 +92,7 @@ public class SlimeCatchGame : MiniGameSetting
             //게임 패배조건
             if (m_timer > 12 && m_clearCount > 0)
             {
+                EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 m_end = true;

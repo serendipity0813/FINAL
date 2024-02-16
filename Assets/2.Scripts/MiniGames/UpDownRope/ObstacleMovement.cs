@@ -37,6 +37,7 @@ public class ObstacleMovement : MonoBehaviour
     {
         if (gameObject.transform.position == m_targetPosition)
         {
+            EffectSoundManager.Instance.PlayEffect(26);
             m_targetPosition.x = -m_targetPosition.x;
             birdRenderer.flipX = !birdRenderer.flipX;
         }

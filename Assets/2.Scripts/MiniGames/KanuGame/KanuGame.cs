@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -45,15 +46,19 @@ public class KanuGame : MiniGameSetting
         ///마우스를 누를 땐 시간당 힘 증가, 마우스를 때면 시간당 힘 감소
         ///누르고 있는 경우 힘에 비례하여 앞으로 가지만 힘 수치가 일정량 초과시 오히려 뒤로감
         ///때고 있는 경우 힘에 반비례하여 앞으로 가지만 힘 수치가 일정량 미달시 오히려 뒤로감
-        ///
+
 
         if (m_timer > 2)
         {
             m_positionz += m_difficulty2 * 0.3f;
-            if (Input.GetMouseButton(0))
+            if(Input.GetMouseButtonDown(0))
             {
                 int index = Random.Range(0, 3) + 23;
                 EffectSoundManager.Instance.PlayEffect(index);
+            }
+
+            if (Input.GetMouseButton(0))
+            {
                 m_power += Time.deltaTime*(5+ m_difficulty1);
                 if (m_power <= 10)
                     m_positionz -= m_power;

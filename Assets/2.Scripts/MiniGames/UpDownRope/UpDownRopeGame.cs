@@ -65,6 +65,12 @@ public class UpDownRopeGame : MiniGameSetting
                 m_positiony += Time.deltaTime * 7;
         }
 
+        if(Input.GetMouseButtonDown(0))
+            EffectSoundManager.Instance.PlayEffect(29);
+        else if(Input.GetMouseButtonUp(0))
+            EffectSoundManager.Instance.StopEffect();
+
+
 
         m_player.transform.position = new Vector3(m_playerPosition.x, m_positiony, m_playerPosition.z);
 
@@ -96,6 +102,7 @@ public class UpDownRopeGame : MiniGameSetting
             //게임 승리조건
             if (m_positiony < -32 && clearCount > 0)
             {
+                EffectSoundManager.Instance.PlayEffect(21);
                 m_clearPrefab.SetActive(true);
                 timer = 10;
                 Invoke("GameClear", 1);
@@ -105,6 +112,7 @@ public class UpDownRopeGame : MiniGameSetting
             //게임 패배조건
             if (timer > 17 || clearCount <= 0)
             {
+                EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 m_end = true;

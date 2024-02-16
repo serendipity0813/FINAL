@@ -11,6 +11,7 @@ public class ThiefMovement : MonoBehaviour
     private int m_length;
     private bool m_isGaming;
     private bool m_isChanging;
+    private bool m_isMoving;
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class ThiefMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        StepSound();
+
         // ThiefCavaManager 가 게임 및 위치이동 등을 조절하는 경우를 즉시 받아오기 위함
         m_isGaming = findThiefGame.IsGaiming;
         m_isChanging = findThiefGame.IsChanging;
@@ -49,12 +52,25 @@ public class ThiefMovement : MonoBehaviour
             //만약 같을 경우 다음 포지션을 찾아야하는지 체크 후 랜덤한 다음 포지션을 설정
             else
             {
-                //EffectSoundManager.Instance.PlayEffect(20);
                 if (m_isChanging)
+                {
+                    m_isMoving = true;
                     m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
+                }
+                  
             }
         }
 
 
+    }
+
+    private void StepSound()
+    {
+        if(m_isMoving)
+        {
+            m_isMoving = !m_isMoving;
+            EffectSoundManager.Instance.PlayEffect(20);
+        }
+    
     }
 }
