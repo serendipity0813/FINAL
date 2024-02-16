@@ -109,12 +109,14 @@ public class findthiefgame : MiniGameSetting
                     {
                         if (hit.collider.tag == "Target")
                         {
+                            EffectSoundManager.Instance.PlayEffect(21);
                             m_clearPrefab.SetActive(true);
                             Invoke("GameClear", 1);
                             m_end = true;
                         }
                         else
                         {
+                            EffectSoundManager.Instance.PlayEffect(22);
                             m_failPrefab.SetActive(true);
                             Invoke("GameFail", 1);
                             m_end = true;
