@@ -49,6 +49,7 @@ public class ThiefMovement : MonoBehaviour
             //만약 같을 경우 다음 포지션을 찾아야하는지 체크 후 랜덤한 다음 포지션을 설정
             else
             {
+                //EffectSoundManager.Instance.PlayEffect(20);
                 if (m_isChanging)
                     m_targetPositon = m_hidePosition[Random.Range(0, m_hidePosition.Length)];
             }

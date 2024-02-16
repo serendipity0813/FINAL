@@ -119,12 +119,14 @@ public class BurgerKingGame : MiniGameSetting
             ClearCheck();
             if(m_clear)
             {
+                EffectSoundManager.Instance.PlayEffect(21);
                 m_clearPrefab.SetActive(true);
                 Invoke("GameClear", 1);
                 m_clear = false;
             }
-            else if(!m_clear)
+            else
             {
+                EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
             }
@@ -133,6 +135,7 @@ public class BurgerKingGame : MiniGameSetting
         //게임 패배조건
         if (m_timer > 12 || m_count > m_burgerLength)
         {
+            EffectSoundManager.Instance.PlayEffect(22);
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
         }
@@ -154,6 +157,7 @@ public class BurgerKingGame : MiniGameSetting
     //버튼 입력에 따라 버거 재료를 만들어주는 함수들
     public void BreadBtn()
     {
+        EffectSoundManager.Instance.PlayEffect(19);
         m_playerBurger[m_count] = 0;
         m_count++;
         m_burgerspawnPosition.y += (float)0.5;
@@ -162,6 +166,7 @@ public class BurgerKingGame : MiniGameSetting
 
     public void PattyBtn()
     {
+        EffectSoundManager.Instance.PlayEffect(19);
         m_playerBurger[m_count] = 1;
         m_count++;
         m_burgerspawnPosition.y += (float)0.5;
@@ -170,6 +175,7 @@ public class BurgerKingGame : MiniGameSetting
 
     public void VegetableBtn()
     {
+        EffectSoundManager.Instance.PlayEffect(19);
         m_playerBurger[m_count] = 2;
         m_count++;
         m_burgerspawnPosition.y += (float)0.5;
@@ -178,6 +184,7 @@ public class BurgerKingGame : MiniGameSetting
 
     public void CheezeBtn()
     {
+        EffectSoundManager.Instance.PlayEffect(19);
         m_playerBurger[m_count] = 3;
         m_count++;
         m_burgerspawnPosition.y += (float)0.5;

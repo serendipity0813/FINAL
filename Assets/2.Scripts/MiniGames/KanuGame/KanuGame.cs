@@ -52,6 +52,8 @@ public class KanuGame : MiniGameSetting
             m_positionz += m_difficulty2 * 0.3f;
             if (Input.GetMouseButton(0))
             {
+                int index = Random.Range(0, 3) + 23;
+                EffectSoundManager.Instance.PlayEffect(index);
                 m_power += Time.deltaTime*(5+ m_difficulty1);
                 if (m_power <= 10)
                     m_positionz -= m_power;
@@ -118,6 +120,7 @@ public class KanuGame : MiniGameSetting
             //게임 승리조건
             if (m_positionz < -1000)
             {
+                EffectSoundManager.Instance.PlayEffect(21);
                 m_clearPrefab.SetActive(true);
                 Invoke("GameClear", 1);
                 m_end = true;
@@ -126,6 +129,7 @@ public class KanuGame : MiniGameSetting
             //게임 패배조건
             if (m_timer > m_maxTime || m_positionz > 300)
             {
+                EffectSoundManager.Instance.PlayEffect(22);
                 m_power = 0;
                 m_positionz = -500;
                 m_failPrefab.SetActive(true);

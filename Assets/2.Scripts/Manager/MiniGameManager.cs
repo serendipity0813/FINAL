@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -91,6 +92,8 @@ public class MiniGameManager : MonoBehaviour
         {
             m_endCheck = true;
             m_clearCheck = 1;
+            PlayerDataManager.instance.m_playerData.bonusPointIndex++;
+            PlayerDataManager.instance.m_playerData.bonusPoint += PlayerDataManager.instance.m_playerData.bonusPointIndex * 100;
             PlayerDataManager.instance.m_playerData.stage++;
             GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             TutorialCheck();
@@ -105,6 +108,8 @@ public class MiniGameManager : MonoBehaviour
         {
             m_endCheck = true;
             m_clearCheck = -1;
+            PlayerDataManager.instance.m_playerData.bonusPoint += PlayerDataManager.instance.m_playerData.bonusPointIndex * 100;
+            PlayerDataManager.instance.m_playerData.bonusPointIndex = 0;
             Destroy(m_currentGame);
 
             if (PlayerDataManager.instance.m_playerData.life >= 1)
@@ -114,6 +119,7 @@ public class MiniGameManager : MonoBehaviour
                 // 체력이 감소하고 나서 0일시 게임 종료
                 if (PlayerDataManager.instance.m_playerData.life <= 0)
                 {
+                  
                     GameSave();
                     GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
                     return; // 게임 끝
@@ -124,9 +130,18 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
+
+
     // 코드가 길어져서 가독성을 위해 메소드로 변환
     private void GameSave()
     {
+        //플레이어 리워드 계산 코드
+        PlayerDataManager.instance.m_playerData.rewardExp = PlayerDataManager.instance.m_playerData.stage;
+        PlayerDataManager.instance.m_playerData.rewardCoin
+            = PlayerDataManager.instance.m_playerData.stage * 100
+            + PlayerDataManager.instance.m_playerData.timePoint * 10
+            + PlayerDataManager.instance.m_playerData.bonusPoint * 10;
+
         // 경험치 코인 증가
         PlayerDataManager.instance.m_playerData.exp += PlayerDataManager.instance.m_playerData.rewardExp;
         PlayerDataManager.instance.m_playerData.coin += PlayerDataManager.instance.m_playerData.rewardCoin;
@@ -163,6 +178,7 @@ public class MiniGameManager : MonoBehaviour
         PlayerDataManager.instance.m_playerData.rewardExp = 0;
         PlayerDataManager.instance.m_playerData.rewardCoin = 0;
         PlayerDataManager.instance.m_playerData.timePoint = 0;
+        PlayerDataManager.instance.m_playerData.bonusPointIndex = 0;
         PlayerDataManager.instance.m_playerData.bonusPoint = 0;
     }
 

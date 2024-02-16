@@ -1,10 +1,19 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GatchaMiniGame : MonoBehaviour
 {
     [SerializeField] private Button m_gatchaBtn;
-    private int m_price = 100;
+    [SerializeField] private GameObject m_warning;
+    [SerializeField] private TextMeshProUGUI m_warningText;
+    [SerializeField] private GameObject m_reward;
+    [SerializeField] private TextMeshProUGUI m_rewardText;
+    [SerializeField] private GameObject m_SpawnPosition;
+    [SerializeField] private GameObject[] m_miniGameIcons;
+    private GameObject m_gameIconPrefab;
+
+    private int m_price = 1000;
 
     private void Awake()
     {
@@ -34,7 +43,9 @@ public class GatchaMiniGame : MonoBehaviour
         // 게임을 모두 가지고 있다면 메소드 종료
         if (haveAllGame)
         {
-            Debug.Log("게임을 모두 가지고 있습니다.");
+            m_warningText.text = "게임을 모두 가지고 있습니다.";
+            m_warning.SetActive(true);
+            //Debug.Log("게임을 모두 가지고 있습니다.");
             return;
         }
 
@@ -46,7 +57,9 @@ public class GatchaMiniGame : MonoBehaviour
         }
         else
         {
-            Debug.Log("코인이 부족합니다.");
+            m_warningText.text = "코인이 부족합니다.";
+            m_warning.SetActive(true);
+            //Debug.Log("코인이 부족합니다.");
         }
     }
 
@@ -59,10 +72,20 @@ public class GatchaMiniGame : MonoBehaviour
             if (PlayerDataManager.instance.m_playerData.haveGames[rnd] == false)
             {
                 PlayerDataManager.instance.m_playerData.haveGames[rnd] = true;
+                m_gameIconPrefab = Instantiate(m_miniGameIcons[rnd], m_SpawnPosition.transform.position, Quaternion.identity, transform);
                 PlayerDataManager.instance.SaveJson();
-                Debug.Log(MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.");
+                m_rewardText.text = MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.";
+                m_reward.SetActive(true);
+                //Debug.Log(MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.");
                 break;
             }
         }
+    }
+
+    public void OkBtn()
+    {
+        m_reward.SetActive(false);
+        Destroy(m_gameIconPrefab);
+
     }
 }

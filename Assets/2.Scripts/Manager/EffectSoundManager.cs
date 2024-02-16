@@ -32,6 +32,7 @@ public class EffectSoundManager : MonoBehaviour
     private void Start()
     {
         m_AudioSource = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
+
     }
 
     // 특정 효과음 재생
