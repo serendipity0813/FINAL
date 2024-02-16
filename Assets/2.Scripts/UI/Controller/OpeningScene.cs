@@ -42,6 +42,9 @@ public class StartSceneController : ButtonHandler
         m_sun = m_light.transform.GetChild(0).GetComponent<Light>();
         m_moon = m_light.transform.GetChild(1).GetComponent<Light>();
         m_canvas.alpha = 1.0f;
+
+        Quaternion rotation = Quaternion.Euler(0.0f, 50.0f, 0.0f);//광원 회전 X를 0으로 초기화
+        m_light.transform.rotation = rotation;
     }
 
     // Update is called once per frame
