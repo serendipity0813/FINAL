@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c84b370c07161d418509239739a9524, type: 3}
   m_Name: GSTU_Config
   m_EditorClassIdentifier: Assembly-CSharp:GoogleSheetsToUnity:GoogleSheetsToUnityConfig
-  CLIENT_ID: 398877193522-sn6c76imdnnq4u2s2dsj3qidg8pv7ee2.apps.googleusercontent.com
-  CLIENT_SECRET: DreamArcade
+  CLIENT_ID: 398877193522-jtfph41pbs9lv9j1d21ee3mk6h6one06.apps.googleusercontent.com
+  CLIENT_SECRET: 
   ACCESS_TOKEN: 
   REFRESH_TOKEN: 1/kqepo9i9qIVDShLRC2c0kJgb-3DYKJevwVTF6LAfGGM
   API_Key: 
-  PORT: 0
+  PORT: 8080
   gdr:
     access_token: 
     refresh_token: 
