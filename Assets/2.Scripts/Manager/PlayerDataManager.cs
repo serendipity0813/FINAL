@@ -62,6 +62,7 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.level = 1;
         m_playerData.exp = 0;
         m_playerData.coin = 100;
+        m_playerData.tutorial = false;
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
@@ -160,6 +161,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int level;   // 플레이어 현재 레벨
     public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
+    public bool tutorial;// 플레이어 튜토리얼 수행 여부 false는 안함, true 는 함
     public int stage { get; set; }   // 게임 진행시 현재 진행 스테이지
     public int life { get; set; }   // 게임 진행시 플레이어의 목숨 수치
     public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치

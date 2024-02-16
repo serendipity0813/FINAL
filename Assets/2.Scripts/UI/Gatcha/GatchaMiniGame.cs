@@ -9,10 +9,11 @@ public class GatchaMiniGame : MonoBehaviour
     private void Awake()
     {
         m_gatchaBtn = GetComponent<Button>();
+        if (m_gatchaBtn != null)
         m_gatchaBtn.onClick.AddListener(GatchaActiveBtn);
     }
 
-    void GatchaActiveBtn()
+    public void GatchaActiveBtn()
     {
         int gameCount = 0;
         bool haveAllGame = true;

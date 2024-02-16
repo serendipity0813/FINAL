@@ -80,6 +80,7 @@ public class MiniGameManager : MonoBehaviour
         m_endCheck = false;
         m_clearCheck = 0;
         m_currentGame = Instantiate(MiniGames.games[GameNumber].gamePrefab);
+        TutorialCheck();
     }
 
     // 게임 클리어시 스테이지 변수를 1 올리고 게임 선택 씬으로 이동하면서 현재 게임 파괴
@@ -92,6 +93,7 @@ public class MiniGameManager : MonoBehaviour
             m_clearCheck = 1;
             PlayerDataManager.instance.m_playerData.stage++;
             GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+            TutorialCheck();
             Destroy(m_currentGame);
         }
     }
@@ -108,6 +110,7 @@ public class MiniGameManager : MonoBehaviour
             if (PlayerDataManager.instance.m_playerData.life >= 1)
             {
                 PlayerDataManager.instance.m_playerData.life--;
+                TutorialCheck();
                 // 체력이 감소하고 나서 0일시 게임 종료
                 if (PlayerDataManager.instance.m_playerData.life <= 0)
                 {
@@ -175,6 +178,35 @@ public class MiniGameManager : MonoBehaviour
             else
             {
                 GameFail();
+            }
+        }
+    }
+    private void TutorialCheck()
+    {
+        if (!PlayerDataManager.instance.m_playerData.tutorial)
+        {
+            TutorialUIController tutorialUIController = GameObject.Find("TutorialUI(Clone)").GetComponent<TutorialUIController>();
+            tutorialUIController.SwitchButtonClick();
+
+            if (PlayerDataManager.instance.m_playerData.life <= 2 && tutorialUIController.m_tutorialIndex == 12)
+            {
+                PlayerDataManager.instance.m_playerData.life++;
+                m_endCheck = true;
+                if (m_endCheck)
+                {
+                    m_endCheck = true;
+                    m_clearCheck = 1;
+                    PlayerDataManager.instance.m_playerData.stage++;
+                    GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
+                    Destroy(m_currentGame);
+                }
+                return;
+            }
+            else if (PlayerDataManager.instance.m_playerData.life <= 3 && tutorialUIController.m_tutorialIndex == 12)
+            {
+                tutorialUIController.m_tutorialIndex++;
+                tutorialUIController.SwitchButtonClick();
+                return;
             }
         }
     }

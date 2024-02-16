@@ -48,10 +48,10 @@ public class GameChangeSceneController : ButtonHandler
             else
                 m_life[i].SetActive(false);
 
-            if (i == lifenum && MiniGameManager.Instance.m_clearCheck == -1)
-            {
-                m_loseLife[i].SetActive(true);
-            }
+            //if (i == lifenum && MiniGameManager.Instance.m_clearCheck == -1)
+            //{
+            //    m_loseLife[i].SetActive(true);
+            //}
 
 
         }
