@@ -1,8 +1,8 @@
 {
-    "name": "name",
-    "level": 1,
+    "name": "",
+    "level": 0,
     "exp": 0.0,
-    "coin": 8970,
+    "coin": 0,
     "gameIndex": [
         0,
         1,
@@ -23,27 +23,25 @@
         16
     ],
     "haveGames": [
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
     ],
     "rankingPoint": [
-        9,
-        1,
         0,
         0,
         0,
@@ -52,7 +50,9 @@
         0,
         0,
         0,
-        12,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -60,18 +60,6 @@
         0,
         0
     ],
-    "haveSkin": [
-        true,
-        true,
-        false,
-        false,
-        false
-    ],
-    "equipSkin": [
-        false,
-        false,
-        false,
-        false,
-        false
-    ]
+    "haveSkin": [],
+    "equipSkin": []
 }
