@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB9CC\uC838\uB77C \uC640\uB9AC\uC624"
+  m_text: "\uB4DC\uB9BC \uC544\uCF00\uC774\uB4DC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dff46da0149bc34d838e21b1a84de77, type: 2}
   m_sharedMaterial: {fileID: -5086988188595471705, guid: 2dff46da0149bc34d838e21b1a84de77,
@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 653645148673871395}
   - component: {fileID: 4454593469634244539}
   - component: {fileID: 6408065004704474115}
+  - component: {fileID: 4956426168167309359}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -479,6 +480,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &4956426168167309359
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957476286687717389}
+  m_Enabled: 1
+  m_Alpha: 0.001
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3024463608962409219
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +545,7 @@ GameObject:
   - component: {fileID: 3603419985022115654}
   - component: {fileID: 7391287141026756154}
   m_Layer: 0
-  m_Name: SelectMode
+  m_Name: TouchToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -915,7 +928,7 @@ Transform:
   - {fileID: 2940432641145602047}
   - {fileID: 6998136494835676106}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6469504868338227946
 MonoBehaviour:
@@ -1086,8 +1099,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_character: {fileID: 7033132245321137835}
-  tutorialUIController: {fileID: 3421863954972760118, guid: d991056f1d99b544ea9b746370ac2c50,
-    type: 3}
+  m_canvas: {fileID: 4956426168167309359}
 --- !u!1 &6456219665528358040
 GameObject:
   m_ObjectHideFlags: 0
