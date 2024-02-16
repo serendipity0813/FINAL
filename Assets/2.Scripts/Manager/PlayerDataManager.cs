@@ -194,6 +194,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
 {
     // public int id; 고유 id 코드를 불러오는 것인데 아직 필요한지 모르겠음
     public string name; // 플레이어 이름
+    public int profileIndex; // 프로필 패턴 넘버
     public int level;   // 플레이어 현재 레벨
     public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
