@@ -27,7 +27,7 @@ public class StartSceneController : ButtonHandler
     [SerializeField] private CanvasGroup m_canvas;//시작하면 Ui의 전체 알파값을 줄이기 위함
 
     private float m_timeRate = 0.0f;//총 진행 시간 %퍼센트로  
-    private float m_timeTakes = 5.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
+    private float m_timeTakes = 3.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
     private float m_alphaTime = 4.0f;//UI 투명화까지 걸리는 시간 (곱 연산)
     private bool m_once = true;
 
@@ -81,7 +81,7 @@ public class StartSceneController : ButtonHandler
     private void NextDay()
     {
         m_aniUpdater.WakeCharacter();
-        Invoke("LobbyClick", 8.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
+        Invoke("LobbyClick", 7.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
     }
 
     private void UpdateLighting(Light lightSource, Gradient colorGradiant, AnimationCurve intensityCurve)
