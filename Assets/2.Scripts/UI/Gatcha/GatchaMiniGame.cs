@@ -12,6 +12,7 @@ public class GatchaMiniGame : MonoBehaviour
     [SerializeField] private GameObject m_SpawnPosition;
     [SerializeField] private GameObject[] m_miniGameIcons;
     private GameObject m_gameIconPrefab;
+    [SerializeField] private Animator gachaAnimation;
 
     private int m_price = 1000;
 
@@ -20,6 +21,22 @@ public class GatchaMiniGame : MonoBehaviour
         m_gatchaBtn = GetComponent<Button>();
         if (m_gatchaBtn != null)
         m_gatchaBtn.onClick.AddListener(GatchaActiveBtn);
+    }
+    private void FixedUpdate()
+    {
+        if (m_gameIconPrefab != null)
+        {
+            m_gameIconPrefab.transform.GetChild(0).Rotate(Vector3.up, 100f * Time.deltaTime);
+            m_gameIconPrefab.transform.GetChild(0).Rotate(Vector3.right, 50f * Time.deltaTime);
+            if(m_gameIconPrefab.transform.position.y <= 2.5f)
+            {
+                m_gameIconPrefab.transform.Translate(Vector3.up * 3f * Time.deltaTime);
+            }
+            if (m_gameIconPrefab.transform.position.z >= -8f)
+            {
+                m_gameIconPrefab.transform.Translate(Vector3.back * 3f * Time.deltaTime);
+            }
+        }
     }
 
     public void GatchaActiveBtn()
@@ -65,6 +82,7 @@ public class GatchaMiniGame : MonoBehaviour
 
     void GatchaLogic()
     {
+        gachaAnimation.SetTrigger("GachaPlay");
         while (true)
         {
             int rnd = Random.Range(0, PlayerDataManager.instance.m_playerData.haveGames.Count);
@@ -72,8 +90,12 @@ public class GatchaMiniGame : MonoBehaviour
             if (PlayerDataManager.instance.m_playerData.haveGames[rnd] == false)
             {
                 PlayerDataManager.instance.m_playerData.haveGames[rnd] = true;
-                m_gameIconPrefab = Instantiate(m_miniGameIcons[rnd], m_SpawnPosition.transform.position, Quaternion.identity, transform);
+                m_gameIconPrefab = Instantiate(m_miniGameIcons[rnd], m_SpawnPosition.transform.position, Quaternion.identity, m_SpawnPosition.transform);
                 PlayerDataManager.instance.SaveJson();
+                m_gameIconPrefab.GetComponent<SphereCollider>().enabled = false;
+                m_gameIconPrefab.GetComponent<ConstantForce>().enabled = false;
+                m_gameIconPrefab.GetComponent<Rigidbody>().useGravity = false;
+                
                 m_rewardText.text = MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.";
                 m_reward.SetActive(true);
                 //Debug.Log(MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.");
@@ -86,6 +108,5 @@ public class GatchaMiniGame : MonoBehaviour
     {
         m_reward.SetActive(false);
         Destroy(m_gameIconPrefab);
-
     }
 }
