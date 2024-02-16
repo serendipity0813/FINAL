@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LobbySceneController : ButtonHandler
 {
+    [SerializeField] private GameObject m_profileImage;
     [SerializeField] private TextMeshProUGUI m_playerNameText;
     [SerializeField] private TextMeshProUGUI m_playerLevelText;
     [SerializeField] private TextMeshProUGUI m_playerEXPText;
@@ -23,5 +24,10 @@ public class LobbySceneController : ButtonHandler
     private void Update()
     {
         m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+    }
+
+    public void MarkChange()
+    {
+       
     }
 }

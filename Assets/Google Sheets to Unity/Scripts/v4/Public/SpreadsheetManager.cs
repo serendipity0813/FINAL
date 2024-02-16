@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Text;
 using GoogleSheetsToUnity;
 using GoogleSheetsToUnity.ThirdPary;
@@ -62,7 +62,7 @@ namespace GoogleSheetsToUnity
             }
 #endif
         }
-
+        ///Use UnityWebRequest
         /// <summary>
         /// Wait for the Web request to complete and then process the results
         /// </summary>

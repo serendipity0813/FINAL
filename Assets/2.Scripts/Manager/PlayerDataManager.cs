@@ -156,6 +156,7 @@ public class PlayerDataManager : MonoBehaviour
 
     public void EquipItem(int ItemCode)
     {
+        Debug.Log(ItemCode);
         for (int i = 0; i < m_playerData.equipSkin.Length; i++)
         {
             if (i == ItemCode)
@@ -163,8 +164,8 @@ public class PlayerDataManager : MonoBehaviour
                 m_playerData.equipSkin[ItemCode] = true;
             }
             else
-                m_playerData.equipSkin[ItemCode] = false;
-            Debug.Log(m_playerData.equipSkin[ItemCode]);
+                m_playerData.equipSkin[i] = false;
+ 
         }
 
         SaveJson();
