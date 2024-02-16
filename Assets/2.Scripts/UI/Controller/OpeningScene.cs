@@ -28,7 +28,7 @@ public class StartSceneController : MonoBehaviour
 
     [SerializeField] TutorialUIController tutorialUIController;// 튜토리얼 관련
     private float m_timeRate = 0.0f;//총 진행 시간 %퍼센트로  
-    private float m_timeTakes = 5.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
+    private float m_timeTakes = 3.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
     private float m_alphaTime = 4.0f;//UI 투명화까지 걸리는 시간 (곱 연산)
     private bool m_once = true;
 
@@ -43,6 +43,9 @@ public class StartSceneController : MonoBehaviour
         m_sun = m_light.transform.GetChild(0).GetComponent<Light>();
         m_moon = m_light.transform.GetChild(1).GetComponent<Light>();
         m_canvas.alpha = 1.0f;
+
+        Quaternion rotation = Quaternion.Euler(0.0f, 50.0f, 0.0f);//광원 회전 X를 0으로 초기화
+        m_light.transform.rotation = rotation;
     }
 
     // Update is called once per frame
@@ -82,7 +85,7 @@ public class StartSceneController : MonoBehaviour
     private void NextDay()
     {
         m_aniUpdater.WakeCharacter();
-        Invoke("LobbyClick", 8.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
+        Invoke("LobbyClick", 7.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
     }
 
     private void UpdateLighting(Light lightSource, Gradient colorGradiant, AnimationCurve intensityCurve)
