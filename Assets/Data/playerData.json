@@ -1,11 +1,10 @@
 {
     "name": "name",
+    "profileIndex": 6,
     "level": 1,
     "exp": 0.0,
-    "coin": 100,
-    "tutorial": false,
-    "bgmVolume": 0.25,
-    "sfxVolume": 0.30000001192092898,
+    "coin": 45000,
+    "tutorial": true,
     "gameIndex": [
         0,
         1,
@@ -32,17 +31,17 @@
         true,
         true,
         true,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
     ],
     "rankingPoint": [
         0,
@@ -65,9 +64,26 @@
     ],
     "haveSkin": [
         true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
         false,
         false,
         false
     ],
-    "equipSkin": []
+    "equipSkin": [
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ]
 }

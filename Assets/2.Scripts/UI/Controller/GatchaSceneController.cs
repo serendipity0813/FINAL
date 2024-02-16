@@ -6,8 +6,9 @@ using UnityEngine;
 public class GatchaSceneController : ButtonHandler
 {
     [SerializeField] private TextMeshProUGUI m_playerMoneyText;
+    [SerializeField] private GameObject m_spawnEffect;
 
-    private void Start()
+    private void Update()
     {
         m_playerMoneyText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
     }
@@ -16,6 +17,12 @@ public class GatchaSceneController : ButtonHandler
     {
         Debug.Log("광고보기");
     }
+
+    public void SpawnEffect()
+    {
+        m_spawnEffect.SetActive(true);
+    }
+
 
 
 }

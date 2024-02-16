@@ -68,8 +68,8 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.gameIndex = new List<int>();
         m_playerData.haveGames = new List<bool>();
         m_playerData.rankingPoint = new List<int>();
-        m_playerData.haveSkin = new List<bool>();
-        m_playerData.equipSkin = new List<bool>();
+        m_playerData.haveSkin = new bool[10];
+        m_playerData.equipSkin = new bool[10];
 
         for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
@@ -89,11 +89,16 @@ public class PlayerDataManager : MonoBehaviour
         {
             if(i==0)
             {
-                m_playerData.haveSkin.Add(true);
+                m_playerData.haveSkin[i] = true;
+                m_playerData.equipSkin[i] = true;
             }
 
             else
-                m_playerData.haveSkin.Add(false);
+            {
+                m_playerData.haveSkin[i] = false;
+                m_playerData.equipSkin[i] = false;
+            }
+               
         }
 
         
@@ -113,31 +118,62 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
+    public void MinigameRewardCheck()
+    {
+        //플레이어 리워드 계산 코드
+        m_playerData.rewardExp = m_playerData.stage;
+        m_playerData.rewardCoin = m_playerData.stage * 100+ m_playerData.timePoint * 10 + m_playerData.bonusPoint * 10;
+
+        // 경험치 코인 증가
+        m_playerData.exp += m_playerData.rewardExp;
+        m_playerData.coin += m_playerData.rewardCoin;
+
+        //레벨업 체크
+        if(m_playerData.exp > m_playerData.level * 10)
+        {
+            while(m_playerData.level * 10 < m_playerData.exp)
+            {
+                m_playerData.exp -= m_playerData.level * 10;
+                m_playerData.level++;
+            }
+        }
+
+    }
+
     public void GetItem(int ItemCode)
     {
         m_playerData.haveSkin[ItemCode] = true;
+
+        SaveJson();
+        LoadJson();
     }
 
-    public void GetCoin(int ItemCode)
+    public void GetCoin(int index)
     {
-        m_playerData.coin += ItemCode;
+        m_playerData.coin += index;
+
+        SaveJson();
+        LoadJson();
     }
 
     public void EquipItem(int ItemCode)
     {
-        //bool 리스트로 소지여부 판단 후 장착관리
-        if(m_playerData.haveSkin[ItemCode])
+        Debug.Log(ItemCode);
+        for (int i = 0; i < m_playerData.equipSkin.Length; i++)
         {
-  
-            for (int i = 0; i < m_playerData.equipSkin.Count; i++)
+            if (i == ItemCode)
             {
-                if (i == ItemCode)
-                    m_playerData.equipSkin[ItemCode] = true;
-                else
-                    m_playerData.equipSkin[ItemCode] = false;
+                m_playerData.equipSkin[ItemCode] = true;
             }
+            else
+                m_playerData.equipSkin[i] = false;
+ 
         }
-       
+
+        SaveJson();
+        LoadJson();
+
+
     }
 
     private void OnApplicationQuit()
@@ -150,8 +186,8 @@ public class PlayerDataManager : MonoBehaviour
     /* 
         다른 곳에서 활용 예시 : 게임이 끝나고 결과창
         PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
-        PlayerDataManager.instance.SaveJson(); Json 세이브
-        PlayerDataManager.instance.LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
+        SaveJson(); Json 세이브
+        LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
         PlayerData 값을 사용하여 결과창 표시 로직
     */
 
@@ -160,6 +196,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
 {
     // public int id; 고유 id 코드를 불러오는 것인데 아직 필요한지 모르겠음
     public string name; // 플레이어 이름
+    public int profileIndex; // 프로필 패턴 넘버
     public int level;   // 플레이어 현재 레벨
     public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
@@ -171,6 +208,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치
     public int rewardCoin { get; set; }  // 게임 진행 후 얻을 코인
     public int timePoint { get; set; }   // 게임 진행 시간 보너스 점수
+    public int bonusPointIndex { get; set; }  // 게임 진행 기타 보너스 점수
     public int bonusPoint { get; set; }  // 게임 진행 기타 보너스 점수
 
     // 미니게임 인덱스값 저장, 0번은 랜덤게임으로 고정
@@ -183,7 +221,8 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public List<int> rankingPoint;
 
     //플레이어 스킨 소비여부, 장착여부 체크용
-    public List<bool> haveSkin;
-    public List<bool> equipSkin;
+    public bool[] haveSkin;
+
+    public bool[] equipSkin;
 
 }

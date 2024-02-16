@@ -25,7 +25,7 @@ public class findthiefgame : MiniGameSetting
     // Start is called before the first frame update
     private void Start()
     {
-        m_missionText.text = "보물을 가진 도둑을 잡아라!";
+        m_missionText.text = "진짜 도둑을 잡아라!";
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
         m_camera = CameraManager.Instance.GetCamera();
@@ -109,12 +109,14 @@ public class findthiefgame : MiniGameSetting
                     {
                         if (hit.collider.tag == "Target")
                         {
+                            EffectSoundManager.Instance.PlayEffect(21);
                             m_clearPrefab.SetActive(true);
                             Invoke("GameClear", 1);
                             m_end = true;
                         }
                         else
                         {
+                            EffectSoundManager.Instance.PlayEffect(22);
                             m_failPrefab.SetActive(true);
                             Invoke("GameFail", 1);
                             m_end = true;
