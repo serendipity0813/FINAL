@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class KanuGame : MiniGameSetting
 {
+    [SerializeField] private GameObject[] m_playerAvartar;
     [SerializeField] private GameObject m_map;
     [SerializeField] private GameObject m_handle1;
     [SerializeField] private GameObject m_handle2;
@@ -38,6 +39,15 @@ public class KanuGame : MiniGameSetting
         m_maxTime -= m_difficulty1;
         //인게임 text내용 설정 + 게임 승리조건
         m_missionText.text = "위에서 땡기고 아래에서 밀어라!";
+
+        for (int i = 0; i < PlayerDataManager.instance.m_playerData.equipSkin.Length; i++)
+        {
+            if (PlayerDataManager.instance.m_playerData.equipSkin[i])
+                m_playerAvartar[i].SetActive(true);
+            else
+                m_playerAvartar[i].SetActive(false);
+
+        }
 
     }
 
