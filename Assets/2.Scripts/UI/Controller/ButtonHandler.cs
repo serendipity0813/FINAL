@@ -51,7 +51,7 @@ public class ButtonHandler : MonoBehaviour
     public void ShopClick()
     {
         GameSceneManager.Instance.PopupClear();
-        GameSceneManager.Instance.SceneSelect(SCENES.GatchaScene);
+        GameSceneManager.Instance.SceneSelect(SCENES.ShopScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
         EffectSoundManager.Instance.PlayEffect(1);
     }

@@ -7,6 +7,7 @@ public class ShopUIController : ButtonHandler
 {
     [SerializeField] private TextMeshProUGUI m_itemNameText;
     [SerializeField] private TextMeshProUGUI m_itemPriceText;
+    [SerializeField] private TextMeshProUGUI m_playerMoneyText;
     [SerializeField] private GameObject m_buyCheck;
     [SerializeField] private GameObject m_equipCheck;
     [SerializeField] private GameObject m_success;
@@ -22,6 +23,12 @@ public class ShopUIController : ButtonHandler
     {
         PlayerAvatarCheck();
     }
+
+    private void Update()
+    {
+        m_playerMoneyText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+    }
+
 
     public void ShopTaps(int num)
     {
