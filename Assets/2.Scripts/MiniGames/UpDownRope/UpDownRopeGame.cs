@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class UpDownRopeGame : MiniGameSetting
 {

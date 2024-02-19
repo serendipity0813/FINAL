@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class StartSceneController : ButtonHandler
+public class StartSceneController : MonoBehaviour
 {
     [Header("Sun")]
     private Light m_sun;
@@ -26,8 +26,9 @@ public class StartSceneController : ButtonHandler
     [Header("StartScene Ui")]
     [SerializeField] private CanvasGroup m_canvas;//시작하면 Ui의 전체 알파값을 줄이기 위함
 
+    [SerializeField] TutorialUIController tutorialUIController;// 튜토리얼 관련
     private float m_timeRate = 0.0f;//총 진행 시간 %퍼센트로  
-    private float m_timeTakes = 5.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
+    private float m_timeTakes = 3.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
     private float m_alphaTime = 4.0f;//UI 투명화까지 걸리는 시간 (곱 연산)
     private bool m_once = true;
 
@@ -42,6 +43,9 @@ public class StartSceneController : ButtonHandler
         m_sun = m_light.transform.GetChild(0).GetComponent<Light>();
         m_moon = m_light.transform.GetChild(1).GetComponent<Light>();
         m_canvas.alpha = 1.0f;
+
+        Quaternion rotation = Quaternion.Euler(0.0f, 50.0f, 0.0f);//광원 회전 X를 0으로 초기화
+        m_light.transform.rotation = rotation;
     }
 
     // Update is called once per frame
@@ -81,7 +85,7 @@ public class StartSceneController : ButtonHandler
     private void NextDay()
     {
         m_aniUpdater.WakeCharacter();
-        Invoke("LobbyClick", 8.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
+        Invoke("LobbyClick", 7.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
     }
 
     private void UpdateLighting(Light lightSource, Gradient colorGradiant, AnimationCurve intensityCurve)
@@ -97,5 +101,26 @@ public class StartSceneController : ButtonHandler
         else if (lightSource.intensity > 0 && !go.activeInHierarchy)
             go.SetActive(true);
     }
-
+    private void LobbyClick()
+    {
+        if (PlayerDataManager.instance.m_playerData.tutorial)
+        {
+            CameraManager.Instance.m_followEnabled = false;
+            GameSceneManager.Instance.PopupClear();
+            MiniGameManager.Instance.GameReset();
+            Time.timeScale = 1.0f;
+            GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+            CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        }
+        else
+        {
+            Instantiate(tutorialUIController);
+            CameraManager.Instance.m_followEnabled = false;
+            GameSceneManager.Instance.PopupClear();
+            MiniGameManager.Instance.GameReset();
+            Time.timeScale = 1.0f;
+            GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+            CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        }
+    }
 }

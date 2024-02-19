@@ -15,13 +15,26 @@ public class OptionUIController : ButtonHandler
     {
         m_bgmSlider = m_BGM.GetComponent<Slider>();
         m_sfxSlider = m_SFX.GetComponent<Slider>();
+        m_bgmSlider.value = PlayerDataManager.instance.m_playerData.bgmVolume;
+        m_sfxSlider.value = PlayerDataManager.instance.m_playerData.sfxVolume;
     }
     private void Start()
     {
-        m_bgmSlider.value = 50;
-        m_sfxSlider.value = 50;
+        m_bgmSlider.onValueChanged.AddListener(BGMVolumeChanged);
+        m_sfxSlider.onValueChanged.AddListener(SFXVolumeChanged);
     }
-
+    private void BGMVolumeChanged(float volume)
+    {
+        // BGM볼륨 값을 조절합니다.
+        BGMSoundManager.Instance.m_AudioSource.volume = volume;
+        PlayerDataManager.instance.m_playerData.bgmVolume = volume;
+    }
+    private void SFXVolumeChanged(float volume)
+    {
+        // SFX볼륨 값을 조절합니다.
+        EffectSoundManager.Instance.m_AudioSource.volume = volume;
+        PlayerDataManager.instance.m_playerData.sfxVolume = volume;
+    }
     //설정창 내부 버튼 클릭시 관련 링크로 이동하는 메소드
     public void CustomerSurviceButton()
     {

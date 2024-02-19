@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class RunningGame : MiniGameSetting
