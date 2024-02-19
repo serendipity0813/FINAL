@@ -25,6 +25,7 @@ public class ShopUIController : ButtonHandler
 
     public void ShopTaps(int num)
     {
+        EffectSoundManager.Instance.PlayEffect(19);
         for (int i = 0; i < m_tabs.Length; i++)
         {
             if (i == num)
@@ -37,6 +38,7 @@ public class ShopUIController : ButtonHandler
 
     public void ItemClick(int itemCode)
     {
+        EffectSoundManager.Instance.PlayEffect(1);
         m_itemCode = itemCode;
         if (itemCode >= 1000)
         {
@@ -73,15 +75,20 @@ public class ShopUIController : ButtonHandler
             PlayerDataManager.instance.m_playerData.coin -= m_itemPrice;
             PlayerDataManager.instance.GetItem(m_itemCode);
             PlayerAvatarCheck();
+            EffectSoundManager.Instance.PlayEffect(8);
         }
         else
+        {
             m_fail.SetActive(true);
+            EffectSoundManager.Instance.PlayEffect(2);
+        }
+           
 
     }
 
     public void ChangeAvatar()
     {
-
+        EffectSoundManager.Instance.PlayEffect(19);
         PlayerDataManager.instance.EquipItem(m_itemCode);
         PlayerAvatarCheck();
     }
@@ -90,11 +97,13 @@ public class ShopUIController : ButtonHandler
     {
         //PlayerDataManager.instance.GetCoin(m_itemCode);
         m_success.SetActive(true);
+        EffectSoundManager.Instance.PlayEffect(2);
     }
 
     public void BuyBuff()
     {
         m_success.SetActive(true);
+        EffectSoundManager.Instance.PlayEffect(2);
     }
 
     private void PlayerAvatarCheck()

@@ -36,5 +36,7 @@ public class GameOverSceneController : ButtonHandler
         m_totalPointText.text = m_totalPointNum.ToString();
 
         MiniGameManager.Instance.GameReset();
+
+        EffectSoundManager.Instance.PlayEffect(32);
     }
 }

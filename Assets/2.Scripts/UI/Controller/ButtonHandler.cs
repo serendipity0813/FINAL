@@ -14,6 +14,7 @@ public class ButtonHandler : MonoBehaviour
         Time.timeScale = 1.0f;
         GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void SelectModeClick()
@@ -21,6 +22,7 @@ public class ButtonHandler : MonoBehaviour
         GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.SelectScene);
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void RandomModeClick()
@@ -28,6 +30,7 @@ public class ButtonHandler : MonoBehaviour
         MiniGameManager.Instance.GameNumber = 0;
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void GatchaClick()
@@ -35,18 +38,21 @@ public class ButtonHandler : MonoBehaviour
         GameSceneManager.Instance.PopupClear();
         GameSceneManager.Instance.SceneSelect(SCENES.GatchaScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void OptionClick()
     {
         GameSceneManager.Instance.PopUpSelect(SCENES.OptionScene);
         //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void ShopClick()
     {
         GameSceneManager.Instance.PopUpSelect(SCENES.ShopScene);
         //CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void ChoiceModeStartClick()
@@ -54,6 +60,7 @@ public class ButtonHandler : MonoBehaviour
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void ChoiceXbtnClick()
@@ -68,6 +75,7 @@ public class ButtonHandler : MonoBehaviour
         GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
         MiniGameManager.Instance.GameReset();
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.PlayEffect(1);
     }
 
 }

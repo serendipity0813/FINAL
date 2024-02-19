@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using GoogleSheetsToUnity;
 using UnityEngine.UI;
@@ -28,6 +28,7 @@ public class AnimalManager : MonoBehaviour
 
     public bool updateOnPlay;
 
+    [System.Obsolete]
     void Awake()
     {
         if(updateOnPlay)
@@ -36,6 +37,7 @@ public class AnimalManager : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     void UpdateStats()
     {
         if (sheetStatus == SheetStatus.PRIVATE)

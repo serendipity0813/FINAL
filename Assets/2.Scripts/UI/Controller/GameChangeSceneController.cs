@@ -21,6 +21,16 @@ public class GameChangeSceneController : ButtonHandler
         else
             Invoke("StartChoiceGame", 2);
 
+        if (MiniGameManager.Instance.m_clearCheck == 1)
+        {
+
+            EffectSoundManager.Instance.PlayEffect(30);
+        }
+        else if (MiniGameManager.Instance.m_clearCheck == -1)
+        {
+
+            EffectSoundManager.Instance.PlayEffect(31);
+        }
 
     }
 

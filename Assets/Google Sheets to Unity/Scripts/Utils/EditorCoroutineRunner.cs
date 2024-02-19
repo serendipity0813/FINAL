@@ -20,6 +20,7 @@ namespace GoogleSheetsToUnity.ThirdPary
         /// <summary>
         /// Start a coroutine. equivilent of calling StartCoroutine on a mono behaviour
         /// </summary>
+        [Obsolete]
         public static EditorCoroutine StartCoroutine(IEnumerator coroutine)
         {
             return StoreCoroutine(new EditorCoroutineState(coroutine));
@@ -31,6 +32,7 @@ namespace GoogleSheetsToUnity.ThirdPary
         /// <param name="coroutine">coroutine to run</param>
         /// <param name="title">Text to show in the UIs title bar</param>
         /// <param name="isCancelable">Displays a cancel button if true</param>
+        [Obsolete]
         public static EditorCoroutine StartCoroutineWithUI(IEnumerator coroutine, string title, bool isCancelable = false)
         {
             if (uiCoroutineState != null)
@@ -43,6 +45,7 @@ namespace GoogleSheetsToUnity.ThirdPary
         }
 
         // Creates objects to manage the coroutines lifecycle and stores them away to be processed
+        [Obsolete]
         private static EditorCoroutine StoreCoroutine(EditorCoroutineState state)
         {
             if (coroutineStates == null)
@@ -94,6 +97,7 @@ namespace GoogleSheetsToUnity.ThirdPary
         }
 
         // Manages running active coroutines!
+        [Obsolete]
         private static void Runner()
         {
             // Tick all the coroutines we have stored
@@ -122,6 +126,7 @@ namespace GoogleSheetsToUnity.ThirdPary
             }
         }
 
+        [Obsolete]
         private static void TickState(EditorCoroutineState state)
         {
             if (state.IsValid)
@@ -221,6 +226,7 @@ namespace GoogleSheetsToUnity.ThirdPary
             lastUpdateTime = DateTime.Now;
         }
 
+        [Obsolete]
         public void Tick()
         {
             if (coroutine != null)

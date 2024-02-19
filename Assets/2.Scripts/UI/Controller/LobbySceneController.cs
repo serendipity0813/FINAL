@@ -34,5 +34,6 @@ public class LobbySceneController : ButtonHandler
         m_profiles[PlayerDataManager.instance.m_playerData.profileIndex].SetActive(false);
         PlayerDataManager.instance.m_playerData.profileIndex = index;
         m_profiles[PlayerDataManager.instance.m_playerData.profileIndex].SetActive(true);
+        EffectSoundManager.Instance.PlayEffect(19);
     }
 }

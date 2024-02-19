@@ -80,8 +80,20 @@ public class MiniGameManager : MonoBehaviour
     {
         m_endCheck = false;
         m_clearCheck = 0;
-        m_currentGame = Instantiate(MiniGames.games[GameNumber].gamePrefab);
-        TutorialCheck();
+        if(GameNumber == 0)
+        {
+            RandomMod = true;
+            int random = RandomGameCheck();
+
+            m_currentGame = Instantiate(MiniGames.games[random].gamePrefab);
+            m_beforeGame = random;
+        }
+        else
+        {
+            m_currentGame = Instantiate(MiniGames.games[GameNumber].gamePrefab);
+            TutorialCheck();
+        }
+
     }
 
     // 게임 클리어시 스테이지 변수를 1 올리고 게임 선택 씬으로 이동하면서 현재 게임 파괴
@@ -173,6 +185,7 @@ public class MiniGameManager : MonoBehaviour
         {
             Destroy(m_currentGame);
         }
+        m_clearCheck = 0;
         PlayerDataManager.instance.m_playerData.stage = 0;
         PlayerDataManager.instance.m_playerData.life = 3;
         PlayerDataManager.instance.m_playerData.rewardExp = 0;

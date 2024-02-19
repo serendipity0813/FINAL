@@ -15,13 +15,18 @@ public class ChangeSceneAnimation : MonoBehaviour
         if (MiniGameManager.Instance.m_clearCheck == 1)
         {
             m_clearEffect[0].SetActive(true);
+            EffectSoundManager.Instance.PlayEffect(33);
         }
         else if (MiniGameManager.Instance.m_clearCheck == -1)
         {
             m_failEffect[0].SetActive(true);
+
+            EffectSoundManager.Instance.PlayEffect(34);
         }
         else
         {
+
+            EffectSoundManager.Instance.PlayEffect(33);
             m_normalEffect[0].SetActive(true);
             m_normalEffect[1].SetActive(true);
         }
