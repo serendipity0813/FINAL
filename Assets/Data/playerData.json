@@ -5,6 +5,8 @@
     "exp": 1.0,
     "coin": 42100,
     "tutorial": true,
+    "bgmVolume": 0.0,
+    "sfxVolume": 0.0,
     "gameIndex": [
         0,
         1,

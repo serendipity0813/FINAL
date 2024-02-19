@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CarDrivingGame : MiniGameSetting
 {
-    [SerializeField] private GameObject m_cameraTarget;
+    [SerializeField] private GameObject m_player;
 
     private Rigidbody m_playerBody;
     private CarGenerator m_generator;
@@ -23,10 +23,10 @@ public class CarDrivingGame : MiniGameSetting
     {
         CameraManager.Instance.ChangeCamera(CameraView.Angle30View);
         CameraManager.Instance.SetFollowSpeed(10.0f);
-        CameraManager.Instance.SetFollowTarget(m_cameraTarget.transform.GetChild(0).gameObject);
+        CameraManager.Instance.SetFollowTarget(m_player);
         CameraManager.Instance.m_followEnabled = true;
 
-        m_playerBody = m_cameraTarget.GetComponent<Rigidbody>();
+        m_playerBody = m_player.GetComponent<Rigidbody>();
         m_generator = transform.GetChild(2).GetComponent<CarGenerator>();
         m_generator.GenerateCars();//난이도에 맞춰서 차 생성
 
