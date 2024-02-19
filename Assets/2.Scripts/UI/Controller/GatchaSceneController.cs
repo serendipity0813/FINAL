@@ -8,6 +8,10 @@ public class GatchaSceneController : ButtonHandler
     [SerializeField] private TextMeshProUGUI m_playerMoneyText;
     [SerializeField] private GameObject m_spawnEffect;
 
+    private void Start()
+    {
+        EffectSoundManager.Instance.PlayEffect(35);
+    }
     private void Update()
     {
         m_playerMoneyText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
