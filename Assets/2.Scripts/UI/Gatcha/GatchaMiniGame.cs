@@ -61,6 +61,7 @@ public class GatchaMiniGame : MonoBehaviour
         if (haveAllGame)
         {
             m_warningText.text = "게임을 모두 가지고 있습니다.";
+            EffectSoundManager.Instance.PlayEffect(2);
             m_warning.SetActive(true);
             //Debug.Log("게임을 모두 가지고 있습니다.");
             return;
@@ -76,6 +77,7 @@ public class GatchaMiniGame : MonoBehaviour
         {
             m_warningText.text = "코인이 부족합니다.";
             m_warning.SetActive(true);
+            EffectSoundManager.Instance.PlayEffect(2);
             //Debug.Log("코인이 부족합니다.");
         }
     }
@@ -97,6 +99,7 @@ public class GatchaMiniGame : MonoBehaviour
                 m_gameIconPrefab.GetComponent<Rigidbody>().useGravity = false;
                 
                 m_rewardText.text = MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.";
+                EffectSoundManager.Instance.PlayEffect(36);
                 m_reward.SetActive(true);
                 //Debug.Log(MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.");
                 break;
