@@ -688,6 +688,8 @@ MonoBehaviour:
     exp: 0
     coin: 0
     tutorial: 0
+    bgmVolume: 0
+    sfxVolume: 0
     gameIndex: 
     haveGames: 
     rankingPoint: 
@@ -994,6 +996,11 @@ MonoBehaviour:
     SoundEffect: {fileID: 8300000, guid: 9b0d354e8225f1244b408df70e455e5e, type: 3}
   - name: "\uD3ED\uD0C41 - 34"
     SoundEffect: {fileID: 8300000, guid: 9d2b789058bae744d8c41fd94c0ed432, type: 3}
+  - name: "\uBC15\uC2A41 - 35"
+    SoundEffect: {fileID: 8300000, guid: 92587e5a15892324597972f3d94f6df2, type: 3}
+  - name: "\uC544\uC774\uD15C\uD68D\uB4DD1 - 36"
+    SoundEffect: {fileID: 8300000, guid: d3bc1493d82cc3a499195249f7bd82a0, type: 3}
+  m_AudioSource: {fileID: 0}
 --- !u!82 &918395805
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1439,6 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab147a8f519b174d838a3e5700cf936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AudioSource: {fileID: 0}
   bgm:
   - name: "\uBA54\uC778 \uBE0C\uAE08 0"
     BGM: {fileID: 8300000, guid: 957ae735798eb12499413199ded15aa1, type: 3}
