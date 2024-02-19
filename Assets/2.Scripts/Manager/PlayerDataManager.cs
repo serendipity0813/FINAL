@@ -61,7 +61,7 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.name = "name";
         m_playerData.level = 1;
         m_playerData.exp = 0;
-        m_playerData.coin = 100;
+        m_playerData.coin = 1000;
         m_playerData.tutorial = false;
         m_playerData.bgmVolume = 0.25f;
         m_playerData.sfxVolume = 0.3f;
