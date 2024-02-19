@@ -38,16 +38,7 @@ public class KanuGame : MiniGameSetting
         m_positionz = m_mapPosition.y;
         m_maxTime -= m_difficulty1;
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = "위에서 땡기고 아래에서 밀어라!";
-
-        for (int i = 0; i < PlayerDataManager.instance.m_playerData.equipSkin.Length; i++)
-        {
-            if (PlayerDataManager.instance.m_playerData.equipSkin[i])
-                m_playerAvartar[i].SetActive(true);
-            else
-                m_playerAvartar[i].SetActive(false);
-
-        }
+        m_missionText.text = "위에서 땡기고 아래에서 밀어라!";    
 
     }
 

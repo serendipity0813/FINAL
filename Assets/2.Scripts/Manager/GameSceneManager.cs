@@ -20,6 +20,7 @@ public enum SCENES
 public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager Instance;    //싱글톤
+    public GameObject Player;
     public GameObject[] Scenes;     //씬 ui들 배열
     private GameObject m_scenePrefab;       //화면전환시 프리펩 생성 및 삭제를 위한 캐싱
     private GameObject m_PopupUI;

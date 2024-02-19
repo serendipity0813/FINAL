@@ -32,6 +32,7 @@ public class LobbySceneController : ButtonHandler
                 m_playerAvartar[i].SetActive(false);
 
         }
+
     }
 
 
