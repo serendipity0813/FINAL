@@ -8,7 +8,8 @@ public class RunningGame : MiniGameSetting
 
     private Rigidbody m_playerRb;//플레이어의 Rigidbody
     private float m_maxSpeed;//플레이어의 최대 이동속도
-    private float m_speed;//플레이어의 이동속도
+    private float m_velocityZ;//플레이어의 현재속도
+    private float m_speed = 10.0f;//플레이어의 이동속도
     private float m_maxTime = 20f;//제한 시간
     private float m_timer = 0f;//현재 시간
     private bool m_end = false;
@@ -39,8 +40,8 @@ public class RunningGame : MiniGameSetting
             bool result = TouchManager.instance.IsBegan();
             if (result)
             {
-                m_speed = m_playerRb.velocity.z + 30.0f;//플레이어의 현재 속도에 10만큼 더해준다.
-                Vector3 vel = new Vector3(0.0f, 0.0f, m_speed);
+                m_velocityZ = m_playerRb.velocity.z + m_speed;//플레이어의 현재 속도에 10만큼 더해준다.
+                Vector3 vel = new Vector3(0.0f, 0.0f, m_velocityZ);
                 m_playerRb.velocity = vel;
             }
         }
