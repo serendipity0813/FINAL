@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SCENES
 {
-    //  0~5 : 게임 씬들, 6~9 : PopUp UI들
+    //  0~7 : 게임 씬들, 8~9 : PopUp UI들
     StartScene = 0,
     LobbyScene,
     SelectScene,
@@ -12,9 +12,9 @@ public enum SCENES
     GameChangeScene,
     InGameScene,
     GameOverScene,
+    ShopScene,
     GameChoiceScene,
     OptionScene,
-    ShopScene,
 }
 
 public class GameSceneManager : MonoBehaviour

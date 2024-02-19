@@ -23,10 +23,6 @@ public class LobbySceneController : ButtonHandler
         m_profiles[PlayerDataManager.instance.m_playerData.profileIndex].SetActive(true);
     }
 
-    private void Update()
-    {
-        m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
-    }
 
     public void MarkChange()
     {
