@@ -28,6 +28,7 @@ public class GameSceneManager : MonoBehaviour
     private GameObject m_choiceScene;
 
     [SerializeField] private GameObject m_lightsObject;
+    [SerializeField] private GameObject m_player;
 
     private int m_popupNumber;      //팝업 ui와 씬 ui를 숫자로 분류하여 관리하기 위함
     private int m_sceneNumber;
@@ -46,12 +47,14 @@ public class GameSceneManager : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start()
-    {   
+    {
         //현재 선택된 화면이 없는 경우 첫 화면을 생성 및 현재 화면으로 저장
         if (m_currentScene == null)
         {
             m_currentScene = Scenes[0];
             m_scenePrefab = Instantiate(m_currentScene);
+            PlayerCharacterController.Instance.ChangePlayerAvatar();
+            PlayerCharacterController.Instance.ChangePlayerPosition();
         }
 
     }
@@ -71,8 +74,10 @@ public class GameSceneManager : MonoBehaviour
         Destroy(m_scenePrefab);
         m_scenePrefab = Instantiate(m_choiceScene);
         m_currentScene = m_choiceScene;
-    }
 
+        if (m_sceneNumber != 5)
+            PlayerCharacterController.Instance.ChangePlayerPosition();
+    }
 
     public void PopUpSelect(SCENES scene)
     {
