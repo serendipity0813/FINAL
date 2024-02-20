@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class RunningGame : MiniGameSetting
 {
-    [SerializeField] private GameObject m_map;
-    private Vector3 m_mapPosition;
-    private float m_positionz;
-    private float m_maxTime = 15f;
-    private float m_timer = 0f;
+    [Header("Characters")]
+    [SerializeField] private GameObject m_player;//플레이어 오브젝트
+    [SerializeField] private GameObject[] m_npcs;//NPC들
+
+    private Rigidbody m_playerRb;//플레이어의 Rigidbody
+    private float m_maxSpeed;//플레이어의 최대 이동속도
+    private float m_velocityZ;//플레이어의 현재속도
+    private float m_speed = 10.0f;//플레이어의 이동속도
+    private float m_maxTime = 20f;//제한 시간
+    private float m_timer = 0f;//현재 시간
     private bool m_end = false;
 
     protected override void Awake()
@@ -19,67 +24,80 @@ public class RunningGame : MiniGameSetting
     {
         m_missionText.text = "결승선까지 달려라!";
         m_maxTime -= m_difficulty2;
-        m_mapPosition = m_map.transform.position;
-        m_positionz = -4;
+        m_timer = m_maxTime;
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        CameraManager.Instance.SetFollowTarget(m_player);
+        CameraManager.Instance.SetFollowSpeed(10.0f);
+        CameraManager.Instance.m_followEnabled = true;
+
+        m_playerRb = m_player.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        //실시간으로 맵의 위치를 바꿔줌 - 버튼을 누를 때마다 일정 수치만큼 맵이 뒤로 -> 플레이어는 앞으로 가는 느낌
-        m_map.transform.position = new Vector3(m_mapPosition.x, m_mapPosition.y, m_positionz);
+        if (m_timer < m_maxTime - 2.0f)//게임 시작하고 2초가 지나면
+        {
+            bool result = TouchManager.instance.IsBegan();
+            if (result)
+            {
+                m_velocityZ = m_playerRb.velocity.z + m_speed;//플레이어의 현재 속도에 10만큼 더해준다.
+                Vector3 vel = new Vector3(0.0f, 0.0f, m_velocityZ);
+                m_playerRb.velocity = vel;
+            }
+        }
+
+        foreach (GameObject obj in m_npcs)
+        {
+            MoveCharacters(obj, 10.0f);//NPC들을 일정 속도로 계속 달리게 
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        m_timeText.text = (m_maxTime - m_timer).ToString("0.00");
+        m_timeText.text = m_timer.ToString("0.00");
 
 
-        m_timer = m_timer >= m_maxTime ? m_maxTime : m_timer + Time.deltaTime;
-        if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
+        m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
+        if (m_timer < m_maxTime - 0.5f && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
         }
-        if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
+        if (m_timer < m_maxTime - 1.5 && m_missionPrefab.activeSelf == true)
         {
             m_missionPrefab.SetActive(false);
         }
 
-        if (m_timer > 2)
+        if (m_timer < m_maxTime - 2.0f)
             m_timePrefab.SetActive(true);
 
         if (!m_end)
         {
-            //게임 승리조건 - 맵이 일정량 이상 뒤로 가면
-            if (m_positionz < -270)
-            {
-                EffectSoundManager.Instance.PlayEffect(21);
-                m_clearPrefab.SetActive(true);
-                Invoke("GameClear", 1);
-                m_end = true;
-            }
-
-            //게임 패배조건 - 제한시간 내로 버튼을 충분히 누르지 못한 경우
-            if ((m_maxTime - m_timer) < 0 && m_positionz > -270)
+            //게임 패배조건 - 제한시간내로 골에 도달하지 못했을 경우
+            if (m_timer <= 0.0f)
             {
                 EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 m_end = true;
-
             }
-
         }
-
     }
 
-    public void RunBtn()
+    private void MoveCharacters(GameObject character, float speed)
     {
-        //버튼을 누르면 맵이 뒤로 가도록 설정
-        if(m_positionz >= -270 && m_timer > 2)
-        m_positionz -= 10 - m_difficulty1;
-
-        EffectSoundManager.Instance.PlayEffect(26);
+        Rigidbody rb = character.GetComponent<Rigidbody>();
+        Vector3 vel = new Vector3(0.0f, 0.0f, speed);
+        rb.velocity = vel;
     }
+
+    public void Win()
+    {
+        EffectSoundManager.Instance.PlayEffect(21);
+        m_clearPrefab.SetActive(true);
+        Invoke("GameClear", 1);
+        m_end = true;
+    }
+
 
 }
