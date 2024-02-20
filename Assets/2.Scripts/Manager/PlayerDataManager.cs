@@ -21,9 +21,10 @@ public class PlayerDataManager : MonoBehaviour
         }
         // Json 데이터 위치 불러오기
         path = Path.Combine(Application.dataPath, "Data", "playerData.json");
+        DataCheck();
     }
 
-    private void Start()
+    private void DataCheck()
     {
         if (File.Exists(path))
         {
@@ -122,22 +123,19 @@ public class PlayerDataManager : MonoBehaviour
     {
         //플레이어 리워드 계산 코드
         m_playerData.rewardExp = m_playerData.stage;
-        m_playerData.rewardCoin = m_playerData.stage * 100+ m_playerData.timePoint * 10 + m_playerData.bonusPoint * 10;
+        m_playerData.rewardCoin = (m_playerData.stage * 5) + (m_playerData.timePoint / 10) + (m_playerData.bonusPoint / 10);
 
         // 경험치 코인 증가
         m_playerData.exp += m_playerData.rewardExp;
         m_playerData.coin += m_playerData.rewardCoin;
 
         //레벨업 체크
-        if(m_playerData.exp > m_playerData.level * 10)
+        if(m_playerData.exp > m_playerData.level * 15)
         {
-            while(m_playerData.level * 10 < m_playerData.exp)
-            {
-                m_playerData.exp -= m_playerData.level * 10;
-                m_playerData.level++;
-            }
+            // 레벨업 했다면 레벨업 효과
+            m_playerData.exp -= m_playerData.level * 15;
+            m_playerData.level++;
         }
-
     }
 
     public void GetItem(int ItemCode)
@@ -200,9 +198,9 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int level;   // 플레이어 현재 레벨
     public float exp;   // 플레이어 현재 경험치 량
     public int coin;    // 플레이어가 가지고 있는 코인 재화
-    public bool tutorial;// 플레이어 튜토리얼 수행 여부 false는 안함, true 는 함
-    public float bgmVolume;
-    public float sfxVolume;
+    public bool tutorial; // 플레이어 튜토리얼 수행 여부 false는 안함, true 는 함
+    public float bgmVolume; // BGM 볼륨
+    public float sfxVolume; // SFX 볼륨
     public int stage { get; set; }   // 게임 진행시 현재 진행 스테이지
     public int life { get; set; }   // 게임 진행시 플레이어의 목숨 수치
     public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치
