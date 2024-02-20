@@ -13,43 +13,43 @@ MonoBehaviour:
   m_Name: ItemDataSO
   m_EditorClassIdentifier: 
   items:
-  - itemName: item0
+  - itemName: Catcher
     itemIndex: 0
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item1
+  - itemName: Fish
     itemIndex: 1
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item2
+  - itemName: Imp
     itemIndex: 2
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item3
+  - itemName: Knight
     itemIndex: 3
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item4
+  - itemName: MonkeyDong
     itemIndex: 4
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item5
+  - itemName: NosedMan
     itemIndex: 5
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item6
+  - itemName: PitBoy
     itemIndex: 6
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item7
+  - itemName: Spike
     itemIndex: 7
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item8
+  - itemName: Treestor
     itemIndex: 8
     itemPrice: 5000
     itemPrefab: {fileID: 0}
-  - itemName: item9
+  - itemName: Wedger
     itemIndex: 9
     itemPrice: 5000
     itemPrefab: {fileID: 0}
