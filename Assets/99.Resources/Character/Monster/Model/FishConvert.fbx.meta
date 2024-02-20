@@ -3,7 +3,12 @@ guid: 1aff98cbbf1ef9c4e8c7043b180aff4f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Fishguard
+    second: {fileID: 2100000, guid: 6e2b5da3d1ebb5d43a5e776fd007892e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
