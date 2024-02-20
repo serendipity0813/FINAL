@@ -171,8 +171,6 @@ public class PlayerDataManager : MonoBehaviour
  
         }
 
-        PlayerCharacterController.Instance.ChangePlayerAvatar();
-
         SaveJson();
         LoadJson();
 

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameChangeSceneController : ButtonHandler
 {
-    [SerializeField] private GameObject[] m_playerAvartar;
     [SerializeField] private GameObject[] m_life;   //플레이어 라이프(하트) 이미지
     [SerializeField] private GameObject[] m_loseLife;   //땅으로 떨어지는 하트
     [SerializeField] private TextMeshProUGUI m_stageNumber;
@@ -62,11 +61,10 @@ public class GameChangeSceneController : ButtonHandler
             else
                 m_life[i].SetActive(false);
 
-            //if (i == lifenum && MiniGameManager.Instance.m_clearCheck == -1)
-            //{
-            //    m_loseLife[i].SetActive(true);
-            //}
-
+            if (i == lifenum && MiniGameManager.Instance.m_clearCheck == -1)
+            {
+                m_loseLife[i].SetActive(true);
+            }
 
         }
     }

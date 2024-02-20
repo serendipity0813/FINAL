@@ -5298,6 +5298,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Treestor
       objectReference: {fileID: 0}
+    - target: {fileID: 8092111304452072287, guid: d2c792d97f2551240bd256988d694732,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8865095035087600101, guid: d2c792d97f2551240bd256988d694732,
         type: 3}
       propertyPath: m_RootOrder

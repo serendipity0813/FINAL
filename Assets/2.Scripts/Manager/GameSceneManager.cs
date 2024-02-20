@@ -20,7 +20,6 @@ public enum SCENES
 public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager Instance;    //싱글톤
-    public GameObject Player;
     public GameObject[] Scenes;     //씬 ui들 배열
     private GameObject m_scenePrefab;       //화면전환시 프리펩 생성 및 삭제를 위한 캐싱
     private GameObject m_PopupUI;
@@ -28,7 +27,6 @@ public class GameSceneManager : MonoBehaviour
     private GameObject m_choiceScene;
 
     [SerializeField] private GameObject m_lightsObject;
-    [SerializeField] private GameObject m_player;
 
     private int m_popupNumber;      //팝업 ui와 씬 ui를 숫자로 분류하여 관리하기 위함
     private int m_sceneNumber;
@@ -53,8 +51,6 @@ public class GameSceneManager : MonoBehaviour
         {
             m_currentScene = Scenes[0];
             m_scenePrefab = Instantiate(m_currentScene);
-            PlayerCharacterController.Instance.ChangePlayerAvatar();
-            PlayerCharacterController.Instance.ChangePlayerPosition();
         }
 
     }
@@ -69,14 +65,13 @@ public class GameSceneManager : MonoBehaviour
         5. 현재 씬 변수를 선택씬 변수로 변경함
         6. 선택한 씬 변수에 따라서 씬에 필요한 오브젝트를 관리하는 함수 호출
          */
+
         m_sceneNumber = (int)scene;
         m_choiceScene = Scenes[m_sceneNumber];
         Destroy(m_scenePrefab);
         m_scenePrefab = Instantiate(m_choiceScene);
         m_currentScene = m_choiceScene;
 
-        if (m_sceneNumber != 5)
-            PlayerCharacterController.Instance.ChangePlayerPosition();
     }
 
     public void PopUpSelect(SCENES scene)
