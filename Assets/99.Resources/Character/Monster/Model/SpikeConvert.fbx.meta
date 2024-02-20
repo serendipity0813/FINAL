@@ -3,7 +3,12 @@ guid: 2b97807f7965caa47a8e6d3a913f3064
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Spike
+    second: {fileID: 2100000, guid: e858296d7d4ab2d4595267080065ebc3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

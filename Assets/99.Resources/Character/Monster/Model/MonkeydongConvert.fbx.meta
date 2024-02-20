@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 676d8fdf6cbb7b74b8d58e8da0563bdc
+guid: 4fd28bb2940e270488521d4390744215
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Knight
-    second: {fileID: 2100000, guid: 1820d003966dd38449e0f6ec32282767, type: 2}
+      name: M_Monkeydong
+    second: {fileID: 2100000, guid: 238d7b8710e266948a8982981bc40ca2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
