@@ -10,9 +10,9 @@ public class GatchaMiniGame : MonoBehaviour
     [SerializeField] private GameObject m_reward;
     [SerializeField] private TextMeshProUGUI m_rewardText;
     [SerializeField] private GameObject m_SpawnPosition;
-    [SerializeField] private GameObject[] m_miniGameIcons;
+    //[SerializeField] private GameObject[] m_miniGameIcons;
     private GameObject m_gameIconPrefab;
-    [SerializeField] private Animator gachaAnimation;
+    private Animator gachaAnimation;
 
     private int m_price = 1000;
 
@@ -84,6 +84,7 @@ public class GatchaMiniGame : MonoBehaviour
 
     void GatchaLogic()
     {
+        gachaAnimation = GameObject.Find("Chest_Animated").GetComponent<Animator>();
         gachaAnimation.SetTrigger("GachaPlay");
         while (true)
         {
@@ -92,12 +93,15 @@ public class GatchaMiniGame : MonoBehaviour
             if (PlayerDataManager.instance.m_playerData.haveGames[rnd] == false)
             {
                 PlayerDataManager.instance.m_playerData.haveGames[rnd] = true;
-                m_gameIconPrefab = Instantiate(m_miniGameIcons[rnd], m_SpawnPosition.transform.position, Quaternion.identity, m_SpawnPosition.transform);
+                //m_gameIconPrefab = Instantiate(m_miniGameIcons[rnd], m_SpawnPosition.transform.position, Quaternion.identity, m_SpawnPosition.transform);
+                if (m_SpawnPosition != null)
+                    m_gameIconPrefab = Instantiate(MiniGameManager.Instance.MiniGames.games[rnd].gameIcon, m_SpawnPosition.transform.position, Quaternion.identity, m_SpawnPosition.transform);
+                else
+                    m_gameIconPrefab = Instantiate(MiniGameManager.Instance.MiniGames.games[rnd].gameIcon, GameObject.Find("SpawnPosition").transform.position, Quaternion.identity, GameObject.Find("SpawnPosition").transform);
                 PlayerDataManager.instance.SaveJson();
                 m_gameIconPrefab.GetComponent<SphereCollider>().enabled = false;
                 m_gameIconPrefab.GetComponent<ConstantForce>().enabled = false;
                 m_gameIconPrefab.GetComponent<Rigidbody>().useGravity = false;
-                
                 m_rewardText.text = MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.";
                 EffectSoundManager.Instance.PlayEffect(36);
                 m_reward.SetActive(true);

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BGMSoundManager : MonoBehaviour
 {
+    [Serializable]
+    public struct BGMs
+    {
+        [Header("BGM")]
+        public string name; // 사운드 이름 및 설명
+        public AudioClip BGM; // 사운드 클립
+    }
+    public List<BGMs> bgm = new List<BGMs>();
+
     public static BGMSoundManager Instance;
     public AudioSource m_AudioSource;
     private void Awake()
@@ -20,22 +29,30 @@ public class BGMSoundManager : MonoBehaviour
     private void Start()
     {
         m_AudioSource = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
-        m_AudioSource.Play(); // 임시 BGM 실행
+        m_AudioSource.volume = PlayerDataManager.instance.m_playerData.bgmVolume;
+        PlayBGM(0); // 시작시 BGM 실행
     }
-
-    [Serializable]
-    public struct BGMs
-    {
-        [Header("BGM")]
-        public string name; // 사운드 이름 및 설명
-        public AudioClip BGM; // 사운드 클립
-    }
-    public List<BGMs> bgm = new List<BGMs>();
 
     // 배경음 재생
-    public AudioClip PlayBGM(int index)
+    public void PlayBGM(int index)
     {
-        return bgm[index].BGM;
+        m_AudioSource.Stop();
+        m_AudioSource.clip = bgm[index].BGM;
+        if (!m_AudioSource.loop)
+            m_AudioSource.loop = true;
+        m_AudioSource.Play();
+    }
+
+    // BGM 일시 정지
+    public void PauseBGM()
+    {
+        m_AudioSource.Pause();
+    }
+
+    // BGM 일시 정지 해제
+    public void UnPauseBGM()
+    {
+        m_AudioSource.UnPause();
     }
 
     // 필요에 따라 다양한 사운드 관련 메서드 추가 가능
@@ -44,14 +61,6 @@ public class BGMSoundManager : MonoBehaviour
     /* 
      * 다른 스크립트 내에서 사운드 활용 방법
      * 원하는 오브젝트에 Audio Source 컴포넌트 추가
-     * 
-     * private BGMSoundManager soundManager;
-     * private AudioSource audioSource;
-     * private void Start()
-       {
-           soundManager = BGMSoundManager.Instance;
-           audioSource = GetComponent<AudioSource>();
-       }
         audioSource.clip = soundManager.PlayEffect(n) // 클립 설정
         audioSource.loop = false; or true; // 사운드 1번 재생, 무한 재생 설정
         audioSource.Play(); // 사운드 실행
