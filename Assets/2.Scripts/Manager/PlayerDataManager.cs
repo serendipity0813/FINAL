@@ -1,6 +1,7 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerDataManager : MonoBehaviour
 {
@@ -154,9 +155,9 @@ public class PlayerDataManager : MonoBehaviour
         LoadJson();
     }
 
+
     public void EquipItem(int ItemCode)
     {
-        Debug.Log(ItemCode);
         for (int i = 0; i < m_playerData.equipSkin.Length; i++)
         {
             if (i == ItemCode)
@@ -218,7 +219,7 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
     public List<int> rankingPoint;
 
-    //플레이어 스킨 소비여부, 장착여부 체크용
+    //플레이어 스킨 소지여부, 장착여부 체크용
     public bool[] haveSkin;
 
     public bool[] equipSkin;

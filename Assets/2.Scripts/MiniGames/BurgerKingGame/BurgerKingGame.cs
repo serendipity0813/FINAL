@@ -159,38 +159,54 @@ public class BurgerKingGame : MiniGameSetting
     //버튼 입력에 따라 버거 재료를 만들어주는 함수들
     public void BreadBtn()
     {
-        EffectSoundManager.Instance.PlayEffect(19);
-        m_playerBurger[m_count] = 0;
-        m_count++;
-        m_burgerspawnPosition.y += (float)0.5;
-        Instantiate(Bread, m_burgerspawnPosition, Quaternion.identity, transform);
+        if(m_timer > 2)
+        {
+            EffectSoundManager.Instance.PlayEffect(19);
+            m_playerBurger[m_count] = 0;
+            m_count++;
+            m_burgerspawnPosition.y += (float)0.5;
+            Instantiate(Bread, m_burgerspawnPosition, Quaternion.identity, transform);
+        }
+      
     }
 
     public void PattyBtn()
     {
-        EffectSoundManager.Instance.PlayEffect(19);
-        m_playerBurger[m_count] = 1;
-        m_count++;
-        m_burgerspawnPosition.y += (float)0.5;
-        Instantiate(Patty, m_burgerspawnPosition, Quaternion.identity, transform);
+        if (m_timer > 2)
+        {
+            EffectSoundManager.Instance.PlayEffect(19);
+            m_playerBurger[m_count] = 1;
+            m_count++;
+            m_burgerspawnPosition.y += (float)0.5;
+            Instantiate(Patty, m_burgerspawnPosition, Quaternion.identity, transform);
+        }
+          
     }
 
     public void VegetableBtn()
     {
-        EffectSoundManager.Instance.PlayEffect(19);
-        m_playerBurger[m_count] = 2;
-        m_count++;
-        m_burgerspawnPosition.y += (float)0.5;
-        Instantiate(Vegetable, m_burgerspawnPosition, Quaternion.identity, transform);
+        if (m_timer > 2)
+        {
+            EffectSoundManager.Instance.PlayEffect(19);
+            m_playerBurger[m_count] = 2;
+            m_count++;
+            m_burgerspawnPosition.y += (float)0.5;
+            Instantiate(Vegetable, m_burgerspawnPosition, Quaternion.identity, transform);
+        }
+          
     }
 
     public void CheezeBtn()
     {
-        EffectSoundManager.Instance.PlayEffect(19);
-        m_playerBurger[m_count] = 3;
-        m_count++;
-        m_burgerspawnPosition.y += (float)0.5;
-        Instantiate(Cheeze, m_burgerspawnPosition, Quaternion.identity, transform);
+        if (m_timer > 2)
+        {
+            EffectSoundManager.Instance.PlayEffect(19);
+            m_playerBurger[m_count] = 3;
+            m_count++;
+            m_burgerspawnPosition.y += (float)0.5;
+            Instantiate(Cheeze, m_burgerspawnPosition, Quaternion.identity, transform);
+        }
+           
     }
 
 }

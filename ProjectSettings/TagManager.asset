@@ -7,9 +7,9 @@ TagManager:
   - Target
   - Terrain
   - Rope
-  - MoleHole
   - GameUI
   - Camera
+  - PlayerPosition
   layers:
   - Default
   - TransparentFX

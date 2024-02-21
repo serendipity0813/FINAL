@@ -61,7 +61,7 @@ public class SlimeCatchGame : MiniGameSetting
 
 
         // 마우스 클릭시 RAY를 활용하여 타겟 찾기
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && m_timer > 2)
         {
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
