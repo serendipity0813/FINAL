@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SelectSceneController : ButtonHandler
 {
+    [SerializeField] private GameObject[] m_shootingBalls;
+    [SerializeField] private GameObject[] m_Walls;
+    private Rigidbody m_shootingBallRigidBody;
+    private Vector3 m_shootingBallPosition;
+    private int m_shootingBallIndex = 0;
 
     private void Update()
     {
@@ -25,4 +31,72 @@ public class SelectSceneController : ButtonHandler
             }
         }
     }
+
+    public  void UpShoot()
+    {
+        float x = UnityEngine.Random.Range(-3.0f, 3.0f);
+        float z = m_Walls[1].transform.position.z + (float)0.1;
+        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        ShootReady();
+        m_shootingBallRigidBody.AddForce(new Vector3(0, 0, 1) * 25.0f, ForceMode.Impulse);
+    }
+
+    public void DownShoot()
+    {
+        float x = UnityEngine.Random.Range(-3.0f, 3.0f);
+        float z = m_Walls[0].transform.position.z - (float)0.1;
+        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        ShootReady();
+        m_shootingBallRigidBody.AddForce(new Vector3(0,0,-1) * 25.0f, ForceMode.Impulse);
+    }
+
+    public void LeftShoot()
+    {
+        float z = UnityEngine.Random.Range(-4.0f, 4.0f);
+        float x = m_Walls[3].transform.position.x - (float)0.1;
+        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        ShootReady();
+        m_shootingBallRigidBody.AddForce(new Vector3(-1, 0, 0) * 25.0f, ForceMode.Impulse);
+
+    }
+
+    public void RightShoot()
+    {
+        float z = UnityEngine.Random.Range(-4.0f, 4.0f);
+        float x = m_Walls[2].transform.position.x + (float)0.1;
+        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        ShootReady();
+        m_shootingBallRigidBody.AddForce(new Vector3(1, 0, 0) * 25.0f, ForceMode.Impulse);
+    }
+
+    private void ShootReady()
+    {
+
+        if (m_shootingBallIndex < 10)
+        {
+            if(m_shootingBallIndex == 0)
+            {
+                m_shootingBalls[m_shootingBallIndex].SetActive(true);
+            }
+            else
+            {
+                m_shootingBalls[m_shootingBallIndex-1].SetActive(false);
+                m_shootingBalls[m_shootingBallIndex].SetActive(true);
+            }
+           
+        }        
+        else
+        {
+            m_shootingBalls[m_shootingBallIndex - 1].SetActive(false);
+            m_shootingBallIndex -= 10;
+            m_shootingBalls[m_shootingBallIndex].SetActive(true);
+        }
+
+        m_shootingBalls[m_shootingBallIndex].transform.position = m_shootingBallPosition;
+        m_shootingBallRigidBody = m_shootingBalls[m_shootingBallIndex].GetComponent<Rigidbody>();
+        m_shootingBallIndex++;
+    }
+
+   
+
 }
