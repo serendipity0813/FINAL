@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FoodShoot : MiniGameSetting
 {
@@ -100,7 +101,6 @@ public class FoodShoot : MiniGameSetting
             {
                 if (Input.GetMouseButtonDown(0))  // 마우스 왼쪽 버튼 클릭 시
                 {
-                    m_bulletCount--; // 총알 개수 -
                     HitFood();  // 레이 발사 함수 호출
                     CheckWinLose(); // 승리 패배 판단 함수 호출
                 }
@@ -116,8 +116,14 @@ public class FoodShoot : MiniGameSetting
 
         RaycastHit hit; // 레이캐스트 히트 정보 받아오기
 
+        if (EventSystem.current.IsPointerOverGameObject(0))
+        {
+            return;
+        }
         if (Physics.Raycast(ray, out hit))  // 레이캐스트 실행
         {
+            
+            m_bulletCount--; // 총알 개수 -
             GameObject hitObject = hit.collider.gameObject; // 맞은 오브젝트를 가져옴
             m_winCount++; // 승리 카운터 증가
             EffectSoundManager.Instance.PlayEffect(1);
@@ -125,6 +131,7 @@ public class FoodShoot : MiniGameSetting
         }
         else
         {
+            m_bulletCount--; // 총알 개수 -
             EffectSoundManager.Instance.PlayEffect(18);
         }
 

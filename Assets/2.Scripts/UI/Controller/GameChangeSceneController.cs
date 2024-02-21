@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class GameChangeSceneController : ButtonHandler
 {
-    [SerializeField] private TextMeshProUGUI m_stageNumber;
     [SerializeField] private GameObject[] m_life;   //플레이어 라이프(하트) 이미지
     [SerializeField] private GameObject[] m_loseLife;   //땅으로 떨어지는 하트
+    [SerializeField] private TextMeshProUGUI m_stageNumber;
+    [SerializeField] private GameObject m_mapObject;
 
     private void Start()
     {
         CameraManager.Instance.ChangeCamera(CameraView.Angle30View);
         m_stageNumber.text = (PlayerDataManager.instance.m_playerData.stage+1).ToString();
         LifeCheck();
+
+        //float x = -(float)762.8;
+        //float y = - (float)1025;
+        //float z = - (float)6.34;
+        //m_mapObject.transform.position = new Vector3(x, y, z);
 
         //전환 애니메이션 적용을 위해 2초의 딜레이 설정
         if (MiniGameManager.Instance.GameNumber == -1)
@@ -31,6 +37,8 @@ public class GameChangeSceneController : ButtonHandler
 
             EffectSoundManager.Instance.PlayEffect(31);
         }
+
+
 
     }
 
@@ -58,11 +66,10 @@ public class GameChangeSceneController : ButtonHandler
             else
                 m_life[i].SetActive(false);
 
-            //if (i == lifenum && MiniGameManager.Instance.m_clearCheck == -1)
-            //{
-            //    m_loseLife[i].SetActive(true);
-            //}
-
+            if (i == lifenum && MiniGameManager.Instance.m_clearCheck == -1)
+            {
+                m_loseLife[i].SetActive(true);
+            }
 
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SCENES
 {
-    //  0~5 : 게임 씬들, 6~9 : PopUp UI들
+    //  0~7 : 게임 씬들, 8~9 : PopUp UI들
     StartScene = 0,
     LobbyScene,
     SelectScene,
@@ -12,9 +12,9 @@ public enum SCENES
     GameChangeScene,
     InGameScene,
     GameOverScene,
+    ShopScene,
     GameChoiceScene,
     OptionScene,
-    ShopScene,
 }
 
 public class GameSceneManager : MonoBehaviour
@@ -45,7 +45,7 @@ public class GameSceneManager : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start()
-    {   
+    {
         //현재 선택된 화면이 없는 경우 첫 화면을 생성 및 현재 화면으로 저장
         if (m_currentScene == null)
         {
@@ -65,13 +65,14 @@ public class GameSceneManager : MonoBehaviour
         5. 현재 씬 변수를 선택씬 변수로 변경함
         6. 선택한 씬 변수에 따라서 씬에 필요한 오브젝트를 관리하는 함수 호출
          */
+
         m_sceneNumber = (int)scene;
         m_choiceScene = Scenes[m_sceneNumber];
         Destroy(m_scenePrefab);
         m_scenePrefab = Instantiate(m_choiceScene);
         m_currentScene = m_choiceScene;
-    }
 
+    }
 
     public void PopUpSelect(SCENES scene)
     {

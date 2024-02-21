@@ -39,7 +39,15 @@ public class BasketGame : MiniGameSetting
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
         m_rigidbody = m_player.GetComponent<Rigidbody>();
-        m_player = m_player.transform.GetChild(0).gameObject;
+        for(int i=0; i<10;  i++)
+        {
+            if(m_player.transform.GetChild(i).gameObject.activeSelf)
+            {
+                m_player = m_player.transform.GetChild(i).gameObject;
+                break;
+            }
+ 
+        }
         //화면 해상도 기준 오른쪽 끝에 레이 발사
         Vector3 pos = new Vector3(Screen.width, Screen.height);
         Ray ray = CameraManager.Instance.GetCamera().ScreenPointToRay(pos);

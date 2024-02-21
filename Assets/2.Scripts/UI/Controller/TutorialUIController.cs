@@ -270,7 +270,7 @@ public class TutorialUIController : MonoBehaviour
             //랜덤게임 팝업창
             case 22:
                 m_arrow.SetActive(false);
-                MiniGameManager.Instance.GameNumber = -1;
+                MiniGameManager.Instance.GameNumber = 0;
                 GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
                 CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
                 m_rectTransformDescriptionBG.anchoredPosition = new Vector2(0f, 0f);
@@ -366,13 +366,12 @@ public class TutorialUIController : MonoBehaviour
                 m_text.text = "튜토리얼은 이렇게 끝났어\n끝까지 해줘서 고마워";
                 break;
             case 34:
-                m_text.text = "100코인을 추가로 더 넣어뒀어";
+                m_text.text = "1000 코인을 추가로 더 넣어뒀어";
                 if (!m_tutorialEnd)
                 {
                     m_SkipButton.SetActive(false);
                     PlayerDataManager.instance.m_playerData.tutorial = true;
-                    PlayerDataManager.instance.m_playerData.coin += 100;
-                    GameSceneManager.Instance.SceneSelect(SCENES.LobbyScene);
+                    PlayerDataManager.instance.m_playerData.coin += 1000;
                     PlayerDataManager.instance.SaveJson();
                 }
                 break;
@@ -416,7 +415,7 @@ public class TutorialUIController : MonoBehaviour
         if (!m_tutorialEnd)
         {
             PlayerDataManager.instance.m_playerData.tutorial = true;
-            PlayerDataManager.instance.m_playerData.coin += 100;
+            PlayerDataManager.instance.m_playerData.coin += 1000;
             PlayerDataManager.instance.SaveJson();
         }
 

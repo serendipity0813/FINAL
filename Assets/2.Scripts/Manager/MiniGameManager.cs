@@ -101,7 +101,7 @@ public class MiniGameManager : MonoBehaviour
             m_endCheck = true;
             m_clearCheck = 1;
             PlayerDataManager.instance.m_playerData.bonusPointIndex++;
-            PlayerDataManager.instance.m_playerData.bonusPoint += PlayerDataManager.instance.m_playerData.bonusPointIndex * 100;
+            PlayerDataManager.instance.m_playerData.bonusPoint += PlayerDataManager.instance.m_playerData.bonusPointIndex * 10;
             PlayerDataManager.instance.m_playerData.stage++;
             GameSceneManager.Instance.SceneSelect(SCENES.GameChangeScene);
             TutorialCheck();
@@ -116,7 +116,7 @@ public class MiniGameManager : MonoBehaviour
         {
             m_endCheck = true;
             m_clearCheck = -1;
-            PlayerDataManager.instance.m_playerData.bonusPoint += PlayerDataManager.instance.m_playerData.bonusPointIndex * 100;
+            PlayerDataManager.instance.m_playerData.bonusPoint += PlayerDataManager.instance.m_playerData.bonusPointIndex * 10;
             PlayerDataManager.instance.m_playerData.bonusPointIndex = 0;
             Destroy(m_currentGame);
 
@@ -144,15 +144,7 @@ public class MiniGameManager : MonoBehaviour
     private void GameSave()
     {
         //플레이어 리워드 계산 코드
-        PlayerDataManager.instance.m_playerData.rewardExp = PlayerDataManager.instance.m_playerData.stage;
-        PlayerDataManager.instance.m_playerData.rewardCoin
-            = PlayerDataManager.instance.m_playerData.stage * 100
-            + PlayerDataManager.instance.m_playerData.timePoint * 10
-            + PlayerDataManager.instance.m_playerData.bonusPoint * 10;
-
-        // 경험치 코인 증가
-        PlayerDataManager.instance.m_playerData.exp += PlayerDataManager.instance.m_playerData.rewardExp;
-        PlayerDataManager.instance.m_playerData.coin += PlayerDataManager.instance.m_playerData.rewardCoin;
+        PlayerDataManager.instance.MinigameRewardCheck();
 
         // 랭킹 저장 관련 랜덤게임 일시
         if (RandomMod)
