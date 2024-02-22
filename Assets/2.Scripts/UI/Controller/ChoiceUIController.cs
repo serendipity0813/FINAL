@@ -10,11 +10,16 @@ public class ChoiceUIController : ButtonHandler
     [SerializeField] private TextMeshProUGUI m_gameDescriptionText;
     [SerializeField] private TextMeshProUGUI m_HighScoreText;
     [SerializeField] private TextMeshProUGUI m_MyScoreText;
-
+    [SerializeField] private GameObject m_cardBack;
+    [SerializeField] private GameObject[] m_cardBackImage;
 
     
     private void Start()
     {
+        Invoke("CardFlip", 0.3f);
+        m_cardBackImage[Random.Range(0, 84)].SetActive(true);
+        EffectSoundManager.Instance.PlayEffect(38);
+
         int gameNumber = MiniGameManager.Instance.GameNumber;
         if(gameNumber == 0)
         {
@@ -33,6 +38,9 @@ public class ChoiceUIController : ButtonHandler
 
     }
 
-
+    private void CardFlip()
+    {
+        m_cardBack.SetActive(false);
+    }
 
 }

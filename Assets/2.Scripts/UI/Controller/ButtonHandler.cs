@@ -30,7 +30,7 @@ public class ButtonHandler : MonoBehaviour
         MiniGameManager.Instance.GameNumber = 0;
         GameSceneManager.Instance.PopUpSelect(SCENES.GameChoiceScene);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
-        EffectSoundManager.Instance.PlayEffect(1);
+        //EffectSoundManager.Instance.PlayEffect(1);
     }
 
     public void GatchaClick()

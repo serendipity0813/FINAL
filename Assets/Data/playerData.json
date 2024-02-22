@@ -1,12 +1,12 @@
 {
     "name": "name",
-    "profileIndex": 17,
+    "profileIndex": 77,
     "level": 1,
     "exp": 6.0,
     "coin": 46600,
     "tutorial": true,
-    "bgmVolume": 0.3067994713783264,
-    "sfxVolume": 0.34300103783607485,
+    "bgmVolume": 0.3725256621837616,
+    "sfxVolume": 0.5296897292137146,
     "gameIndex": [
         0,
         1,
