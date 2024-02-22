@@ -103,7 +103,7 @@ public class JumpJump : MiniGameSetting
             if (m_clearCount <= 0)
             {
                 // 승리시 로직
-                Debug.Log("이겼다!");
+                //Debug.Log("이겼다!");
                 m_clearPrefab.SetActive(true);
                 m_end = true;
                 CameraManager.Instance.m_followEnabled = false;
@@ -112,7 +112,7 @@ public class JumpJump : MiniGameSetting
             if (m_timer <= 0f && m_clearCount > 0)
             {
                 // 패배시 로직
-                Debug.Log("졌다!");
+                //Debug.Log("졌다!");
                 m_failPrefab.SetActive(true);
                 m_end = true;
                 CameraManager.Instance.m_followEnabled = false;

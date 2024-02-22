@@ -3,20 +3,24 @@ using UnityEngine;
 public class ThiefGame : MiniGameSetting
 {
     [SerializeField] private GameObject[] m_models;//캐릭터 스킨들
-    [SerializeField] private GameObject m_player;//현재 플레이어가 선택한 캐릭터
+    [SerializeField] private GameObject m_thief;//태그가 Target인 도둑 오브젝트
+    [SerializeField] private GameObject m_citizen;//태그가 Player인 시민 오브젝트
     [SerializeField] private GameObject m_tree;//캐릭터들이 숨을 나무
-    [SerializeField] private GameObject m_mixingBox;//캐릭터들이 모여있는 풀
+    [SerializeField] private GameObject m_mixingBox;//캐릭터들이 들어가있는 오브젝트
+    [SerializeField] private GameObject m_disguiseEffect;//연기 이펙트
 
 
-    private GameObject[] m_thiefs;//필드에 배치된 캐릭터들
+    private GameObject[] m_characters;//필드에 배치된 캐릭터들
 
     private int[,] m_board = new int[3, 4];//캐릭을 섞을 보드판
     private int m_characterNum = 4;//도둑 포함 캐릭터 개수 (첫번째 캐릭터가 도둑)
-    private float m_maxTimer = 20.0f;//최대 시간
+    private float m_maxTimer = 17.0f;//최대 시간
     private float m_timer;//타이머
     private bool m_once = true;//한번만 작동
     private bool m_suffle = true;//여러번 섞는 것을 방지
     private bool m_end = false;//게임 종료 확인 bool
+    private int m_difficulty = 0;
+    private float m_multiplier = 1.0f;//난이도에 따라 증가할 속도 배율 (섞는 속도)
 
     private Camera m_camera;//현재 포커싱 카메라
 
@@ -30,11 +34,13 @@ public class ThiefGame : MiniGameSetting
     {
         m_missionText.text = "진짜 도둑을 잡아라!";
         m_timer = m_maxTimer;
+        m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
+        m_multiplier = 1.05f - (m_difficulty * 0.05f);//난이도가 증가할 수록 5% 빠르게
 
         CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
         m_camera = CameraManager.Instance.GetCamera();
 
-        m_thiefs = new GameObject[m_characterNum];
+        m_characters = new GameObject[m_characterNum];
 
         //보드판 초기화
         for (int x = 0; x < 3; x++)
@@ -45,7 +51,7 @@ public class ThiefGame : MiniGameSetting
             }
         }
 
-        {
+        {//캐릭터 랜덤 배치
             int CharacterNum = 1;
             while (CharacterNum <= m_characterNum)//배치된 캐릭터 수가 적을 경우
             {
@@ -63,9 +69,36 @@ public class ThiefGame : MiniGameSetting
             }
         }
 
+        {//캐릭터 생성
+            int index = PlayerDataManager.instance.GetSkin();
+            int randSkin = Random.Range(0, m_models.Length);
 
+            //랜덤으로 고른 스킨이 착용 스킨과 동일할 때
+            if (index == randSkin)
+            {
+                randSkin = randSkin + 1 > m_models.Length ? randSkin - 1 : randSkin + 1;//배열 초과하지 않는 선에서 번호를 한칸 내리거나 올리기
+            }
 
+            for (int i = 0; i < m_characters.Length; i++)
+            {
+                if (i < 1)//첫번째 캐릭터는 도둑
+                {
+                    m_characters[i] = Instantiate(m_thief, m_mixingBox.transform);//도둑 배치
+                    Instantiate(m_models[randSkin], m_characters[i].transform);//스킨 적용
+                }
+                else
+                {
+                    m_characters[i] = Instantiate(m_citizen, m_mixingBox.transform);//시민 배치
+                    Instantiate(m_models[index], m_characters[i].transform);//스킨 적용
+                }
 
+                //하단에 캐릭터들을 차례대로 나열
+                Vector3 pos = new Vector3(i * 2 - 3.0f, -4.0f, -6.0f);
+                m_characters[i].transform.position = pos;
+            }
+        }
+
+        //나무 생성
         for (int x = 0; x < 3; x++)
         {
             for (int y = 0; y < 4; y++)
@@ -75,33 +108,6 @@ public class ThiefGame : MiniGameSetting
                 obj.transform.position = pos;
             }
         }
-
-
-        {
-            int count = 0;
-
-            for (int x = 0; x < 3; x++)
-            {
-                for (int y = 0; y < 4; y++)
-                {
-                    if (m_board[x, y] != 0)
-                    {
-                        Vector3 pos = new Vector3(x * 3 - 3.0f, -4f, y * 3 - 6f);
-
-                        m_thiefs[count] = Instantiate(m_player, m_mixingBox.transform);//캐릭터들을 배치
-                        m_thiefs[count].transform.position = pos;
-                        count++;
-                    }
-                }
-            }
-        }
-
-        //캐릭터 스킨 입히기 Test 랜덤으로 입히게 해두었음
-        foreach (GameObject obj in m_thiefs)
-        {
-            int index = Random.Range(0, m_models.Length);
-            Instantiate(m_models[index], obj.transform);
-        }
     }
 
     private void Update()
@@ -109,27 +115,31 @@ public class ThiefGame : MiniGameSetting
         //시간과 카운트 반영되는 코드
         m_timeText.text = m_timer.ToString("0.00");
         m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;//타이머 감소
-        Debug.Log(m_timer);
 
+        //미션 Ui 출력
         if (m_timer < m_maxTimer - 1.0f && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer < m_maxTimer - 2.0f && m_missionPrefab.activeSelf == true)
             m_missionPrefab.SetActive(false);
 
 
-        if (m_timer < m_maxTimer - 3.0f && m_once)
+        if (m_timer < m_maxTimer - 2.5f && m_once)//시작후 3초뒤에 나무 뒤로 숨기
         {
-            Hide();
+            int index = PlayerDataManager.instance.GetSkin();
+            Destroy(m_characters[0].transform.GetChild(0).gameObject);//도둑 변장
+            Instantiate(m_models[index], m_characters[0].transform);//스킨 적용
+            Instantiate(m_disguiseEffect, m_characters[0].transform);//연기 이펙트 출력
+            Invoke("Hide", 2.0f);
             m_once = false;
         }
 
-        if (m_timer < m_maxTimer - 6.0f && m_suffle)
+        if (m_timer < m_maxTimer - 6.0f && m_suffle)//5초 후 도둑 섞기
         {//1초마다 총 5번 실행되게
-            Invoke("Suffle", 1.0f);//약간의 시간차를 두어 도둑 섞기
-            Invoke("Suffle", 2.0f);//약간의 시간차를 두어 도둑 섞기
-            Invoke("Suffle", 3.0f);//약간의 시간차를 두어 도둑 섞기
-            Invoke("Suffle", 4.0f);//약간의 시간차를 두어 도둑 섞기
-            Invoke("Suffle", 5.0f);//약간의 시간차를 두어 도둑 섞기
+            Invoke("Suffle", 1.0f * m_multiplier);//약간의 시간차를 두어 도둑 섞기
+            Invoke("Suffle", 2.0f * m_multiplier);//약간의 시간차를 두어 도둑 섞기
+            Invoke("Suffle", 3.0f * m_multiplier);//약간의 시간차를 두어 도둑 섞기
+            Invoke("Suffle", 4.0f * m_multiplier);//약간의 시간차를 두어 도둑 섞기
+            Invoke("Suffle", 5.0f * m_multiplier);//약간의 시간차를 두어 도둑 섞기
             m_suffle = false;
         }
 
@@ -150,7 +160,7 @@ public class ThiefGame : MiniGameSetting
                 {
                     if (hit.collider.tag == "Target")//타겟을 터치했을 경우 승리
                     {
-                        EffectSoundManager.Instance.PlayEffect(21);
+                        EffectSoundManager.Instance.PlayEffect(27);
                         m_clearPrefab.SetActive(true);
                         Invoke("GameClear", 1);
                         m_end = true;
@@ -167,7 +177,7 @@ public class ThiefGame : MiniGameSetting
 
         }
 
-        if (m_timer <= 0.0f && !m_end)//5초가 지나고 못찾았을 경우
+        if (m_timer <= 0.0f && !m_end)//못찾았을 경우
         {
             EffectSoundManager.Instance.PlayEffect(22);
             m_failPrefab.SetActive(true);
@@ -186,7 +196,8 @@ public class ThiefGame : MiniGameSetting
             if (result)//성공 했을 경우 탈출
                 break;
         }
-
+        //걷는 소리 출력
+        EffectSoundManager.Instance.PlayEffect(20);
 
         for (int x = 0; x < 3; x++)
         {
@@ -195,16 +206,21 @@ public class ThiefGame : MiniGameSetting
                 if (m_board[x, y] != 0)
                 {
                     Vector3 pos = new Vector3(x * 3 - 3.0f, -4f, y * 3 - 4.5f);
-                    ShuffleThief m = m_thiefs[m_board[x, y] - 1].transform.GetComponent<ShuffleThief>();
+                    ShuffleThief m = m_characters[m_board[x, y] - 1].transform.GetComponent<ShuffleThief>();
                     m.MoveToPoint(pos);
                 }
             }
         }
+
+        m_timer = 7.0f;
     }
+
 
     //캐릭터들을 나무에 숨기기
     private void Hide()
     {
+        float speed = 1.0f + (m_difficulty * 0.2f);//이동속도도 난이도에 따라 빠르게
+
         for (int x = 0; x < 3; x++)
         {
             for (int y = 0; y < 4; y++)
@@ -212,7 +228,8 @@ public class ThiefGame : MiniGameSetting
                 if (m_board[x, y] != 0)
                 {
                     Vector3 pos = new Vector3(x * 3 - 3.0f, -4f, y * 3 - 4.5f);
-                    ShuffleThief m = m_thiefs[m_board[x, y] - 1].transform.GetComponent<ShuffleThief>();
+                    ShuffleThief m = m_characters[m_board[x, y] - 1].transform.GetComponent<ShuffleThief>();
+                    m.SetSpeed(speed);
                     m.MoveToPoint(pos);
                 }
             }

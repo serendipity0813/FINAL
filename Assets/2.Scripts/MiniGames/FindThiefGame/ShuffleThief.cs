@@ -5,7 +5,7 @@ public class ShuffleThief : MonoBehaviour
     private Rigidbody m_rigidbody;//캐릭터의 Rigidbody
     private Vector3 m_targetPosition;//캐릭터의 이동 포인트
     private Vector3 m_velocity;//캐릭터의 속도
-    private float m_speed = 5.0f;//이동 속도
+    private float m_speed = 6.0f;//이동 속도
     private bool m_move = false;//캐릭터의 이동 가능 여부
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class ShuffleThief : MonoBehaviour
             m_velocity = m_targetPosition - transform.position;
             if (m_velocity.magnitude < 0.1f)//이동 목표와 매우 가까우면 이동 중지
             {
+                m_rigidbody.velocity = Vector3.zero;
                 m_move = false;
             }
             else
@@ -38,10 +39,10 @@ public class ShuffleThief : MonoBehaviour
         m_move = true;
     }
 
-    //캐릭터의 이동속도 설정
-    public void SetSpeed(float speed)
+    //캐릭터의 이동속도 설정 배율
+    public void SetSpeed(float multiplier)
     {
-        m_speed = speed;
+        m_speed = 6.0f * multiplier;
     }
 
 }

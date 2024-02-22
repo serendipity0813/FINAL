@@ -967,7 +967,7 @@ MonoBehaviour:
   - name: "\uBB3C\uAC74\uC313\uAE30(\uCC71)1 - 19"
     SoundEffect: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
   - name: "\uAC77\uB294\uC18C\uB9AC1 - 20"
-    SoundEffect: {fileID: 8300000, guid: 72771d0498f583049998affbc092b4fc, type: 3}
+    SoundEffect: {fileID: 8300000, guid: e7d4912bd160ec240a48ff27e2a26cf4, type: 3}
   - name: "\uC131\uACF51 - 21"
     SoundEffect: {fileID: 8300000, guid: d219c39fe7a6d204195ec5982f1bd0cf, type: 3}
   - name: "\uC2E4\uD3281 - 22"
@@ -1519,10 +1519,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab147a8f519b174d838a3e5700cf936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AudioSource: {fileID: 0}
   bgm:
   - name: "\uBA54\uC778 \uBE0C\uAE08 0"
     BGM: {fileID: 8300000, guid: 957ae735798eb12499413199ded15aa1, type: 3}
+  m_AudioSource: {fileID: 0}
 --- !u!82 &1871794269
 AudioSource:
   m_ObjectHideFlags: 0
