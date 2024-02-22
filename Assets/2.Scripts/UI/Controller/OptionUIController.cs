@@ -32,7 +32,8 @@ public class OptionUIController : ButtonHandler
     private void SFXVolumeChanged(float volume)
     {
         // SFX볼륨 값을 조절합니다.
-        EffectSoundManager.Instance.m_AudioSource.volume = volume;
+        EffectSoundManager.Instance.m_AudioSource1.volume = volume;
+        EffectSoundManager.Instance.m_AudioSource2.volume = volume;
         PlayerDataManager.instance.m_playerData.sfxVolume = volume;
     }
     //설정창 내부 버튼 클릭시 관련 링크로 이동하는 메소드
