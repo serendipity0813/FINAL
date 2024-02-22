@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4291324029751293526}
   - component: {fileID: 8738370893581913041}
+  - component: {fileID: 7324077910435921379}
   m_Layer: 0
   m_Name: SelectScene
   m_TagString: Untagged
@@ -239,6 +240,27 @@ MonoBehaviour:
   - {fileID: 7413943981560771235}
   - {fileID: 2930274466817585030}
   - {fileID: 9221283431346601452}
+--- !u!95 &7324077910435921379
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693476144972829453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ec9766872d90dd44ad8d04a4380adff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2059848668746654621
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,7 @@ public class GameOverSceneAnimation : MonoBehaviour
         Stars[m_startNumber].SetActive(true);
         StarsBGEffects[m_startNumber].SetActive(true);
         m_startNumber++;
+        EffectSoundManager.Instance.PlayEffect(33);
         if (m_startNumber == 5)
             CancelInvoke("StarOn");
     }
