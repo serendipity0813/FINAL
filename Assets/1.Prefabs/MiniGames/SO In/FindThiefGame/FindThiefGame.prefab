@@ -422,10 +422,13 @@ MonoBehaviour:
   - {fileID: 6102047733335239236, guid: eb45f4487a5532f4e84f40a971e033d1, type: 3}
   - {fileID: 8092111304452072287, guid: d2c792d97f2551240bd256988d694732, type: 3}
   - {fileID: 8540382953508305378, guid: 3f07d600397287c468fdf0f662798e90, type: 3}
-  m_player: {fileID: 3239239720373688950, guid: 81ab3f8a2e59cdd41922d3dcde063820,
+  m_thief: {fileID: 3239239720373688950, guid: 6c9154bda94704d43b21ecec2b57db23, type: 3}
+  m_citizen: {fileID: 3239239720373688950, guid: 81ab3f8a2e59cdd41922d3dcde063820,
     type: 3}
   m_tree: {fileID: 7948489742492098918, guid: cd6b52e211c92844d93027c28cb4a81f, type: 3}
   m_mixingBox: {fileID: 303002546702347072}
+  m_disguiseEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845,
+    type: 3}
 --- !u!1 &7347410459909420959
 GameObject:
   m_ObjectHideFlags: 0

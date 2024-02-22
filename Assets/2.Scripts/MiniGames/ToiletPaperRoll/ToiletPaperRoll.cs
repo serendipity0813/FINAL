@@ -100,7 +100,7 @@ public class ToiletPaperRoll : MiniGameSetting
             {
                 // 승리시 로직
                 m_winCount = 0;
-                Debug.Log("이겼다!");
+                //Debug.Log("이겼다!");
                 m_clearPrefab.SetActive(true);
                 m_end = true;
                 EffectSoundManager.Instance.PlayEffect(8);
@@ -109,7 +109,7 @@ public class ToiletPaperRoll : MiniGameSetting
             if (m_timer <= 0f && m_winCount > 0)
             {
                 // 패배시 로직
-                Debug.Log("졌다!");
+                //Debug.Log("졌다!");
                 m_failPrefab.SetActive(true);
                 m_end = true;
                 Invoke("GameFail", 1);

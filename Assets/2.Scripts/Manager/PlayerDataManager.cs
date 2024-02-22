@@ -166,13 +166,28 @@ public class PlayerDataManager : MonoBehaviour
             }
             else
                 m_playerData.equipSkin[i] = false;
- 
         }
 
         SaveJson();
         LoadJson();
+    }
 
+    public int GetSkin()
+    {
+        int count = 0;
 
+        foreach(bool result in m_playerData.equipSkin)
+        {
+            if(result)//착용중인 스킨이 있으면 Count(스킨 번호) 리턴
+            {
+                return count;
+            }
+
+            count++;
+        }
+        
+        //착용중인 스킨이 하나도 없을 경우 가장 첫번째 스킨 리턴
+        return 0;
     }
 
     private void OnApplicationQuit()

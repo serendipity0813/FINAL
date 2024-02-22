@@ -40,7 +40,6 @@ public class RotateRope : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             m_inside = true;
-           // Debug.Log("Enter!");
         }
     }
 
@@ -49,7 +48,6 @@ public class RotateRope : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             m_inside = false;
-           // Debug.Log("Exit!");
         }
     }
 }
