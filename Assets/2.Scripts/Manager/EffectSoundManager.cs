@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +15,8 @@ public class EffectSoundManager : MonoBehaviour
     [SerializeField] private List<SoundEffects> soundEffects = new List<SoundEffects>();
 
     public static EffectSoundManager Instance;
-    public AudioSource m_AudioSource;
+    public AudioSource m_AudioSource1;
+    public AudioSource m_AudioSource2;
 
     private void Awake()
     {
@@ -31,9 +31,9 @@ public class EffectSoundManager : MonoBehaviour
     }
     private void Start()
     {
-        m_AudioSource = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
-        m_AudioSource.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
-
+        m_AudioSource1 = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
+        m_AudioSource1.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
+        m_AudioSource2 = gameObject.AddComponent<AudioSource>();
     }
 
     // 특정 효과음 재생
@@ -41,11 +41,15 @@ public class EffectSoundManager : MonoBehaviour
     // ()안에 int 값 사운드 인덱스 기입
     public void PlayEffect(int index)
     {
-        m_AudioSource.PlayOneShot(soundEffects[index].SoundEffect);
+        m_AudioSource1.PlayOneShot(soundEffects[index].SoundEffect);
     }
-
+    public void PlayEffectPitch(int index, float pitch)
+    {
+        m_AudioSource2.pitch = pitch;
+        m_AudioSource2.PlayOneShot(soundEffects[index].SoundEffect);
+    }
     public void StopEffect()
     {
-        m_AudioSource.Stop();
+        m_AudioSource1.Stop();
     }
 }
