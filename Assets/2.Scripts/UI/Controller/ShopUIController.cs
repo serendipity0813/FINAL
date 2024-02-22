@@ -18,7 +18,6 @@ public class ShopUIController : ButtonHandler
     private int m_itemCode = 0;
     private int m_itemPrice = 0;
 
-
     private void Start()
     {
         PlayerAvatarCheck();
@@ -28,6 +27,7 @@ public class ShopUIController : ButtonHandler
     {
         m_playerMoneyText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
     }
+
 
 
     public void ShopTaps(int num)
