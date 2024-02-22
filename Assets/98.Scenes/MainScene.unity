@@ -876,7 +876,7 @@ MonoBehaviour:
   - {fileID: 2037393615647778304, guid: ac3c622b8cae7f1408c96edd1fcd6638, type: 3}
   - {fileID: 6314318539012514432, guid: 20afb42b8869b4b49a64dd109ce9c5b1, type: 3}
   - {fileID: 7970770015281672831, guid: bcb747f0ebfb79848b0d9e1e6fce3eee, type: 3}
-  - {fileID: 2107765846953220489, guid: b90ab4820c1831d45b30696e8970e393, type: 3}
+  - {fileID: 2107765846953220489, guid: e62cbe8c6acff9345960172af9629f5e, type: 3}
   - {fileID: 8347239769962162959, guid: 2993a7e387a3a04419fd63a242d89873, type: 3}
   - {fileID: 216351856020000423, guid: 77385d2cf0afb444eb513a7ff1d29e67, type: 3}
   m_lightsObject: {fileID: 1182007259}
@@ -1004,7 +1004,8 @@ MonoBehaviour:
     SoundEffect: {fileID: 8300000, guid: b38e32c15190b454c8d13431438079d9, type: 3}
   - name: "\uB4A4\uC9D1\uAE30 - 3"
     SoundEffect: {fileID: 8300000, guid: 75ca6dd8cc2b0794abce1d97b5a37690, type: 3}
-  m_AudioSource: {fileID: 0}
+  m_AudioSource1: {fileID: 0}
+  m_AudioSource2: {fileID: 0}
 --- !u!82 &918395805
 AudioSource:
   m_ObjectHideFlags: 0

@@ -99,6 +99,8 @@ public class SelectSceneController : ButtonHandler
         m_shootingBalls[m_shootingBallIndex].transform.position = m_shootingBallPosition;
         m_shootingBallRigidBody = m_shootingBalls[m_shootingBallIndex].GetComponent<Rigidbody>();
         m_shootingBallIndex++;
+
+        EffectSoundManager.Instance.PlayEffect(17);
     }
 
    
