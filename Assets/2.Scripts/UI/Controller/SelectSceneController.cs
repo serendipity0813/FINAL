@@ -34,27 +34,30 @@ public class SelectSceneController : ButtonHandler
 
     public  void UpShoot()
     {
-        float x = UnityEngine.Random.Range(-3.0f, 3.0f);
+        float x = m_Walls[3].transform.position.x - (float)0.1;
+        float xrange = UnityEngine.Random.Range(-x, x);
         float z = m_Walls[1].transform.position.z + (float)0.1;
-        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        m_shootingBallPosition = new Vector3(xrange, (float)-1.5, z);
         ShootReady();
         m_shootingBallRigidBody.AddForce(new Vector3(0, 0, 1) * 25.0f, ForceMode.Impulse);
     }
 
     public void DownShoot()
     {
-        float x = UnityEngine.Random.Range(-3.0f, 3.0f);
+        float x = m_Walls[3].transform.position.x - (float)0.1;
+        float xrange = UnityEngine.Random.Range(-x, x);
         float z = m_Walls[0].transform.position.z - (float)0.1;
-        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        m_shootingBallPosition = new Vector3(xrange, (float)-1.5, z);
         ShootReady();
         m_shootingBallRigidBody.AddForce(new Vector3(0,0,-1) * 25.0f, ForceMode.Impulse);
     }
 
     public void LeftShoot()
     {
-        float z = UnityEngine.Random.Range(-4.0f, 4.0f);
+        float z = m_Walls[0].transform.position.z - (float)0.1;
+        float zrange = UnityEngine.Random.Range(-z, z);
         float x = m_Walls[3].transform.position.x - (float)0.1;
-        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        m_shootingBallPosition = new Vector3(x, (float)-1.5, zrange);
         ShootReady();
         m_shootingBallRigidBody.AddForce(new Vector3(-1, 0, 0) * 25.0f, ForceMode.Impulse);
 
@@ -62,9 +65,10 @@ public class SelectSceneController : ButtonHandler
 
     public void RightShoot()
     {
-        float z = UnityEngine.Random.Range(-4.0f, 4.0f);
+        float z = m_Walls[0].transform.position.z - (float)0.1;
+        float zrange = UnityEngine.Random.Range(-z, z);
         float x = m_Walls[2].transform.position.x + (float)0.1;
-        m_shootingBallPosition = new Vector3(x, (float)-1.5, z);
+        m_shootingBallPosition = new Vector3(x, (float)-1.5, zrange);
         ShootReady();
         m_shootingBallRigidBody.AddForce(new Vector3(1, 0, 0) * 25.0f, ForceMode.Impulse);
     }

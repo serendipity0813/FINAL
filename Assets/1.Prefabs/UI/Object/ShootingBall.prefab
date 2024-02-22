@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 7882502641146588168}
   - component: {fileID: 6256292551687882372}
   - component: {fileID: 257740070633380693}
-  - component: {fileID: 821398240128812320}
   m_Layer: 0
   m_Name: ShootingBall
-  m_TagString: Target
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,15 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &821398240128812320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001476691300322687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a283cbeb106e144c9ff9f8b4d59bff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
