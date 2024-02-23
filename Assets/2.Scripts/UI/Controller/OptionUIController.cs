@@ -44,12 +44,12 @@ public class OptionUIController : ButtonHandler
 
     public void GameInformationButton()
     {
-        Application.OpenURL("https://docs.google.com/spreadsheets/d/1hn1rmcynR9mKSCHu-gE9RO24Xt2r56avrzpsiET8xl4/edit?resourcekey#gid=1058894120");
+        Application.OpenURL("https://docs.google.com/spreadsheets/d/1WeTueDyjUVKyQzNplHUWa_qs2DJGZwVXGuRha3L0ydE/edit#gid=2123458165");
     }
 
     public void UpdateHistoryButton()
     {
-        Application.OpenURL("https://docs.google.com/spreadsheets/d/1hn1rmcynR9mKSCHu-gE9RO24Xt2r56avrzpsiET8xl4/edit?resourcekey#gid=0");
+        Application.OpenURL("https://docs.google.com/spreadsheets/d/1WeTueDyjUVKyQzNplHUWa_qs2DJGZwVXGuRha3L0ydE/edit#gid=426127723");
     }
 
     public void QuitBtn()
