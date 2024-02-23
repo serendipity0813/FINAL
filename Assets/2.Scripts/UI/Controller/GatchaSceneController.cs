@@ -13,6 +13,7 @@ public class GatchaSceneController : ButtonHandler
 
     public void AdClick()
     {
+        EffectSoundManager.Instance.PlayEffect(2);
         Debug.Log("광고보기");
     }
 

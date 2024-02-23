@@ -51,7 +51,7 @@ public class SelectSceneController : ButtonHandler
     public void LeftShoot()
     {
         float z = m_Walls[0].transform.position.z - (float)0.1;
-        float zrange = UnityEngine.Random.Range(-z, z);
+         float zrange = UnityEngine.Random.Range(-z, z);
         float x = m_Walls[3].transform.position.x - (float)0.1;
         m_shootingBallPosition = new Vector3(x, (float)-1.5, zrange);
         ShootReady();
