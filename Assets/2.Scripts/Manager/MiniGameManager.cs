@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -141,7 +140,7 @@ public class MiniGameManager : MonoBehaviour
 
 
     // 코드가 길어져서 가독성을 위해 메소드로 변환
-    private void GameSave()
+    public void GameSave()
     {
         //플레이어 리워드 계산 코드
         PlayerDataManager.instance.MinigameRewardCheck();

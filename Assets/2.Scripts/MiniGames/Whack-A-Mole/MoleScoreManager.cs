@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI; // Include this if you're using UI elements
 
 public class ScoreManager : MonoBehaviour
 {

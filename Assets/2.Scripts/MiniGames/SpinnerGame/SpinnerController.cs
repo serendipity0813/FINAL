@@ -19,10 +19,10 @@ public class SpinnerController : MonoBehaviour
         m_rigidbody.maxAngularVelocity = 50; // 돌아가는 스피드 max 값
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        Spin();
         SpinCheck();
+        Spin();
     }
 
     // 한바퀴 돌았는지 판단
