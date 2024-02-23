@@ -43,14 +43,14 @@ public class LoopParticle : MonoBehaviour
         particle.Play();
     }
 
-    //// 활성화시 이벤트 등록
-    //private void OnEnable()
-    //{
-    //    Event += OnParticleSystemStopped;
-    //}
-    //// 비활성화시 이벤트 해제
-    //private void OnDisable()
-    //{
-    //    Event -= OnParticleSystemStopped;
-    //}
+    // 활성화시 이벤트 등록
+    private void OnEnable()
+    {
+        Event += OnParticleSystemStopped;
+    }
+    // 비활성화시 이벤트 해제
+    private void OnDisable()
+    {
+        Event -= OnParticleSystemStopped;
+    }
 }
