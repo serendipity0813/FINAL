@@ -22,7 +22,7 @@ public class ToiletPaperRoll : MiniGameSetting
         {
             case 0:
             case 1:
-                m_maxTime = 15f;
+                m_maxTime = 14f;
                 break;
             case 2:
                 m_maxTime = 12f;
@@ -37,13 +37,13 @@ public class ToiletPaperRoll : MiniGameSetting
         {
             case 0:
             case 1:
-                m_rollCount = 30;
+                m_rollCount = 60;
                 break;
             case 2:
-                m_rollCount = 40;
+                m_rollCount = 70;
                 break;
             case 3:
-                m_rollCount = 50;
+                m_rollCount = 80;
                 break;
         }
         m_timer = m_maxTime;

@@ -22,11 +22,10 @@ public class ToiletPaperRollController : MonoBehaviour
         m_rigidbody.maxAngularVelocity = toiletPaperRoll.m_angularVelocity; // 돌아가는 스피드 max 값
         paperQuaternion = Quaternion.Euler(0, 27.413f, 0); // paper 회전값
     }
-
-    void Update()
+    private void FixedUpdate()
     {
-        Roll();
         RollCheck();
+        Roll();
     }
 
     // 한바퀴 돌았는지 판단

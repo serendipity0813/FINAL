@@ -28,6 +28,11 @@ public class MiniGameManager : MonoBehaviour
         {
             Destroy(Instance);
         }
+        Invoke(nameof(FPSLimit), 1.5f);
+    }
+    private void FPSLimit()
+    {
+        Application.targetFrameRate = 60;
     }
 
     private void Start()

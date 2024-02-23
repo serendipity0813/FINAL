@@ -17,10 +17,14 @@ public class LoopParticle : MonoBehaviour
 
     void StartParticle()
     {
+        if (particle == null)
+        {
+            return;
+        }
         // 루프가 아니라면 파티클 시스템의 재생이 끝날 때마다
         // OnParticleStop 메서드 호출 등록
         var mainModule = particle.main;
-        if(!mainModule.loop)
+        if (!mainModule.loop)
         {
             mainModule.stopAction = ParticleSystemStopAction.Callback;
             particle.Stop(); // (시작 시 한 번 실행됨)
