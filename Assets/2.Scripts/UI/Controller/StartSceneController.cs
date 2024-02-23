@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StartSceneController : MonoBehaviour
@@ -35,14 +34,26 @@ public class StartSceneController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //Instantiate(Character, m_character.transform);  //캐릭터를 불러오는 부분
-        m_aniUpdater = m_character.transform.GetChild(0).GetComponent<AnimatorUpdater>();
-        m_aniUpdater.SleepCharacter();//캐릭터의 처음 등장 모션을 잠자기으로 변경
 
-        m_light = GameSceneManager.Instance.GetLight();
-        m_sun = m_light.transform.GetChild(0).GetComponent<Light>();
-        m_moon = m_light.transform.GetChild(1).GetComponent<Light>();
-        m_canvas.alpha = 1.0f;
+        //캐릭터의 애니메이션 스크립트를 받아오는 부분
+        for (int i = 0; i < m_character.transform.childCount; i++)
+        {
+            bool result = m_character.transform.GetChild(i).gameObject.activeSelf;
+
+            if (result)//SetActive가 true 일 경우 반복 탈출
+            {
+                m_aniUpdater = m_character.transform.GetChild(i).GetComponent<AnimatorUpdater>();
+                break;
+            }
+            
+        }
+
+        m_aniUpdater.SleepCharacter();//캐릭터의 처음 등장 모션을 잠자기로 변경
+
+        m_light = GameSceneManager.Instance.GetLight();//현재 씬의 조명 오브젝트를 받아옴
+        m_sun = m_light.transform.GetChild(0).GetComponent<Light>();//자식 오브젝트인 태양을 받아옴
+        m_moon = m_light.transform.GetChild(1).GetComponent<Light>();//자식 오브젝트인 달을 받아옴
+        m_canvas.alpha = 1.0f;//캔버스의 알파값 초기화
 
         Quaternion rotation = Quaternion.Euler(0.0f, 50.0f, 0.0f);//광원 회전 X를 0으로 초기화
         m_light.transform.rotation = rotation;
