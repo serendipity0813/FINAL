@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Player객체 안의 자식으로 발밑의 Collider가 Terrain과의 접촉 여부에 따라 땅에 닿아있는지 판별하는 클래스
