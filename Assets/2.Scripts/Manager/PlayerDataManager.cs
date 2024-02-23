@@ -20,10 +20,21 @@ public class PlayerDataManager : MonoBehaviour
             Destroy(instance);
         }
         // Json 데이터 위치 불러오기
-        path = Path.Combine(Application.dataPath, "Data", "playerData.json");
+        PlatformCheck();
         DataCheck();
     }
 
+    // Json 파일위치 전처리문
+    private void PlatformCheck()
+    {
+#if UNITY_ANDROID
+        path = Path.Combine(Application.persistentDataPath, "playerData.json");
+#elif UNITY_IOS
+    path = Path.Combine(Application.persistentDataPath, "playerData.json");
+#else
+    path = Path.Combine(Application.dataPath, "Data", "playerData.json");
+#endif
+    }
     private void DataCheck()
     {
         if (File.Exists(path))
