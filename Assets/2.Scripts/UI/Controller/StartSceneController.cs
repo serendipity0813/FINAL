@@ -27,13 +27,17 @@ public class StartSceneController : MonoBehaviour
 
     [SerializeField] TutorialUIController tutorialUIController;// 튜토리얼 관련
     private float m_timeRate = 0.0f;//총 진행 시간 %퍼센트로  
-    private float m_timeTakes = 3.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
+    private float m_sunsetTime = 3.0f;//밤에서 낮으로 바뀌는데 걸리는 시간
     private float m_alphaTime = 4.0f;//UI 투명화까지 걸리는 시간 (곱 연산)
-    private bool m_once = true;
+    private float m_maxTimer = 10.0f;//초기 타이머
+    private float m_timer;//전체 타이머
+    private bool m_nextDay = true;//화면 터치하여 낮으로 변경 false로 변경 & 중복 호출 방지
+    private bool m_wake = true;//캐릭터 애니메이션 실행 false로 변경 & 중복 호출 방지
 
     // Start is called before the first frame update
     private void Start()
     {
+        m_timer = m_maxTimer;//타이머 세팅
 
         //캐릭터의 애니메이션 스크립트를 받아오는 부분
         for (int i = 0; i < m_character.transform.childCount; i++)
@@ -45,7 +49,7 @@ public class StartSceneController : MonoBehaviour
                 m_aniUpdater = m_character.transform.GetChild(i).GetComponent<AnimatorUpdater>();
                 break;
             }
-            
+
         }
 
         m_aniUpdater.SleepCharacter();//캐릭터의 처음 등장 모션을 잠자기로 변경
@@ -62,27 +66,45 @@ public class StartSceneController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        bool result = TouchManager.instance.IsBegan();//화면 터치 했을 경우
-
-        if (result && m_once)
+        if (m_nextDay)
         {
-            m_once = false;//중복 클릭 방지 - Invoke를 여러번 할 수 있기 때문
+            bool result = TouchManager.instance.IsBegan();//화면 터치 했을 경우
 
-            Invoke("NextDay", m_timeTakes);//클릭하면 밤/낮 전환 이후 캐릭터 깨우기
-        }
-
-        if (!m_once)
+            if (result && m_nextDay)
+            {
+                m_nextDay = false;//중복 클릭 방지 - Invoke를 여러번 할 수 있기 때문
+            }
+        }else
         {
-            float add = Time.deltaTime / m_timeTakes;//진행 시간 퍼센트 계산
+            bool result = TouchManager.instance.IsBegan();//화면 터치 했을 경우
+            m_timer = m_timer < 0.0f ? 0.0f : m_timer - Time.deltaTime;
+
+            float add = Time.deltaTime / m_sunsetTime;//진행 시간 퍼센트 계산
             m_timeRate = m_timeRate >= 1.0f ? 1.0f : m_timeRate + add;//시간 비율이 1.0f을 넘으면 1.0f으로 고정
             Quaternion rotation = Quaternion.Euler(m_timeRate * 120.0f, 50.0f, 0.0f);//광원을 x축 120도 방향으로 돌리기
             m_light.transform.rotation = rotation;
+
+            if (m_timer <= m_maxTimer - m_sunsetTime && m_wake)
+            {
+                m_aniUpdater.WakeCharacter();//캐릭터 애니메이션 Trigger 발동 (한번만)
+                m_wake = false;//트리거 발동 후 false로
+            }
 
             if (m_canvas != null) //StartScene 프리펩에 Inspecter창에서 연결되어 있을 때
             {
                 m_canvas.alpha = 1.0f - m_timeRate * m_alphaTime;//1.0f 에서 시간에 따라 점점 줄어들게
             }
 
+            //클릭을 두번 했을 경우 바로 로비화면으로
+            if (result)
+            {
+                SkipAll();
+            }
+        }
+
+        if (m_timer <= 0.0f)
+        {
+            LobbyClick();
         }
 
         UpdateLighting(m_sun, sunColor, sunIntensity);
@@ -93,10 +115,27 @@ public class StartSceneController : MonoBehaviour
         RenderSettings.skybox.SetFloat("_Exposure", (m_timeRate * 2.0f + 1.0f) / 3.0f);//Skybox의 명암을 33퍼로 낮춰놨다가 아침이 되면서 100퍼로 바꾸게
     }
 
-    private void NextDay()
+    //한번 더 클릭하면 바로 로비화면으로 넘어가지게
+    private void SkipAll()
     {
-        m_aniUpdater.WakeCharacter();
-        Invoke("LobbyClick", 7.0f);//캐릭터가 일어나는데 걸리는 시간을 기다리고 씬 변경
+        m_timeRate = 1.0f;
+
+        m_canvas.alpha = 0.0f;//캔버스 투명도 바로 0으로
+
+        {//광원 바로 낮으로 변경
+            Quaternion rotation = Quaternion.Euler(120.0f, 50.0f, 0.0f);//광원을 x축 120도 방향으로 돌리기
+            m_light.transform.rotation = rotation;
+
+            UpdateLighting(m_sun, sunColor, sunIntensity);
+            UpdateLighting(m_moon, moonColor, moonIntensity);
+
+            RenderSettings.ambientIntensity = m_ambientIntensity.Evaluate(1.0f);//랜더 세팅에서 ambient를 Inspect창의 곡선 그래프대로 변경
+            RenderSettings.reflectionIntensity = m_reflectionIntensity.Evaluate(1.0f);//랜더 세팅에서 reflection을 Inspect창의 곡선 그래프대로 변경
+            RenderSettings.skybox.SetFloat("_Exposure", 1.0f);//Skybox의 명암을 33퍼로 낮춰놨다가 아침이 되면서 100퍼로 바꾸게
+        }
+
+
+        LobbyClick();
     }
 
     private void UpdateLighting(Light lightSource, Gradient colorGradiant, AnimationCurve intensityCurve)
