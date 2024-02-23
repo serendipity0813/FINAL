@@ -12,7 +12,12 @@ public class SlimeCatchMovement : MonoBehaviour
 
     private void Start()
     {
-      
+        var outline = gameObject.AddComponent<Outline>();
+
+        outline.OutlineMode = Outline.Mode.OutlineAll;
+        outline.OutlineColor = Color.green;
+        outline.OutlineWidth = 2f;
+
         m_targetPosition = new Vector3(0, 0, 0);
         m_slimeSpeed = (PlayerDataManager.instance.m_playerData.stage / 3 + 1) * 0.03f + 0.07f;
     }

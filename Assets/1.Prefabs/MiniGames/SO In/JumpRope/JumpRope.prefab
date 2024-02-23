@@ -996,7 +996,7 @@ Transform:
   - {fileID: 4244298955244321068}
   - {fileID: 7876257362409574048}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6259010891430268424
 MonoBehaviour:
@@ -2163,6 +2163,7 @@ GameObject:
   - component: {fileID: 5143118805364743376}
   - component: {fileID: 6878817561541074417}
   - component: {fileID: 690677948313571896}
+  - component: {fileID: 3266603728792296891}
   m_Layer: 2
   m_Name: Rope
   m_TagString: Rope
@@ -2238,6 +2239,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 3}
+--- !u!114 &3266603728792296891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8543269906940923464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.5882353, b: 0.39215684, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8690175846045866408
 GameObject:
   m_ObjectHideFlags: 0
