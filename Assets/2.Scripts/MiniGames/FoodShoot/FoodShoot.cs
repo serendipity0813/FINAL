@@ -60,6 +60,10 @@ public class FoodShoot : MiniGameSetting
     void Update()
     {
         UiTime();
+        CheckWinLose(); // 승리 패배 판단 함수 호출
+    }
+    private void FixedUpdate()
+    {
         Bullet(); // 보기 편하게 만들기 위해 함수로 변경
     }
     void UiTime()
@@ -102,7 +106,6 @@ public class FoodShoot : MiniGameSetting
                 if (Input.GetMouseButtonDown(0))  // 마우스 왼쪽 버튼 클릭 시
                 {
                     HitFood();  // 레이 발사 함수 호출
-                    CheckWinLose(); // 승리 패배 판단 함수 호출
                 }
             }
         }
