@@ -30,6 +30,12 @@ public class ButtonHandler : MonoBehaviour
         //EffectSoundManager.Instance.PlayEffect(1);
     }
 
+    public void MultiModeClick()
+    {
+        //EffectSoundManager.Instance.PlayEffect(1);
+        EffectSoundManager.Instance.PlayEffect(2);
+    }
+
     public void GatchaClick()
     {
         GameSceneManager.Instance.PopupClear();
