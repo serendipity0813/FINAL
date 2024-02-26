@@ -151,6 +151,7 @@ public class StartSceneController : MonoBehaviour
         else if (lightSource.intensity > 0 && !go.activeInHierarchy)
             go.SetActive(true);
     }
+
     private void LobbyClick()
     {
         if (PlayerDataManager.instance.m_playerData.tutorial)

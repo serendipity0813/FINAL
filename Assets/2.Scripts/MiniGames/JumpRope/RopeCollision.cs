@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class RopeCollision : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.CompareTag("Rope"))
+        if (other.transform.CompareTag("Player"))
         {
-            JumpRopeGame rg = transform.parent.GetComponent<JumpRopeGame>();
+            JumpRopeGame rg = transform.parent.parent.GetComponent<JumpRopeGame>();
             rg.SetCollision();
             rg.CheckWin();
         }
