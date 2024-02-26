@@ -18,9 +18,8 @@ public class LobbySceneController : ButtonHandler
         m_playerNameText.text = PlayerDataManager.instance.m_playerData.name;
         m_playerEXPText.text = PlayerDataManager.instance.m_playerData.exp.ToString() + "%";
         m_playerLevelText.text = PlayerDataManager.instance.m_playerData.level.ToString();
-        m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+        m_playerCoinText.text = PlayerDataManager.instance.ChangeNumber(PlayerDataManager.instance.m_playerData.coin.ToString());
         m_profiles[PlayerDataManager.instance.m_playerData.profileIndex].SetActive(true);
-
     }
 
 

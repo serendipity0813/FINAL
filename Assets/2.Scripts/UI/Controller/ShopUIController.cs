@@ -23,7 +23,7 @@ public class ShopUIController : ButtonHandler
 
     private void Update()
     {
-        m_playerMoneyText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+        m_playerMoneyText.text = PlayerDataManager.instance.ChangeNumber(PlayerDataManager.instance.m_playerData.coin.ToString());
     }
 
 

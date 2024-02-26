@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class PlayerDataManager : MonoBehaviour
 {
@@ -200,6 +203,35 @@ public class PlayerDataManager : MonoBehaviour
         return 0;
     }
 
+    // 코인 값 변경 메서드
+    public string ChangeNumber(string number)
+    {
+        if (instance.m_playerData.coin > 99999)
+        {
+            int unit = 0;
+            while (number.Length > 6)
+            {
+                unit++;
+                number = number.Substring(0, number.Length - 3);
+            }
+            if (number.Length > 3)
+            {
+                char[] unitAlphabet = new char[3] { 'K', 'M', 'B' };
+                int newInt = int.Parse(number);
+                if (number.Length > 4)
+                {
+                    return (newInt / 1000).ToString() + unitAlphabet[unit];
+                }
+                else
+                {
+                    return (newInt / 1000f).ToString("0.0") + unitAlphabet[unit];
+                }
+            }
+            else
+            { return number; }
+        }
+        else { return number; }
+    }
     private void OnApplicationQuit()
     {
         // 게임 종료 시 실행할 작업
