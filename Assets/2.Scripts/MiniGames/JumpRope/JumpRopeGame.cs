@@ -8,8 +8,8 @@ public class JumpRopeGame : MiniGameSetting
     private DragToMoveController m_dragToMoveController;
     private int m_difficuty;
     private int m_count = 0;
-    private bool m_collision = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
-
+    private bool m_isHit = false;//플레이어가 밧줄과 닿았는지 체크하는 함수
+    private bool m_end = false;
     private float m_timer = 3.0f;
 
     protected override void Awake()
@@ -26,14 +26,21 @@ public class JumpRopeGame : MiniGameSetting
         m_dragToMoveController = m_player.GetComponent<DragToMoveController>();
         m_dragToMoveController.SetJumpPower(500.0f);
         m_difficuty = m_difficulty1 * 3 + m_difficulty2 - 3;
+
+        m_count = 2 + m_difficuty;//넘어야 할 개수 초기화
         //인게임 text내용 설정 + 게임 승리조건
-        m_missionText.text = m_difficuty.ToString() + "회 줄넘기!";
+        m_missionText.text = m_count.ToString() + "회 줄넘기!";
+
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        m_dragToMoveController.UpdateMoveWithJump();
+        if (m_timer < 1)
+        {
+            m_dragToMoveController.UpdateMoveWithJump();
+        }
     }
 
 
@@ -41,7 +48,7 @@ public class JumpRopeGame : MiniGameSetting
     {
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
-        m_timeText.text = (12-m_timer).ToString("0.00");
+        m_timeText.text = (12 - m_timer).ToString("0.00");
         m_countText.text = m_count.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
@@ -54,7 +61,6 @@ public class JumpRopeGame : MiniGameSetting
         //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
         if (m_timer < 1)
         {
-            m_timePrefab.SetActive(true);
             m_countPrefab.SetActive(true);
         }
 
@@ -64,52 +70,50 @@ public class JumpRopeGame : MiniGameSetting
 
     public void CheckWin()
     {
-        bool result;       
-        switch (m_difficuty)
-        {
-            case 1:
-                result = m_count > 5 ? true : false;
-                break;
-            case 2:
-                result = m_count > 10 ? true : false;
-                break;
-            case 3:
-                result = m_count > 15 ? true : false;
-                break;
-            default:
-                //난이도가 필요없는 경우 무조건 지는 판정으로 
-                result = false;
-                break;
-        }
+        bool result;
 
-        if (result)//개수 제한을 넘겼을 때 승리
+        result = m_count <= 0 ? true : false;
+
+        if (!m_end)//게임이 안 끝난 상태일 때
         {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-            CameraManager.Instance.m_followEnabled = false;
-        }
-        else
-        {
-            if (m_collision)//개수 제한을 못넘기고 줄에 걸렸을 때 패배
+            if (result)//개수 제한을 넘겼을 때 승리
             {
-                m_failPrefab.SetActive(true);
-                Invoke("GameFail", 1);
+                EffectSoundManager.Instance.PlayEffect(21);
+                m_clearPrefab.SetActive(true);
+                Invoke("GameClear", 1);
                 CameraManager.Instance.m_followEnabled = false;
+                m_end = true;
+            }
+            else
+            {
+                if (m_isHit)//개수 제한을 못넘기고 줄에 걸렸을 때 패배
+                {
+                    EffectSoundManager.Instance.PlayEffect(22);
+                    m_failPrefab.SetActive(true);
+                    Invoke("GameFail", 1);
+                    CameraManager.Instance.m_followEnabled = false;
+                    m_end = true;
+                }
             }
         }
+
+
     }
 
     public void SetCollision()
     {
-        m_collision = true;
+        m_isHit = true;
     }
 
-    public void AddCount()
+    public void DecreaseCount()
     {
-        m_count++;
+        m_count--;
     }
 
-
+    public int GetDifficulty()
+    {
+        return m_difficulty1;
+    }
 
 
 }
