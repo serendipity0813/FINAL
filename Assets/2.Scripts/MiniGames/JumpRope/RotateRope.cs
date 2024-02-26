@@ -4,7 +4,7 @@ public class RotateRope : MonoBehaviour
 {
 
     private JumpRopeGame m_game;//부모 객체의 스크립트를 가져오기 위한 변수
-    private float m_rotateSpeed = 90.0f;//회전속도
+    private float m_rotateSpeed = 90.0f;//회전속도 초당 90도
     private bool m_once;//회전 한번에 하나만 카운트 하기 위한 변수
     private bool m_inside = false;//밧줄 안쪽에 들어왔는지 확인하는 변수
 
@@ -12,6 +12,11 @@ public class RotateRope : MonoBehaviour
     private void Start()
     {
         m_game = transform.parent.GetComponent<JumpRopeGame>();
+
+        Debug.Log(m_game.GetDifficulty());
+
+
+        //m_rotateSpeed = 90.0f + m_game.GetDifficulty();
     }
 
     private void Update()
@@ -23,7 +28,7 @@ public class RotateRope : MonoBehaviour
 
             if (!m_once)
             {
-                m_game.AddCount();
+                m_game.DecreaseCount();
                 m_game.CheckWin();
             }
 
