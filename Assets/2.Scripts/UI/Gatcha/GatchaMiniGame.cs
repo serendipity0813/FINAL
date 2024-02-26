@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class GatchaMiniGame : MonoBehaviour
     [SerializeField] private GameObject m_reward;
     [SerializeField] private TextMeshProUGUI m_rewardText;
     [SerializeField] private GameObject m_SpawnPosition;
+    [SerializeField] private Button m_OkButton;
     //[SerializeField] private GameObject[] m_miniGameIcons;
     private GameObject m_gameIconPrefab;
     private Animator gachaAnimation;
@@ -20,7 +22,7 @@ public class GatchaMiniGame : MonoBehaviour
     {
         m_gatchaBtn = GetComponent<Button>();
         if (m_gatchaBtn != null)
-        m_gatchaBtn.onClick.AddListener(GatchaActiveBtn);
+            m_gatchaBtn.onClick.AddListener(GatchaActiveBtn);
     }
     private void FixedUpdate()
     {
@@ -28,7 +30,7 @@ public class GatchaMiniGame : MonoBehaviour
         {
             m_gameIconPrefab.transform.GetChild(0).Rotate(Vector3.up, 100f * Time.deltaTime);
             m_gameIconPrefab.transform.GetChild(0).Rotate(Vector3.right, 50f * Time.deltaTime);
-            if(m_gameIconPrefab.transform.position.y <= 2.5f)
+            if (m_gameIconPrefab.transform.position.y <= 2.5f)
             {
                 m_gameIconPrefab.transform.Translate(Vector3.up * 3f * Time.deltaTime);
             }
@@ -81,7 +83,6 @@ public class GatchaMiniGame : MonoBehaviour
             //Debug.Log("코인이 부족합니다.");
         }
     }
-
     void GatchaLogic()
     {
         gachaAnimation = GameObject.Find("Chest_Animated").GetComponent<Animator>();
@@ -104,7 +105,7 @@ public class GatchaMiniGame : MonoBehaviour
                 m_gameIconPrefab.GetComponent<Rigidbody>().useGravity = false;
                 m_rewardText.text = MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.";
                 EffectSoundManager.Instance.PlayEffect(36);
-                m_reward.SetActive(true);
+                StartCoroutine(OkBtnCoroutine()); // 코루틴 실행
                 //Debug.Log(MiniGameManager.Instance.MiniGames.games[rnd].gameName + "게임을 얻었습니다.");
                 break;
             }
@@ -113,7 +114,16 @@ public class GatchaMiniGame : MonoBehaviour
 
     public void OkBtn()
     {
+        m_OkButton.gameObject.SetActive(false);
         m_reward.SetActive(false);
         Destroy(m_gameIconPrefab);
+    }
+    IEnumerator OkBtnCoroutine()
+    {
+        m_reward.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        m_OkButton.gameObject.SetActive(true);
+        m_OkButton.onClick.AddListener(OkBtn);
+        yield break;
     }
 }
