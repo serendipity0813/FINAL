@@ -1,6 +1,6 @@
 {
     "name": "name",
-    "profileIndex": 31,
+    "profileIndex": 49,
     "level": 1,
     "exp": 6.0,
     "coin": 46600,
@@ -79,9 +79,9 @@
     "equipSkin": [
         false,
         false,
+        false,
+        false,
         true,
-        false,
-        false,
         false,
         false,
         false,
