@@ -26,8 +26,8 @@ public class GameOverSceneController : ButtonHandler
         m_bonusPointNum = PlayerDataManager.instance.m_playerData.bonusPoint;
         m_totalPointNum = m_stagePointNum + m_timePointNum + m_bonusPointNum;
 
-        m_moneyText.text = m_moneyNum.ToString();
-        m_EXPText.text = m_ExpNum.ToString();
+        m_moneyText.text = "+" + m_moneyNum.ToString();
+        m_EXPText.text = "+" + m_ExpNum.ToString();
         m_stagePointText.text = m_stagePointNum.ToString();
         m_timePointText.text = m_timePointNum.ToString();
         m_bonusPointText.text = m_bonusPointNum.ToString();
