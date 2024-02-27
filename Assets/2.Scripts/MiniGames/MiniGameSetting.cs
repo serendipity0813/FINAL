@@ -79,13 +79,17 @@ public class MiniGameSetting : MonoBehaviour
     {
        MiniGameManager.Instance.m_isWin = true;
        MiniGameManager.Instance.EndCheck();
-       CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        m_timePrefab.SetActive(false);
+        m_countPrefab.SetActive(false);
+        CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
     protected void GameFail()
     {
         MiniGameManager.Instance.m_isWin = false;
         MiniGameManager.Instance.EndCheck();
+        m_timePrefab.SetActive(false);
+        m_countPrefab.SetActive(false);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
     }
 
