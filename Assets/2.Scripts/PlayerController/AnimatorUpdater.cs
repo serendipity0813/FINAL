@@ -10,19 +10,21 @@ public class AnimatorUpdater : MonoBehaviour
     private int m_isGround = Animator.StringToHash("IsGround");
     private int m_sleep = Animator.StringToHash("Sleep");
     private int m_wake = Animator.StringToHash("Wake");
+    private int m_sitting = Animator.StringToHash("Sit");
+    private int m_climb = Animator.StringToHash("Climb");
 
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
         m_controller = transform.parent.GetComponent<DragToMoveController>();//부모객체의 이동 스크립트를 받아옴
-       
+
         if (!m_controller)
         {
             Debug.Log("캐릭터의 부모 객체에 이동 스크립트가 없어 파라미터 업데이트 불가능");
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (m_controller)
         {
@@ -40,13 +42,23 @@ public class AnimatorUpdater : MonoBehaviour
 
     public void SleepCharacter()
     {
-       
+
         m_animator.SetTrigger(m_sleep);
     }
 
     public void WakeCharacter()
     {
         m_animator.SetTrigger(m_wake);
+    }
+
+    public void SitCharacter()
+    {
+        m_animator.SetTrigger(m_sitting);
+    }
+
+    public void ClimbCharacter()
+    {
+        m_animator.SetTrigger(m_climb);
     }
 }
 

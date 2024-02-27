@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class UpDownRopeGame : MiniGameSetting
 {
-    [HideInInspector]public int clearCount;
-    [HideInInspector]public int difficulty;
-    [HideInInspector]public float timer;
-    [SerializeField]private GameObject m_player;
-    [SerializeField]private GameObject m_obstacle;
-    private Vector3 m_playerPosition;
-    private float m_positiony;
+    [HideInInspector] public int clearCount;
+    [HideInInspector] public int difficulty;
+    [HideInInspector] public float timer;
+    [SerializeField] private GameObject m_player;
+    [SerializeField] private GameObject m_obstacle;
+
+    private Rigidbody m_playerRigidbody;
+    private Vector3 m_upVelocity;//사다리 오르는 방향
+    private Vector3 m_downVelocity;//내려가는 방향
+    private float m_climbSpeed = 5.0f;//오르고 내려가는 속도
+
     private bool m_end = false;
 
     protected override void Awake()
@@ -30,18 +34,39 @@ public class UpDownRopeGame : MiniGameSetting
         CameraManager.Instance.SetFollowTarget(m_player);
         CameraManager.Instance.m_followEnabled = true;
 
+        AnimatorUpdater animator = null;
+
+        //캐릭터의 애니메이션 스크립트를 받아오는 부분
+        for (int i = 0; i < m_player.transform.childCount; i++)
+        {
+            bool result = m_player.transform.GetChild(i).gameObject.activeSelf;
+
+            if (result)//SetActive가 true 일 경우 반복 탈출
+            {
+                animator = m_player.transform.GetChild(i).GetComponent<AnimatorUpdater>();
+                break;
+            }
+        }
+
+        if (animator != null)
+        {
+            animator.ClimbCharacter();//사다리 모션으로 변경
+        }
+
         //인게임 text내용 설정 + 게임 승리조건
-        clearCount = 1 + ((m_difficulty1 + m_difficulty2)/ 3);
+        clearCount = 1 + ((m_difficulty1 + m_difficulty2) / 3);
         m_missionText.text = "장애물을 피해 바닥까지 내려가자!";
         difficulty = m_difficulty1;
 
-        //맵의 위치값과 변동을 줄 y값 받아오기
-        m_playerPosition = m_player.transform.position;
-        m_positiony = m_playerPosition.y;
+        m_playerRigidbody = m_player.GetComponent<Rigidbody>();
 
-        for(int i=1; i <= m_difficulty2 + m_difficulty1 - 1; i++)
+        //Velocity 방향 초기화
+        m_upVelocity = Vector3.up * m_climbSpeed;
+        m_downVelocity = Vector3.down * m_climbSpeed;
+
+        for (int i = 1; i <= m_difficulty2 + m_difficulty1 - 1; i++)
         {
-             Instantiate(m_obstacle, m_obstacle.transform.position, Quaternion.identity, transform);
+            Instantiate(m_obstacle, m_obstacle.transform.position, Quaternion.identity, transform);
         }
 
     }
@@ -49,33 +74,33 @@ public class UpDownRopeGame : MiniGameSetting
     private void FixedUpdate()
     {
         //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
-        if (Input.GetMouseButton(0) && timer > 2)
+        if (TouchManager.instance.IsHolding() && timer > 2)
         {
             float direction = Input.mousePosition.y - ((float)Screen.height / 2);
 
-            if (m_positiony > -33 && direction < 0)
-                m_positiony -= Time.deltaTime * 7;
+            if (direction > 0)
+            {
+                m_playerRigidbody.velocity = m_upVelocity;//위쪽 클릭 시 위로 이동
+            }
+            else
+            {
+                m_playerRigidbody.velocity = m_downVelocity;//아래 클릭 시 아래로 이동
+            }
 
-            if (m_positiony < -1 && direction > 0)
-                m_positiony += Time.deltaTime * 7;
-        }
-
-        if(Input.GetMouseButtonDown(0))
             EffectSoundManager.Instance.PlayEffect(29);
-        else if(Input.GetMouseButtonUp(0))
+        }
+        else
+        {
             EffectSoundManager.Instance.StopEffect();
-
-
-
-        m_player.transform.position = new Vector3(m_playerPosition.x, m_positiony, m_playerPosition.z);
+        }
 
     }
 
     private void Update()
     {
-      
+
         //시간과 카운트 반영되는 코드
-        m_timeText.text = (17- timer).ToString("0.00");
+        m_timeText.text = (17 - timer).ToString("0.00");
         m_countText.text = clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
@@ -94,15 +119,15 @@ public class UpDownRopeGame : MiniGameSetting
 
         if (!m_end)
         {
-            //게임 승리조건
-            if (m_positiony < -32 && clearCount > 0)
-            {
-                EffectSoundManager.Instance.PlayEffect(21);
-                m_clearPrefab.SetActive(true);
-                timer = 10;
-                Invoke("GameClear", 1);
-                m_end = true;
-            }
+            ////게임 승리조건
+            //if (m_positiony < -32 && clearCount > 0)
+            //{
+            //    EffectSoundManager.Instance.PlayEffect(21);
+            //    m_clearPrefab.SetActive(true);
+            //    timer = 10;
+            //    Invoke("GameClear", 1);
+            //    m_end = true;
+            //}
 
             //게임 패배조건
             if (timer > 17 || clearCount <= 0)
@@ -114,10 +139,18 @@ public class UpDownRopeGame : MiniGameSetting
             }
 
         }
-      
-
-
     }
 
-
+    //제한시간 내로 결승선 Collider에 들어갔을 때 승리
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player" && !m_end)
+        {
+            EffectSoundManager.Instance.PlayEffect(21);
+            m_clearPrefab.SetActive(true);
+            timer = 10;
+            Invoke("GameClear", 1);
+            m_end = true;
+        }
+    }
 }
