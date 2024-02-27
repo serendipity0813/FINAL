@@ -2801,7 +2801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Test\uBC84\uC804\uC5D0\uC11C\uB294 \n\uC9C0\uC6D0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
+  m_text: "Test\uBC84\uC804 \uC784\uC2DC \uC9C0\uAE09"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a73485dca052d064383aa4f7d05d0ab9, type: 2}
   m_sharedMaterial: {fileID: -6505806928633570239, guid: a73485dca052d064383aa4f7d05d0ab9,
@@ -5486,7 +5486,7 @@ Transform:
   - {fileID: 2494583996283759288}
   - {fileID: 2374415807980485026}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8892776598140472319
 MonoBehaviour:
@@ -7010,7 +7010,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5000
+          m_IntArgument: 1002
           m_FloatArgument: 0
           m_StringArgument: ticket
           m_BoolArgument: 0
@@ -9309,7 +9309,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3000
+          m_IntArgument: 1001
           m_FloatArgument: 0
           m_StringArgument: ticket
           m_BoolArgument: 0
@@ -10765,7 +10765,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 9221032491949442505}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99987453
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15166,7 +15166,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10000
+          m_IntArgument: 1003
           m_FloatArgument: 0
           m_StringArgument: ticket
           m_BoolArgument: 0
