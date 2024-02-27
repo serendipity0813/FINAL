@@ -34,7 +34,7 @@ MonoBehaviour:
     gameIcon: {fileID: 8840508578367967388, guid: 5e7874dd8f7106c489c13dc624c7f2b4,
       type: 3}
     gameDescription: "\uB098\uD0C0\uB098\uB294 \uC74C\uC2DD\uC744 \uBAA8\uB450 \uBA39\uC5B4\uB77C"
-  - gameName: SlimeCatchGame
+  - gameName: SlimeCatch
     gameIndex: 3
     gamePrefab: {fileID: 5044721599280428100, guid: b5d0426f2d38cf844883e583363cdbb3,
       type: 3}
