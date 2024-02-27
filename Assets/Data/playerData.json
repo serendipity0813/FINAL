@@ -3,7 +3,7 @@
     "profileIndex": 49,
     "level": 1,
     "exp": 6.0,
-    "coin": 46600,
+    "coin": 41600,
     "tutorial": true,
     "bgmVolume": 0.3725256621837616,
     "sfxVolume": 0.5296897292137146,
@@ -73,7 +73,7 @@
         true,
         true,
         false,
-        false,
+        true,
         false
     ],
     "equipSkin": [
@@ -81,11 +81,11 @@
         false,
         false,
         false,
+        false,
+        false,
+        false,
+        false,
         true,
-        false,
-        false,
-        false,
-        false,
         false
     ]
 }
