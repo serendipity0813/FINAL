@@ -60,12 +60,6 @@ class DragToMoveController : MonoBehaviour
 
                     transform.rotation = Quaternion.LookRotation(hitpos, Vector3.up);
                 }
-                else
-                {
-                    hitpos = transform.position;//이외에는 플레이어 위치 그대로
-                }
-
-
             }
         }
     }
