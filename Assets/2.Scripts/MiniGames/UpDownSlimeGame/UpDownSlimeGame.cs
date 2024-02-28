@@ -29,7 +29,7 @@ public class UpDownSlimeGame : MiniGameSetting
         m_camera = CameraManager.Instance.GetCamera();
 
         //인게임 text내용 설정 + 게임 승리조건
-        m_clearCount = 7 + m_difficulty1*3;
+        m_clearCount = 6 + m_difficulty1*2;
         m_slimeSpawnRate = 0.4f;
         m_missionText.text = "튀어나오는 슬라임을 잡아라!";
         InvokeRepeating("MakeSlime", 2.0f, m_slimeSpawnRate);
@@ -68,21 +68,21 @@ public class UpDownSlimeGame : MiniGameSetting
                 m_end = true;
                 m_timer = 12;
                 m_clearPrefab.SetActive(true);
-                EffectSoundManager.Instance.PlayEffect(22);
+                EffectSoundManager.Instance.PlayEffect(21);
                 Invoke("GameClear", 1);
             }
        
         }
 
         //게임 패배조건
-        if (m_timer <= 0)
+        if (m_timer >= 12)
         {
             if(!m_end)
             {
                 m_end = true;
                 m_timer = 12;
                 m_failPrefab.SetActive(true);
-                EffectSoundManager.Instance.PlayEffect(21);
+                EffectSoundManager.Instance.PlayEffect(22);
                 Invoke("GameFail", 1);
             }
   
@@ -99,6 +99,7 @@ public class UpDownSlimeGame : MiniGameSetting
                 {
                     EffectSoundManager.Instance.PlayEffect(27);
                     hit.collider.gameObject.SetActive(false);
+                    m_clearCount--;
                 }
             }
         }

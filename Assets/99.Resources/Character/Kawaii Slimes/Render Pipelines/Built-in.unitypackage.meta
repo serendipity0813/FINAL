@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/99.Resources/Character/Kawaii Slimes/Render Pipelines/Built-in.unitypackage.meta
 guid: ead0ac616d1b6844d82a074b95ea0b6d
+========
+guid: 12519cb223a27bc458df257a90544ed1
+folderAsset: yes
+>>>>>>>> develop:Assets/1.Prefabs/MiniGames/SO In/UpDownSlimeGame.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

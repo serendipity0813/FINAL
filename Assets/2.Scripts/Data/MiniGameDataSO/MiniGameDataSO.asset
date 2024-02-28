@@ -38,7 +38,7 @@ MonoBehaviour:
     gameIndex: 3
     gamePrefab: {fileID: 5044721599280428100, guid: b5d0426f2d38cf844883e583363cdbb3,
       type: 3}
-    gameIcon: {fileID: 8840508578367967388, guid: 21518187367901747b3abaf728e29bfd,
+    gameIcon: {fileID: 8840508578367967388, guid: 203929112cc02d74ebb09e39ea5d5fde,
       type: 3}
     gameDescription: "\uC81C\uD55C\uC2DC\uAC04 \uC774\uB0B4\uC5D0 \uC2AC\uB77C\uC784\uC744
       \uC7A1\uC544\uB77C"
