@@ -39,17 +39,11 @@ public class StartSceneController : MonoBehaviour
     {
         m_timer = m_maxTimer;//타이머 세팅
 
-        //캐릭터의 애니메이션 스크립트를 받아오는 부분
-        for (int i = 0; i < m_character.transform.childCount; i++)
+
+        if (m_character != null)
         {
-            bool result = m_character.transform.GetChild(i).gameObject.activeSelf;
-
-            if (result)//SetActive가 true 일 경우 반복 탈출
-            {
-                m_aniUpdater = m_character.transform.GetChild(i).GetComponent<AnimatorUpdater>();
-                break;
-            }
-
+            PlayerCharacterController pcc = m_character.GetComponent<PlayerCharacterController>();
+            m_aniUpdater = pcc.GetPlayerAnimator();
         }
 
         m_aniUpdater.SleepCharacter();//캐릭터의 처음 등장 모션을 잠자기로 변경
