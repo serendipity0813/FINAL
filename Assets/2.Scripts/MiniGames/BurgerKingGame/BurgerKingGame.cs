@@ -142,19 +142,34 @@ public class BurgerKingGame : MiniGameSetting
 
     }
 
+    private void IngredientCheck()
+    {
+        if(m_playerBurger[m_count] != m_missionBurger[m_count])
+        {
+            EffectSoundManager.Instance.PlayEffect(22);
+            m_failPrefab.SetActive(true);
+            Invoke("GameFail", 1);
+        }
+        m_count++;
+    }
+
     private void ClearCheck()
     {
         bool clearFlag = true;
         //미션 버거와 만든 버거가 같은지 체크
-        for (int i=0; i<m_burgerLength; i++)
+        for (int i=0; i<m_count; i++)
         {
             if (m_playerBurger[i] != m_missionBurger[i])
+            {
                 clearFlag = false;
+            }
+
         }
 
         m_clear = clearFlag;
         m_count--;
     }
+
 
     //버튼 입력에 따라 버거 재료를 만들어주는 함수들
     public void BreadBtn()
@@ -163,9 +178,9 @@ public class BurgerKingGame : MiniGameSetting
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 0;
-            m_count++;
             m_burgerspawnPosition.y += (float)0.5;
             Instantiate(Bread, m_burgerspawnPosition, Quaternion.identity, transform);
+            IngredientCheck();
         }
       
     }
@@ -176,9 +191,9 @@ public class BurgerKingGame : MiniGameSetting
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 1;
-            m_count++;
             m_burgerspawnPosition.y += (float)0.5;
             Instantiate(Patty, m_burgerspawnPosition, Quaternion.identity, transform);
+            IngredientCheck();
         }
           
     }
@@ -189,9 +204,9 @@ public class BurgerKingGame : MiniGameSetting
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 2;
-            m_count++;
             m_burgerspawnPosition.y += (float)0.5;
             Instantiate(Vegetable, m_burgerspawnPosition, Quaternion.identity, transform);
+            IngredientCheck();
         }
           
     }
@@ -202,9 +217,9 @@ public class BurgerKingGame : MiniGameSetting
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 3;
-            m_count++;
             m_burgerspawnPosition.y += (float)0.5;
             Instantiate(Cheeze, m_burgerspawnPosition, Quaternion.identity, transform);
+            IngredientCheck();
         }
            
     }

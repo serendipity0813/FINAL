@@ -12,7 +12,10 @@ public class SlimeCatchMovement : MonoBehaviour
     {    
 
         m_targetPosition = new Vector3(0, 0, 0);
-        m_slimeSpeed = (PlayerDataManager.instance.m_playerData.stage / 3 + 1) * 0.03f + 0.07f;
+        if(PlayerDataManager.instance.m_playerData.stage < 10)
+          m_slimeSpeed = (PlayerDataManager.instance.m_playerData.stage / 3 + 1) * 0.03f + 0.07f;
+        else
+            m_slimeSpeed = 4 * 0.03f + 0.07f;
     }
 
     private void FixedUpdate()
