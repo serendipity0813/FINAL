@@ -50,7 +50,7 @@ public class ObstacleMovement : MonoBehaviour
     {
         if(other != null)
         {
-            if (other.gameObject.CompareTag("Target"))
+            if (other.gameObject.CompareTag("Player"))
             {
                 upDownRopeGame.clearCount--;
             }

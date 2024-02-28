@@ -737,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5660941765826215825}
-  - component: {fileID: 8844635438607224400}
+  - component: {fileID: 1010566525430857576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -770,7 +770,7 @@ Transform:
   m_Father: {fileID: 4936144967666646248}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8844635438607224400
+--- !u!114 &1010566525430857576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5292780406342625842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 159f1eda91cb62a47bbe1cbda713499e, type: 3}
+  m_Script: {fileID: 11500000, guid: 458e594c13ec68149aa52494cccb2f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5476011605531350101
