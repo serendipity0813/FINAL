@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeBallGame : MiniGameSetting
+public class UpDownSlimeGame : MiniGameSetting
 {
-    [SerializeField] private GameObject[] m_slimeBallSpawner;
-    [SerializeField] private GameObject m_slimeBall;
+    [SerializeField] private GameObject[] m_slimeSpawner;
+    [SerializeField] private GameObject m_slime;
     private int m_clearCount;
     private float m_timer;
     private Camera m_camera;
-    private float m_ballSpawnRate;
+    private float m_slimeSpawnRate;
 
     protected override void Awake()
     {
@@ -24,15 +24,15 @@ public class SlimeBallGame : MiniGameSetting
 
     private void Start()
     {
-        CameraManager.Instance.ChangeCamera(CameraView.Angle315View);
+        CameraManager.Instance.ChangeCamera(CameraView.Angle60View);
         m_camera = CameraManager.Instance.GetCamera();
 
         //인게임 text내용 설정 + 게임 승리조건
         m_clearCount = m_difficulty1;
-        m_ballSpawnRate = 1.0f;
+        m_slimeSpawnRate = 0.5f;
         //m_ballSpawnRate = 1 - m_difficulty1 * 2;
-        m_missionText.text = "떨어지는 슬라임을 잡아라!";
-        InvokeRepeating("MakeSlimeBall", 2.0f, m_ballSpawnRate);
+        m_missionText.text = "튀어나오는 슬라임을 잡아라!";
+        InvokeRepeating("MakeSlime", 2.0f, m_slimeSpawnRate);
 
     }
 
@@ -81,17 +81,15 @@ public class SlimeBallGame : MiniGameSetting
             {
                 if (hit.collider.tag == "Target")
                 {
-                    if(hit.collider.gameObject.transform.position.y < -50)
-                       hit.collider.gameObject.SetActive(false);
-
+                    hit.collider.gameObject.SetActive(false);
                 }
             }
         }
     }
 
-    private void MakeSlimeBall()
+    private void MakeSlime()
     {
-        Instantiate(m_slimeBall, m_slimeBallSpawner[Random.Range(0, 4)].transform.position, Quaternion.identity, transform);
+        Instantiate(m_slime, m_slimeSpawner[Random.Range(0, 25)].transform.position, Quaternion.identity, transform);
     }
 
 }

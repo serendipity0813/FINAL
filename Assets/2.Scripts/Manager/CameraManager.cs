@@ -6,7 +6,6 @@ public enum CameraView
     Angle90View,
     Angle60View,
     Angle30View,
-    Angle315View
 }
 
 [DefaultExecutionOrder(-2)]
