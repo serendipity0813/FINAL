@@ -34,10 +34,7 @@ public class CameraManager : MonoBehaviour
         {
             Destroy(Instance);
         }
-    }
 
-    private void Start()
-    {
         m_cameras = new Camera[m_cameraBox.transform.childCount];
 
         //카메라 박스 안의 자식개수만큼 반복
@@ -88,13 +85,6 @@ public class CameraManager : MonoBehaviour
         {
             if (m_targetObject != null) //타켓이 있을 때
                 m_cameraBox.transform.position = Vector3.Slerp(m_cameraBox.transform.position, m_targetObject.transform.position, m_followSpeed * Time.deltaTime);
-        }
-
-        if (!m_followEnabled) //Follow가 켜진 상태에서 전환될 때
-        {
-            m_followEnabled = false;
-            m_cameraBox.transform.position = Vector3.zero;//원래 위치로 되돌리기
-            m_targetObject = null;//타겟 초기화
         }
     }
 

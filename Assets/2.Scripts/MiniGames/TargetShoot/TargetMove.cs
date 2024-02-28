@@ -3,8 +3,8 @@ using UnityEngine;
 public class TargetMove : MonoBehaviour
 {
     private TargetShootGame targetShootGame;
-    private float m_speed;            // 이동 속도
-    private bool m_moveCheck = true;  // 방향 체크
+    private float m_speed;     // 이동 속도
+    private bool m_moveCheck;  // 방향 체크
     private void Awake()
     {
         targetShootGame = transform.GetComponentInParent<TargetShootGame>();
@@ -12,6 +12,12 @@ public class TargetMove : MonoBehaviour
     private void Start()
     {
         m_speed = targetShootGame.m_targetSpeed; // 스피드값 가져오기
+
+        int rnd = Random.Range(0, 2);
+        if (rnd == 0)
+            m_moveCheck = true;
+        else
+            m_moveCheck = false;
     }
     private void Update()
     {

@@ -31,6 +31,7 @@ public class MiniGameManager : MonoBehaviour
         }
         Invoke(nameof(FPSLimit), 1.5f);
     }
+
     private void FPSLimit()
     {
         Application.targetFrameRate = 60;

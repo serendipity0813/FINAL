@@ -12,7 +12,7 @@ class DragToMoveController : MonoBehaviour
     private bool m_isGround;//캐릭터가 땅에 닿아 있는지 확인하는 변수
     private bool m_rayHitted;//레이캐스트 hit한 물체가 있는지 확인하는 변수
 
-    private void Start()
+    private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody>();
         m_camera = CameraManager.Instance.GetCamera();//현재 작동중인 카메라를 받아옴

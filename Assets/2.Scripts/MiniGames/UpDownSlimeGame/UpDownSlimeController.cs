@@ -27,11 +27,9 @@ public class UpDownSlimeController : MonoBehaviour
 
 
 
-        //m_upSpeed = (PlayerDataManager.instance.m_playerData.stage % 3 + 1) * 0.01f + upRandom;
-        //m_downSpeed = (PlayerDataManager.instance.m_playerData.stage % 3 + 1) * 0.01f + downRandom;
+        m_upSpeed = (PlayerDataManager.instance.m_playerData.stage % 3 + 1) * 0.01f + upRandom;
+        m_downSpeed = (PlayerDataManager.instance.m_playerData.stage % 3 + 1) * 0.01f + downRandom;
 
-        m_upSpeed = 3 * 0.1f + upRandom;
-        m_downSpeed = 3 * 0.1f + downRandom;
 
         StartCoroutine(SlimeUpDownCoroutine());
     }

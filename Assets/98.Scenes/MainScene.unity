@@ -1102,6 +1102,79 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1102837299
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956058290166052804, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082958604413716626, guid: 56d13f940c08bfb48abd339b69f1617d,
+        type: 3}
+      propertyPath: m_Name
+      value: UpDownSlimeGame
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56d13f940c08bfb48abd339b69f1617d, type: 3}
 --- !u!1 &1168904794
 GameObject:
   m_ObjectHideFlags: 0

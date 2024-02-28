@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class JumpJumpFall : MonoBehaviour
 {
-    private JumpJumpBtn jumpJumpBtn;
+    private JumpJumpController jumpJumpController;
+    
 
     private void Awake()
     {
-        jumpJumpBtn = transform.parent.GetComponentInChildren<JumpJumpBtn>();
+        jumpJumpController = transform.parent.GetComponentInChildren<JumpJumpController>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        jumpJumpBtn.PlayerSave();
+        jumpJumpController.PlayerSave();
         EffectSoundManager.Instance.PlayEffect(18);
     }
 }

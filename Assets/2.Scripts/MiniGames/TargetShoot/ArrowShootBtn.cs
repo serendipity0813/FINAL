@@ -17,7 +17,7 @@ public class ArrowShootBtn : MonoBehaviour
     }
     private void Start()
     {
-        Invoke(nameof(isShootCoolTime), 1f); // 1초 뒤에 누를 수 있게
+        Invoke(nameof(isShootCoolTime), 2f); // 2초 뒤에 누를 수 있게
     }
     private void Shoot()
     {
@@ -39,7 +39,7 @@ public class ArrowShootBtn : MonoBehaviour
             m_isShoot = false; // 화살 쿨타임
             m_arrow.ShootArrow(); // ArrowShoot 안의 ShootArrow() 메소드 실행
         }
-        yield return new WaitForSeconds(1.0f); // 1초 쿨타임
+        yield return new WaitForSeconds(1f); // 1초 쿨타임
         if (!m_isShoot)
         {
             m_isShoot = true; // 초기화

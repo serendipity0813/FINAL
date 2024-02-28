@@ -101,7 +101,7 @@ public class UpDownRopeGame : MiniGameSetting
 
         //시간과 카운트 반영되는 코드
         m_timeText.text = (17 - timer).ToString("0.00");
-        m_countText.text = clearCount.ToString();
+        //m_countText.text = clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         timer = timer >= 17 ? 17 : timer + Time.deltaTime;
@@ -114,7 +114,7 @@ public class UpDownRopeGame : MiniGameSetting
         if (timer > 2)
         {
             m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
+            //m_countPrefab.SetActive(true);
         }
 
         if (!m_end)
