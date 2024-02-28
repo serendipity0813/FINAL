@@ -9,7 +9,9 @@ public class JumpJumpController : MonoBehaviour
     public float m_curJumpForce; // 현재 점프 힘
     public float m_minJumpForce; // 최소 점프 힘
     public float m_maxJumpForce; // 최대 점프 힘
+    public Vector3 fallSave;  // 낭떠러지 저장구간
 
+    
     private void Awake()
     {
         m_jumpJump = GetComponentInParent<JumpJump>();
@@ -26,7 +28,6 @@ public class JumpJumpController : MonoBehaviour
     {
         HoldPower();
     }
-
     public void Jump()
     {
         m_rd.AddForce(m_curJumpForce, m_curJumpForce, 0f);
@@ -53,18 +54,21 @@ public class JumpJumpController : MonoBehaviour
             }
         }
     }
+    public void PlayerSave()
+    {
+        transform.position = fallSave;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Finish"))
         {
             EffectSoundManager.Instance.PlayEffect(8);
             m_jumpJump.m_clearCount--;
-            m_rd.mass = 15f;
             m_isJump = true;
         }
         if (collision.gameObject.CompareTag("Terrain"))
         {
-            m_rd.mass = 15f;
+            fallSave = transform.position;
             EffectSoundManager.Instance.PlayEffect(1);
         }
     }
