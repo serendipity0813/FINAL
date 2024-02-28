@@ -1935,7 +1935,7 @@ Transform:
   - {fileID: 2023195676044528203}
   - {fileID: 2966839992349441164}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8588154422872660065
 MonoBehaviour:
@@ -2114,6 +2114,7 @@ MonoBehaviour:
   m_reward: {fileID: 2767801446403396376}
   m_rewardText: {fileID: 8425384037129379106}
   m_SpawnPosition: {fileID: 5442507298261467510}
+  m_OkButton: {fileID: 8069971933317345682}
 --- !u!1 &7553619255118596014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,7 +2133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4086845695617338911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2235,19 +2236,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1949501278873619357}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5576189274949782762}
-        m_TargetAssemblyTypeName: GatchaMiniGame, Assembly-CSharp
-        m_MethodName: OkBtn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7713868133405783725
 GameObject:
   m_ObjectHideFlags: 0

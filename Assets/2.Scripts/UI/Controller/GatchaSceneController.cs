@@ -8,7 +8,7 @@ public class GatchaSceneController : ButtonHandler
 
     private void Update()
     {
-        m_playerMoneyText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+        m_playerMoneyText.text = PlayerDataManager.instance.ChangeNumber(PlayerDataManager.instance.m_playerData.coin.ToString());
     }
 
     public void AdClick()
@@ -22,7 +22,4 @@ public class GatchaSceneController : ButtonHandler
         EffectSoundManager.Instance.PlayEffect(35);
         m_spawnEffect.SetActive(true);
     }
-
-
-
 }

@@ -14,13 +14,12 @@ public class LobbySceneController : ButtonHandler
 
     private void Awake()
     {
-        m_expSlider.value = PlayerDataManager.instance.m_playerData.exp;
+        m_expSlider.value = (PlayerDataManager.instance.m_playerData.exp / (PlayerDataManager.instance.m_playerData.level * 15)) * 100f;
         m_playerNameText.text = PlayerDataManager.instance.m_playerData.name;
-        m_playerEXPText.text = PlayerDataManager.instance.m_playerData.exp.ToString() + "%";
+        m_playerEXPText.text = ((PlayerDataManager.instance.m_playerData.exp / (PlayerDataManager.instance.m_playerData.level * 15)) * 100f).ToString("00") + "%";
         m_playerLevelText.text = PlayerDataManager.instance.m_playerData.level.ToString();
-        m_playerCoinText.text = PlayerDataManager.instance.m_playerData.coin.ToString();
+        m_playerCoinText.text = PlayerDataManager.instance.ChangeNumber(PlayerDataManager.instance.m_playerData.coin.ToString());
         m_profiles[PlayerDataManager.instance.m_playerData.profileIndex].SetActive(true);
-
     }
 
 
