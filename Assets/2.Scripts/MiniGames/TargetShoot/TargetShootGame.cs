@@ -21,6 +21,22 @@ public class TargetShootGame : MiniGameSetting
         {
             case 0:
             case 1:
+                m_targetSpeed = Random.Range(4f, 7f);
+                break;
+            case 2:
+                m_targetSpeed = Random.Range(7f, 10f);
+                break;
+            case 3:
+                m_targetSpeed = Random.Range(10f, 13f);
+                break;
+            
+        }
+
+        // 1-1, 1-2, 1-3 에 해당되는 난이도
+        switch (m_difficulty2)
+        {
+            case 0:
+            case 1:
                 m_arrowCount = 3;
                 break;
             case 2:
@@ -28,21 +44,6 @@ public class TargetShootGame : MiniGameSetting
                 break;
             case 3:
                 m_arrowCount = 1;
-                break;
-        }
-
-        // 1-1, 2-1, 3-1 에 해당되는 난이도
-        switch (m_difficulty2)
-        {
-            case 0:
-            case 1:
-                m_targetSpeed = 5f;
-                break;
-            case 2:
-                m_targetSpeed = 10f;
-                break;
-            case 3:
-                m_targetSpeed = 15f;
                 break;
         }
         m_timer = 12f; // 12초 고정

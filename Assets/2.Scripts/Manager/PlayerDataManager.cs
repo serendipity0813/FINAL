@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Events;
 
 
 public class PlayerDataManager : MonoBehaviour
@@ -25,17 +23,18 @@ public class PlayerDataManager : MonoBehaviour
         // Json 데이터 위치 불러오기
         PlatformCheck();
         DataCheck();
+        Debug.Log(path);
     }
 
     // Json 파일위치 전처리문
     private void PlatformCheck()
     {
 #if UNITY_ANDROID
-        path = Path.Combine(Application.persistentDataPath, "playerData.json");
+        path = Path.Combine(Application.persistentDataPath, "playerDatas.json");
 #elif UNITY_IOS
-    path = Path.Combine(Application.persistentDataPath, "playerData.json");
+    path = Path.Combine(Application.persistentDataPath, "playerDatas.json");
 #else
-    path = Path.Combine(Application.dataPath, "Data", "playerData.json");
+    path = Path.Combine(Application.dataPath, "Data", "playerDatas.json");
 #endif
     }
     private void DataCheck()
@@ -58,14 +57,26 @@ public class PlayerDataManager : MonoBehaviour
     // 현재 Json 파일을 저장하고 싶다면 아래 메소드를 호출
     public void SaveJson()
     {
+        //string jsonData = JsonUtility.ToJson(m_playerData, true); // JSON 형태로 포멧팅
+        //File.WriteAllText(path, jsonData); // 파일 생성 및 저장
+
+        // 테스트 끝나면 아래 주석 코드를 사용할 예정
         string jsonData = JsonUtility.ToJson(m_playerData, true); // JSON 형태로 포멧팅
-        File.WriteAllText(path, jsonData); // 파일 생성 및 저장
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        string code = System.Convert.ToBase64String(bytes);
+        File.WriteAllText(path, code); // 파일 생성 및 저장
     }
 
     // 저장 되어있는 Json 파일을 불러오고 싶다면 아래 메소드를 호출
     public void LoadJson()
     {
-        string jsonData = File.ReadAllText(path); // 파일의 텍스트를 string으로 저장
+        //string jsonData = File.ReadAllText(path); // 파일의 텍스트를 string으로 저장
+        //m_playerData = JsonUtility.FromJson<PlayerData>(jsonData); // 이 Json데이터를 역직렬화하여 playerData에 넣어줌
+
+        // 테스트 끝나면 아래 주석 코드를 사용할 예정
+        string code = File.ReadAllText(path);
+        byte[] bytes = System.Convert.FromBase64String(code);
+        string jsonData = System.Text.Encoding.UTF8.GetString(bytes);
         m_playerData = JsonUtility.FromJson<PlayerData>(jsonData); // 이 Json데이터를 역직렬화하여 playerData에 넣어줌
     }
 
@@ -144,7 +155,7 @@ public class PlayerDataManager : MonoBehaviour
         m_playerData.coin += m_playerData.rewardCoin;
 
         //레벨업 체크
-        if(m_playerData.exp > m_playerData.level * 15)
+        if(m_playerData.exp >= m_playerData.level * 15)
         {
             // 레벨업 했다면 레벨업 효과
             m_playerData.exp -= m_playerData.level * 15;
