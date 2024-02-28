@@ -96,7 +96,7 @@ public class StartSceneController : MonoBehaviour
             }
 
             //클릭을 두번 했을 경우 바로 로비화면으로
-            if (result)
+            if (result && PlayerDataManager.instance.m_playerData.tutorial)
             {
                 SkipAll();
             }
