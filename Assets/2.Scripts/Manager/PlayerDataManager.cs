@@ -137,7 +137,7 @@ public class PlayerDataManager : MonoBehaviour
     {
         //플레이어 리워드 계산 코드
         m_playerData.rewardExp = m_playerData.stage;
-        m_playerData.rewardCoin = (m_playerData.stage * 5) + (m_playerData.timePoint / 10) + (m_playerData.bonusPoint / 10);
+        m_playerData.rewardCoin = (m_playerData.stage * 10) + (m_playerData.timePoint / 5) + (m_playerData.bonusPoint / 5);
 
         // 경험치 코인 증가
         m_playerData.exp += m_playerData.rewardExp;

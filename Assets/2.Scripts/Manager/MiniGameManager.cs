@@ -16,7 +16,8 @@ public class MiniGameManager : MonoBehaviour
     public int GameNumber { get; set; }
     public bool RandomMod = false;
     public bool m_isWin;
-
+    private bool m_isGaming;
+    private float m_gameTime;
 
     private void Awake()
     {
@@ -45,9 +46,16 @@ public class MiniGameManager : MonoBehaviour
         m_beforeGame = -100;
     }
 
+    private void Update()
+    {
+        if (m_isGaming)
+            m_gameTime += Time.deltaTime;
+    }
+
     //랜덤게임 진행시 불러오는 메소드
     public void RandomGameStart()
     {
+        m_isGaming = true;
         m_endCheck = false;
         m_clearCheck = 0;
         RandomMod = true;
@@ -78,6 +86,7 @@ public class MiniGameManager : MonoBehaviour
     //선택게임 진행시 불러오는 메소드
     public void ChoiceGameStart()
     {
+        m_isGaming = true;
         m_endCheck = false;
         m_clearCheck = 0;
         if(GameNumber == 0)
@@ -131,7 +140,9 @@ public class MiniGameManager : MonoBehaviour
                 // 체력이 감소하고 나서 0일시 게임 종료
                 if (PlayerDataManager.instance.m_playerData.life <= 0)
                 {
-                  
+                    m_isGaming = false;
+                    PlayerDataManager.instance.m_playerData.timePoint = (int)m_gameTime;
+                    m_gameTime = 0;
                     GameSave();
                     GameSceneManager.Instance.SceneSelect(SCENES.GameOverScene);
                     return; // 게임 끝

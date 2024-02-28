@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 2682523666407286479}
   - component: {fileID: -8582421925449932094}
   m_Layer: 0
-  m_Name: SlimeCatchGameIcon
+  m_Name: SlimeCatchGameIcon 1
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
