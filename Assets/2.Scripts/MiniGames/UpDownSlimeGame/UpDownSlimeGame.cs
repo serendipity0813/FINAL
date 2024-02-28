@@ -6,10 +6,11 @@ public class UpDownSlimeGame : MiniGameSetting
 {
     [SerializeField] private GameObject[] m_slimeSpawner;
     [SerializeField] private GameObject m_slime;
+    private Camera m_camera;
     private int m_clearCount;
     private float m_timer;
-    private Camera m_camera;
     private float m_slimeSpawnRate;
+    private bool m_end;
 
     protected override void Awake()
     {
@@ -44,7 +45,9 @@ public class UpDownSlimeGame : MiniGameSetting
         m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        if(!m_end)
+            m_timer += Time.deltaTime;
+
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -58,17 +61,31 @@ public class UpDownSlimeGame : MiniGameSetting
         }
 
         //게임 승리조건
-        if (m_timer > 12)
+        if (m_clearCount <= 0)
         {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
+            if(!m_end)
+            {
+                m_end = true;
+                m_timer = 12;
+                m_clearPrefab.SetActive(true);
+                EffectSoundManager.Instance.PlayEffect(22);
+                Invoke("GameClear", 1);
+            }
+       
         }
 
         //게임 패배조건
-        if (m_clearCount <= 0)
+        if (m_timer <= 0)
         {
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
+            if(!m_end)
+            {
+                m_end = true;
+                m_timer = 12;
+                m_failPrefab.SetActive(true);
+                EffectSoundManager.Instance.PlayEffect(21);
+                Invoke("GameFail", 1);
+            }
+  
         }
         #endregion
 
@@ -80,6 +97,7 @@ public class UpDownSlimeGame : MiniGameSetting
             {
                 if (hit.collider.tag == "Target")
                 {
+                    EffectSoundManager.Instance.PlayEffect(27);
                     hit.collider.gameObject.SetActive(false);
                 }
             }

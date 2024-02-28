@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +12,12 @@ public class KanuGame : MiniGameSetting
     [SerializeField] private Slider m_slider;
     private Vector3 m_mapPosition;
     private float m_positionz;
-    private float m_power;
+    private float m_power = 7;
     private float m_maxTime = 15;
     private float m_timer = 0;
+    private bool m_powerFlag;
+    private bool m_delayChecker;
+    private float m_powerDelay;
     private bool m_end = false;
 
 
@@ -43,38 +47,55 @@ public class KanuGame : MiniGameSetting
         ///마우스를 누를 땐 시간당 힘 증가, 마우스를 때면 시간당 힘 감소
         ///누르고 있는 경우 힘에 비례하여 앞으로 가지만 힘 수치가 일정량 초과시 오히려 뒤로감
         ///때고 있는 경우 힘에 반비례하여 앞으로 가지만 힘 수치가 일정량 미달시 오히려 뒤로감
-
+        m_powerDelay += Time.deltaTime;
+        if(m_powerDelay >= 0.3)
+            m_delayChecker = true;
 
         if (m_timer > 2)
         {
-            m_positionz += m_difficulty2 * 0.3f;
-            if(Input.GetMouseButtonDown(0))
+            m_positionz += m_difficulty2 * 0.2f;
+            if (Input.GetMouseButtonDown(0) && m_powerDelay >= 0.3)
             {
                 int index = Random.Range(0, 3) + 23;
                 EffectSoundManager.Instance.PlayEffect(index);
             }
-
-            if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButtonUp(0) && m_delayChecker == true)
             {
-                m_power += Time.deltaTime*(5+ m_difficulty1);
-                if (m_power <= 10)
-                    m_positionz -= m_power;
-                else
-                    m_positionz += m_power-10;
+                m_powerDelay = 0;
+                m_delayChecker = false;
+            }
 
+            if (Input.GetMouseButton(0) && m_power <= 15 && m_powerDelay >= 0.3)
+            {
+                m_power += Time.deltaTime * (5 + m_difficulty1);
+                if (m_power == 10)
+                    m_powerFlag = false;
+            }
+            else if (m_power >= 0)
+            {
+                m_power -= Time.deltaTime * (5 + m_difficulty1);
+                if (m_power == 5)
+                    m_powerFlag = true;
+
+            }
+
+            //힘을 기반으로 배가 움직이는 로직
+            if (m_powerFlag)
+            {
+                m_positionz -= m_power;
             }
             else
             {
-                m_power -= Time.deltaTime* (5 + m_difficulty1);
-                if (m_power >= 5)
-                    m_positionz -= (10-m_power);
+                if (m_power < 5)
+                    m_positionz += (5 - m_power);
                 else
-                    m_positionz -= m_power - 1;
+                    m_positionz -= (10 - m_power);
             }
         }
+     
 
         //노 젓는 모션을 위한 함수
-        if(m_power < 7)
+        if (m_power < 7)
         {
             m_handle1.SetActive(true);
             m_handle2.SetActive(false);

@@ -55,6 +55,7 @@ public class UpDownSlimeController : MonoBehaviour
     IEnumerator SlimeUpDownCoroutine()
     {
         m_coroutinFlag = true;
+        EffectSoundManager.Instance.PlayEffect(19);
         yield return new WaitForSeconds(m_waittingTime);
         m_downFlag = true;
     }
