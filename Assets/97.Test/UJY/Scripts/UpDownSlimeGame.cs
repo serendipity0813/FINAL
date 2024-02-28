@@ -28,9 +28,8 @@ public class UpDownSlimeGame : MiniGameSetting
         m_camera = CameraManager.Instance.GetCamera();
 
         //인게임 text내용 설정 + 게임 승리조건
-        m_clearCount = m_difficulty1;
-        m_slimeSpawnRate = 0.5f;
-        //m_ballSpawnRate = 1 - m_difficulty1 * 2;
+        m_clearCount = 7 + m_difficulty1*3;
+        m_slimeSpawnRate = 0.4f;
         m_missionText.text = "튀어나오는 슬라임을 잡아라!";
         InvokeRepeating("MakeSlime", 2.0f, m_slimeSpawnRate);
 
