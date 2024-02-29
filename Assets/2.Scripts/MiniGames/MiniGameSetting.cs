@@ -82,6 +82,7 @@ public class MiniGameSetting : MonoBehaviour
         m_timePrefab.SetActive(false);
         m_countPrefab.SetActive(false);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.StopEffect();
     }
 
     protected void GameFail()
@@ -91,6 +92,7 @@ public class MiniGameSetting : MonoBehaviour
         m_timePrefab.SetActive(false);
         m_countPrefab.SetActive(false);
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);
+        EffectSoundManager.Instance.StopEffect();
     }
 
 
