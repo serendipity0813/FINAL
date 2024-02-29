@@ -64,12 +64,10 @@ public class UpDownSlimeGame : MiniGameSetting
             if(!m_end)
             {
                 m_end = true;
-                m_timer = 12;
                 m_clearPrefab.SetActive(true);
                 EffectSoundManager.Instance.PlayEffect(21);
                 Invoke("GameClear", 1);
             }
-       
         }
 
         //게임 패배조건
@@ -87,7 +85,7 @@ public class UpDownSlimeGame : MiniGameSetting
         }
         #endregion
 
-        if (Input.GetMouseButtonDown(0) && m_timer > 2)
+        if (Input.GetMouseButtonDown(0) && m_timer > 2 && !m_end)
         {
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -105,7 +103,8 @@ public class UpDownSlimeGame : MiniGameSetting
 
     private void MakeSlime()
     {
-        Instantiate(m_slime, m_slimeSpawner[Random.Range(0, 25)].transform.position, Quaternion.identity, transform);
+        if (!m_end)
+            Instantiate(m_slime, m_slimeSpawner[Random.Range(0, 25)].transform.position, Quaternion.identity, transform);
     }
 
 }
