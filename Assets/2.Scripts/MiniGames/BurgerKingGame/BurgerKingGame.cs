@@ -17,10 +17,7 @@ public class BurgerKingGame : MiniGameSetting
     private int m_difficulty;
     private int m_burgerLength;
     private bool m_clear;
-
-
-
-
+    private bool m_end;
 
     protected override void Awake()
     {
@@ -40,6 +37,7 @@ public class BurgerKingGame : MiniGameSetting
         m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
         m_burgerLength = m_difficulty + 4;
         m_clear = false;
+        m_end = false;
         m_count = 0;
         m_missionText.text = "똑같은 햄버거를 만들어보자!";
 
@@ -53,7 +51,7 @@ public class BurgerKingGame : MiniGameSetting
         m_missionBurger = new int[m_burgerLength];
         m_playerBurger = new int[m_burgerLength + 5];
 
-        for (int i=0; i<m_burgerLength; i++)
+        for (int i = 0; i < m_burgerLength; i++)
         {
             //첫 번재 재료와 마지막 재료는 빵이 나오도록 하기
             if (i == 0)
@@ -65,15 +63,15 @@ public class BurgerKingGame : MiniGameSetting
         }
 
         //미션버거 생성
-        for(int i=0; i<m_burgerLength;i++)
+        for (int i = 0; i < m_burgerLength; i++)
         {
             //0~3 숫자에 따라서 재료를 생성하고 생성포인트의 y값을 조금씩 올리기
             if (m_missionBurger[i] == 0)
             {
                 Instantiate(Bread, m_missionSpawnPosition, Quaternion.identity, transform);
                 m_missionSpawnPosition.y += (float)0.5;
-            }   
-            else if(m_missionBurger[i] == 1)
+            }
+            else if (m_missionBurger[i] == 1)
             {
                 Instantiate(Patty, m_missionSpawnPosition, Quaternion.identity, transform);
                 m_missionSpawnPosition.y += (float)0.5;
@@ -88,7 +86,7 @@ public class BurgerKingGame : MiniGameSetting
                 Instantiate(Cheeze, m_missionSpawnPosition, Quaternion.identity, transform);
                 m_missionSpawnPosition.y += (float)0.5;
             }
-              
+
         }
 
     }
@@ -100,7 +98,9 @@ public class BurgerKingGame : MiniGameSetting
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
 
-        m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
+        if (!m_end)
+            m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
+
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -112,52 +112,60 @@ public class BurgerKingGame : MiniGameSetting
             m_timePrefab.SetActive(true);
         }
 
-        //게임 승리조건
-        if (m_burgerLength == m_count)
+        if (!m_end)
         {
-            ClearCheck();
-            if(m_clear)
+            //게임 승리조건
+            if (m_burgerLength == m_count)
             {
-                EffectSoundManager.Instance.PlayEffect(21);
-                m_clearPrefab.SetActive(true);
-                Invoke("GameClear", 1);
-                m_clear = false;
+                ClearCheck();
+                if (m_clear)
+                {
+                    EffectSoundManager.Instance.PlayEffect(21);
+                    m_clearPrefab.SetActive(true);
+                    Invoke("GameClear", 1);
+                    m_clear = false;
+                    m_end = true;
+                }
+                else
+                {
+                    EffectSoundManager.Instance.PlayEffect(22);
+                    m_failPrefab.SetActive(true);
+                    Invoke("GameFail", 1);
+                    m_end = true;
+                }
             }
-            else
+
+            //게임 패배조건
+            if (m_timer > 12 || m_count > m_burgerLength)
             {
                 EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
+                m_end = true;
             }
         }
-
-        //게임 패배조건
-        if (m_timer > 12 || m_count > m_burgerLength)
-        {
-            EffectSoundManager.Instance.PlayEffect(22);
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
-        }
-
-
     }
 
     private void IngredientCheck()
     {
-        if(m_playerBurger[m_count] != m_missionBurger[m_count])
+        if (!m_end)
         {
-            EffectSoundManager.Instance.PlayEffect(22);
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
+            if (m_playerBurger[m_count] != m_missionBurger[m_count])
+            {
+                EffectSoundManager.Instance.PlayEffect(22);
+                m_failPrefab.SetActive(true);
+                Invoke("GameFail", 1);
+                m_end = true;
+            }
+            m_count++;
         }
-        m_count++;
     }
 
     private void ClearCheck()
     {
         bool clearFlag = true;
         //미션 버거와 만든 버거가 같은지 체크
-        for (int i=0; i<m_count; i++)
+        for (int i = 0; i < m_count; i++)
         {
             if (m_playerBurger[i] != m_missionBurger[i])
             {
@@ -174,7 +182,7 @@ public class BurgerKingGame : MiniGameSetting
     //버튼 입력에 따라 버거 재료를 만들어주는 함수들
     public void BreadBtn()
     {
-        if(m_timer > 2)
+        if (m_timer > 2 && !m_end)
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 0;
@@ -182,12 +190,12 @@ public class BurgerKingGame : MiniGameSetting
             Instantiate(Bread, m_burgerspawnPosition, Quaternion.identity, transform);
             IngredientCheck();
         }
-      
+
     }
 
     public void PattyBtn()
     {
-        if (m_timer > 2)
+        if (m_timer > 2 && !m_end)
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 1;
@@ -195,12 +203,12 @@ public class BurgerKingGame : MiniGameSetting
             Instantiate(Patty, m_burgerspawnPosition, Quaternion.identity, transform);
             IngredientCheck();
         }
-          
+
     }
 
     public void VegetableBtn()
     {
-        if (m_timer > 2)
+        if (m_timer > 2 && !m_end)
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 2;
@@ -208,12 +216,12 @@ public class BurgerKingGame : MiniGameSetting
             Instantiate(Vegetable, m_burgerspawnPosition, Quaternion.identity, transform);
             IngredientCheck();
         }
-          
+
     }
 
     public void CheezeBtn()
     {
-        if (m_timer > 2)
+        if (m_timer > 2 && !m_end)
         {
             EffectSoundManager.Instance.PlayEffect(19);
             m_playerBurger[m_count] = 3;
@@ -221,7 +229,7 @@ public class BurgerKingGame : MiniGameSetting
             Instantiate(Cheeze, m_burgerspawnPosition, Quaternion.identity, transform);
             IngredientCheck();
         }
-           
+
     }
 
 }
