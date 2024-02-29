@@ -36,7 +36,10 @@ public class SlimeCatchGame : MiniGameSetting
         m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 타임제한을 보여주도록 함
-        m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
+        if (!m_end)
+        {
+            m_timer = m_timer >= 12 ? 12 : m_timer + Time.deltaTime;
+        }
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
         {
             m_missionPrefab.SetActive(true);
@@ -56,7 +59,7 @@ public class SlimeCatchGame : MiniGameSetting
 
 
         // 마우스 클릭시 RAY를 활용하여 타겟 찾기
-        if (Input.GetMouseButtonDown(0) && m_timer > 2)
+        if (Input.GetMouseButtonDown(0) && m_timer > 2 && !m_end)
         {
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -91,11 +94,8 @@ public class SlimeCatchGame : MiniGameSetting
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 m_end = true;
+                m_timer = 12;
             }
-
         }
-     
-
     }
-
 }

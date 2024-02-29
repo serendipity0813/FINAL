@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class CarDrivingGame : MiniGameSetting
@@ -7,11 +6,10 @@ public class CarDrivingGame : MiniGameSetting
 
     private Rigidbody m_playerBody;
     private CarGenerator m_generator;
-    private int m_difficulty = 1;
 
     private float m_runningSpeed = 20.0f;
-    private float m_sideSpeed = 10.0f;
     private float m_timer = 0.0f;
+    private bool m_end = false;
 
     protected override void Awake()
     {
@@ -36,28 +34,39 @@ public class CarDrivingGame : MiniGameSetting
 
     private void FixedUpdate()
     {
-        m_timer += Time.deltaTime;
-
         if (m_timer > 3.0f)//3초 지나고 시작
         {
             try
             {
                 Vector3 velocity;
+                Vector3 pos;
                 velocity = new Vector3(0, 0, m_runningSpeed);
+                pos = m_player.transform.position;
 
-                if (TouchManager.instance.IsHolding())
+                if (TouchManager.instance.IsBegan())
                 {
                     float direction = Input.mousePosition.x - ((float)Screen.width / 2);//화면을 절반으로 나누어 왼쪽, 오른쪽 부분 어디를 선택하였는지 체크
 
-                    if (direction > 0)
+                    if (direction > 0)//오른쪽 클릭
                     {
-                        velocity.x = m_sideSpeed;
+                        if (m_player.transform.position.x < 1)
+                        {
+                            pos.x = 1.5f;
+                            EffectSoundManager.Instance.PlayEffect(26);
+                        }
                     }
-                    else
+                    else//왼쪽 클릭
                     {
-                        velocity.x = -m_sideSpeed;
+                        if (m_player.transform.position.x > -1)
+                        {
+                            pos.x = -1.5f;
+                            EffectSoundManager.Instance.PlayEffect(26);
+                        }
                     }
-                }else
+
+                    m_player.transform.position = pos;
+                }
+                else
                 {
                     velocity.x = 0.0f;
                 }
@@ -76,7 +85,7 @@ public class CarDrivingGame : MiniGameSetting
     {
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
-        m_timeText.text = (m_timer-3).ToString("0.00");
+        m_timeText.text = (m_timer - 3).ToString("0.00");
         m_countText.text = "1";
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
@@ -86,33 +95,41 @@ public class CarDrivingGame : MiniGameSetting
         if (m_timer > 2 && m_missionPrefab.activeSelf == true)
             m_missionPrefab.SetActive(false);
 
-        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer > 3)
-        {
-            m_timePrefab.SetActive(true);
-            m_countPrefab.SetActive(true);
-        }
-
-      
         #endregion
     }
 
     public int GetDifficulty()
     {
+        int m_difficulty = 1;
+
         m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;
+
         return m_difficulty;
     }
 
     public void Win()
     {
-        m_clearPrefab.SetActive(true);
-        Invoke("GameClear", 1);
+        if (!m_end)
+        {
+            EffectSoundManager.Instance.PlayEffect(21);
+            CameraManager.Instance.m_followEnabled = false;
+            m_clearPrefab.SetActive(true);
+            Invoke("GameClear", 1);
+            m_end = true;
+        }
+
     }
 
     public void Lose()
     {
-        m_failPrefab.SetActive(true);
-        Invoke("GameFail", 1);
+        if (!m_end)
+        {
+            EffectSoundManager.Instance.PlayEffect(22);
+            CameraManager.Instance.m_followEnabled = false;
+            m_failPrefab.SetActive(true);
+            Invoke("GameFail", 1);
+            m_end = true;
+        }
     }
 
 

@@ -16,7 +16,7 @@ public class BasketGame : MiniGameSetting
     private Rigidbody m_rigidbody;
 
     private int m_catchCounts = 0;//박스에 음식을 담은 개수
-    private float m_speed = 4.0f;//캐릭터 이동속도
+    private float m_speed = 4.5f;//캐릭터 이동속도
     private int m_difficulty = 1;
     private Vector3 m_velocity;//캐릭터 이동 방향
     private float m_lastTime = 0.0f;//음식을 생성하고 지난 시간
@@ -25,6 +25,7 @@ public class BasketGame : MiniGameSetting
     private int m_clearCount;
     private float m_timer;
     private bool m_startTimer = false;
+    private bool m_end = false;
 
     protected override void Awake()
     {
@@ -34,7 +35,7 @@ public class BasketGame : MiniGameSetting
     // Start is called before the first frame update
     void Start()
     {
-        m_clearCount = m_catchCounts;
+        DifficultySet();
         m_missionText.text = "떨어지는 음식을 바구니에 담자!";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
@@ -57,8 +58,8 @@ public class BasketGame : MiniGameSetting
         if (Physics.Raycast(ray, out hit))
         {
             m_screenWidth = hit.point.x - 0.2f;
-            Vector3 screenLeft = new Vector3(-m_screenWidth, 0, 8.0f);
-            Vector3 screenRight = new Vector3(m_screenWidth, 0, 8.0f);
+            Vector3 screenLeft = new Vector3(-m_screenWidth, 9f, 8.0f);
+            Vector3 screenRight = new Vector3(m_screenWidth, 9f, 8.0f);
             m_leftWall.transform.position = screenLeft;
             m_rightWall.transform.position = screenRight;
         }
@@ -112,10 +113,17 @@ public class BasketGame : MiniGameSetting
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
         m_timeText.text = m_timer.ToString("0.00");
-        m_countText.text = m_clearCount.ToString();
+        m_countText.text = m_catchCounts.ToString() + "/" + m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
+        if (m_timer > 0f)
+        {
+            if (!m_end)
+            {
+                m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
+            }
+        }
+        
 
         if (!m_startTimer)
         {
@@ -147,7 +155,7 @@ public class BasketGame : MiniGameSetting
     //랜덤으로 과일을 생성하는 함수
     private void GenerateFoods()
     {
-        int index = Random.Range(0, 3 + m_difficulty);//난이도만큼 쓰레기가 스폰될 확률 증가
+        int index = Random.Range(0, 4);//쓰레기가 스폰될 확률
         Vector3 randomPos = new Vector3(Random.Range(-(m_screenWidth), (m_screenWidth)), 10.0f, 8.0f);//무작위 x 이동
         Quaternion randomRot = Quaternion.Euler(0.0f, Random.Range(0.0f, 180.0f), 0.0f);//무작위 y 회전
 
@@ -181,29 +189,35 @@ public class BasketGame : MiniGameSetting
     //클리어 조건을 충족하였는지 체크하는 함수
     public bool CheckClear()
     {
-        bool result = false;
+        if (m_end)
+        {
+            return false;
+        }
 
-        //난이도 만큼 잡아야 하는 과일 개수를 못채웠을 경우 false 리턴
+        bool result = m_catchCounts < m_clearCount ? false : true;
+        return result;
+    }
+
+    private void DifficultySet()
+    {
         switch (m_difficulty1 * 3 + m_difficulty2 - 3)
         {
             case 1:
-                result = m_catchCounts < 3 ? false : true;
+                m_clearCount = 1;
                 break;
             case 2:
-                result = m_catchCounts < 5 ? false : true;
+                m_clearCount = 2;
                 break;
             case 3:
-                result = m_catchCounts < 7 ? false : true;
+                m_clearCount = 3;
                 break;
             case 4:
-                result = m_catchCounts < 9 ? false : true;
+                m_clearCount = 4;
                 break;
-            case 5:
-                result = m_catchCounts < 10 ? false : true;
+            default:
+                m_clearCount = 5;
                 break;
         }
-
-        return result;
     }
 
     //클리어 조건을 충족하였을 때 호출
@@ -218,6 +232,10 @@ public class BasketGame : MiniGameSetting
     {
         m_failPrefab.SetActive(true);
         Invoke("GameFail", 1);
+    }
+    public void CheckWin()
+    {
+        m_end = true;
     }
 
     //잡은 갯수 증가
