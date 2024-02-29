@@ -34,8 +34,6 @@ public class CarDrivingGame : MiniGameSetting
 
     private void FixedUpdate()
     {
-        m_timer += Time.deltaTime;
-
         if (m_timer > 3.0f)//3초 지나고 시작
         {
             try
@@ -51,13 +49,19 @@ public class CarDrivingGame : MiniGameSetting
 
                     if (direction > 0)//오른쪽 클릭
                     {
-                        pos.x = 1.5f;
-                        EffectSoundManager.Instance.PlayEffect(26);
+                        if (m_player.transform.position.x < 1)
+                        {
+                            pos.x = 1.5f;
+                            EffectSoundManager.Instance.PlayEffect(26);
+                        }
                     }
                     else//왼쪽 클릭
                     {
-                        pos.x = -1.5f;
-                        EffectSoundManager.Instance.PlayEffect(26);
+                        if (m_player.transform.position.x > -1)
+                        {
+                            pos.x = -1.5f;
+                            EffectSoundManager.Instance.PlayEffect(26);
+                        }
                     }
 
                     m_player.transform.position = pos;

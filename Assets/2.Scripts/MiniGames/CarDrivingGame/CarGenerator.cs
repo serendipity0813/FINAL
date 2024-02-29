@@ -61,20 +61,28 @@ public class CarGenerator : MonoBehaviour
         //배열에 들어있는 차의 위치에 맞춰 생성
         for (int i = 0; i < m_cars.Length; i++)
         {
-
+            GameObject tmp;
             if (m_cars[i] == (int)CarPosition.Left)
             {
-                GameObject tmp = Instantiate(m_blueCar, transform);
+                tmp = Instantiate(m_blueCar, transform);
                 tmp.transform.position = new Vector3(1.5f, 0, 15.0f + (i * m_carDistance));
+                if (tmp.transform.position.z > 401)
+                {
+                    Destroy(tmp);
+                    break;
+                }
             }
             else if (m_cars[i] == (int)CarPosition.Right)
             {
-                GameObject tmp = Instantiate(m_blueCar, transform);
+                tmp = Instantiate(m_blueCar, transform);
                 tmp.transform.position = new Vector3(-1.5f, 0, 15.0f + (i * m_carDistance));
+                if (tmp.transform.position.z > 401)
+                {
+                    Destroy(tmp);
+                    break;
+                }
             }
         }
-       
-
     }
 
     enum CarPosition
