@@ -57,7 +57,7 @@ public class SpinnerController : MonoBehaviour
     // 스핀 동작
     void Spin()
     {
-        if (spinnerGame.m_startTimer)
+        if (spinnerGame.m_startTimer && !spinnerGame.m_end)
         {
             m_mousePosition = Input.mousePosition;
             m_isUpDown = m_mousePosition.y > m_halfScreen.y;

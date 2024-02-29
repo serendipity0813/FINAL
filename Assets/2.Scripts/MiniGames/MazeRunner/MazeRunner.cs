@@ -77,7 +77,10 @@ public class MazeRunner : MiniGameSetting
         m_timeText.text = m_timer.ToString("0.00");
 
         //타이머가 0미만인 경우 0으로 고정하고 이외에는 타이머 감소
-        m_timer = m_timer <= 0 ? 0 :m_timer - Time.deltaTime;
+        if (m_once)
+        {
+            m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
+        }
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         if (m_timer < (m_maxTime - 0.5f) && m_missionPrefab.activeSelf == false)
@@ -97,6 +100,7 @@ public class MazeRunner : MiniGameSetting
         {
             m_failPrefab.SetActive(true);
             Invoke("GameFail", 1);
+            m_timer = 0;
             m_once = false;//한게임에 한번만 패배 판정이 나게
         }
         #endregion
@@ -165,11 +169,15 @@ public class MazeRunner : MiniGameSetting
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (m_once)
         {
-            //Debug.LogFormat("GameClear in {0}sec", m_timer);//테스트용
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
+            if (other.tag == "Player")
+            {
+                //Debug.LogFormat("GameClear in {0}sec", m_timer);//테스트용
+                m_clearPrefab.SetActive(true);
+                Invoke("GameClear", 1);
+                m_once = false;
+            }
         }
     }
 }

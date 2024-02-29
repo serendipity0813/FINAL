@@ -52,6 +52,7 @@ public class ObstacleMovement : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                EffectSoundManager.Instance.PlayEffect(18);
                 upDownRopeGame.clearCount--;
             }
         }

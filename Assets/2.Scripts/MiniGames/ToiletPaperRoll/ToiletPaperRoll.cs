@@ -4,10 +4,10 @@ public class ToiletPaperRoll : MiniGameSetting
 {
     private float m_timer; // 현재 시간
     private int m_winCount = 1; // 승리 카운트 선언
-    public bool m_startTimer = false; // 첫 스타트 시간 체크
     private float m_maxTime; // 게임 끝나는 시간 지점
     private bool m_end = false; // 게임이 끝났는가?
-    
+
+    public bool m_startTimer = false; // 첫 스타트 시간 체크
     public int m_rollCount; // 실제 휴지 회전 카운트
     public float m_angularVelocity; // 돌아가는 스피드 max 값
 
@@ -100,7 +100,6 @@ public class ToiletPaperRoll : MiniGameSetting
             {
                 // 승리시 로직
                 m_winCount = 0;
-                //Debug.Log("이겼다!");
                 m_clearPrefab.SetActive(true);
                 m_end = true;
                 EffectSoundManager.Instance.PlayEffect(8);
@@ -109,8 +108,8 @@ public class ToiletPaperRoll : MiniGameSetting
             if (m_timer <= 0f && m_winCount > 0)
             {
                 // 패배시 로직
-                //Debug.Log("졌다!");
                 m_failPrefab.SetActive(true);
+                m_timer = 0f;
                 m_end = true;
                 Invoke("GameFail", 1);
             }

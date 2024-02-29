@@ -71,7 +71,7 @@ public class UpDownRopeGame : MiniGameSetting
 
     private void FixedUpdate()
     {
-        if (timer > 2)
+        if (timer > 2 && !m_end)
         {
             //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
             bool result = TouchManager.instance.IsHolding();
@@ -114,7 +114,10 @@ public class UpDownRopeGame : MiniGameSetting
         //m_countText.text = clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        timer = timer >= 17 ? 17 : timer + Time.deltaTime;
+        if (!m_end)
+        {
+            timer = timer >= 17 ? 17 : timer + Time.deltaTime;
+        }
         if (timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (timer > 1.5 && m_missionPrefab.activeSelf == true)
@@ -146,8 +149,11 @@ public class UpDownRopeGame : MiniGameSetting
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
                 m_end = true;
+                if (timer > 17)
+                {
+                    timer = 17;
+                }
             }
-
         }
     }
 
@@ -158,7 +164,6 @@ public class UpDownRopeGame : MiniGameSetting
         {
             EffectSoundManager.Instance.PlayEffect(21);
             m_clearPrefab.SetActive(true);
-            timer = 10;
             Invoke("GameClear", 1);
             m_end = true;
         }
