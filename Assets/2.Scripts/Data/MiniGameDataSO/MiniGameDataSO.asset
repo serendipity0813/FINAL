@@ -159,3 +159,11 @@ MonoBehaviour:
       type: 3}
     gameDescription: "\uB3CC\uC9C4\uD558\uB294 \uBC14\uC774\uD0B9\uC744 \uD5A5\uD574
       \uC74C\uC2DD\uC744 \uC3F4\uB77C!"
+  - gameName: Juggling
+    gameIndex: 19
+    gamePrefab: {fileID: 1802822726961966509, guid: dcd8cfd4a9655e04f84a41636705a8a9,
+      type: 3}
+    gameIcon: {fileID: 8840508578367967388, guid: ec0baad7ffee1a4418d3a235fb28a3cb,
+      type: 3}
+    gameDescription: "\uC2AC\uB77C\uC784\uC744 \uB5A8\uC5B4\uD2B8\uB9AC\uC9C0 \uC54A\uACE0
+      \uBC84\uD168\uB77C!"
