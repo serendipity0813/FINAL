@@ -3,10 +3,11 @@ using UnityEngine;
 public class SpinnerGame : MiniGameSetting
 {
     public int m_winCount; // 승리 카운트 선언
-    private bool m_end = false; // 게임이 끝났는가?
-    private float m_timer; // 현재 시간
+    public bool m_end = false; // 게임이 끝났는가?
     public bool m_startTimer = false; // 첫 스타트 시간 체크
+    private float m_timer; // 현재 시간
     private float m_maxTime; // 게임 끝나는 시간 지점
+
 
     protected override void Awake()
     {
