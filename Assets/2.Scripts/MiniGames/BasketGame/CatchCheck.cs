@@ -23,9 +23,10 @@ public class CatchCheck : MonoBehaviour
             m_game.AddCount();//음식이 바구니에 담겼을 때 갯수 증가
         }
 
-        if(m_game.CheckClear())
+        if (m_game.CheckClear())
         {
             m_game.Win();
+            m_game.CheckWin();
         }
     }
 }
