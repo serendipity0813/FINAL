@@ -985,7 +985,7 @@ MonoBehaviour:
   - name: "\uADC0\uC5EC\uC6B4\uB3D9\uBB3C - 28"
     SoundEffect: {fileID: 8300000, guid: ba39da2a57a38cf43a61125d46696203, type: 3}
   - name: "\uC0AC\uB2E4\uB9AC - 29"
-    SoundEffect: {fileID: 8300000, guid: 5149ab4f7c3ddaf428d3284650831606, type: 3}
+    SoundEffect: {fileID: 8300000, guid: 1b1105124d90c5547a4ced333085e592, type: 3}
   - name: "\uC131\uACF52 - 30"
     SoundEffect: {fileID: 8300000, guid: dd937329e24db934786d1d3148a308dc, type: 3}
   - name: "\uC2E4\uD3282 - 31"
@@ -1006,6 +1006,7 @@ MonoBehaviour:
     SoundEffect: {fileID: 8300000, guid: 75ca6dd8cc2b0794abce1d97b5a37690, type: 3}
   m_AudioSource1: {fileID: 0}
   m_AudioSource2: {fileID: 0}
+  m_loopAudio: {fileID: 0}
 --- !u!82 &918395805
 AudioSource:
   m_ObjectHideFlags: 0

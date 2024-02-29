@@ -8,6 +8,7 @@ public class BasketGame : MiniGameSetting
     [SerializeField] private GameObject m_cherry;//체리 프리펩
     [SerializeField] private GameObject m_trash;//쓰레기 프리펩
 
+    [SerializeField] private GameObject m_foodContainer;//음식 생성 부모 오브젝트
     [SerializeField] private GameObject m_player;//이동가능한 캐릭터
 
     [SerializeField] private GameObject m_leftWall;//왼쪽 벽
@@ -24,7 +25,6 @@ public class BasketGame : MiniGameSetting
 
     private int m_clearCount;
     private float m_timer;
-    private bool m_startTimer = false;
     private bool m_end = false;
 
     protected override void Awake()
@@ -40,15 +40,7 @@ public class BasketGame : MiniGameSetting
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
         m_rigidbody = m_player.GetComponent<Rigidbody>();
-        for(int i=0; i<10;  i++)
-        {
-            if(m_player.transform.GetChild(i).gameObject.activeSelf)
-            {
-                m_player = m_player.transform.GetChild(i).gameObject;
-                break;
-            }
- 
-        }
+
         //화면 해상도 기준 오른쪽 끝에 레이 발사
         Vector3 pos = new Vector3(Screen.width, Screen.height);
         Ray ray = CameraManager.Instance.GetCamera().ScreenPointToRay(pos);
@@ -63,8 +55,8 @@ public class BasketGame : MiniGameSetting
             m_leftWall.transform.position = screenLeft;
             m_rightWall.transform.position = screenRight;
         }
-        m_screenWidth -= 0.5f;//음식 생성 범위 조정 /음식이 벽 Collider에 튕기는 경우가 생겨서 벽보다 조금 안쪽에 생성되게
-        m_timer = 12f; // 12초 고정
+        m_screenWidth -= 0.7f;//음식 생성 범위 조정 /음식이 벽 Collider에 튕기는 경우가 생겨서 벽보다 조금 안쪽에 생성되게
+        m_timer = 12f; // 12초 초기화
     }
 
     private void FixedUpdate()
@@ -86,7 +78,6 @@ public class BasketGame : MiniGameSetting
                 m_velocity = velocity;
             }
 
-           
             try
             {
                 m_rigidbody.velocity = m_velocity;//Rigidbody가 없을 경우 오류 발생
@@ -115,37 +106,25 @@ public class BasketGame : MiniGameSetting
         m_timeText.text = m_timer.ToString("0.00");
         m_countText.text = m_catchCounts.ToString() + "/" + m_clearCount.ToString();
 
+        if (!m_end)
+        {
+            m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
+        }
+
+
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        if (m_timer > 0f)
-        {
-            if (!m_end)
-            {
-                m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
-            }
-        }
-        
+        if (m_timer < 11.5 && m_missionPrefab.activeSelf == false)
+            m_missionPrefab.SetActive(true);
+        if (m_timer < 10.5 && m_missionPrefab.activeSelf == true)
+            m_missionPrefab.SetActive(false);
 
-        if (!m_startTimer)
+        //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
+        if (m_timer < 10f)
         {
-            if (m_timer < 11.5 && m_missionPrefab.activeSelf == false)
-                m_missionPrefab.SetActive(true);
-            if (m_timer < 10.5 && m_missionPrefab.activeSelf == true)
-                m_missionPrefab.SetActive(false);
+            m_timer = 10f;
 
-            //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-            if (m_timer < 10f)
-            {
-                m_timer = 10f;
-                m_startTimer = true;
-                m_timePrefab.SetActive(true);
-                m_countPrefab.SetActive(true);
-            }
-        }
-
-        //게임 패배조건
-        if (m_timer <= 0)
-        {
-            Lose();
+            m_timePrefab.SetActive(true);
+            m_countPrefab.SetActive(true);
         }
         #endregion
 
@@ -165,17 +144,17 @@ public class BasketGame : MiniGameSetting
         switch (index)
         {
             case 0:
-                food = Instantiate(m_cheese, transform.GetChild(0));
+                food = Instantiate(m_cheese, m_foodContainer.transform);
                 break;
             case 1:
-                food = Instantiate(m_banana, transform.GetChild(0));
+                food = Instantiate(m_banana, m_foodContainer.transform);
                 break;
             case 2:
-                food = Instantiate(m_cherry, transform.GetChild(0));
+                food = Instantiate(m_cherry, m_foodContainer.transform);
                 break;
 
             default://이외에는 쓰레기를 생성
-                food = Instantiate(m_trash, transform.GetChild(0));
+                food = Instantiate(m_trash, m_foodContainer.transform);
                 break;
         }
 
@@ -189,12 +168,8 @@ public class BasketGame : MiniGameSetting
     //클리어 조건을 충족하였는지 체크하는 함수
     public bool CheckClear()
     {
-        if (m_end)
-        {
-            return false;
-        }
-
         bool result = m_catchCounts < m_clearCount ? false : true;
+
         return result;
     }
 
@@ -223,19 +198,25 @@ public class BasketGame : MiniGameSetting
     //클리어 조건을 충족하였을 때 호출
     public void Win()
     {
-        m_clearPrefab.SetActive(true);
-        Invoke("GameClear", 1);
+        if (!m_end)
+        {
+            m_clearPrefab.SetActive(true);
+            Invoke("GameClear", 1);
+            EffectSoundManager.Instance.PlayEffect(21);
+            m_end = true;
+        }
     }
 
     //쓰레기를 바구니에 담게되면 호출
     public void Lose()
     {
-        m_failPrefab.SetActive(true);
-        Invoke("GameFail", 1);
-    }
-    public void CheckWin()
-    {
-        m_end = true;
+        if (!m_end)
+        {
+            m_failPrefab.SetActive(true);
+            Invoke("GameFail", 1);
+            EffectSoundManager.Instance.PlayEffect(22);
+            m_end = true;
+        }
     }
 
     //잡은 갯수 증가

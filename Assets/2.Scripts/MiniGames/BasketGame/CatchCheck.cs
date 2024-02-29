@@ -26,7 +26,6 @@ public class CatchCheck : MonoBehaviour
         if (m_game.CheckClear())
         {
             m_game.Win();
-            m_game.CheckWin();
         }
     }
 }
