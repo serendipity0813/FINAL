@@ -36,6 +36,10 @@ public class EffectSoundManager : MonoBehaviour
         m_AudioSource1 = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
         m_AudioSource1.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
         m_AudioSource2 = gameObject.AddComponent<AudioSource>();
+        m_AudioSource2.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
+        m_loopAudio = gameObject.AddComponent<AudioSource>();
+        m_loopAudio.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
+        m_loopAudio.loop = true;
     }
 
     // 특정 효과음 재생
@@ -54,13 +58,6 @@ public class EffectSoundManager : MonoBehaviour
 
     public void PlayAudioLoop(int index)
     {
-        if (m_loopAudio == null)
-        {
-            m_loopAudio = gameObject.AddComponent<AudioSource>();
-            m_loopAudio.playOnAwake = true;
-            m_loopAudio.loop = true;
-        }
-
         m_loopAudio.clip = soundEffects[index].SoundEffect;
     }
 
@@ -83,15 +80,15 @@ public class EffectSoundManager : MonoBehaviour
     //    }
     //}
 
-    public void PauseLoop()
+    public void StopLoop()
     {
         if (m_loopAudio != null)
         {
-            m_loopAudio.Pause();
+            m_loopAudio.Stop();
         }
     }
 
-    public void UnPauseLoop()
+    public void PlayLoop()
     {
         if (m_loopAudio != null)
         {

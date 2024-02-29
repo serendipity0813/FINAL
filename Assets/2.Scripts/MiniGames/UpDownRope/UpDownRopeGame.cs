@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(1)]
 public class UpDownRopeGame : MiniGameSetting
 {
     [HideInInspector] public int clearCount;
@@ -34,7 +35,6 @@ public class UpDownRopeGame : MiniGameSetting
         CameraManager.Instance.SetFollowSpeed(10.0f);
         CameraManager.Instance.SetFollowTarget(m_player);
         CameraManager.Instance.m_followEnabled = true;
-
         EffectSoundManager.Instance.PlayAudioLoop(29);//사다리 타는 효과음 루프 적용
 
         AnimatorUpdater animator = null;
@@ -76,12 +76,11 @@ public class UpDownRopeGame : MiniGameSetting
 
     private void FixedUpdate()
     {
-        //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
-
-        bool result = TouchManager.instance.IsHolding();
-
         if (timer > 2)
         {
+            //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
+            bool result = TouchManager.instance.IsHolding();
+
             if (result)
             {
                 float direction = Input.mousePosition.y - ((float)Screen.height / 2);
@@ -95,18 +94,17 @@ public class UpDownRopeGame : MiniGameSetting
                     m_playerRigidbody.velocity = m_downVelocity;//아래 클릭 시 아래로 이동
                 }
 
-                if(!m_toggle)//false에서 true로 바뀔 때 
+                if (!m_toggle) //false에서 true로 바뀔 때 
                 {
-                    EffectSoundManager.Instance.UnPauseLoop();
+                    EffectSoundManager.Instance.PlayLoop();
                     m_toggle = true;
                 }
-               
             }
             else
             {
-                if (m_toggle)//true에서 false로 바뀔 때 
+                if (m_toggle) //true에서 false로 바뀔 때 
                 {
-                    EffectSoundManager.Instance.PauseLoop();
+                    EffectSoundManager.Instance.StopLoop();
                     m_toggle = false;
                 }
             }
