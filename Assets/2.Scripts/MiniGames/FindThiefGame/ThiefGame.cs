@@ -114,7 +114,8 @@ public class ThiefGame : MiniGameSetting
     {
         //시간과 카운트 반영되는 코드
         m_timeText.text = m_timer.ToString("0.00");
-        m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;//타이머 감소
+        if (!m_end)
+            m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;//타이머 감소
 
         //미션 Ui 출력
         if (m_timer < m_maxTimer - 1.0f && m_missionPrefab.activeSelf == false)
