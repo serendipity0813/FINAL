@@ -12,6 +12,7 @@ public class UpDownRopeGame : MiniGameSetting
     private Vector3 m_upVelocity;//사다리 오르는 방향
     private Vector3 m_downVelocity;//내려가는 방향
     private float m_climbSpeed = 5.0f;//오르고 내려가는 속도
+    private bool m_toggle = false;
 
     private bool m_end = false;
 
@@ -33,6 +34,8 @@ public class UpDownRopeGame : MiniGameSetting
         CameraManager.Instance.SetFollowSpeed(10.0f);
         CameraManager.Instance.SetFollowTarget(m_player);
         CameraManager.Instance.m_followEnabled = true;
+
+        EffectSoundManager.Instance.PlayAudioLoop(29);//사다리 타는 효과음 루프 적용
 
         AnimatorUpdater animator = null;
 
@@ -74,26 +77,40 @@ public class UpDownRopeGame : MiniGameSetting
     private void FixedUpdate()
     {
         //마우스를 클릭할 때 마우스 위치를 받아온 후 위쪽 클릭중이면 올라가고 아래쪽 클릭중이면 내려가도록 함
-        if (TouchManager.instance.IsHolding() && timer > 2)
-        {
-            float direction = Input.mousePosition.y - ((float)Screen.height / 2);
 
-            if (direction > 0)
+        bool result = TouchManager.instance.IsHolding();
+
+        if (timer > 2)
+        {
+            if (result)
             {
-                m_playerRigidbody.velocity = m_upVelocity;//위쪽 클릭 시 위로 이동
+                float direction = Input.mousePosition.y - ((float)Screen.height / 2);
+
+                if (direction > 0)
+                {
+                    m_playerRigidbody.velocity = m_upVelocity;//위쪽 클릭 시 위로 이동
+                }
+                else
+                {
+                    m_playerRigidbody.velocity = m_downVelocity;//아래 클릭 시 아래로 이동
+                }
+
+                if(!m_toggle)//false에서 true로 바뀔 때 
+                {
+                    EffectSoundManager.Instance.UnPauseLoop();
+                    m_toggle = true;
+                }
+               
             }
             else
             {
-                m_playerRigidbody.velocity = m_downVelocity;//아래 클릭 시 아래로 이동
+                if (m_toggle)//true에서 false로 바뀔 때 
+                {
+                    EffectSoundManager.Instance.PauseLoop();
+                    m_toggle = false;
+                }
             }
-
-            EffectSoundManager.Instance.PlayEffect(29);
         }
-        else
-        {
-            EffectSoundManager.Instance.StopEffect();
-        }
-
     }
 
     private void Update()
@@ -144,7 +161,7 @@ public class UpDownRopeGame : MiniGameSetting
     //제한시간 내로 결승선 Collider에 들어갔을 때 승리
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && !m_end)
+        if (other.tag == "Player" && !m_end)
         {
             EffectSoundManager.Instance.PlayEffect(21);
             m_clearPrefab.SetActive(true);

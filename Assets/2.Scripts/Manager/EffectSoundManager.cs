@@ -17,6 +17,7 @@ public class EffectSoundManager : MonoBehaviour
     public static EffectSoundManager Instance;
     public AudioSource m_AudioSource1;
     public AudioSource m_AudioSource2;
+    public AudioSource m_loopAudio;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class EffectSoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     private void Start()
     {
         m_AudioSource1 = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
@@ -43,13 +45,58 @@ public class EffectSoundManager : MonoBehaviour
     {
         m_AudioSource1.PlayOneShot(soundEffects[index].SoundEffect);
     }
+
     public void PlayEffectPitch(int index, float pitch)
     {
         m_AudioSource2.pitch = pitch;
         m_AudioSource2.PlayOneShot(soundEffects[index].SoundEffect);
     }
+
+    public void PlayAudioLoop(int index)
+    {
+        if (m_loopAudio == null)
+        {
+            m_loopAudio = gameObject.AddComponent<AudioSource>();
+            m_loopAudio.playOnAwake = true;
+            m_loopAudio.loop = true;
+        }
+
+        m_loopAudio.clip = soundEffects[index].SoundEffect;
+    }
+
     public void StopEffect()
     {
         m_AudioSource1.Stop();
+        m_AudioSource2.Stop();
+        m_loopAudio.Stop();
     }
+
+    //public void ToggleLoop()
+    //{
+    //    if (m_loopAudio.isPlaying)
+    //    {
+    //        m_loopAudio.Pause();
+    //    }
+    //    else
+    //    {
+    //        m_loopAudio.UnPause();
+    //    }
+    //}
+
+    public void PauseLoop()
+    {
+        if (m_loopAudio != null)
+        {
+            m_loopAudio.Pause();
+        }
+    }
+
+    public void UnPauseLoop()
+    {
+        if (m_loopAudio != null)
+        {
+            m_loopAudio.Play();
+        }
+    }
+
 }

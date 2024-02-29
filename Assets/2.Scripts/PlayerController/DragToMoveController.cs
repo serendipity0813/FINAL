@@ -12,7 +12,7 @@ class DragToMoveController : MonoBehaviour
     private bool m_isGround;//캐릭터가 땅에 닿아 있는지 확인하는 변수
     private bool m_rayHitted;//레이캐스트 hit한 물체가 있는지 확인하는 변수
 
-    private void Awake()
+    private void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
         m_camera = CameraManager.Instance.GetCamera();//현재 작동중인 카메라를 받아옴
@@ -110,11 +110,21 @@ class DragToMoveController : MonoBehaviour
 
     public float GetMagnitude()
     {
+        if(m_rigidbody == null)
+        {
+            return 0.0f;
+        }
+
         return m_rigidbody.velocity.magnitude;
     }
 
     public Vector3 GetVelocity()
     {
+        if (m_rigidbody == null)
+        {
+            return Vector3.zero;
+        }
+
         return m_rigidbody.velocity;
     }
 
