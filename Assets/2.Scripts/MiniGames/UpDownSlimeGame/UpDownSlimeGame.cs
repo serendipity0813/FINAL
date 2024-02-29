@@ -69,6 +69,7 @@ public class UpDownSlimeGame : MiniGameSetting
                 m_timer = 12;
                 m_clearPrefab.SetActive(true);
                 EffectSoundManager.Instance.PlayEffect(21);
+                CancelInvoke("MakeSlime");
                 Invoke("GameClear", 1);
             }
        
@@ -83,6 +84,7 @@ public class UpDownSlimeGame : MiniGameSetting
                 m_timer = 12;
                 m_failPrefab.SetActive(true);
                 EffectSoundManager.Instance.PlayEffect(22);
+                CancelInvoke("MakeSlime");
                 Invoke("GameFail", 1);
             }
   
@@ -99,7 +101,8 @@ public class UpDownSlimeGame : MiniGameSetting
                 {
                     EffectSoundManager.Instance.PlayEffect(27);
                     hit.collider.gameObject.SetActive(false);
-                    m_clearCount--;
+                    if(m_clearCount > 0 && m_end == false)    
+                      m_clearCount--;
                 }
             }
         }

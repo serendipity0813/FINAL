@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class MiniGameBaseCode : MiniGameSetting
 {
-
+    private Camera m_camera;
     private int m_clearCount;
     private float m_timer;
+    private bool m_end;
 
     protected override void Awake()
     {
@@ -19,6 +20,9 @@ public class MiniGameBaseCode : MiniGameSetting
 
     private void Start()
     {
+        CameraManager.Instance.ChangeCamera(CameraView.Angle90View);
+        m_camera = CameraManager.Instance.GetCamera();
+
         //인게임 text내용 설정 + 게임 승리조건
         m_clearCount = 10;
         m_missionText.text = "mission text";
@@ -32,7 +36,9 @@ public class MiniGameBaseCode : MiniGameSetting
         m_countText.text = m_clearCount.ToString();
 
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
-        m_timer += Time.deltaTime;
+        if (!m_end)
+            m_timer += Time.deltaTime;
+
         if (m_timer > 0.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
         if (m_timer > 1.5 && m_missionPrefab.activeSelf == true )
@@ -45,18 +51,28 @@ public class MiniGameBaseCode : MiniGameSetting
             m_countPrefab.SetActive(true);
         }
 
-        //게임 승리조건
-        if(m_clearCount == 0)
+        if (!m_end)
         {
-            m_clearPrefab.SetActive(true);
-            Invoke("GameClear", 1);
-        }
+            //게임 승리조건
+            if (m_clearCount == 0)
+            {
+                m_end = true;
+                m_timer = 12;
+                m_clearPrefab.SetActive(true);
+                EffectSoundManager.Instance.PlayEffect(21);
+                Invoke("GameClear", 1);
 
-        //게임 패배조건
-        if (m_timer > 12 && m_clearCount > 0)
-        {
-            m_failPrefab.SetActive(true);
-            Invoke("GameFail", 1);
+            }
+
+            //게임 패배조건
+            if (m_timer > 12 && m_clearCount > 0)
+            {
+                m_end = true;
+                m_timer = 12;
+                m_failPrefab.SetActive(true);
+                EffectSoundManager.Instance.PlayEffect(22);
+                Invoke("GameFail", 1);
+            }
         }
         #endregion
 
