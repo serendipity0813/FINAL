@@ -40,20 +40,15 @@ public class UpDownRopeGame : MiniGameSetting
         AnimatorUpdater animator = null;
 
         //캐릭터의 애니메이션 스크립트를 받아오는 부분
-        for (int i = 0; i < m_player.transform.childCount; i++)
+        if (m_player != null)
         {
-            bool result = m_player.transform.GetChild(i).gameObject.activeSelf;
+            PlayerCharacterController pcc = m_player.GetComponent<PlayerCharacterController>();
+            animator = pcc.GetPlayerAnimator();
 
-            if (result)//SetActive가 true 일 경우 반복 탈출
+            if (animator != null)
             {
-                animator = m_player.transform.GetChild(i).GetComponent<AnimatorUpdater>();
-                break;
+                animator.ClimbCharacter();//사다리 모션으로 변경
             }
-        }
-
-        if (animator != null)
-        {
-            animator.ClimbCharacter();//사다리 모션으로 변경
         }
 
         //인게임 text내용 설정 + 게임 승리조건

@@ -100,24 +100,25 @@ public class ShopUIController : ButtonHandler
 
     public void BuyCoin()
     {
-        switch(m_itemCode)
-        {
-            case 1000:
-                PlayerDataManager.instance.GetCoin(9000);
-                break;
-            case 1001:
-                PlayerDataManager.instance.GetCoin(30000);
-                break;
-            case 1002:
-                PlayerDataManager.instance.GetCoin(55000);
-                break;
-            case 1003:
-                PlayerDataManager.instance.GetCoin(120000);
-                break;
-            default:
-                Debug.LogWarning("코인 지급 예외처리 발생");
-                break;
-        }
+        //// 코인 지급 관련 코드
+        //switch(m_itemCode)
+        //{
+        //    case 1000:
+        //        PlayerDataManager.instance.GetCoin(9000);
+        //        break;
+        //    case 1001:
+        //        PlayerDataManager.instance.GetCoin(30000);
+        //        break;
+        //    case 1002:
+        //        PlayerDataManager.instance.GetCoin(55000);
+        //        break;
+        //    case 1003:
+        //        PlayerDataManager.instance.GetCoin(120000);
+        //        break;
+        //    default:
+        //        Debug.LogWarning("코인 지급 예외처리 발생");
+        //        break;
+        //}
         m_success.SetActive(true);
         EffectSoundManager.Instance.PlayEffect(2);
     }

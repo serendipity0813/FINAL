@@ -39,14 +39,17 @@ public class StartSceneController : MonoBehaviour
     {
         m_timer = m_maxTimer;//타이머 세팅
 
-
+        //캐릭터의 애니메이션 스크립트를 받아오는 부분
         if (m_character != null)
         {
             PlayerCharacterController pcc = m_character.GetComponent<PlayerCharacterController>();
             m_aniUpdater = pcc.GetPlayerAnimator();
-        }
 
-        m_aniUpdater.SleepCharacter();//캐릭터의 처음 등장 모션을 잠자기로 변경
+            if (m_aniUpdater != null)
+            {
+                m_aniUpdater.SleepCharacter();//캐릭터의 처음 등장 모션을 잠자기로 변경
+            }
+        }
 
         m_light = GameSceneManager.Instance.GetLight();//현재 씬의 조명 오브젝트를 받아옴
         m_sun = m_light.transform.GetChild(0).GetComponent<Light>();//자식 오브젝트인 태양을 받아옴
