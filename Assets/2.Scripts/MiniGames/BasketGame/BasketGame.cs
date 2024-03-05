@@ -22,10 +22,10 @@ public class BasketGame : MiniGameSetting
     private Vector3 m_velocity;//캐릭터 이동 방향
     private float m_lastTime = 0.0f;//음식을 생성하고 지난 시간
     private float m_screenWidth;//화면 해상도에 따른 오른쪽 끝의 World Point
-
     private int m_clearCount;
     private float m_timer;
     private bool m_end = false;
+    private bool m_startTimer = false;
 
     protected override void Awake()
     {
@@ -119,10 +119,10 @@ public class BasketGame : MiniGameSetting
             m_missionPrefab.SetActive(false);
 
         //2초 후 부터 실제 게임시작 - 시간제한과 클리어를 위한 카운트 ui를 출력
-        if (m_timer < 10f)
+        if (m_timer < 10f && !m_startTimer)
         {
             m_timer = 10f;
-
+            m_startTimer = true;
             m_timePrefab.SetActive(true);
             m_countPrefab.SetActive(true);
         }
