@@ -14,7 +14,7 @@ public class GatchaSceneController : ButtonHandler
     private void Start()
     {
 #if UNITY_ANDROID
-        m_adUnitId = "ca-app-pub-3940256099942544/1044960115";//테스트 ID 
+        m_adUnitId = "ca-app-pub-3344244664806588/1607999016";//테스트 ID 
 #else
         m_adUnitId = "unexpected_platform";
 #endif

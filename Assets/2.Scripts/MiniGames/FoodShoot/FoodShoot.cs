@@ -103,7 +103,8 @@ public class FoodShoot : MiniGameSetting
         {
             if (m_bulletCount != 0) // 현재 총알이 0개가 아닐경우
             {
-                if (Input.GetMouseButtonDown(0))  // 마우스 왼쪽 버튼 클릭 시
+                bool result = TouchManager.instance.IsBegan();
+                if (result)  // 마우스 왼쪽 버튼 클릭 시
                 {
                     HitFood();  // 레이 발사 함수 호출
                 }
