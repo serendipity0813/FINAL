@@ -23,7 +23,7 @@ public class BasketGame : MiniGameSetting
     private float m_lastTime = 0.0f;//음식을 생성하고 지난 시간
     private float m_screenWidth;//화면 해상도에 따른 오른쪽 끝의 World Point
 
-    private int m_clearCount;
+    private int m_catchCount;
     private float m_timer;
     private bool m_end = false;
 
@@ -35,7 +35,9 @@ public class BasketGame : MiniGameSetting
     // Start is called before the first frame update
     void Start()
     {
-        DifficultySet();
+        m_difficulty = m_difficulty1 * 3 + m_difficulty2 - 3;//난이도 세팅
+        m_catchCount = m_difficulty + 2;//받아야 하는 음식 갯수 초기화
+
         m_missionText.text = "떨어지는 음식을 바구니에 담자!";
 
         CameraManager.Instance.ChangeCamera(CameraView.ZeroView);//90도 각도로 내려다 보는 카메라로 변경
@@ -50,8 +52,8 @@ public class BasketGame : MiniGameSetting
         if (Physics.Raycast(ray, out hit))
         {
             m_screenWidth = hit.point.x - 0.2f;
-            Vector3 screenLeft = new Vector3(-m_screenWidth, 9f, 8.0f);
-            Vector3 screenRight = new Vector3(m_screenWidth, 9f, 8.0f);
+            Vector3 screenLeft = new Vector3(-m_screenWidth, 9f, 5.0f);
+            Vector3 screenRight = new Vector3(m_screenWidth, 9f, 5.0f);
             m_leftWall.transform.position = screenLeft;
             m_rightWall.transform.position = screenRight;
         }
@@ -104,7 +106,7 @@ public class BasketGame : MiniGameSetting
         #region   //게임 시간별 로직 + 성공실패 관리
         //시간과 카운트 반영되는 코드
         m_timeText.text = m_timer.ToString("0.00");
-        m_countText.text = m_catchCounts.ToString() + "/" + m_clearCount.ToString();
+        m_countText.text = m_catchCounts.ToString() + "/" + m_catchCount.ToString();
 
         if (!m_end)
         {
@@ -168,31 +170,9 @@ public class BasketGame : MiniGameSetting
     //클리어 조건을 충족하였는지 체크하는 함수
     public bool CheckClear()
     {
-        bool result = m_catchCounts < m_clearCount ? false : true;
+        bool result = m_catchCounts < m_catchCount ? false : true;
 
         return result;
-    }
-
-    private void DifficultySet()
-    {
-        switch (m_difficulty1 * 3 + m_difficulty2 - 3)
-        {
-            case 1:
-                m_clearCount = 1;
-                break;
-            case 2:
-                m_clearCount = 2;
-                break;
-            case 3:
-                m_clearCount = 3;
-                break;
-            case 4:
-                m_clearCount = 4;
-                break;
-            default:
-                m_clearCount = 5;
-                break;
-        }
     }
 
     //클리어 조건을 충족하였을 때 호출

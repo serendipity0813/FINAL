@@ -1935,7 +1935,7 @@ Transform:
   - {fileID: 2023195676044528203}
   - {fileID: 2966839992349441164}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8588154422872660065
 MonoBehaviour:
@@ -4490,13 +4490,13 @@ PrefabInstance:
     - target: {fileID: 3672912417736490176, guid: a2a5e04f4b767304ab223ea716cb9631,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3672912417736490176, guid: a2a5e04f4b767304ab223ea716cb9631,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3485030672097276124}
+      objectReference: {fileID: 8588154422872660065}
     - target: {fileID: 3672912417736490176, guid: a2a5e04f4b767304ab223ea716cb9631,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -4505,12 +4505,12 @@ PrefabInstance:
     - target: {fileID: 3672912417736490176, guid: a2a5e04f4b767304ab223ea716cb9631,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: AdClick
       objectReference: {fileID: 0}
     - target: {fileID: 3672912417736490176, guid: a2a5e04f4b767304ab223ea716cb9631,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: GatchaSceneController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3672912417736490176, guid: a2a5e04f4b767304ab223ea716cb9631,
         type: 3}
