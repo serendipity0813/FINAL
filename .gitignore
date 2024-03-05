@@ -77,3 +77,5 @@ crashlytics-build.properties
 # End of https://www.toptal.com/developers/gitignore/api/unity
 Assets/TextMesh Pro/Resources/Fonts & Materials/DungGeunMo SDF.asset
 Assets/99.Resources/Map/Fantasy Skybox FREE/Panoramics/FS002/FS002_Day.mat
+ProjectSettings/GvhProjectSettings.xml
+Assets/99.Resources/Map/Fantasy Skybox FREE/FS002_Day.mat
