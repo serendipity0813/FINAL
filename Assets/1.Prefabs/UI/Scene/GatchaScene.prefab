@@ -1950,6 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerMoneyText: {fileID: 6433107617945443210}
+  m_GatchaSimulator: {fileID: 5576189274949782762}
   m_spawnEffect: {fileID: 5738828706281536811}
 --- !u!95 &2830536722016279673
 Animator:

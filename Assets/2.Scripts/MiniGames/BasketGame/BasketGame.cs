@@ -113,7 +113,6 @@ public class BasketGame : MiniGameSetting
             m_timer = m_timer <= 0 ? 0 : m_timer - Time.deltaTime;
         }
 
-
         //게임 시작 후 미션을 보여주고 나서 1초 후 지움
         if (m_timer < 11.5 && m_missionPrefab.activeSelf == false)
             m_missionPrefab.SetActive(true);
@@ -125,7 +124,7 @@ public class BasketGame : MiniGameSetting
         {
             m_timer = 10f;
 
-            m_timePrefab.SetActive(true);
+            //m_timePrefab.SetActive(true);
             m_countPrefab.SetActive(true);
         }
         #endregion
