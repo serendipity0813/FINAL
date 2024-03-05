@@ -265,7 +265,7 @@ public class TutorialUIController : MonoBehaviour
                 m_text.text = "랜덤 게임에 대해\n설명해줄께";
                 m_arrow.SetActive(true);
                 m_rectTransformArrow.rotation = Quaternion.Euler(new Vector3(0f, 0f, -180f));
-                m_rectTransformArrow.anchoredPosition = new Vector2(0f, -500f);
+                m_rectTransformArrow.anchoredPosition = new Vector2(200f, -500f);
                 break;
             //랜덤게임 팝업창
             case 22:
