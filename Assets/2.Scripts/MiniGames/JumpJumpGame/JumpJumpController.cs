@@ -30,10 +30,13 @@ public class JumpJumpController : MonoBehaviour
     }
     public void Jump()
     {
+        // 버튼 클릭시 현재 점프 파워로 점프
         m_rd.AddForce(m_curJumpForce, m_curJumpForce, 0f);
+        m_rd.velocity = Vector3.zero;
     }
     public void HoldPower()
     {
+        // 점프 파워 게이지 로직
         if (!m_isJump)
         {
             if (m_checkUpDown)
