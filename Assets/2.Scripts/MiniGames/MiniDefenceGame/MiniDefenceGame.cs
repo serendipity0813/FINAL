@@ -81,7 +81,9 @@ public class MiniDefenceGame : MiniGameSetting
 
         #endregion
 
-        if (Input.GetMouseButtonDown(0) && m_timer > 2 && m_end == false)
+        bool result = TouchManager.instance.IsBegan();
+
+        if (result && m_timer > 2 && m_end == false)
         {
             Vector3 point = m_camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                 Input.mousePosition.y, Input.mousePosition.z));

@@ -45,6 +45,7 @@ public class TouchManager : MonoBehaviour
                 case TouchPhase.Began://터치 시작
                     m_isBegan = true;
                     m_isHolding = true;
+                    m_position = m_touch.position;
                     m_velocity = Vector2.zero;
                     break;
 
