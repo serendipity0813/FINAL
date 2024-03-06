@@ -69,21 +69,19 @@ public class MiniDefenceGame : MiniGameSetting
             if (m_timer >= 12)
             {
                 m_end = true;
-                m_timer = 12;
                 m_clearPrefab.SetActive(true);
                 EffectSoundManager.Instance.PlayEffect(21);
                 CancelInvoke("MakeMonster");
                 Invoke("GameClear", 1);
-                
+                m_timer = 12f;
             }
-
         }
 
         #endregion
 
         bool result = TouchManager.instance.IsBegan();
 
-        if (result && m_timer > 2 && m_end == false)
+        if (result && m_timer > 2 && m_end == false && Time.timeScale > 0f)
         {
             Vector3 point = m_camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                 Input.mousePosition.y, Input.mousePosition.z));
@@ -140,7 +138,6 @@ public class MiniDefenceGame : MiniGameSetting
         if(!m_end)
         {
             m_end = true;
-            m_timer = 12;
             m_failPrefab.SetActive(true);
             EffectSoundManager.Instance.PlayEffect(22);
             CancelInvoke("MakeMonster");
