@@ -1,4 +1,5 @@
 using GoogleMobileAds.Api;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,16 +9,24 @@ public class GatchaSceneController : ButtonHandler
     [SerializeField] private GatchaMiniGame m_GatchaSimulator;
     [SerializeField] private GameObject m_spawnEffect;
 
-    protected string m_adUnitId;
-    protected RewardedAd m_rewardAd;
+    private RewardedAd m_rewardAd;
+    private AdRequest m_adRequest;
+    private InterstitialAd m_interstitialAd;
+
+#if UNITY_ANDROID
+    private string m_adUnitId = "ca-app-pub-3940256099942544/1033173712";
+#elif UNITY_IPHONE
+  private string m_adUnitId = "ca-app-pub-3940256099942544/1712485313";
+#else
+  private string m_adUnitId = "unused";
+#endif
 
     private void Start()
     {
-#if UNITY_ANDROID
-        m_adUnitId = "ca-app-pub-3344244664806588/1607999016";//테스트 ID 
-#else
-        m_adUnitId = "unexpected_platform";
-#endif
+        MobileAds.Initialize((InitializationStatus initStatus) =>
+        {
+            // This callback is called once the MobileAds SDK is initialized.
+        });
     }
 
     private void Update()
@@ -28,17 +37,9 @@ public class GatchaSceneController : ButtonHandler
     public void AdClick()
     {
         EffectSoundManager.Instance.PlayEffect(2);
+
         LoadAd();
-
-
-        if (m_rewardAd.CanShowAd())
-        {
-            m_rewardAd.Show(GetReward);
-        }
-        else
-        {
-            Debug.Log("광고 재생 실패");
-        }
+        ShowAd();
     }
 
     public void SpawnEffect()
@@ -47,33 +48,69 @@ public class GatchaSceneController : ButtonHandler
         m_spawnEffect.SetActive(true);
     }
 
-    //광고 시청 후 보상을 적용하는 함수
-    private void GetReward(Reward reward)
-    {
-        Debug.Log("코인 100개 얻기");
-    }
+    ////광고 시청 후 보상을 적용하는 함수
+    //private void GetReward(Reward reward)
+    //{
+    //    //Debug.Log("무료 뽑기 획득");
+    //    m_GatchaSimulator.GatchaWithOutCoin();
+    //}
 
     //광고를 새로 받아오는 함수
     private void LoadAd()
     {
+        // Load an interstitial ad
+        InterstitialAd.Load(m_adUnitId, new AdRequest(),
+            (InterstitialAd ad, LoadAdError loadAdError) =>
+            {
+                if (loadAdError != null)
+                {
+                    //Debug.Log("Interstitial ad failed to load with error: " +loadAdError.GetMessage());
+                    return;
+                }
+                else if (ad == null)
+                {
+                    //Debug.Log("Interstitial ad failed to load.");
+                    return;
+                }
 
-        //광고를 한번 시청하고 나면 RewardedAd 변수가 null로 바뀜, 따라 새로 시청할 때 마다 초기화 해주는 기능이 필요함
-        RewardedAd.Load(m_adUnitId, new AdRequest.Builder().Build(), LoadCallback);
+                //Debug.Log("Interstitial ad loaded.");
+                m_interstitialAd = ad;
+            });
 
+        //// Load a rewarded ad
+        //RewardedAd.Load(m_adUnitId, new AdRequest(),
+        //    (RewardedAd ad, LoadAdError loadError) =>
+        //    {
+        //        if (loadError != null)
+        //        {
+        //            //Debug.Log("Rewarded ad failed to load with error: " +loadError.GetMessage());
+        //            return;
+        //        }
+        //        else if (ad == null)
+        //        {
+        //            //Debug.Log("Rewarded ad failed to load.");
+        //            return;
+        //        }
+
+        //        //Debug.Log("Rewarded ad loaded.");
+        //        m_rewardAd = ad;
+        //    });
     }
 
-    private void LoadCallback(RewardedAd rewardedAd, LoadAdError loadAdError)
+    //받아온 광고를 보여주는 함수
+    public void ShowAd()
     {
-        if (rewardedAd != null)
+
+        if (m_interstitialAd != null && m_interstitialAd.CanShowAd())
         {
-            m_rewardAd = rewardedAd;
-            m_GatchaSimulator.GatchaWithOutCoin();//뽑기 시뮬레이터 실행
-            Debug.Log("로드성공");
+            m_interstitialAd.Show();
+            m_GatchaSimulator.GatchaWithOutCoin();
         }
         else
         {
-            Debug.Log(loadAdError.GetMessage());
+            //Debug.Log("Interstitial ad cannot be shown.");
         }
 
     }
+
 }
