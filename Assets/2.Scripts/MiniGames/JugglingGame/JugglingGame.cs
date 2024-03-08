@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class JugglingGame : MiniGameSetting
 {
@@ -76,11 +75,19 @@ public class JugglingGame : MiniGameSetting
         }
 
         #endregion
+        Ray();
+    }
 
+    private void Ray()
+    {
         if (Input.GetMouseButtonDown(0) && m_timer > 2 && m_end == false)
         {
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            if (EventSystem.current.IsPointerOverGameObject(0))
+            {
+                return;
+            }
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.tag == "Target")
@@ -98,22 +105,18 @@ public class JugglingGame : MiniGameSetting
                     else
                         xPush = Random.Range(-0.1f, 0.1f);
 
-                    m_jugglingBallRigidBody.AddForce(new Vector3(xPush, 1, 0) * (2.5f + 0.5f* m_Difficultyforce), ForceMode.Impulse);
+                    m_jugglingBallRigidBody.AddForce(new Vector3(xPush, 1, 0) * (2.5f + 0.5f * m_Difficultyforce), ForceMode.Impulse);
                 }
             }
-
         }
-
-
     }
-
     private void MakeJugglingBall()
     {
         for (int i = 0; i < m_difficulty1; i++)
         {
             int randomx = Random.Range(0, 3);
             m_jugglingBallSpawnPosition.x = -4 + i*3 + randomx;
-            m_jugglingBallSpawnPosition.y = Random.Range(9f, 11f);
+            m_jugglingBallSpawnPosition.y = Random.Range(5f, 8f);
             Instantiate(m_jugglingBall, m_jugglingBallSpawnPosition, Quaternion.identity, transform);
         }
     }

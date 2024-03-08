@@ -77,13 +77,12 @@ public class UpDownSlimeGame : MiniGameSetting
             if(!m_end)
             {
                 m_end = true;
-                m_timer = 12;
                 m_failPrefab.SetActive(true);
                 EffectSoundManager.Instance.PlayEffect(22);
                 CancelInvoke("MakeSlime");
                 Invoke("GameFail", 1);
             }
-  
+            m_timer = 12;
         }
         #endregion
 

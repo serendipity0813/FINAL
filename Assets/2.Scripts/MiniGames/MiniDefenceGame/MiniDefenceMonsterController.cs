@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniDefenceMonsterController : MonoBehaviour
@@ -24,7 +22,8 @@ public class MiniDefenceMonsterController : MonoBehaviour
 
     private void Update()
     {
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_targetPosition, m_monsterSpeed);
+        if (Time.timeScale > 0)
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_targetPosition, m_monsterSpeed);
         if(gameObject.transform.position == m_targetPosition && m_endCheck == false)
         {
             m_endCheck = true;
