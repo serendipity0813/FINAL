@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class EffectSoundManager : MonoBehaviour
 {
-    [Serializable]
-    protected struct SoundEffects
-    {
-        [Header("SoundEffects")]
-        public string name; // 사운드 이름 및 설명
-        public AudioClip SoundEffect; // 사운드 클립
-    }
-
-    [SerializeField] private List<SoundEffects> soundEffects = new List<SoundEffects>();
-
     public static EffectSoundManager Instance;
     public AudioSource m_AudioSource1;
     public AudioSource m_AudioSource2;
     public AudioSource m_loopAudio;
+    [SerializeField] private List<SoundEffects> soundEffects = new List<SoundEffects>();
 
     private void Awake()
     {
@@ -33,7 +24,12 @@ public class EffectSoundManager : MonoBehaviour
 
     private void Start()
     {
-        m_AudioSource1 = GetComponent<AudioSource>(); // 사운드 조절 관련 전체 설정을 위해
+        Init();
+    }
+
+    private void Init() // 초기화
+    {
+        m_AudioSource1 = GetComponent<AudioSource>();
         m_AudioSource1.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
         m_AudioSource2 = gameObject.AddComponent<AudioSource>();
         m_AudioSource2.volume = PlayerDataManager.instance.m_playerData.sfxVolume;
@@ -50,44 +46,20 @@ public class EffectSoundManager : MonoBehaviour
         m_AudioSource1.PlayOneShot(soundEffects[index].SoundEffect);
     }
 
-    public void PlayEffectPitch(int index, float pitch)
+    // 이펙트 피치 조절 기능 추가
+    public void PlayEffect(int index, float pitch)
     {
         m_AudioSource2.pitch = pitch;
         m_AudioSource2.PlayOneShot(soundEffects[index].SoundEffect);
     }
 
+    // 이펙트 루프 클립 등록
     public void PlayAudioLoop(int index)
     {
         m_loopAudio.clip = soundEffects[index].SoundEffect;
     }
 
-    public void StopEffect()
-    {
-        m_AudioSource1.Stop();
-        m_AudioSource2.Stop();
-        m_loopAudio.Stop();
-    }
-
-    //public void ToggleLoop()
-    //{
-    //    if (m_loopAudio.isPlaying)
-    //    {
-    //        m_loopAudio.Pause();
-    //    }
-    //    else
-    //    {
-    //        m_loopAudio.UnPause();
-    //    }
-    //}
-
-    public void StopLoop()
-    {
-        if (m_loopAudio != null)
-        {
-            m_loopAudio.Stop();
-        }
-    }
-
+    // 이펙트 루프 클립 실행
     public void PlayLoop()
     {
         if (m_loopAudio != null)
@@ -96,4 +68,29 @@ public class EffectSoundManager : MonoBehaviour
         }
     }
 
+    // 이펙트 루프 클립 종료
+    public void StopLoop()
+    {
+        if (m_loopAudio != null)
+        {
+            m_loopAudio.Stop();
+        }
+    }
+
+    // 재생중인 이펙트 모두 정지
+    public void StopEffect()
+    {
+        m_AudioSource1.Stop();
+        m_AudioSource2.Stop();
+        m_loopAudio.Stop();
+    }
+
+    // 사운드 클립 저장
+    [Serializable]
+    protected struct SoundEffects
+    {
+        [Header("SoundEffects")]
+        public string name; // 사운드 이름 및 설명
+        public AudioClip SoundEffect; // 사운드 클립
+    }
 }

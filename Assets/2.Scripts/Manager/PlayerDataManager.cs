@@ -26,8 +26,15 @@ public class PlayerDataManager : MonoBehaviour
         Debug.Log(path);
     }
 
-    // Json 파일위치 전처리문
-    private void PlatformCheck()
+    /* 
+        다른 곳에서 활용 예시 : 게임이 끝나고 결과창
+        PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
+        SaveJson(); Json 세이브
+        LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
+        PlayerData 값을 사용하여 결과창 표시 로직
+    */
+
+    private void PlatformCheck() // Json 파일위치 전처리문
     {
 #if UNITY_ANDROID
         path = Path.Combine(Application.persistentDataPath, "playerDatas.json");
@@ -37,7 +44,8 @@ public class PlayerDataManager : MonoBehaviour
     path = Path.Combine(Application.dataPath, "Data", "playerDatas.json");
 #endif
     }
-    private void DataCheck()
+
+    private void DataCheck() // 파일 체크
     {
         if (File.Exists(path))
         {
@@ -54,30 +62,23 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
-    // 현재 Json 파일을 저장하고 싶다면 아래 메소드를 호출
+    // 현재 Json 파일을 저장하고 싶다면 메소드를 호출
     public void SaveJson()
     {
-        //string jsonData = JsonUtility.ToJson(m_playerData, true); // JSON 형태로 포멧팅
-        //File.WriteAllText(path, jsonData); // 파일 생성 및 저장
-
-        // 테스트 끝나면 아래 주석 코드를 사용할 예정
         string jsonData = JsonUtility.ToJson(m_playerData, true); // JSON 형태로 포멧팅
-        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jsonData);
-        string code = System.Convert.ToBase64String(bytes);
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jsonData); // Json을 바이트 배열로
+        string code = System.Convert.ToBase64String(bytes); // 바이트 배열을 base-64 인코딩 문자로
         File.WriteAllText(path, code); // 파일 생성 및 저장
     }
 
-    // 저장 되어있는 Json 파일을 불러오고 싶다면 아래 메소드를 호출
+    // 저장 되어있는 Json 파일을 불러오고 싶다면 메소드를 호출
     public void LoadJson()
     {
-        //string jsonData = File.ReadAllText(path); // 파일의 텍스트를 string으로 저장
-        //m_playerData = JsonUtility.FromJson<PlayerData>(jsonData); // 이 Json데이터를 역직렬화하여 playerData에 넣어줌
-
-        // 테스트 끝나면 아래 주석 코드를 사용할 예정
-        string code = File.ReadAllText(path);
-        byte[] bytes = System.Convert.FromBase64String(code);
-        string jsonData = System.Text.Encoding.UTF8.GetString(bytes);
-        m_playerData = JsonUtility.FromJson<PlayerData>(jsonData); // 이 Json데이터를 역직렬화하여 playerData에 넣어줌
+        string code = File.ReadAllText(path); // Json으로 저장된 base-64 인코딩 문자를 받아온다.
+        byte[] bytes = System.Convert.FromBase64String(code); // base-64을 바이트 배열로
+        string jsonData = System.Text.Encoding.UTF8.GetString(bytes); // 바이트 배열을 Json 문자열로
+        // Json 문자열을 역직렬화하여 playerData에 넣어줌
+        m_playerData = JsonUtility.FromJson<PlayerData>(jsonData); 
     }
 
     // 세이브 파일이 없을 시 초기화 설정 값
@@ -123,14 +124,14 @@ public class PlayerDataManager : MonoBehaviour
             {
                 m_playerData.haveSkin[i] = false;
                 m_playerData.equipSkin[i] = false;
-            }
-               
+            } 
         }
-
-        
     }
+
+    // 미니게임 SO 데이터 체크
     void MiniGameDataCheck()
     {
+        // 미니게임 List 크기 만큼
         for (int i = 0; i < MiniGameManager.Instance.MiniGames.games.Count; i++)
         {
             // 만약 m_playerData.gameIndex 에 i가 포함되어있지 않다면
@@ -144,6 +145,7 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
+    // 리워드 관련 메서드
     public void MinigameRewardCheck()
     {
         //플레이어 리워드 계산 코드
@@ -163,6 +165,7 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
+    // 상점에서 스킨을 샀을 시
     public void GetItem(int ItemCode)
     {
         m_playerData.haveSkin[ItemCode] = true;
@@ -171,6 +174,7 @@ public class PlayerDataManager : MonoBehaviour
         LoadJson();
     }
 
+    // 상점에서 코인을 샀을 시 (현재 비활성화)
     public void GetCoin(int index)
     {
         m_playerData.coin += index;
@@ -179,7 +183,7 @@ public class PlayerDataManager : MonoBehaviour
         LoadJson();
     }
 
-
+    // 상점에서 구매한 캐릭터를 장착, 해제 메서드
     public void EquipItem(int ItemCode)
     {
         for (int i = 0; i < m_playerData.equipSkin.Length; i++)
@@ -196,6 +200,7 @@ public class PlayerDataManager : MonoBehaviour
         LoadJson();
     }
 
+    // 상점에서 캐릭터 구매 메서드
     public int GetSkin()
     {
         int count = 0;
@@ -214,7 +219,7 @@ public class PlayerDataManager : MonoBehaviour
         return 0;
     }
 
-    // 코인 값 변경 메서드
+    // 코인 단위 변경 메서드
     public string ChangeNumber(string number)
     {
         if (instance.m_playerData.coin > 99999)
@@ -243,24 +248,20 @@ public class PlayerDataManager : MonoBehaviour
         }
         else { return number; }
     }
+
+    // 게임 종료 시 실행할 작업
     private void OnApplicationQuit()
     {
-        // 게임 종료 시 실행할 작업
         SaveJson();
     }
 }
 
-    /* 
-        다른 곳에서 활용 예시 : 게임이 끝나고 결과창
-        PlayerData 값 증가 로직 (Coin 이나 exe 같은 것)
-        SaveJson(); Json 세이브
-        LoadJson(); 안전한 초기화를 위해 Json 다시 불러오기 (필요 없어도 됌)
-        PlayerData 값을 사용하여 결과창 표시 로직
-    */
 
-[System.Serializable]
-public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 데이터 
+// Json으로 파일을 Load 하거나 Save 할 때의 클래스 데이터
+[System.Serializable] // 직열화
+public class PlayerData
 {
+    // Json에 저장되는 데이터
     // public int id; 고유 id 코드를 불러오는 것인데 아직 필요한지 모르겠음
     public string name; // 플레이어 이름
     public int profileIndex; // 프로필 패턴 넘버
@@ -270,6 +271,16 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public bool tutorial; // 플레이어 튜토리얼 수행 여부 false는 안함, true 는 함
     public float bgmVolume; // BGM 볼륨
     public float sfxVolume; // SFX 볼륨
+    public bool[] haveSkin; //플레이어 스킨 소지여부
+    public bool[] equipSkin; // 플레이어 스킨 장착여부
+    public List<int> gameIndex; // 미니게임 인덱스값 저장, 0번은 랜덤게임으로 고정
+    // 미니게임을 가지고 있는지 없는지 판단 false은 없고 true은 가지고 있는걸로
+    public List<bool> haveGames;
+    // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
+    public List<int> rankingPoint;
+
+
+    // Json에 저장되지 않는 변수
     public int stage { get; set; }   // 게임 진행시 현재 진행 스테이지
     public int life { get; set; }   // 게임 진행시 플레이어의 목숨 수치
     public int rewardExp { get; set; }   // 게임 진행 후 얻을 경험치
@@ -277,19 +288,4 @@ public class PlayerData // Json으로 파일을 Load 하거나 Save 할 때의 �
     public int timePoint { get; set; }   // 게임 진행 시간 보너스 점수
     public int bonusPointIndex { get; set; }  // 게임 진행 기타 보너스 점수
     public int bonusPoint { get; set; }  // 게임 진행 기타 보너스 점수
-
-    // 미니게임 인덱스값 저장, 0번은 랜덤게임으로 고정
-    public List<int> gameIndex;
-
-    // 미니게임을 가지고 있는지 없는지 판단 false은 없고 true은 가지고 있는걸로
-    public List<bool> haveGames;
-
-    // haveGamesIndex와 인덱스가 동일하게, 점수를 기록, 배열 0번은 랜덤 게임
-    public List<int> rankingPoint;
-
-    //플레이어 스킨 소지여부, 장착여부 체크용
-    public bool[] haveSkin;
-
-    public bool[] equipSkin;
-
 }
