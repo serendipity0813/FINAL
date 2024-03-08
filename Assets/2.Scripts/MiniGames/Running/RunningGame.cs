@@ -79,6 +79,7 @@ public class RunningGame : MiniGameSetting
                 EffectSoundManager.Instance.PlayEffect(22);
                 m_failPrefab.SetActive(true);
                 Invoke("GameFail", 1);
+                m_timer = 0;
                 m_end = true;
             }
         }
@@ -93,10 +94,13 @@ public class RunningGame : MiniGameSetting
 
     public void Win()
     {
-        EffectSoundManager.Instance.PlayEffect(21);
-        m_clearPrefab.SetActive(true);
-        Invoke("GameClear", 1);
-        m_end = true;
+        if (!m_end)
+        {
+            EffectSoundManager.Instance.PlayEffect(21);
+            m_clearPrefab.SetActive(true);
+            Invoke("GameClear", 1);
+            m_end = true;
+        }
     }
 
 
