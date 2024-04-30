@@ -1,10 +1,50 @@
 # Dream Arcade README.md
 <img src="https://github.com/h117562/FINAL/blob/main/Assets/99.Resources/Image/Icon.png" width="150" height="150" />
 
+
+
 ### 구현코드 목록
 
+#### Data
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/Data/ItemDataSO/ItemDataSO.cs
 
 
+#### Global
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/Manager/GameSceneManager.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/Manager/MiniGameManager.cs
+
+
+#### UI
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Animation/ChangeSceneAnimation.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Animation/GameOverSceneAnimation.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/ButtonHandler.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/ChoiceUIController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/GameChangeSceneController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/GameOverSceneController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/InGameUIController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/InGameUIController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/OptionUIController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/SelectSceneController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/SelectSceneController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/UI/Controller/ShopUIController.cs
+
+
+#### MiniGames
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/BurgerKingGame/BurgerKingGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/CarDrivingGame/CarDrivingGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/FindThiefGame/ShuffleThief.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/JugglingGame/JugglingGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/JugglingGame/JugglingGroundCheck.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/KanuGame/KanuGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/MiniDefenceGame/MiniDefenceGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/MiniDefenceGame/MiniDefenceMonsterController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/Running/RunningGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/SlimeCatchGame/SlimeCatchGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/SlimeCatchGame/SlimeCatchMovement.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/UpDownRope/ObstacleMovement.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/UpDownRope/UpDownRopeGame.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/UpDownSlimeGame/UpDownSlimeController.cs
+https://github.com/serendipity0813/FINAL/blob/main/Assets/2.Scripts/MiniGames/UpDownSlimeGame/UpDownSlimeGame.cs
 
 
 :bulb:스파르타 코딩클럽 게임개발 최종 팀프로젝트:bulb:
